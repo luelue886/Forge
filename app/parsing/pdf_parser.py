@@ -181,8 +181,9 @@ def parse_pdf(path: Path) -> DocTree:
         last_para = para_buf
         para_buf = ""
 
-    # 首页顶部的大字号行作文档题名（不重复成章节）
+    # 首页首行的大字号行作文档题名（不重复成章节）
     title_taken = False
+    first_line_seen = False
 
     for pno, events in enumerate(pages, 1):
         for e in events:
@@ -204,11 +205,14 @@ def parse_pdf(path: Path) -> DocTree:
             text = e["text"]
             size, fontname = e["size"], e["fontname"]
 
-            if not title_taken and pno == 1 and size >= body_size + 3.5:
+            if not title_taken and not first_line_seen and pno == 1 \
+                    and size >= body_size + 3.5:
                 root.title = text
                 parts.append(text)
                 title_taken = True
+                first_line_seen = True
                 continue
+            first_line_seen = True
 
             level = _heading_level(text, size, fontname, body_size)
             if level is not None:
