@@ -20,6 +20,17 @@ class TableStrategy(str, Enum):
     DEMOTE = "demote"
 
 
+class Product(str, Enum):
+    PPT = "ppt"
+    DOC = "doc"
+
+
+class Genre(str, Enum):
+    LETTER = "letter"    # 书信/申请书/感谢信/请假条等固定格式族
+    REPORT = "report"    # 报告/总结/通用
+    FORM = "form"        # 表格为主文书
+
+
 class JobStatus(str, Enum):
     PARSED = "PARSED"
     UNDERSTOOD = "UNDERSTOOD"
@@ -57,3 +68,10 @@ class IssueCode(str, Enum):
     E_TABLE_OVERSIZE = "E-TABLE-OVERSIZE"
     E_EMPTY_PLACEHOLDER = "E-EMPTY-PLACEHOLDER"
     E_RENDER_MISMATCH = "E-RENDER-MISMATCH"
+    # 文档线（DocIR）
+    V_DOC_TITLE_LEN = "V-DOC-TITLE-LEN"
+    V_DOC_HEADING_LEN = "V-DOC-HEADING-LEN"
+    V_DOC_GENRE_BLOCKS = "V-DOC-GENRE-BLOCKS"
+    V_DOC_STRUCTURE = "V-DOC-STRUCTURE"
+    V_DOC_EMPTY = "V-DOC-EMPTY"
+    W_DOC_PARA_LONG = "W-DOC-PARA-LONG"
