@@ -21,7 +21,14 @@ WEB_DIR = Path(__file__).resolve().parent.parent.parent / "web"
 templates = Jinja2Templates(directory=str(WEB_DIR / "templates"))
 
 _UPLOAD_SUFFIXES = {".docx", ".pptx", ".ppt", ".pdf"}
+_DOC_UPLOAD_SUFFIXES = {".docx", ".pdf"}  # 文档线源：PPT 源 → Word 本轮不做
 _PNG_NAME = re.compile(r"^page_\d{2}\.png$")
+
+_MEDIA_TYPES = {
+    ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ".pdf": "application/pdf",
+}
 
 
 def _mgr(request: Request):
@@ -58,10 +65,16 @@ async def job_page(request: Request, job_id: str):
 
 @router.post("/api/jobs")
 async def create_job(request: Request, file: UploadFile = File(...),
-                     skin: str = Form("business_blue")):
+                     skin: str = Form("business_blue"),
+                     product: str = Form("ppt")):
     name = Path(file.filename or "").name
-    if Path(name).suffix.lower() not in _UPLOAD_SUFFIXES:
-        raise HTTPException(400, "仅支持 docx / pptx / ppt / pdf 上传")
+    suffix = Path(name).suffix.lower()
+    if product not in ("ppt", "doc"):
+        raise HTTPException(400, "product 仅支持 ppt / doc")
+    allowed = _DOC_UPLOAD_SUFFIXES if product == "doc" else _UPLOAD_SUFFIXES
+    if suffix not in allowed:
+        wanted = "docx / pdf" if product == "doc" else "docx / pptx / ppt / pdf"
+        raise HTTPException(400, f"仅支持 {wanted} 上传")
     if skin not in dict(await run_in_threadpool(skin_choices)):
         raise HTTPException(400, f"未知皮肤：{skin}")
 
@@ -72,7 +85,7 @@ async def create_job(request: Request, file: UploadFile = File(...),
     try:
         job = await run_in_threadpool(
             lambda: _mgr(request).create(
-                staged, skin=skin, client=_llm(request),
+                staged, skin=skin, product=product, client=_llm(request),
                 com_export=getattr(request.app.state, "com_export", True)))
     except ParseError as e:
         raise HTTPException(422, f"解析失败：{e}") from e
@@ -92,9 +105,23 @@ async def job_status(request: Request, job_id: str):
 
     d = job.to_dict()
 
-    outline = None
-    plan_path = job.dir / "artifacts" / "plan.json"
-    if plan_path.exists():
+    if job.product == "doc":
+        def _load_doc():
+            from app.schema.docplan import DocPlan
+
+            plan = DocPlan.model_validate_json(plan_doc_path.read_text(encoding="utf-8"))
+            kinds = {0: "prelude", 1: "h1", 2: "h2"}
+            return {
+                "genre": plan.genre.value,
+                "title": plan.title,
+                "outline": [{"no": it.seq, "type": kinds.get(it.heading_level, "h2"),
+                             "title": it.heading} for it in plan.items],
+            }
+
+        plan_doc_path = job.dir / "artifacts" / "docplan.json"
+        if plan_doc_path.exists():
+            d.update(await run_in_threadpool(_load_doc))
+    else:
         def _load():
             from app.schema.plan import SlidePlan
 
@@ -102,38 +129,48 @@ async def job_status(request: Request, job_id: str):
             return [{"page_no": p.page_no, "type": p.slide_type.value, "title": p.title}
                     for p in plan.pages]
 
-        outline = await run_in_threadpool(_load)
+        plan_path = job.dir / "artifacts" / "plan.json"
+        if plan_path.exists():
+            d["outline"] = await run_in_threadpool(_load)
 
     def _pngs():
         return sorted(p.name for p in (job.dir / "pages").glob("page_*.png"))
 
-    d.update(outline=outline, pages_png=await run_in_threadpool(_pngs))
+    d["pages_png"] = await run_in_threadpool(_pngs)
     return d
 
 
 @router.post("/api/jobs/{job_id}/confirm")
-async def confirm_job(request: Request, job_id: str):
+async def confirm_job(request: Request, job_id: str,
+                      genre: str = Form(None)):
     try:
         await run_in_threadpool(
             lambda: _mgr(request).confirm(
                 job_id, client=_llm(request),
-                com_export=getattr(request.app.state, "com_export", True)))
+                com_export=getattr(request.app.state, "com_export", True),
+                genre=genre or None))
     except JobError as e:
         raise HTTPException(409, str(e)) from e
     return {"ok": True}
 
 
 @router.get("/jobs/{job_id}/download")
-async def download(request: Request, job_id: str):
+async def download(request: Request, job_id: str, format: str = "pptx"):
     try:
         job = await run_in_threadpool(_mgr(request).get, job_id)
     except JobError as e:
         raise HTTPException(404, str(e)) from e
-    pptx = job.dir / "artifacts" / "output.pptx"
-    if not pptx.exists():
+    fmt = format.lower()
+    if job.product == "doc":
+        if fmt not in ("docx", "pdf"):
+            raise HTTPException(400, "文档任务仅支持 format=docx / pdf")
+    elif fmt != "pptx":
+        raise HTTPException(400, "PPT 任务仅支持 format=pptx")
+    f = job.dir / "artifacts" / f"output.{fmt}"
+    if not f.exists():
         raise HTTPException(404, "产物尚未生成")
-    return FileResponse(pptx, filename=f"{Path(job.source_name).stem}.pptx",
-                        media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation")
+    return FileResponse(f, filename=f"{Path(job.source_name).stem}.{fmt}",
+                        media_type=_MEDIA_TYPES[f".{fmt}"])
 
 
 @router.get("/jobs/{job_id}/pages/{name}")

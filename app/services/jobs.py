@@ -10,7 +10,7 @@ from pathlib import Path
 from app.config import DATA_DIR
 from app.parse_dispatch import parse_source
 from app.pipeline.runner import parse_and_save, run_pipeline_safe
-from app.schema.enums import JobStatus
+from app.schema.enums import Genre, JobStatus
 
 _TERMINAL = {JobStatus.DONE, JobStatus.FAILED}
 _ACTIVE = {JobStatus.PARSED, JobStatus.UNDERSTOOD, JobStatus.GENERATING,
@@ -23,11 +23,12 @@ class JobError(Exception):
 
 class Job:
     def __init__(self, job_id: str, root: Path, source_name: str, skin: str,
-                 auto_confirm: bool = False):
+                 auto_confirm: bool = False, product: str = "ppt"):
         self.job_id = job_id
         self.dir = root / job_id
         self.source_name = source_name
         self.skin = skin
+        self.product = product
         self.auto_confirm = auto_confirm
         self.confirmed = auto_confirm
         self.status = JobStatus.PARSED
@@ -53,6 +54,7 @@ class Job:
                 "detail": self.detail,
                 "source_name": self.source_name,
                 "skin": self.skin,
+                "product": self.product,
                 "auto_confirm": self.auto_confirm,
                 "confirmed": self.confirmed,
                 "error": self.error,
@@ -65,24 +67,28 @@ class Job:
 
     def to_dict(self) -> dict:
         with self._lock:
+            art = self.dir / "artifacts"
             return {
                 "job_id": self.job_id,
                 "status": self.status.value,
                 "detail": self.detail,
                 "source_name": self.source_name,
                 "skin": self.skin,
+                "product": self.product,
                 "error": self.error,
                 "created_at": self.created_at,
                 "updated_at": self.updated_at,
-                "output_pptx": str(self.dir / "artifacts" / "output.pptx")
-                if (self.dir / "artifacts" / "output.pptx").exists() else None,
+                "output_pptx": str(art / "output.pptx") if (art / "output.pptx").exists() else None,
+                "output_docx": str(art / "output.docx") if (art / "output.docx").exists() else None,
+                "output_pdf": str(art / "output.pdf") if (art / "output.pdf").exists() else None,
             }
 
     @classmethod
     def load(cls, job_dir: Path) -> "Job":
         data = json.loads((job_dir / "state.json").read_text(encoding="utf-8"))
         job = cls(data["job_id"], job_dir.parent, data["source_name"],
-                  data.get("skin", "business_blue"), data.get("auto_confirm", False))
+                  data.get("skin", "business_blue"), data.get("auto_confirm", False),
+                  data.get("product", "ppt"))
         job.status = JobStatus(data["status"])
         job.detail = data.get("detail", "")
         job.error = data.get("error")
@@ -147,14 +153,15 @@ class JobManager:
         fut.add_done_callback(lambda _f: self._running.discard(job.job_id))
 
     def create(self, source: Path, skin: str = "business_blue",
-               auto_confirm: bool = False, client=None, com_export: bool = True) -> Job:
+               auto_confirm: bool = False, product: str = "ppt",
+               client=None, com_export: bool = True) -> Job:
         if self.active() is not None:
             active = self.active()
             raise JobError(f"已有进行中的任务 {active.job_id}（{active.status.value}），"
                            f"请先完成或取消")
         source = Path(source)
         job_id = f"{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6]}"
-        job = Job(job_id, self.root, source.name, skin, auto_confirm)
+        job = Job(job_id, self.root, source.name, skin, auto_confirm, product)
         job.dir.mkdir(parents=True, exist_ok=True)
 
         upload = job.dir / "upload"
@@ -167,14 +174,32 @@ class JobManager:
         self._submit(job, client, com_export)
         return job
 
-    def confirm(self, job_id: str, client=None, com_export: bool = True) -> Job:
+    def confirm(self, job_id: str, client=None, com_export: bool = True,
+                genre: str | None = None) -> Job:
         job = self.get(job_id)
         if job.status is not JobStatus.PLANNED:
             raise JobError(f"任务状态为 {job.status.value}，只有 PLANNED 可确认")
+        if genre and job.product == "doc":
+            self._apply_genre(job, genre)
         job.confirmed = True
         job.save_state()
         self._submit(job, client, com_export)
         return job
+
+    def _apply_genre(self, job: Job, genre: str) -> None:
+        """PLANNED 确认时改体裁：只重写 docplan.json 的 genre，不重跑 understand。"""
+        try:
+            new_genre = Genre(genre)
+        except ValueError:
+            raise JobError(f"未知体裁：{genre}（可选 {'/'.join(g.value for g in Genre)}）")
+        plan_path = job.dir / "artifacts" / "docplan.json"
+        if not plan_path.exists():
+            return
+        data = json.loads(plan_path.read_text(encoding="utf-8"))
+        if data.get("genre") != new_genre.value:
+            data["genre"] = new_genre.value
+            plan_path.write_text(
+                json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     def cancel(self, job_id: str) -> Job:
         job = self.get(job_id)

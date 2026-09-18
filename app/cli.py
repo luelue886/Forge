@@ -9,6 +9,8 @@ from app.schema.slideir import Deck, validate_deck
 
 
 def _cmd_render(args) -> int:
+    if args.docir:
+        return _cmd_render_docir(args)
     from app.render.capacity import capacity_issues
     from app.render.renderer import render_to_file
     from app.services.com_export import checklist, export_pngs
@@ -44,6 +46,32 @@ def _cmd_render(args) -> int:
             blocking += 1
 
     print(f"完成：blocking={blocking}")
+    return 1 if blocking else 0
+
+
+def _cmd_render_docir(args) -> int:
+    from app.render.docx_render import render_docir_to_docx
+    from app.schema.docir import DocIR, validate_docir
+    from app.schema.enums import IssueCode
+
+    doc = DocIR.model_validate_json(Path(args.deck).read_text(encoding="utf-8"))
+    issues = validate_docir(doc)
+    blocking = [i for i in issues if i.rule is not IssueCode.W_DOC_PARA_LONG]
+    for i in issues:
+        tag = "blocking" if i in blocking else "warn"
+        print(f"[schema/{tag}] {i.rule.value}: {i.detail}")
+    if blocking and not args.force:
+        print("schema 校验未通过（--force 可跳过查看渲染效果）")
+        return 1
+
+    out = render_docir_to_docx(doc, Path(args.out))
+    print(f"已渲染 {len(doc.blocks)} 块 → {out}")
+    if args.pdf:
+        from app.services.com_export import export_docx_pdf
+
+        pdf = export_docx_pdf(out, out.with_suffix(".pdf"))
+        print(f"已导出 PDF → {pdf}")
+    print(f"完成：blocking={len(blocking)}")
     return 1 if blocking else 0
 
 
@@ -111,18 +139,41 @@ def _cmd_run(args) -> int:
     if not source.exists():
         print(f"[fail] 文件不存在：{source}")
         return 1
+    if args.genre and args.product != "doc":
+        print("[fail] --genre 仅用于 --product doc")
+        return 1
+    if args.genre and not args.auto_confirm:
+        print("[fail] --genre 需配合 --auto-confirm；或改用："
+              f"python -m app confirm <job_id> --genre {args.genre}")
+        return 1
 
     mgr = JobManager()
     try:
-        job = mgr.create(source, skin=args.skin, auto_confirm=args.auto_confirm)
+        # --genre 时不走 auto_confirm：等 PLANNED 落盘 docplan 后带体裁确认
+        job = mgr.create(source, skin=args.skin, product=args.product,
+                         auto_confirm=args.auto_confirm and not args.genre)
     except (ParseError, JobError) as e:
         print(f"[fail] {e}")
         return 1
 
     print(f"job_id={job.job_id}")
-    if not args.auto_confirm:
+    if args.genre:
+        while job.status.value not in ("PLANNED", "FAILED"):
+            _time.sleep(0.5)
+        if job.status.value == "FAILED":
+            print(f"失败：{job.error}")
+            return 1
+        try:
+            job = mgr.confirm(job.job_id, genre=args.genre)
+        except JobError as e:
+            print(f"[fail] {e}")
+            return 1
+        print(f"已按体裁 {args.genre} 确认，流水线继续。")
+
+    if not job.confirmed:
         print("流水线将在大纲确认点（PLANNED）暂停。确认命令：")
-        print(f"  python -m app confirm {job.job_id}")
+        suffix = " --genre letter|report|form" if args.product == "doc" else ""
+        print(f"  python -m app confirm {job.job_id}{suffix}")
         print(f"查看状态：python -m app status {job.job_id}")
         return 0
 
@@ -135,7 +186,11 @@ def _cmd_run(args) -> int:
             last = cur
     d = job.to_dict()
     if job.status.value == "DONE":
-        print(f"完成：{d['output_pptx']}")
+        if args.product == "doc":
+            print(f"完成：{d['output_docx']}")
+            print(f"PDF：{d['output_pdf']}")
+        else:
+            print(f"完成：{d['output_pptx']}")
         print(f"页面预览：{job.dir / 'pages'}")
         return 0
     print(f"失败：{job.error}")
@@ -146,7 +201,7 @@ def _cmd_confirm(args) -> int:
     from app.services.jobs import JobError, JobManager
 
     try:
-        job = JobManager().confirm(args.job_id)
+        job = JobManager().confirm(args.job_id, genre=args.genre)
     except JobError as e:
         print(f"[fail] {e}")
         return 1
@@ -184,12 +239,14 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="app", description="AIGC 文档仿写 PPT Agent")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    p_render = sub.add_parser("render", help="SlideIR JSON → pptx（→ PNG + 清单检查）")
-    p_render.add_argument("deck", help="SlideIR deck JSON 路径")
+    p_render = sub.add_parser("render", help="SlideIR/DocIR JSON → pptx/docx（调试用）")
+    p_render.add_argument("deck", help="SlideIR deck 或 DocIR JSON 路径")
     p_render.add_argument("--skin", default="business_blue")
-    p_render.add_argument("--out", required=True, help="输出 pptx 路径")
-    p_render.add_argument("--pngs", metavar="DIR", help="同时 COM 导出 PNG 到该目录")
+    p_render.add_argument("--out", required=True, help="输出 pptx / docx 路径")
+    p_render.add_argument("--pngs", metavar="DIR", help="同时 COM 导出 PNG 到该目录（pptx）")
     p_render.add_argument("--force", action="store_true", help="schema 校验失败仍继续渲染")
+    p_render.add_argument("--docir", action="store_true", help="输入按 DocIR 解析，渲染 docx")
+    p_render.add_argument("--pdf", action="store_true", help="docx 再经 Word COM 转 PDF（--docir）")
     p_render.set_defaults(func=_cmd_render)
 
     p_export = sub.add_parser("export", help="已有 pptx → PNG")
@@ -199,14 +256,19 @@ def main(argv: list[str] | None = None) -> int:
 
     sub.add_parser("llmping", help="360智脑连通性 smoke（W2）").set_defaults(func=_cmd_llmping)
 
-    p_run = sub.add_parser("run", help="源文档 → PPT 全流程")
+    p_run = sub.add_parser("run", help="源文档 → PPT / Word·PDF 文档全流程")
     p_run.add_argument("source")
     p_run.add_argument("--skin", default="business_blue")
+    p_run.add_argument("--product", choices=("ppt", "doc"), default="ppt")
+    p_run.add_argument("--genre", choices=("letter", "report", "form"),
+                       help="文档体裁（仅 --product doc，需 --auto-confirm）")
     p_run.add_argument("--auto-confirm", action="store_true", help="跳过大纲确认（测试用）")
     p_run.set_defaults(func=_cmd_run)
 
     p_confirm = sub.add_parser("confirm", help="确认 PLANNED 状态任务的大纲")
     p_confirm.add_argument("job_id")
+    p_confirm.add_argument("--genre", choices=("letter", "report", "form"),
+                           help="文档任务可同时改体裁")
     p_confirm.set_defaults(func=_cmd_confirm)
 
     p_status = sub.add_parser("status", help="查看任务状态")

@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>文档仿写 PPT</title>
+  <title>文档仿写 Agent</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <header>
-    <h1>文档仿写 PPT</h1>
-    <p class="sub">上传 Word / PPT / PDF 源文档，仿写生成成片 PPT</p>
+    <h1>文档仿写 Agent</h1>
+    <p class="sub">上传源文档（Word / PPT / PDF），仿写生成 PPT 或 Word·PDF 文档</p>
   </header>
 
   <main>
@@ -17,10 +17,17 @@
       <h2>新建任务</h2>
       <form id="upload-form">
         <div class="form-row">
+          <label for="product">产物类型</label>
+          <select id="product">
+            <option value="ppt" selected>PPT 演示文稿</option>
+            <option value="doc">Word / PDF 文档</option>
+          </select>
+        </div>
+        <div class="form-row">
           <label for="file">源文档</label>
           <input type="file" id="file" accept=".docx,.pptx,.ppt,.pdf" required>
         </div>
-        <div class="form-row">
+        <div class="form-row" id="skin-row">
           <label for="skin">皮肤</label>
           <select id="skin">
             {% for stem, display in skins %}

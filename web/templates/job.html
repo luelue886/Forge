@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>任务 · 文档仿写 PPT</title>
+  <title>任务 · 文档仿写 Agent</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -18,12 +18,20 @@
         <span class="status st-large" id="status-text">…</span>
         <span class="detail" id="status-detail"></span>
       </div>
-      <p class="sub">皮肤：<span id="skin-text">…</span></p>
+      <p class="sub" id="skin-line">皮肤：<span id="skin-text">…</span></p>
       <div id="confirm-area" class="hidden">
         <h2>大纲确认</h2>
-        <p class="sub">以下是拟生成的页面规划，确认后开始逐页仿写。</p>
+        <p class="sub">以下是拟生成的内容规划，确认后开始逐节仿写。</p>
+        <div class="form-row hidden" id="genre-row">
+          <label for="genre">体裁（可修改）</label>
+          <select id="genre">
+            <option value="letter">书信 / 申请书</option>
+            <option value="report">报告 / 总结</option>
+            <option value="form">表格文书</option>
+          </select>
+        </div>
         <table>
-          <thead><tr><th>页</th><th>类型</th><th>标题</th></tr></thead>
+          <thead><tr><th>序</th><th>类型</th><th>标题</th></tr></thead>
           <tbody id="outline-body"></tbody>
         </table>
         <button id="confirm-btn">确认大纲，开始生成</button>
@@ -34,6 +42,8 @@
       </div>
       <div id="done-area" class="hidden">
         <a id="download-link" class="button" href="#">下载 PPTX</a>
+        <a id="download-docx-link" class="button hidden" href="#">下载 Word</a>
+        <a id="download-pdf-link" class="button hidden" href="#">下载 PDF</a>
       </div>
     </section>
 

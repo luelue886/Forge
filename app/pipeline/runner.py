@@ -165,7 +165,12 @@ def _skin_of(job: _JobLike) -> str:
 def run_pipeline_safe(job: _JobLike, client: LLMClient | None = None,
                       com_export: bool = True) -> None:
     try:
-        run_pipeline(job, client, com_export)
+        if getattr(job, "product", "ppt") == "doc":
+            from app.pipeline.doc_runner import run_doc_pipeline
+
+            run_doc_pipeline(job, client, com_export)
+        else:
+            run_pipeline(job, client, com_export)
     except Exception as e:  # noqa: BLE001 — 任何阶段异常都落为 FAILED
         log.exception("job %s 失败", getattr(job, "dir", "?"))
         job.error = f"{type(e).__name__}: {e}"
