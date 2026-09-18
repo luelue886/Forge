@@ -37,9 +37,11 @@ def _heading_level(text: str, size: float, fontname: str,
     w = text_weight(text)
     if w > 40 or len(text) > 60:
         return None
-    if size >= body_size + 3.0:
+    # Word 14pt 标题样式在 PDF 中实为 13.9pt（对 11pt 正文仅 +2.9），
+    # 公文三号 16 对四号 14 仅 +2：阈值按这两档真实落差取
+    if size >= body_size + 2.0:
         return 1
-    if size >= body_size + 1.5:
+    if size >= body_size + 1.0:
         return 2
     if _BOLD_FONT.search(fontname) and _NUM_PREFIX.match(text) and w <= 30:
         return 1
@@ -93,11 +95,13 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
         return any(top >= t["top"] - 1 and bottom <= t["bottom"] + 1
                    for t in tables)
 
-    # 词 → 行（同 top 容差 2.5pt 聚合）
+    # 词 → 行（top 容差随字号放大：大字号标题里混排字体（如 Word 回退字体）
+    # 单字 top 可差 3-4pt，固定 2.5 会把标题拆成两行）
     words.sort(key=lambda w: (w["top"], w["x0"]))
     raw_lines: list[dict] = []
     for w in words:
-        if raw_lines and abs(w["top"] - raw_lines[-1]["top"]) <= 2.5:
+        tol = max(2.5, 0.4 * float(w.get("size") or 0))
+        if raw_lines and abs(w["top"] - raw_lines[-1]["top"]) <= tol:
             ln = raw_lines[-1]
             ln["parts"].append(w)
             ln["top"] = min(ln["top"], w["top"])

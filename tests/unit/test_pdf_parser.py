@@ -129,6 +129,40 @@ def test_parse_pdf_scanned_rejected(tmp_path):
         parse_pdf(p)
 
 
+def test_parse_pdf_word_style_h1_is_level1(tmp_path):
+    # Word 14pt 标题样式 → PDF 实测 13.9pt，对 11pt 正文仅 +2.9：必须判 L1
+    p = _text_pdf(tmp_path / "word.pdf", [
+        ("季度工作报告", 20),
+        ("一、总体情况", 13.9),
+        ("本季度新增客户 128 家，续约率 91%。", 11),
+        ("整体经营情况良好，各项指标均达到预期目标。", 11),
+    ])
+    tree = parse_pdf(p)
+    l1 = [s for s in tree.sections[0].walk() if s.level == 1]
+    assert [s.title for s in l1] == ["一、总体情况"]
+
+
+def test_parse_pdf_mixed_font_title_not_split(tmp_path):
+    # 标题行中单字由回退字体渲染、top 偏移 3pt：按字号放大容差，不得拆行
+    import fitz
+
+    p = tmp_path / "split.pdf"
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    page.insert_text((72, 76), "智慧公", fontname="china-s", fontsize=22)
+    page.insert_text((142, 79), "办平台推广方案", fontname="china-s", fontsize=22)
+    page.insert_text((72, 140), "一、背景", fontname="china-s", fontsize=16)
+    page.insert_text((72, 180), "项目预算总额 320 万元。", fontname="china-s", fontsize=11)
+    page.insert_text((72, 211), "目标覆盖 200 家企业客户。", fontname="china-s", fontsize=11)
+    doc.save(str(p))
+    doc.close()
+
+    tree = parse_pdf(p)
+    root = tree.sections[0]
+    assert root.title == "智慧公办平台推广方案"
+    assert not [s for s in root.walk() if s.title == "办"]  # 不得出现孤字章节
+
+
 def test_parse_pdf_missing_file(tmp_path):
     with pytest.raises(ParseError):
         parse_pdf(tmp_path / "nope.pdf")
