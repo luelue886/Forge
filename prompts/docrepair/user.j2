@@ -1,0 +1,9 @@
+## 待修订文本块
+{% for b in blocks %}
+[块 {{ b.idx }}]
+{{ b.text }}
+{% endfor %}
+## 违规原因（必须全部修正）
+{{ errors }}
+
+请输出修订后 JSON。

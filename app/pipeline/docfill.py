@@ -78,12 +78,8 @@ def _fill_deterministic(item: DocPlanItem) -> SectionIR:
 
 
 def fill_section(item: DocPlanItem, plan: DocPlan, tree: DocTree,
-                 client: LLMClient, pm: PromptManager | None = None,
-                 prior_errors: str = "") -> SectionIR:
-    """单节规划 → SectionIR。无正文素材走确定性路径；否则 LLM 仿写 + 一次纠错重试。
-
-    prior_errors：QA 定向重 fill 时传入该节上一版的违规明细，作为首轮纠错上下文。
-    """
+                 client: LLMClient, pm: PromptManager | None = None) -> SectionIR:
+    """单节规划 → SectionIR。无正文素材走确定性路径；否则 LLM 仿写 + 一次纠错重试。"""
     if not _has_prose(item, tree):
         return _fill_deterministic(item)
 
@@ -94,7 +90,7 @@ def fill_section(item: DocPlanItem, plan: DocPlan, tree: DocTree,
     mode = "section" if wants_heading else "paras"
     source_text = tree.resolve(item.src_refs)
 
-    errors = prior_errors
+    errors = ""
     for _attempt in (1, 2):
         user = pm.render(
             "docfill/user.j2", seq=item.seq, genre=plan.genre.value, mode=mode,
