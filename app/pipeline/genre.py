@@ -107,6 +107,12 @@ def detect_genre(tree: DocTree) -> GenreScore:
     return GenreScore(genre=genre, confidence=min(best[1], 1.0), reasons=reasons)
 
 
+def is_letter_frame_line(text: str) -> bool:
+    """称呼行 / 此致敬礼 / 单独日期行——letter 正文段不得包含这些框架行。"""
+    return bool(_SALUTATION.match(text) or _CLOSING_LINE.match(text)
+                or _REVERENCE.match(text) or _DATE_ALONE.match(text))
+
+
 def extract_letter_frame(tree: DocTree) -> LetterFrame:
     """从源文档 verbatim 抽取称呼/此致敬礼/落款（署名+日期）。"""
     texts = _texts_in_order(tree)

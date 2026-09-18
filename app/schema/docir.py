@@ -97,6 +97,18 @@ DOC_LIMITS = {
 }
 
 
+def _block_empty(b) -> bool:
+    if isinstance(b, (DocTitleBlock, HeadingBlock, ParaBlock, SalutationBlock)):
+        return not b.text.strip()
+    if isinstance(b, ClosingBlock):
+        return not any(l.strip() for l in b.lines)
+    if isinstance(b, SignatureBlock):
+        return not (b.signer.strip() or b.date.strip())
+    if isinstance(b, TableBlock):
+        return not (b.header or b.rows)
+    return False
+
+
 def validate_docir(doc: DocIR) -> list[DocIssue]:
     issues: list[DocIssue] = []
 
@@ -117,16 +129,7 @@ def validate_docir(doc: DocIR) -> list[DocIssue]:
 
     # 空块
     for i, b in enumerate(blocks):
-        empty = False
-        if isinstance(b, (DocTitleBlock, HeadingBlock, ParaBlock, SalutationBlock)):
-            empty = not b.text.strip()
-        elif isinstance(b, ClosingBlock):
-            empty = not any(l.strip() for l in b.lines)
-        elif isinstance(b, SignatureBlock):
-            empty = not (b.signer.strip() or b.date.strip())
-        elif isinstance(b, TableBlock):
-            empty = not (b.header or b.rows)
-        if empty:
+        if _block_empty(b):
             add(IssueCode.V_DOC_EMPTY, f"块 {i}（{b.kind}）为空", i)
 
     # 长度硬规则
@@ -192,4 +195,34 @@ def validate_docir(doc: DocIR) -> list[DocIssue]:
             add(IssueCode.W_DOC_PARA_LONG,
                 f"para {text_weight(b.text):.0f} 汉字当量超过 {L['para_weight_warn']:.0f}，建议拆段", i)
 
+    return issues
+
+
+def validate_section_ir(sec: SectionIR, genre: Genre) -> list[DocIssue]:
+    """单节 fill 落盘前的可重试校验（块级规则）。
+
+    跨节结构规则（doc_title 位置、heading 跳级、form 全文表格数、letter 框架顺序）
+    由组装后的 validate_docir 把关。
+    """
+    issues: list[DocIssue] = []
+    allowed = GENRE_BLOCKS[genre]
+    for i, b in enumerate(sec.blocks):
+        if _block_empty(b):
+            issues.append(DocIssue(rule=IssueCode.V_DOC_EMPTY,
+                                   detail=f"块 {i}（{b.kind}）为空", seq=i))
+        if b.kind not in allowed:
+            issues.append(DocIssue(rule=IssueCode.V_DOC_GENRE_BLOCKS,
+                                   detail=f"体裁 {genre.value} 不允许块 {b.kind}（块 {i}）", seq=i))
+        if isinstance(b, HeadingBlock) and text_weight(b.text) > DOC_LIMITS["heading_weight"]:
+            issues.append(DocIssue(
+                rule=IssueCode.V_DOC_HEADING_LEN,
+                detail=f"标题 {text_weight(b.text):.0f} 汉字当量超过 "
+                       f"{DOC_LIMITS['heading_weight']:.0f}：{b.text[:15]}…", seq=i))
+        if isinstance(b, ParaBlock) and text_weight(b.text) > DOC_LIMITS["para_weight_warn"]:
+            issues.append(DocIssue(
+                rule=IssueCode.W_DOC_PARA_LONG,
+                detail=f"para {text_weight(b.text):.0f} 汉字当量超过 "
+                       f"{DOC_LIMITS['para_weight_warn']:.0f}，建议拆段", seq=i))
+    if not any(b.kind == "para" for b in sec.blocks):
+        issues.append(DocIssue(rule=IssueCode.V_DOC_EMPTY, detail="节内没有正文段落"))
     return issues

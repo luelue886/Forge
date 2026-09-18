@@ -21,5 +21,5 @@ class DocPlanItem(BaseModel):
 class DocPlan(BaseModel):
     schema_version: Literal["docplan/1.0"] = SCHEMA_VERSION
     genre: Genre
-    title: str  # 文档标题草稿（fill 可改写，≤30 汉字当量）
+    title: str  # 文档标题：源标题照抄，不经 LLM（≤30 汉字当量由校验把关）
     items: list[DocPlanItem] = Field(default_factory=list)

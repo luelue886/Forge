@@ -1,0 +1,16 @@
+## 节规划
+序号：{{ seq }}
+体裁：{{ genre }}
+模式：{{ mode }}{% if genre == "letter" %}——只输出正文段落，称呼/此致敬礼/署名/日期由系统处理，严禁包含{% endif %}
+{% if heading_draft %}
+标题草稿（可改写，≤25 汉字当量）：{{ heading_draft }}
+{% endif %}
+## 源素材
+{{ source_text }}
+{% if errors %}
+
+## 上一版被代码拒收的原因（必须全部修正）
+{{ errors }}
+{% endif %}
+
+请输出该节内容 JSON。
