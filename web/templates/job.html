@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>任务 · 文档仿写 PPT</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">← 返回</a></h1>
+    <p class="sub" id="job-title">任务 {{ job_id }}</p>
+  </header>
+
+  <main>
+    <section class="card" id="status-card">
+      <div class="row">
+        <span class="status st-large" id="status-text">…</span>
+        <span class="detail" id="status-detail"></span>
+      </div>
+      <p class="sub">皮肤：<span id="skin-text">…</span></p>
+      <div id="confirm-area" class="hidden">
+        <h2>大纲确认</h2>
+        <p class="sub">以下是拟生成的页面规划，确认后开始逐页仿写。</p>
+        <table>
+          <thead><tr><th>页</th><th>类型</th><th>标题</th></tr></thead>
+          <tbody id="outline-body"></tbody>
+        </table>
+        <button id="confirm-btn">确认大纲，开始生成</button>
+        <p id="confirm-msg" class="msg"></p>
+      </div>
+      <div id="error-area" class="hidden">
+        <pre id="error-text"></pre>
+      </div>
+      <div id="done-area" class="hidden">
+        <a id="download-link" class="button" href="#">下载 PPTX</a>
+      </div>
+    </section>
+
+    <section class="card" id="pages-card">
+      <h2>页面预览</h2>
+      <div id="pages-grid" class="grid"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+  <script>initJobPage("{{ job_id }}", {{ skins|tojson }});</script>
+</body>
+</html>

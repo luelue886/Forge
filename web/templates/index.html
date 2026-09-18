@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文档仿写 PPT</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>文档仿写 PPT</h1>
+    <p class="sub">上传 Word / PPT / PDF 源文档，仿写生成成片 PPT</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>新建任务</h2>
+      <form id="upload-form">
+        <div class="form-row">
+          <label for="file">源文档</label>
+          <input type="file" id="file" accept=".docx,.pptx,.ppt,.pdf" required>
+        </div>
+        <div class="form-row">
+          <label for="skin">皮肤</label>
+          <select id="skin">
+            {% for stem, display in skins %}
+            <option value="{{ stem }}"{% if stem == 'business_blue' %} selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" id="upload-btn">上传并解析</button>
+      </form>
+      <p id="upload-msg" class="msg"></p>
+    </section>
+
+    <section class="card">
+      <h2>最近任务</h2>
+      <table id="jobs-table">
+        <thead><tr><th>任务</th><th>源文档</th><th>状态</th><th>更新时间</th></tr></thead>
+        <tbody>
+          {% for j in jobs %}
+          <tr>
+            <td><a href="/jobs/{{ j.job_id }}">{{ j.job_id[:17] }}</a></td>
+            <td>{{ j.source_name }}</td>
+            <td><span class="status st-{{ j.status }}">{{ j.status }}</span></td>
+            <td>{{ j.updated_at }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4" class="empty">暂无任务</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

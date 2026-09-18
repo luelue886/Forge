@@ -1,0 +1,23 @@
+文档标题：{{ doc_title }}
+内容页数：恰好 {{ n_content_pages }} 页
+
+## 文档章节结构（可用引用 ID）
+{% for s in structure %}
+- {{ s.id }} [L{{ s.level }}] {{ s.title }}：内容块 {{ s.block_ranges }}
+{% endfor %}
+{% if tables %}
+
+## 表格清单（每张必须恰好一个去向）
+{% for t in tables %}
+- {{ t.table_id }} [{{ t.section_id }}]：{{ t.topic }}，{{ t.n_rows }}×{{ t.n_cols }}，建议 {{ t.suggested_strategy }}（{{ t.rationale }}）
+{% endfor %}
+{% endif %}
+
+## 各章理解摘要（DocMap）
+{% for m in maps %}
+### {{ m.section_id }}
+{{ m.summary }}
+关键事实示例：{{ m.fact_samples }}
+{% endfor %}
+
+请输出 SlidePlan：先为每个一级章节各规划 1 页叙述页（要点/对比/指标），再为每张表各规划 1 页表格页；封面、目录、章节过渡页、结束页由代码自动生成，不要输出。page_no 从 1 开始连续编号。

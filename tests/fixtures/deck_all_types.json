@@ -1,0 +1,120 @@
+{
+  "schema_version": "slideir/1.0",
+  "meta": {
+    "title": "智慧园区数字化平台季度汇报",
+    "template": "business_blue",
+    "language": "zh-CN"
+  },
+  "slides": [
+    {
+      "page_no": 1,
+      "slide_type": "cover",
+      "title": "智慧园区数字化平台季度汇报",
+      "subtitle": "2026年第三季度 · 产品与运营部",
+      "src_refs": []
+    },
+    {
+      "page_no": 2,
+      "slide_type": "toc",
+      "title": "目录",
+      "bullets": [
+        "项目概览",
+        "平台建设进展",
+        "关键指标达成",
+        "问题与改进",
+        "下季度规划"
+      ],
+      "src_refs": []
+    },
+    {
+      "page_no": 3,
+      "slide_type": "section_header",
+      "title": "一、项目概览",
+      "subtitle": "项目背景与整体定位",
+      "src_refs": ["sec-001"]
+    },
+    {
+      "page_no": 4,
+      "slide_type": "text_points",
+      "title": "平台建设总体进展",
+      "bullets": [
+        "三大核心模块全部上线，进入稳定运行阶段",
+        "完成与市政系统对接，实现数据实时同步",
+        "移动端应用完成三次迭代，用户评分 4.6",
+        "通过安全等保三级测评，合规体系就绪"
+      ],
+      "metrics": [
+        { "label": "覆盖园区", "value": "12", "unit": "个" },
+        { "label": "接入设备", "value": "8,600", "unit": "台" },
+        { "label": "月活跃用户", "value": "42万", "unit": "人" }
+      ],
+      "src_refs": ["blk-001", "blk-002"]
+    },
+    {
+      "page_no": 5,
+      "slide_type": "two_column",
+      "title": "自建平台与外采方案对比",
+      "columns": [
+        {
+          "heading": "自建平台",
+          "bullets": [
+            "初期投入高，长期成本低",
+            "数据完全自主可控",
+            "定制能力强，响应业务快",
+            "需要自建运维团队"
+          ]
+        },
+        {
+          "heading": "外采方案",
+          "bullets": [
+            "上线速度快，周期以周计",
+            "按年订阅，成本平滑",
+            "功能固定，深度定制难",
+            "数据托管存在合规风险"
+          ]
+        }
+      ],
+      "src_refs": ["blk-010"]
+    },
+    {
+      "page_no": 6,
+      "slide_type": "table",
+      "title": "Q3 关键指标达成情况",
+      "table": {
+        "table_id": "tbl-001",
+        "header": ["指标", "目标", "实际", "达成率"],
+        "rows": [
+          ["园区接入数", "10个", "12个", "120%"],
+          ["设备在线率", "95%", "96.8%", "达成"],
+          ["月活跃用户", "35万", "42万", "120%"],
+          ["工单闭环率", "90%", "91%", "达成"]
+        ]
+      },
+      "note": "数据截至 2026-09-15，来源：运营周报第三季度汇总。",
+      "src_refs": ["tbl-001"]
+    },
+    {
+      "page_no": 7,
+      "slide_type": "key_metrics",
+      "title": "Q3 核心经营数据",
+      "metrics": [
+        { "label": "季度营收", "value": "1.2亿", "unit": "元" },
+        { "label": "营收同比", "value": "+8%" },
+        { "label": "毛利率", "value": "40%" },
+        { "label": "回款率", "value": "91%" }
+      ],
+      "bullets": [
+        "营收结构更加健康，服务性收入占比首次过半",
+        "回款效率显著改善，经营现金流为正"
+      ],
+      "src_refs": ["blk-020"]
+    },
+    {
+      "page_no": 8,
+      "slide_type": "closing",
+      "title": "谢谢观看",
+      "subtitle": "智慧园区数字化平台 · 2026年第三季度",
+      "src_refs": []
+    }
+  ]
+}

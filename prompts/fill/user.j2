@@ -1,0 +1,15 @@
+## 页面规划
+页码：{{ page_no }}
+类型：{{ slide_type }}
+标题草稿：{{ title }}
+要点提示：{{ brief }}
+
+## 原文素材（src_refs 已解析）
+{{ source_text }}
+{% if errors %}
+
+## 上一版被代码拒收的原因（必须全部修正）
+{{ errors }}
+{% endif %}
+
+请输出这一页的内容 JSON（只要所要求页型的字段）。

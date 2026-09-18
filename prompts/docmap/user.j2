@@ -1,0 +1,13 @@
+文档标题：{{ doc_title }}
+
+## 待理解章节：{{ section_title }}（ID: {{ section_id }}，层级 {{ level }}）
+{{ section_text }}
+{% if table_stats %}
+
+## 本章表格（代码预计算的统计信息，单元格值不在此展示）
+{% for t in table_stats %}
+- {{ t.table_id }}：{{ t.n_rows }} 行 × {{ t.n_cols }} 列（含表头）；表头：{{ t.header_preview }}{% if t.caption %}；题注：{{ t.caption }}{% endif %}
+{% endfor %}
+{% endif %}
+
+请输出该章节的 SectionMap（section_id 填 {{ section_id }}）。

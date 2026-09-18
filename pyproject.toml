@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = ["com: 需要 PowerPoint COM 的测试（仅本机运行）"]
