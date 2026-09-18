@@ -17,6 +17,7 @@ from app.schema.docir import (
     DocIRMeta,
     DocTitleBlock,
     HeadingBlock,
+    ImageBlock,
     ParaBlock,
     SalutationBlock,
     SectionIR,
@@ -174,6 +175,7 @@ def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
     - 表格挂在该节块序列末尾
     """
     tables = {t.table_id: t for t in tree.tables}
+    images = {im.image_id: im for im in tree.images}
     blocks: list = [DocTitleBlock(text=plan.title)]
     last_level = 0
 
@@ -196,6 +198,14 @@ def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
                                      rows=[list(r) for r in t.rows],
                                      src_index=t.src_index,
                                      col_widths=list(t.col_widths) if t.col_widths else None))
+        for iid in item.image_ids:
+            im = images.get(iid)
+            if im is None:
+                raise DocFillError(f"规划引用了不存在的图片：{iid}")
+            blocks.append(ImageBlock(image_id=iid, body_index=im.body_index,
+                                     page=im.page,
+                                     bbox=list(im.bbox) if im.bbox else None,
+                                     cx_emu=im.cx_emu, cy_emu=im.cy_emu))
 
     if plan.genre is Genre.LETTER and frame:
         if frame.salutation:

@@ -144,6 +144,21 @@ def test_plan_table_ids_wired_and_level_clamped():
     assert plan.items[0].table_ids == ["tbl-002"]
 
 
+def test_plan_image_ids_wired():
+    from app.schema.doctree import DocImage
+
+    tree = _tree("作业指导书", subs=[
+        _sec("sec-0001", 1, "一、作业流程", [
+            _blk("流程如下图所示。"),
+            DocBlock(block_id="blk-9003", kind="image", image_id="img-001"),
+        ]),
+    ])
+    tree.images.append(DocImage(image_id="img-001", section_id="sec-0001",
+                                body_index=3, cx_emu=2160000, cy_emu=1440000))
+    plan = build_doc_plan(tree)
+    assert plan.items[0].image_ids == ["img-001"]
+
+
 def test_plan_llm_fallback_when_rules_unsure():
     tree = _tree("材料汇编", root_blocks=[_blk("第一部分内容说明。")])
 

@@ -82,10 +82,11 @@ class FakeClient:
 
 
 def _item(section_id: str, heading: str = "", level: int = 0, seq: int = 1,
-          table_ids: list[str] | None = None) -> DocPlanItem:
+          table_ids: list[str] | None = None,
+          image_ids: list[str] | None = None) -> DocPlanItem:
     return DocPlanItem(seq=seq, section_id=section_id, heading=heading,
                        heading_level=level, src_refs=[section_id],
-                       table_ids=table_ids or [])
+                       table_ids=table_ids or [], image_ids=image_ids or [])
 
 
 # ---- fill_section ----
@@ -271,3 +272,40 @@ def test_assemble_missing_section_raises():
                    items=[_item("sec-0001", "一、", 1, seq=1)])
     with pytest.raises(DocFillError, match="缺少节 fill 产物"):
         assemble_docir(plan, {}, _tree("报告"))
+
+
+def test_assemble_appends_images_after_tables():
+    from app.schema.doctree import DocImage
+
+    tree = _tree("人事信息", subs=[
+        _sec("sec-0001", 1, "一、花名册", [
+            _blk("人员构成如下。"),
+            DocBlock(block_id="blk-9001", kind="table", table_id="tbl-001"),
+            DocBlock(block_id="blk-9002", kind="image", image_id="img-001"),
+        ]),
+    ], tables=[DocTable(table_id="tbl-001", section_id="sec-0001",
+                        n_rows=1, n_cols=1, rows=[["数据"]])])
+    tree.images.append(DocImage(image_id="img-001", section_id="sec-0001",
+                                body_index=3, cx_emu=2160000, cy_emu=1440000))
+    plan = DocPlan(genre=Genre.FORM, title="人事信息", items=[
+        _item("sec-0001", "一、花名册", 1, seq=1,
+              table_ids=["tbl-001"], image_ids=["img-001"]),
+    ])
+    sections = {"sec-0001": SectionIR(section_id="sec-0001", blocks=[
+        HeadingBlock(level=1, text="一、花名册"),
+        ParaBlock(text="人员构成如下。")])}
+
+    doc = assemble_docir(plan, sections, tree)
+    kinds = [b.kind for b in doc.blocks]
+    assert kinds == ["doc_title", "heading", "para", "table", "image"]
+    assert doc.blocks[-1].body_index == 3
+    assert validate_docir(doc) == []
+
+
+def test_assemble_missing_image_raises():
+    plan = DocPlan(genre=Genre.FORM, title="表", items=[
+        _item("sec-0001", "一、", 1, seq=1, image_ids=["img-404"])])
+    sections = {"sec-0001": SectionIR(section_id="sec-0001",
+                                      blocks=[ParaBlock(text="内容。")])}
+    with pytest.raises(DocFillError, match="不存在的图片"):
+        assemble_docir(plan, sections, _tree("表"))

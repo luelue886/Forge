@@ -175,3 +175,76 @@ def test_ids_stable_across_parses(basic_docx):
     t1, t2 = parse_docx(basic_docx), parse_docx(basic_docx)
     assert t1.known_refs() == t2.known_refs()
     assert t1.full_text == t2.full_text
+
+
+# ---- C4: 图片/流程图 ----
+
+import base64
+import io
+
+_PNG_1PX = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ"
+    "AAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==")
+
+
+def _doc_with_image(path) -> Path:
+    from docx.shared import Cm
+
+    doc = Document()
+    doc.add_paragraph("一、总体情况")
+    doc.add_paragraph("流程如下：")
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(5))
+    doc.save(str(path))
+    return path
+
+
+def test_parse_inline_image(tmp_path):
+    from docx.oxml.ns import qn
+
+    src = _doc_with_image(tmp_path / "img.docx")
+    tree = parse_docx(src)
+    assert len(tree.images) == 1
+    img = tree.images[0]
+    assert img.image_id == "img-001"
+    assert img.section_id == "sec-0000"
+    assert img.cx_emu == 1800000 and img.cy_emu == 1800000  # Cm(5)，1:1 图
+    # body_index 与渲染期同一坐标系：指向图片所在段落
+    children = list(Document(str(src)).element.body.iterchildren())
+    assert children[img.body_index].find(".//" + qn("w:drawing")) is not None
+    # 结构块收录 + 图片无文本进 full_text
+    img_blk = next(b for b in tree.sections[0].blocks if b.kind == "image")
+    assert img_blk.image_id == "img-001" and img_blk.text == ""
+    assert tree.full_text == "一、总体情况\n流程如下："
+
+
+def test_parse_smartart_skipped(tmp_path):
+    from lxml import etree
+
+    src = _doc_with_image(tmp_path / "smart.docx")
+    doc = Document(str(src))
+    drawing = doc.element.body.find(".//{http://schemas.openxmlformats.org/wordprocessingml/2006/main}drawing")
+    gd = drawing.find(".//{http://schemas.openxmlformats.org/drawingml/2006/main}graphicData")
+    etree.SubElement(
+        gd, "{http://schemas.openxmlformats.org/drawingml/2006/diagram}relIds")
+    doc.save(str(src))
+
+    tree = parse_docx(src)
+    assert tree.images == []
+    assert any("SmartArt" in w for w in tree.meta.parse_warnings)
+
+
+def test_parse_two_drawings_in_one_paragraph(tmp_path):
+    from docx.shared import Cm
+
+    doc = Document()
+    doc.add_paragraph("流程：")
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(4))
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(4))
+    p1, p2 = doc.paragraphs[-2], doc.paragraphs[-1]
+    p1._p.append(p2.runs[0]._r)  # 两张图挤进同一段
+    src = tmp_path / "two.docx"
+    doc.save(str(src))
+
+    tree = parse_docx(src)
+    assert len(tree.images) == 1
+    assert any("多个图形" in w for w in tree.meta.parse_warnings)

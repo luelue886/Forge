@@ -35,6 +35,9 @@ def build_doc_plan(tree: DocTree, client: LLMClient | None = None,
     tables_by_sec: dict[str, list[str]] = {}
     for t in tree.tables:
         tables_by_sec.setdefault(t.section_id, []).append(t.table_id)
+    images_by_sec: dict[str, list[str]] = {}
+    for im in tree.images:
+        images_by_sec.setdefault(im.section_id, []).append(im.image_id)
 
     items: list[DocPlanItem] = []
     if root.blocks:
@@ -42,6 +45,7 @@ def build_doc_plan(tree: DocTree, client: LLMClient | None = None,
             seq=1, section_id=root.section_id, heading="",
             heading_level=0, src_refs=[root.section_id],
             table_ids=tables_by_sec.get(root.section_id, []),
+            image_ids=images_by_sec.get(root.section_id, []),
         ))
     for sec in root.walk():
         if sec is root or sec.section_id == root.section_id:
@@ -53,6 +57,7 @@ def build_doc_plan(tree: DocTree, client: LLMClient | None = None,
             heading=sec.title, heading_level=min(sec.level, 2),
             src_refs=[sec.section_id],
             table_ids=tables_by_sec.get(sec.section_id, []),
+            image_ids=images_by_sec.get(sec.section_id, []),
         ))
 
     if not items:  # 全空文档兜底：至少一个根 item

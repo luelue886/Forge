@@ -59,9 +59,21 @@ class TableBlock(BaseModel):
     col_widths: list[float] | None = None  # 透传：无源可搬时的列宽比例
 
 
+class ImageBlock(BaseModel):
+    """图片/流程图原样复用：内容永不经 LLM，渲染期从源文件搬运。"""
+
+    kind: Literal["image"] = "image"
+    image_id: str  # 溯源锚点
+    body_index: int | None = None  # docx 源：body 子元素序号（deepcopy 锚点）
+    page: int | None = None  # pdf 源：1 基页码
+    bbox: list[float] | None = None  # pdf 源：页面区域 (x0, top, x1, bottom)
+    cx_emu: int | None = None
+    cy_emu: int | None = None
+
+
 DocIRBlock = Annotated[
     Union[DocTitleBlock, HeadingBlock, ParaBlock, SalutationBlock,
-          ClosingBlock, SignatureBlock, TableBlock],
+          ClosingBlock, SignatureBlock, TableBlock, ImageBlock],
     Field(discriminator="kind"),
 ]
 
@@ -86,9 +98,9 @@ class SectionIR(BaseModel):
 
 
 GENRE_BLOCKS: dict[Genre, frozenset[str]] = {
-    Genre.LETTER: frozenset({"doc_title", "para", "salutation", "closing", "signature", "table"}),
-    Genre.REPORT: frozenset({"doc_title", "heading", "para", "table"}),
-    Genre.FORM: frozenset({"doc_title", "heading", "para", "table"}),
+    Genre.LETTER: frozenset({"doc_title", "para", "salutation", "closing", "signature", "table", "image"}),
+    Genre.REPORT: frozenset({"doc_title", "heading", "para", "table", "image"}),
+    Genre.FORM: frozenset({"doc_title", "heading", "para", "table", "image"}),
 }
 
 DOC_LIMITS = {

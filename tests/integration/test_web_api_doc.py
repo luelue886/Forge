@@ -151,3 +151,48 @@ def test_web_doc_upload_legacy_doc(basic_docx, web_app, fake_llm_factory, monkey
         assert d["product"] == "doc"
         assert d["genre"] == "report"
         assert len(d["outline"]) == 2
+
+
+def test_web_doc_image_roundtrip(web_app, fake_llm_factory, tmp_path):
+    """带图 docx 全链路：解析→规划→fill→组装→渲染，图片原样进输出包。"""
+    import base64
+    import io
+
+    from docx import Document
+    from docx.shared import Cm
+    from fastapi.testclient import TestClient
+
+    png = base64.b64decode(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ"
+        "AAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==")
+    src = tmp_path / "流程手册.docx"
+    doc = Document()
+    doc.add_heading("一、项目概述", level=1)
+    doc.add_paragraph("本项目覆盖 12 个园区，接入设备 8,600 台。")
+    doc.add_picture(io.BytesIO(png), width=Cm(5))
+    doc.add_heading("二、季度指标", level=1)
+    doc.add_paragraph("第三季度各项指标完成情况良好。")
+    doc.save(str(src))
+
+    state = {"script": []}
+    with TestClient(web_app) as client:
+        web_app.state.llm_client_factory = lambda: fake_llm_factory(state["script"])[0]
+
+        with open(src, "rb") as f:
+            r = client.post("/api/jobs", files={"file": (src.name, f)},
+                            data={"product": "doc"})
+        job_id = r.json()["job_id"]
+        _wait_status(client, job_id, {"PLANNED"})
+
+        state["script"] = [SEC1_REPLY, SEC2_REPLY]
+        assert client.post(f"/api/jobs/{job_id}/confirm",
+                           data={"genre": "report"}).status_code == 200
+        d = _wait_status(client, job_id, {"DONE", "FAILED"})
+        assert d["status"] == "DONE", d.get("error")
+
+        out = Document(d["output_docx"])
+        assert len(out.inline_shapes) == 1
+        # 图片部件内容与源一致（XML 搬运 + 关系重接）
+        img_part = next(r.target_part for r in out.part.rels.values()
+                        if r.reltype.endswith("/image"))
+        assert img_part.blob == png

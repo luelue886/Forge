@@ -6,6 +6,7 @@ source（源 docx 路径）存在时，表格走 docx_copy 深拷贝源 XML（�
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 
 from docx import Document
@@ -22,11 +23,14 @@ from app.schema.docir import (
     DocIR,
     DocTitleBlock,
     HeadingBlock,
+    ImageBlock,
     ParaBlock,
     SalutationBlock,
     SignatureBlock,
     TableBlock,
 )
+
+log = logging.getLogger(__name__)
 
 
 def _set_font(run, east_asia: str, size: Pt, bold: bool) -> None:
@@ -161,6 +165,33 @@ def _copy_source_table(src_doc, out_doc: Document, b: TableBlock) -> bool:
     return True
 
 
+def _insert_pdf_image(doc: Document, source: Path, b: ImageBlock) -> bool:
+    """PDF 源：pymupdf 按 bbox 区域渲染位图嵌入（规避 xref=0/smask/跨库序号错位）。"""
+    import io
+
+    import pymupdf
+
+    try:
+        with pymupdf.open(str(source)) as pdf:
+            if b.page is None or b.page < 1 or b.page > len(pdf):
+                return False
+            page = pdf[b.page - 1]
+            clip = pymupdf.Rect(b.bbox) if b.bbox else None
+            pix = page.get_pixmap(clip=clip, matrix=pymupdf.Matrix(2, 2))
+            png = pix.tobytes("png")
+            # 相对源页宽缩放到版心宽，保持原图在页面中的占比
+            src_w = clip.width if clip else page.rect.width
+            content_w = st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT
+            width = Emu(int(content_w * src_w / page.rect.width))
+    except Exception as e:  # noqa: BLE001 — 渲染失败降级跳图，不崩整篇
+        log.warning("pdf 图片 %s 区域渲染失败：%s", b.image_id, e)
+        return False
+
+    doc.add_picture(io.BytesIO(png), width=width)
+    doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    return True
+
+
 def render_docir_to_docx(doc: DocIR, out: Path, source: Path | None = None) -> Path:
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -213,6 +244,15 @@ def render_docir_to_docx(doc: DocIR, out: Path, source: Path | None = None) -> P
         elif isinstance(b, TableBlock):
             if src_doc is None or not _copy_source_table(src_doc, d, b):
                 _render_table(d, b)
+        elif isinstance(b, ImageBlock):
+            if src_doc is not None and b.body_index is not None:
+                if not docx_copy.copy_image_paragraph(src_doc, d, b.body_index):
+                    log.warning("图片 %s：源段落缺失，跳过", b.image_id)
+            elif source is not None and Path(source).suffix.lower() == ".pdf":
+                if not _insert_pdf_image(d, Path(source), b):
+                    log.warning("图片 %s：PDF 区域渲染失败，跳过", b.image_id)
+            else:
+                log.warning("图片 %s：无可用源文件，跳过", b.image_id)
 
     _add_page_number(d)
     d.save(str(out))

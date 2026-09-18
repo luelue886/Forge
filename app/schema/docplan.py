@@ -16,6 +16,7 @@ class DocPlanItem(BaseModel):
     heading_level: int = 1  # 1|2
     src_refs: list[str] = Field(default_factory=list)
     table_ids: list[str] = Field(default_factory=list)  # 照搬表格，渲染在该节末尾
+    image_ids: list[str] = Field(default_factory=list)  # 原样复用图片，节末表格之后
 
 
 class DocPlan(BaseModel):

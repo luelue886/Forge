@@ -166,3 +166,52 @@ def test_parse_pdf_mixed_font_title_not_split(tmp_path):
 def test_parse_pdf_missing_file(tmp_path):
     with pytest.raises(ParseError):
         parse_pdf(tmp_path / "nope.pdf")
+
+
+# ---- C4: 图片 ----
+
+import base64
+
+_PNG_1PX = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ"
+    "AAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==")
+
+
+def _pdf_with_image(path, rect) -> Path:
+    import fitz
+
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    page.insert_text((72, 72), "年度工作流程说明，整体运转顺畅，各环节衔接有序。",
+                     fontname="china-s", fontsize=11)
+    page.insert_text((72, 92), "详细流程见下图示意，实际执行中以最新通知为准。",
+                     fontname="china-s", fontsize=11)
+    page.insert_image(rect, stream=_PNG_1PX)
+    doc.save(str(path))
+    doc.close()
+    return path
+
+
+def test_parse_pdf_image(tmp_path):
+    import fitz
+
+    p = _pdf_with_image(tmp_path / "img.pdf", fitz.Rect(150, 150, 450, 300))
+    tree = parse_pdf(p)
+    assert len(tree.images) == 1
+    img = tree.images[0]
+    assert img.image_id == "img-001" and img.page == 1
+    x0, top, x1, bottom = img.bbox
+    assert abs(x0 - 150) < 10 and abs(x1 - 450) < 10
+    assert abs(top - 150) < 10 and abs(bottom - 300) < 10
+    # 结构块收录
+    assert any(b.kind == "image" and b.image_id == "img-001"
+               for b in tree.sections[0].blocks)
+
+
+def test_parse_pdf_tiny_image_ignored(tmp_path):
+    import fitz
+
+    # 5×5pt 小图（图标/装饰）不收录
+    p = _pdf_with_image(tmp_path / "tiny.pdf", fitz.Rect(100, 100, 105, 105))
+    tree = parse_pdf(p)
+    assert tree.images == []

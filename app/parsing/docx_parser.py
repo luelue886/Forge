@@ -9,12 +9,24 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 
 from app.parsing.base import ParseError, clean_text
-from app.schema.doctree import DocBlock, DocMeta, DocSection, DocTable, DocTree
+from app.schema.doctree import (
+    DocBlock,
+    DocImage,
+    DocMeta,
+    DocSection,
+    DocTable,
+    DocTree,
+)
 from app.schema.textlen import text_weight
 
 _HEADING = re.compile(r"^(?:Heading|标题)\s*(\d)$", re.IGNORECASE)
 _CAPTION = re.compile(r"^表\s*\d")
 _LIST_STYLE = re.compile(r"^(?:List|列表)", re.IGNORECASE)
+
+_W_PICT = qn("w:pict")
+_W_DRAWING = qn("w:drawing")
+_WP_EXTENT = "{http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing}extent"
+_DGM_RELIDS = "{http://schemas.openxmlformats.org/drawingml/2006/diagram}relIds"
 
 
 def _heading_level(p: Paragraph) -> int | None:
@@ -41,13 +53,44 @@ def _is_list_item(p: Paragraph) -> bool:
     return spPr is not None and spPr.find(qn("w:numPr")) is not None
 
 
-def _iter_blocks(doc) -> "object":
-    """按文档顺序产出 Paragraph / Table（doc.paragraphs 与 doc.tables 会丢失交错关系）。"""
-    for child in doc.element.body.iterchildren():
+def _iter_blocks(doc):
+    """按文档顺序产出 (body 序号, Paragraph / Table)。
+
+    doc.paragraphs 与 doc.tables 会丢失交错关系；pos 是 body 子元素全序号
+    （含非块子元素），渲染期 deepcopy 图片段落用同一序号定位。
+    """
+    for pos, child in enumerate(doc.element.body.iterchildren()):
         if child.tag == qn("w:p"):
-            yield Paragraph(child, doc)
+            yield pos, Paragraph(child, doc)
         elif child.tag == qn("w:tbl"):
-            yield Table(child, doc)
+            yield pos, Table(child, doc)
+
+
+def _image_extent(p_el) -> tuple[int | None, int | None]:
+    ext = p_el.find(f".//{_WP_EXTENT}")
+    if ext is None:
+        return None, None
+    try:
+        return int(ext.get("cx")), int(ext.get("cy"))
+    except (TypeError, ValueError):
+        return None, None
+
+
+def _image_of(p_el, image_id: str, section_id: str, pos: int,
+              warnings: list[str]) -> DocImage | None:
+    """空文本段落内的 w:drawing / w:pict → DocImage；SmartArt 跳过并告警。"""
+    if p_el.find(f".//{_DGM_RELIDS}") is not None:
+        warnings.append(f"{image_id}：SmartArt 依赖多个图表部件，暂不支持复用，已跳过")
+        return None
+    drawings = p_el.findall(f".//{_W_DRAWING}")
+    picts = p_el.findall(f".//{_W_PICT}")
+    if not drawings and not picts:
+        return None
+    if len(drawings) + len(picts) > 1:
+        warnings.append(f"{image_id}：段落含多个图形，仅复用首个")
+    cx, cy = _image_extent(p_el)
+    return DocImage(image_id=image_id, section_id=section_id,
+                    body_index=pos, cx_emu=cx, cy_emu=cy)
 
 
 def _grid_col_widths(tbl: Table) -> list[float] | None:
@@ -110,6 +153,7 @@ def parse_docx(path: Path) -> DocTree:
 
     warnings: list[str] = []
     tables: list[DocTable] = []
+    images: list[DocImage] = []
     flat_sections: list[DocSection] = []
 
     root = DocSection(section_id="sec-0000", level=0,
@@ -117,15 +161,23 @@ def parse_docx(path: Path) -> DocTree:
     stack: list[DocSection] = [root]
     current = root
 
-    blk_n = sec_n = tbl_n = 0
+    blk_n = sec_n = tbl_n = img_n = 0
     parts: list[str] = []
     last_para = ""
 
-    for item in _iter_blocks(doc):
+    for pos, item in _iter_blocks(doc):
         if isinstance(item, Paragraph):
             text = clean_text(item.text)
             style = item.style.name or ""
             if not text:
+                img = _image_of(item._p, f"img-{img_n + 1:03d}",
+                                current.section_id, pos, warnings)
+                if img is not None:
+                    img_n += 1
+                    images.append(img)
+                    blk_n += 1
+                    current.blocks.append(DocBlock(
+                        block_id=f"blk-{blk_n:04d}", kind="image", image_id=img.image_id))
                 continue
             if style in ("Title", "标题") and root.title in ("", path.stem, "正文"):
                 root.title = text
@@ -171,4 +223,5 @@ def parse_docx(path: Path) -> DocTree:
         sections=[root],
         tables=tables,
         full_text=full_text,
+        images=images,
     )

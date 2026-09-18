@@ -7,7 +7,14 @@ from pathlib import Path
 import pdfplumber
 
 from app.parsing.base import ParseError, clean_text
-from app.schema.doctree import DocBlock, DocMeta, DocSection, DocTable, DocTree
+from app.schema.doctree import (
+    DocBlock,
+    DocImage,
+    DocMeta,
+    DocSection,
+    DocTable,
+    DocTree,
+)
 from app.schema.textlen import text_weight
 
 _CAPTION = re.compile(r"^表\s*\d")
@@ -117,6 +124,27 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
         return any(top >= t["top"] - 1 and bottom <= t["bottom"] + 1
                    for t in tables)
 
+    def _image_events() -> list[dict]:
+        try:
+            imgs = page.images or []
+        except Exception as e:
+            warnings.append(f"第 {pno} 页图片提取失败：{e}")
+            return []
+        out = []
+        for im in imgs:
+            try:
+                x0, top, x1, bottom = (float(im["x0"]), float(im["top"]),
+                                       float(im["x1"]), float(im["bottom"]))
+            except (KeyError, TypeError, ValueError):
+                continue
+            if x1 - x0 < 15 or bottom - top < 15:  # 图标/装饰性小图
+                continue
+            if in_table(top, bottom):  # 表区域内的图防重复计入
+                continue
+            out.append({"t": "image", "top": top,
+                        "bbox": [x0, top, x1, bottom]})
+        return out
+
     # 词 → 行（top 容差随字号放大：大字号标题里混排字体（如 Word 回退字体）
     # 单字 top 可差 3-4pt，固定 2.5 会把标题拆成两行）
     words.sort(key=lambda w: (w["top"], w["x0"]))
@@ -147,6 +175,7 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
     for t in tables:
         events.append({"t": "table", "top": t["top"], "grid": t["grid"],
                        "col_widths": t.get("col_widths")})
+    events.extend(_image_events())
     events.sort(key=lambda e: e["top"])
     return events
 
@@ -176,10 +205,11 @@ def parse_pdf(path: Path) -> DocTree:
                 sizes[e["size"]] += len(e["text"])
     body_size = sizes.most_common(1)[0][0] if sizes else 10.0
 
-    # 扫描件拒收（行文本 + 表格单元格都计入）
+    # 扫描件拒收（行文本 + 表格单元格都计入；图片无文本不计）
     total_chars = sum(
         len(e["text"]) if e["t"] == "line"
-        else sum(len(c) for row in e["grid"] for c in row)
+        else sum(len(c) for row in e["grid"] for c in row) if e["t"] == "table"
+        else 0
         for events in pages for e in events)
     if total_chars < 30 or total_chars < _MIN_CHARS_PER_PAGE * n_pages:
         raise ParseError(
@@ -187,11 +217,12 @@ def parse_pdf(path: Path) -> DocTree:
             f"（需文字型 PDF，暂不支持 OCR）")
 
     tables: list[DocTable] = []
+    images: list[DocImage] = []
     root = DocSection(section_id="sec-0000", level=0, title=path.stem or "正文")
     stack: list[DocSection] = [root]
     current = root
 
-    blk_n = sec_n = tbl_n = 0
+    blk_n = sec_n = tbl_n = img_n = 0
     parts: list[str] = []
     last_para = ""
     para_buf = ""
@@ -214,6 +245,17 @@ def parse_pdf(path: Path) -> DocTree:
 
     for pno, events in enumerate(pages, 1):
         for e in events:
+            if e["t"] == "image":
+                flush_para()
+                img_n += 1
+                image_id = f"img-{img_n:03d}"
+                images.append(DocImage(image_id=image_id,
+                                       section_id=current.section_id,
+                                       page=pno, bbox=e["bbox"]))
+                blk_n += 1
+                current.blocks.append(DocBlock(block_id=f"blk-{blk_n:04d}",
+                                               kind="image", image_id=image_id))
+                continue
             if e["t"] == "table":
                 flush_para()
                 tbl_n += 1
@@ -283,4 +325,5 @@ def parse_pdf(path: Path) -> DocTree:
         sections=[root],
         tables=tables,
         full_text=full_text,
+        images=images,
     )

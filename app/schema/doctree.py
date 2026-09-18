@@ -35,11 +35,29 @@ class DocTable(BaseModel):
         return " ".join(p for p in parts if p)
 
 
+class DocImage(BaseModel):
+    """源图片/流程图：排版原样复用，内容永不经 LLM。
+
+    docx 源：body_index（body 子元素全序号）是渲染期 deepcopy 该段的锚点；
+    pdf 源：page + bbox 供区域渲染位图。
+    """
+
+    image_id: str
+    section_id: str
+    body_index: int | None = None
+    page: int | None = None  # 1 基页码
+    bbox: list[float] | None = None  # pdf 页面坐标 (x0, top, x1, bottom)
+    cx_emu: int | None = None  # docx wp:extent 显示尺寸
+    cy_emu: int | None = None
+    caption: str | None = None
+
+
 class DocBlock(BaseModel):
     block_id: str
-    kind: Literal["para", "list_item", "table"]
+    kind: Literal["para", "list_item", "table", "image"]
     text: str = ""
     table_id: str | None = None
+    image_id: str | None = None
 
 
 class DocSection(BaseModel):
@@ -65,6 +83,7 @@ class DocTree(BaseModel):
     sections: list[DocSection]
     tables: list[DocTable]
     full_text: str
+    images: list[DocImage] = Field(default_factory=list)
 
     def _index(self) -> tuple[dict[str, DocSection], dict[str, DocBlock], dict[str, DocTable]]:
         sections: dict[str, DocSection] = {}

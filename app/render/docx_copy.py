@@ -117,6 +117,28 @@ def copy_table(src_doc: Document, out_doc: Document, tbl_el):
     return new_el
 
 
+def copy_image_paragraph(src_doc: Document, out_doc: Document, body_index: int) -> bool:
+    """deepcopy body 第 body_index 个子元素（图片所在段落）到输出文档末尾。
+
+    body_index 与解析期一致：body.iterchildren() 的全序号。返回 False 表示
+    越界或该位置不是段落（源文件被人工改动过），调用方降级跳过。
+    """
+    children = list(src_doc.element.body.iterchildren())
+    if body_index < 0 or body_index >= len(children):
+        return False
+    el = deepcopy(children[body_index])
+    if el.tag != qn("w:p"):
+        return False
+    rewire_image_rids(src_doc, out_doc, el)
+    p_pr = el.find(qn("w:pPr"))
+    if p_pr is not None:
+        ps = p_pr.find(qn("w:pStyle"))
+        if ps is not None and ps.get(qn("w:val")):
+            copy_style_chain(src_doc, out_doc, ps.get(qn("w:val")))
+    _insert_into_body(out_doc, el)
+    return True
+
+
 def _tc_text(tc) -> str:
     """与 python-docx _Cell.text 同语义（段落间 \n），供『值未变则不动』比对。"""
     parts = ["".join(t.text or "" for t in p.iter(qn("w:t")))

@@ -14,6 +14,7 @@ from app.schema.docir import (
     DocIRMeta,
     DocTitleBlock,
     HeadingBlock,
+    ImageBlock,
     ParaBlock,
     SalutationBlock,
     SignatureBlock,
@@ -216,3 +217,85 @@ def test_render_table_col_widths_ratio(tmp_path: Path):
           for tc in t.rows[0]._tr.findall(qn("w:tc"))]
     assert ws and all(w is not None and w.isdigit() for w in ws)
     assert int(ws[0]) > int(ws[1]) > int(ws[2]) > 0
+
+
+# ---- C4: 图片/流程图复用 ----
+
+import base64
+import io
+
+_PNG_1PX = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ"
+    "AAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==")
+
+
+def _source_with_image(path: Path) -> Path:
+    from docx.shared import Cm
+
+    doc = Document()
+    doc.add_paragraph("一、流程说明")
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(6))
+    doc.save(str(path))
+    return path
+
+
+def test_render_copies_source_image(tmp_path: Path):
+    from docx.opc.constants import RELATIONSHIP_TYPE as RT
+    from docx.shared import Cm
+
+    from app.parsing.docx_parser import parse_docx
+
+    src = _source_with_image(tmp_path / "src.docx")
+    img = parse_docx(src).images[0]  # body_index 用解析器同一坐标系
+
+    doc = DocIR(meta=DocIRMeta(title="流程", genre=Genre.REPORT), blocks=[
+        DocTitleBlock(text="流程"),
+        ImageBlock(image_id=img.image_id, body_index=img.body_index),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    d = Document(str(out))
+    assert len(d.inline_shapes) == 1
+    assert d.inline_shapes[0].width == Cm(6)  # 尺寸随源 XML 原样
+    rels = [r for r in d.part.rels.values() if r.reltype == RT.IMAGE]
+    assert len(rels) == 1 and rels[0].target_part.blob
+
+
+def test_render_image_body_index_out_of_range(tmp_path: Path):
+    src = _source_with_image(tmp_path / "src.docx")
+    doc = DocIR(meta=DocIRMeta(title="流程", genre=Genre.REPORT), blocks=[
+        DocTitleBlock(text="流程"),
+        ImageBlock(image_id="img-001", body_index=99),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    assert len(Document(str(out)).inline_shapes) == 0  # 降级跳过，不崩
+
+
+def test_render_pdf_source_image(tmp_path: Path):
+    import fitz
+
+    from app.parsing.pdf_parser import parse_pdf
+    from app.render import docstyle as st
+
+    pdf_doc = fitz.open()
+    page = pdf_doc.new_page(width=595, height=842)
+    page.insert_text((72, 72), "年度工作流程说明，整体运转顺畅，各环节衔接有序。",
+                     fontname="china-s", fontsize=11)
+    page.insert_text((72, 92), "详细流程见下图示意，实际执行中以最新通知为准。",
+                     fontname="china-s", fontsize=11)
+    page.insert_image(fitz.Rect(150, 150, 450, 300), stream=_PNG_1PX)
+    src = tmp_path / "src.pdf"
+    pdf_doc.save(str(src))
+    pdf_doc.close()
+
+    img = parse_pdf(src).images[0]
+    doc = DocIR(meta=DocIRMeta(title="流程", genre=Genre.REPORT), blocks=[
+        DocTitleBlock(text="流程"),
+        ImageBlock(image_id=img.image_id, page=img.page, bbox=img.bbox),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    d = Document(str(out))
+    assert len(d.inline_shapes) == 1
+    # 相对源页宽缩放：300pt / 595pt 占版心的同比例
+    content_w = st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT
+    expect = int(content_w * 300 / 595)
+    assert abs(d.inline_shapes[0].width - expect) < 20000
