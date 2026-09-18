@@ -233,6 +233,23 @@ def export_docx_pdf(docx_path: Path, out_pdf: Path | None = None) -> Path:
     return get_word_com_service().run(_do)
 
 
+def convert_doc_to_docx(doc_path: Path, out_path: Path | None = None) -> Path:
+    """.doc（Word 97-2003）→ .docx（wdFormatXMLDocument=16）；out_path 缺省写到源文件旁。"""
+
+    def _do(svc: ComService):
+        app = svc._ensure_app()
+        doc = app.Documents.Open(str(Path(doc_path).resolve()),
+                                 False, True, False)
+        try:
+            out = Path(out_path) if out_path else Path(doc_path).with_suffix(".docx")
+            doc.SaveAs2(str(out.resolve()), FileFormat=16)
+            return out
+        finally:
+            doc.Close(False)
+
+    return get_word_com_service().run(_do)
+
+
 # ---- 渲染清单检查（对已保存 pptx 的确定性核对）----
 
 def _expected_text_shapes(ir: SlideIR) -> set[str]:

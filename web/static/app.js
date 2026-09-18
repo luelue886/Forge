@@ -23,7 +23,7 @@ function initIndexPage() {
   const productSel = $("product"), fileInput = $("file"), skinRow = $("skin-row");
   const applyProduct = () => {
     const isDoc = productSel.value === "doc";
-    fileInput.accept = isDoc ? ".docx,.pdf" : ".docx,.pptx,.ppt,.pdf";
+    fileInput.accept = isDoc ? ".docx,.doc,.pdf" : ".docx,.pptx,.ppt,.pdf";
     skinRow.classList.toggle("hidden", isDoc);
   };
   productSel.addEventListener("change", applyProduct);

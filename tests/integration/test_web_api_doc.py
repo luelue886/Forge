@@ -119,8 +119,35 @@ def test_web_doc_upload_restrictions(web_app):
         r = client.post("/api/jobs", files={"file": ("deck.pptx", b"junk")},
                         data={"product": "doc"})
         assert r.status_code == 400
-        assert "docx / pdf" in r.json()["detail"]
+        assert "docx / doc / pdf" in r.json()["detail"]
 
         r = client.post("/api/jobs", files={"file": ("x.docx", b"junk")},
                         data={"product": "bogus"})
         assert r.status_code == 400
+
+
+def test_web_doc_upload_legacy_doc(basic_docx, web_app, fake_llm_factory, monkeypatch):
+    """.doc 上传走 Word 转换分支：受理 200，解析后照常 PLANNED。"""
+    from pathlib import Path
+
+    import app.services.com_export as ce
+    from fastapi.testclient import TestClient
+
+    monkeypatch.setattr(ce, "convert_doc_to_docx",
+                        lambda p, out=None: (Path(out).write_bytes(basic_docx.read_bytes()),
+                                             Path(out))[1])
+
+    state = {"script": []}
+    with TestClient(web_app) as client:
+        web_app.state.llm_client_factory = lambda: fake_llm_factory(state["script"])[0]
+
+        with open(basic_docx, "rb") as f:
+            r = client.post("/api/jobs", files={"file": ("旧版公文.doc", f)},
+                            data={"product": "doc"})
+        assert r.status_code == 200, r.text
+        job_id = r.json()["job_id"]
+
+        d = _wait_status(client, job_id, {"PLANNED"})
+        assert d["product"] == "doc"
+        assert d["genre"] == "report"
+        assert len(d["outline"]) == 2

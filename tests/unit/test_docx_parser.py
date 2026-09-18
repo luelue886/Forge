@@ -108,6 +108,65 @@ def test_missing_file(tmp_path):
         parse_docx(tmp_path / "nope.docx")
 
 
+# ---- 旧版 .doc 入口（Word COM 转换 → 持久 converted.docx）----
+
+def _fake_doc_bytes() -> bytes:
+    import io
+
+    doc = Document()
+    doc.add_paragraph("一、总体情况")
+    doc.add_paragraph("全年营收 1,234.56 万元。")
+    buf = io.BytesIO()
+    doc.save(buf)
+    return buf.getvalue()
+
+
+def test_parse_source_legacy_doc_persists_beside_source(tmp_path, monkeypatch):
+    """转换产物落源文件旁（渲染要搬源 XML），幂等：已存在则不再调 COM。"""
+    import app.services.com_export as ce
+    from app.parse_dispatch import parse_source
+
+    fake_doc = tmp_path / "旧版公文.doc"
+    fake_doc.write_bytes(b"not a real doc")
+    calls = {"n": 0}
+
+    def fake_convert(p, out=None):
+        calls["n"] += 1
+        dest = Path(out) if out else Path(p).with_suffix(".docx")
+        dest.write_bytes(_fake_doc_bytes())
+        return dest
+
+    monkeypatch.setattr(ce, "convert_doc_to_docx", fake_convert)
+
+    tree = parse_source(fake_doc)
+    assert calls["n"] == 1
+    converted = tmp_path / "旧版公文.converted.docx"
+    assert converted.exists()
+    assert any(".doc" in w for w in tree.meta.parse_warnings)
+    assert tree.meta.source_name == "旧版公文.doc"  # 展示原名，不露 converted
+    assert tree.meta.source_format == "docx"
+    assert "1,234.56" in tree.full_text
+
+    # 二次解析（断点续跑场景）：converted.docx 已在 → 零 COM 调用
+    tree2 = parse_source(fake_doc)
+    assert calls["n"] == 1
+    assert tree2.full_text == tree.full_text
+
+
+def test_parse_source_legacy_doc_convert_failure(tmp_path, monkeypatch):
+    """转换失败（如无 Word）→ ParseError，而非裸 COM 异常。"""
+    import app.services.com_export as ce
+    from app.parse_dispatch import parse_source
+
+    fake_doc = tmp_path / "broken.doc"
+    fake_doc.write_bytes(b"not a real doc")
+    monkeypatch.setattr(ce, "convert_doc_to_docx",
+                        lambda p, out=None: (_ for _ in ()).throw(RuntimeError("COM 拒绝")))
+
+    with pytest.raises(ParseError, match="Word"):
+        parse_source(fake_doc)
+
+
 def test_ids_stable_across_parses(basic_docx):
     t1, t2 = parse_docx(basic_docx), parse_docx(basic_docx)
     assert t1.known_refs() == t2.known_refs()

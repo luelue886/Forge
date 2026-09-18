@@ -21,7 +21,7 @@ WEB_DIR = Path(__file__).resolve().parent.parent.parent / "web"
 templates = Jinja2Templates(directory=str(WEB_DIR / "templates"))
 
 _UPLOAD_SUFFIXES = {".docx", ".pptx", ".ppt", ".pdf"}
-_DOC_UPLOAD_SUFFIXES = {".docx", ".pdf"}  # 文档线源：PPT 源 → Word 本轮不做
+_DOC_UPLOAD_SUFFIXES = {".docx", ".doc", ".pdf"}  # 文档线源：PPT 源 → Word 本轮不做
 _PNG_NAME = re.compile(r"^page_\d{2}\.png$")
 
 _MEDIA_TYPES = {
@@ -73,7 +73,7 @@ async def create_job(request: Request, file: UploadFile = File(...),
         raise HTTPException(400, "product 仅支持 ppt / doc")
     allowed = _DOC_UPLOAD_SUFFIXES if product == "doc" else _UPLOAD_SUFFIXES
     if suffix not in allowed:
-        wanted = "docx / pdf" if product == "doc" else "docx / pptx / ppt / pdf"
+        wanted = "docx / doc / pdf" if product == "doc" else "docx / pptx / ppt / pdf"
         raise HTTPException(400, f"仅支持 {wanted} 上传")
     if skin not in dict(await run_in_threadpool(skin_choices)):
         raise HTTPException(400, f"未知皮肤：{skin}")
