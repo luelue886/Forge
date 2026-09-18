@@ -29,9 +29,15 @@ class ComError(RuntimeError):
 
 
 class ComService:
-    """PowerPoint COM 单实例：专用 STA 线程 + 队列。绝不附身用户已开的 PowerPoint。"""
+    """Office COM 单实例：专用 STA 线程 + 队列。绝不附身用户已开的应用。
 
-    def __init__(self, timeout_s: float = 120.0):
+    progid 如 "PowerPoint.Application" / "Word.Application"；超时强杀对应进程后冷启动重试。
+    """
+
+    def __init__(self, progid: str = "PowerPoint.Application",
+                 kill_exe: str = "POWERPNT.EXE", timeout_s: float = 120.0):
+        self.progid = progid
+        self._kill_exe = kill_exe
         self.timeout_s = timeout_s
         self._queue: queue.Queue[tuple | None] = queue.Queue()
         self._thread: threading.Thread | None = None
@@ -67,9 +73,13 @@ class ComService:
         if self._app is None:
             import win32com.client
 
-            self._app = win32com.client.DispatchEx("PowerPoint.Application")
+            self._app = win32com.client.DispatchEx(self.progid)
             try:
-                self._app.DisplayAlerts = 1  # ppAlertsNone
+                if self.progid == "Word.Application":
+                    self._app.Visible = False
+                    self._app.DisplayAlerts = 0  # wdAlertsNone
+                else:
+                    self._app.DisplayAlerts = 1  # ppAlertsNone
             except Exception:
                 pass
         return self._app
@@ -84,7 +94,7 @@ class ComService:
 
     def _hard_kill(self) -> None:
         subprocess.run(
-            ["taskkill", "/IM", "POWERPNT.EXE", "/F"],
+            ["taskkill", "/IM", self._kill_exe, "/F"],
             capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW,
         )
         self._app = None
@@ -125,6 +135,7 @@ class ComService:
 
 
 _service: ComService | None = None
+_word_service: ComService | None = None
 
 
 def get_com_service() -> ComService:
@@ -132,6 +143,14 @@ def get_com_service() -> ComService:
     if _service is None:
         _service = ComService(timeout_s=get_settings().com_timeout_s)
     return _service
+
+
+def get_word_com_service() -> ComService:
+    global _word_service
+    if _word_service is None:
+        _word_service = ComService(progid="Word.Application", kill_exe="WINWORD.EXE",
+                                   timeout_s=get_settings().com_timeout_s)
+    return _word_service
 
 
 # ---- PNG 导出 ----
@@ -193,6 +212,25 @@ def convert_to_pptx(ppt_path: Path, out_path: Path | None = None) -> Path:
             prs.Close()
 
     return get_com_service().run(_do)
+
+
+# ---- Word：docx → PDF ----
+
+def export_docx_pdf(docx_path: Path, out_pdf: Path | None = None) -> Path:
+    """docx → PDF（Word COM，wdFormatPDF=17），版式与 docx 一致。走 Word 专用 STA 队列。"""
+
+    def _do(svc: ComService):
+        app = svc._ensure_app()
+        doc = app.Documents.Open(str(Path(docx_path).resolve()),
+                                 False, True, False)  # ConfirmConversions/ReadOnly/AddToRecentFiles
+        try:
+            out = Path(out_pdf) if out_pdf else Path(docx_path).with_suffix(".pdf")
+            doc.SaveAs2(str(out.resolve()), FileFormat=17)
+            return out
+        finally:
+            doc.Close(False)
+
+    return get_word_com_service().run(_do)
 
 
 # ---- 渲染清单检查（对已保存 pptx 的确定性核对）----
