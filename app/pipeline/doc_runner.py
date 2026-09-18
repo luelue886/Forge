@@ -12,6 +12,7 @@ from app.pipeline.docfill import assemble_docir, fill_all_sections
 from app.pipeline.docplan import build_doc_plan
 from app.pipeline.genre import extract_letter_frame
 from app.pipeline.runner import _JobLike, _artifacts, _load_json, _save_json
+from app.pipeline.tablefill import fill_all_tables
 from app.qa.docqa import qa_and_repair
 from app.render.docx_render import render_docir_to_docx
 from app.render.pdf_preview import export_pdf_page_pngs
@@ -72,9 +73,13 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
     sections, qa_issues = qa_and_repair(plan, tree, sections, client, pm,
                                         job.dir / "sections")
 
+    # ---- 表格内容仿写（长文本格 ⟦N⟧ 掩码，退格照搬兜底，断点落 artifacts/tables）----
+    table_rewrites, tf_report = fill_all_tables(
+        tree, client, pm, job.dir / "artifacts" / "tables")
+
     # ---- 组装 DocIR + 校验 ----
     frame = extract_letter_frame(tree) if plan.genre is Genre.LETTER else None
-    doc = assemble_docir(plan, sections, tree, frame)
+    doc = assemble_docir(plan, sections, tree, frame, table_rewrites=table_rewrites)
     blocking = [i for i in validate_docir(doc)
                 if i.rule is not IssueCode.W_DOC_PARA_LONG]
     if blocking:
@@ -84,6 +89,7 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
 
     lines = [f"[docqa] {i.section_id} {i.code.value}: {i.detail}"
              for i in qa_issues]
+    lines.extend(tf_report)
     (art / "qa_report.txt").write_text(
         "\n".join(lines) or "（无问题）", encoding="utf-8")
 

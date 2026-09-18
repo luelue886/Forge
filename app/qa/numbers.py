@@ -24,6 +24,15 @@ def extract_number_tokens(text: str) -> list[str]:
     return [t for t in (_normalize(m.group()) for m in _NUM_TOKEN.finditer(text)) if t]
 
 
+def number_spans(text: str) -> list[tuple[int, int]]:
+    """数字 token 的原文区间，与 extract_number_tokens 同一识别口径（掩码用）。"""
+    return [m.span() for m in _NUM_TOKEN.finditer(text)]
+
+
+def strip_number_tokens(text: str) -> str:
+    return _NUM_TOKEN.sub("", text)
+
+
 def check_numbers(generated: str, source: str) -> list[tuple[str, str]]:
     """返回 [(数字, 上下文)]：生成文本出现、源文档未出现的数字（白名单外）。"""
     src_tokens = set(extract_number_tokens(source))

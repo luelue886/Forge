@@ -4,7 +4,8 @@
   1) 状态 DONE，qa_report 无 E- 级残留
   2) heading+para 数字 100% 溯源（check_numbers）
   3) heading+para 与源文 10-gram 零命中（ngram_hits）
-  4) 表格 verbatim：DocIR TableBlock 与源 DocTable 程序 diff
+  4) 表格：header 逐字一致；改写格（在 artifacts/tables 的 cells 里）ngram 零命中
+     + 数字溯源；其余格 == 源 grid 照搬；断点产物齐套
   5) 产物齐套：output.docx / output.pdf / pages/*.png，PNG 数 == PDF 页数
 
 用法：.venv/Scripts/python.exe scripts/e2e_doc.py [样例路径 ...]
@@ -68,16 +69,48 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
         for g in ngram_hits(b["text"], tree.full_text):
             errors.append(f"[E-PLAGIARISM] 与源文连续雷同：{g}")
 
-    # 3) 表格 verbatim diff
+    # 3) 表格内容分类断言：header 逐字；改写格（断点产物 cells）零雷同 + 数字
+    #    溯源；其余格 == 源 grid 照搬
     src_tables = {t.table_id: t for t in tree.tables}
     for b in docir["blocks"]:
         if b["kind"] != "table":
             continue
-        t = src_tables.get(b["table_id"])
+        tid = b["table_id"]
+        t = src_tables.get(tid)
         if t is None:
-            errors.append(f"[TABLE-DIFF] {b['table_id']} 不在源文档")
-        elif b["header"] != list(t.header) or b["rows"] != [list(r) for r in t.rows]:
-            errors.append(f"[TABLE-DIFF] {b['table_id']} 与源表不一致")
+            errors.append(f"[TABLE-DIFF] {tid} 不在源文档")
+            continue
+        if b["header"] != list(t.header):
+            errors.append(f"[TABLE-DIFF] {tid} header 与源表不一致")
+        src_rows = [list(r) for r in t.rows]
+        got_rows = b["rows"]
+        if len(got_rows) != len(src_rows) or any(
+                len(g) != len(s) for g, s in zip(got_rows, src_rows)):
+            errors.append(f"[TABLE-DIFF] {tid} 行列结构与源表不一致")
+            continue
+        art_path = art / "tables" / f"{tid}.json"
+        if not art_path.exists():
+            errors.append(f"[TABLE-DIFF] {tid} 缺 tablefill 断点产物")
+            continue
+        rewrites = json.loads(
+            art_path.read_text(encoding="utf-8"))["cells"]
+        for r, (got_row, src_row) in enumerate(zip(got_rows, src_rows)):
+            for c, (got, want) in enumerate(zip(got_row, src_row)):
+                key = f"{r},{c}"
+                if key in rewrites:
+                    if got != rewrites[key]:
+                        errors.append(
+                            f"[TABLE-DIFF] {tid} {key} 与断点产物不一致")
+                    for tok, ctx in check_numbers(got, tree.full_text):
+                        errors.append(
+                            f"[E-NUM-UNTRACED] {tid} {key} {tok}: {ctx}")
+                    for g in ngram_hits(got, tree.full_text):
+                        errors.append(
+                            f"[E-PLAGIARISM] {tid} {key} 与源文连续雷同：{g}")
+                elif got != want:
+                    errors.append(
+                        f"[TABLE-DIFF] {tid} {key} 非改写格与源不一致"
+                        f"：{got!r} != {want!r}")
 
     # 4) QA 报告无 E- 级残留（W- 级如长段提示/表格退格不算失败）
     qa = (art / "qa_report.txt").read_text(encoding="utf-8")

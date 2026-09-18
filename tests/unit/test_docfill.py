@@ -254,6 +254,28 @@ def test_assemble_report_level_norm_and_tables():
     assert validate_docir(doc) == []
 
 
+def test_assemble_applies_table_rewrites():
+    # 复用 _report_tree 的 tbl-001：header + rows=[["营收","1,234.56 万元"]]
+    tree = _report_tree()
+    plan = DocPlan(genre=Genre.REPORT, title="运营报告", items=[
+        _item("sec-0001", "一、总体情况", 1, seq=1),
+        _item("sec-0002", "（一）回款明细", 2, seq=2, table_ids=["tbl-001"]),
+    ])
+    sections = {"sec-0001": SectionIR(section_id="sec-0001", blocks=[]),
+                "sec-0002": SectionIR(section_id="sec-0002", blocks=[
+                    HeadingBlock(level=2, text="（一）回款明细")])}
+    doc = assemble_docir(plan, sections, tree, table_rewrites={"tbl-001": {
+        "0,0": "营收规模",
+        "0,1": "营业收入 1,234.56 万元已经达成",
+        "5,5": "越界忽略",
+        "x,y": "非法键忽略",
+    }})
+    tbl = doc.blocks[-1]
+    assert tbl.header == ["项目", "金额"]  # 表头永不改写
+    assert tbl.rows == [["营收规模", "营业收入 1,234.56 万元已经达成"]]
+    assert tbl.src_index == tree.tables[0].src_index
+
+
 def test_assemble_first_heading_level2_promoted():
     # 源结构被钳制后首个 heading 是 level 2 → 组装时提为 1，避免跳级
     tree = _tree("季度报告", subs=[_sec("sec-0001", 3, "（一）明细", [_blk("数据。")])])

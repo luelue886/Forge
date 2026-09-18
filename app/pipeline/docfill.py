@@ -163,10 +163,13 @@ def fill_all_sections(plan: DocPlan, tree: DocTree, client: LLMClient,
 
 
 def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
-                   frame: LetterFrame | None = None) -> DocIR:
+                   frame: LetterFrame | None = None,
+                   table_rewrites: dict[str, dict[str, str]] | None = None) -> DocIR:
     """SectionIR 集合 → DocIR。
 
-    - doc_title / letter 框架块 / 表格全部确定性 verbatim，不经 LLM
+    - doc_title / letter 框架块 / 表格全部确定性 verbatim，不经 LLM；
+      表格长文本格的改写由 tablefill 产出，按 "r,c" 直接替换进 rows
+      （rows 即最终内容，溯源由 artifacts/tables/*.json 承担）
     - heading 防跳级钳制（首个 level 2 提为 1）
     - 表格挂在该节块序列末尾
     """
@@ -190,8 +193,15 @@ def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
             t = tables.get(tid)
             if t is None:
                 raise DocFillError(f"规划引用了不存在的表格：{tid}")
+            rows = [list(r) for r in t.rows]
+            for key, text in (table_rewrites or {}).get(tid, {}).items():
+                r_s, _, c_s = key.partition(",")
+                if r_s.isdigit() and c_s.isdigit():
+                    r, c = int(r_s), int(c_s)
+                    if r < len(rows) and c < len(rows[r]):
+                        rows[r][c] = text
             blocks.append(TableBlock(table_id=tid, header=list(t.header),
-                                     rows=[list(r) for r in t.rows],
+                                     rows=rows,
                                      src_index=t.src_index,
                                      col_widths=list(t.col_widths) if t.col_widths else None))
         for iid in item.image_ids:
