@@ -80,6 +80,27 @@ def test_check_sections_flags_only_bad_section():
     assert all(i.section_id == "sec-0001" for i in issues)  # sec-0002 干净
 
 
+def test_check_sections_no_cross_block_false_positive():
+    # 段落边界拼接伪 10-gram：单块各 ≤9 字重合、拼接后才 ≥10，逐块检查不得误报
+    root = DocSection(section_id="sec-0000", level=0, title="工作报告")
+    root.subsections = [DocSection(
+        section_id="sec-0001", level=1, title="一、市场情况",
+        blocks=[_blk("本季度整体呈现向好态势。华南市场布局基本完成。")])]
+    parts = [root.title, root.subsections[0].title,
+             *[b.text for b in root.subsections[0].blocks]]
+    tree = DocTree(
+        meta=DocMeta(source_format="docx", source_name="f.docx",
+                     n_chars=len("\n".join(parts))),
+        sections=[root], tables=[], full_text="\n".join(parts))
+    plan = DocPlan(genre=Genre.REPORT, title="工作报告",
+                   items=[_item("sec-0001", "一、市场情况", 1)])
+    sections = {"sec-0001": SectionIR(section_id="sec-0001", blocks=[
+        ParaBlock(text="整体呈现向好态势。"),
+        ParaBlock(text="华南市场布局已然完成。"),
+    ])}
+    assert check_sections(plan, tree, sections) == []
+
+
 def test_qa_and_repair_refills_only_bad_section(tmp_path):
     client = FakeClient([("一、生产情况改写",
                           ["全年设备生产任务顺利完成，产能保持稳定。"])])
@@ -89,9 +110,10 @@ def test_qa_and_repair_refills_only_bad_section(tmp_path):
     assert issues == []
     assert len(client.calls) == 1  # 只重 fill 了 sec-0001
     assert client.calls[0][2] == "docfill/sec-0001"
-    # 违规明细作为纠错上下文回传
+    # 违规明细作为纠错上下文回传；抄袭问题附可操作修正指引
     user_msg = client.calls[0][1][1]["content"]
     assert "666" in user_msg and "E-NUM-UNTRACED" in user_msg
+    assert "调换语序" in user_msg
     assert result["sec-0001"].blocks[0].text == "一、生产情况改写"
     assert result["sec-0002"] is sections["sec-0002"]  # 好节未动
     assert (tmp_path / "sec_01.ir.json").exists()

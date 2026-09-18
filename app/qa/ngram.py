@@ -1,14 +1,21 @@
-"""10-gram 防抄袭：生成文本不得与源文出现连续 10 字雷同（9 字以内不算）。"""
+"""10-gram 防抄袭：生成文本不得与源文出现连续 10 字雷同（9 字以内不算）。
+
+两侧都先把数字折叠成占位符 N 再比对——数字是设计上的 verbatim（照抄铁律，
+正确性由 numbers.check_numbers 溯源轴另行把关）。"8,642.30万元"这类长数字
+自身就 ≥10 字，若计入走向势轴，任何忠实照抄都必然命中，两条铁律自相矛盾。
+"""
 
 from __future__ import annotations
 
 import re
 
+from app.qa.numbers import _NUM_TOKEN
+
 _STRIP_WS = re.compile(r"\s+")
 
 
 def _clean(s: str) -> str:
-    return _STRIP_WS.sub("", s)
+    return _NUM_TOKEN.sub("N", _STRIP_WS.sub("", s))
 
 
 def ngram_hits(generated: str, source: str, n: int = 10) -> list[str]:

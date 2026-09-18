@@ -1,7 +1,8 @@
 """文档线 QA：逐节数字溯源 + 10-gram 防抄袭，blocking 定向重 fill ≤2 轮。
 
 表格单元格 / letter 框架 / 文档标题是设计上的 verbatim，不进检查；
-只查 fill 产出的仿写文本（heading + para）。
+只查 fill 产出的仿写文本（heading + para），且逐块检查——块间拼接会
+把"段尾句号+下个标题"凑成伪 10-gram，渲染产物里块与块本是分行呈现。
 """
 
 from __future__ import annotations
@@ -31,10 +32,6 @@ class DocQAIssue(BaseModel):
     detail: str
 
 
-def _section_text(sec: SectionIR) -> str:
-    return " ".join(b.text for b in sec.blocks if b.kind in ("heading", "para"))
-
-
 def check_sections(plan: DocPlan, tree: DocTree,
                    sections: dict[str, SectionIR]) -> list[DocQAIssue]:
     issues: list[DocQAIssue] = []
@@ -43,20 +40,27 @@ def check_sections(plan: DocPlan, tree: DocTree,
         sec = sections.get(item.section_id)
         if sec is None:
             continue
-        text = _section_text(sec)
-        if not text.strip():
-            continue
-        for tok, ctx in check_numbers(text, full_text):
-            issues.append(DocQAIssue(
-                code=IssueCode.E_NUM_UNTRACED, severity=Severity.BLOCKING,
-                section_id=item.section_id,
-                detail=f"数字 {tok} 未在源文档出现：{ctx}"))
-        for g in ngram_hits(text, full_text):
-            issues.append(DocQAIssue(
-                code=IssueCode.E_PLAGIARISM, severity=Severity.BLOCKING,
-                section_id=item.section_id,
-                detail=f"与源文连续 {len(g)} 字雷同：{g}"))
+        for b in sec.blocks:
+            if b.kind not in ("heading", "para") or not b.text.strip():
+                continue
+            for tok, ctx in check_numbers(b.text, full_text):
+                issues.append(DocQAIssue(
+                    code=IssueCode.E_NUM_UNTRACED, severity=Severity.BLOCKING,
+                    section_id=item.section_id,
+                    detail=f"数字 {tok} 未在源文档出现（{b.kind}）：{ctx}"))
+            for g in ngram_hits(b.text, full_text):
+                issues.append(DocQAIssue(
+                    code=IssueCode.E_PLAGIARISM, severity=Severity.BLOCKING,
+                    section_id=item.section_id,
+                    detail=f"与源文连续 {len(g)} 字雷同（{b.kind}）：{g}"))
     return issues
+
+
+_PLAGIARISM_HINT = (
+    "。修正方法：保留其中数字与专名原样，数字前后的措辞都要重组，"
+    "严禁保留“引导语+数字+后续短语”的原句式（如“实现营业收入X万元”改为"
+    "“营业收入达到X万元”；“投入X万元，渠道建设”改为“X万元投向市场推广，"
+    "另安排渠道建设”——调换语序打破雷同片段）")
 
 
 def qa_and_repair(plan: DocPlan, tree: DocTree,
@@ -75,8 +79,10 @@ def qa_and_repair(plan: DocPlan, tree: DocTree,
             break
         hints: dict[str, list[str]] = {}
         for i in issues:
-            hints.setdefault(i.section_id, []).append(
-                f"- [{i.code.value}] {i.detail}")
+            line = f"- [{i.code.value}] {i.detail}"
+            if i.code is IssueCode.E_PLAGIARISM:
+                line += _PLAGIARISM_HINT
+            hints.setdefault(i.section_id, []).append(line)
         for item in plan.items:
             if item.section_id not in hints:
                 continue

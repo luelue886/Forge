@@ -58,13 +58,15 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     tree = DocTree.model_validate_json(
         (art / "doctree.json").read_text(encoding="utf-8"))
 
-    # 1) 数字 100% 溯源 + 2) 10-gram 零命中（heading+para 独立复检）
-    gen = " ".join(b["text"] for b in docir["blocks"]
-                   if b["kind"] in ("heading", "para"))
-    for tok, ctx in check_numbers(gen, tree.full_text):
-        errors.append(f"[E-NUM-UNTRACED] {tok}: {ctx}")
-    for g in ngram_hits(gen, tree.full_text):
-        errors.append(f"[E-PLAGIARISM] 与源文连续雷同：{g}")
+    # 1) 数字 100% 溯源 + 2) 10-gram 零命中（逐块独立复检：
+    #    块间拼接会把"段尾句号+下个标题"凑成伪 10-gram，渲染产物里块本是分行）
+    for b in docir["blocks"]:
+        if b["kind"] not in ("heading", "para") or not b.get("text", "").strip():
+            continue
+        for tok, ctx in check_numbers(b["text"], tree.full_text):
+            errors.append(f"[E-NUM-UNTRACED] {tok}: {ctx}")
+        for g in ngram_hits(b["text"], tree.full_text):
+            errors.append(f"[E-PLAGIARISM] 与源文连续雷同：{g}")
 
     # 3) 表格 verbatim diff
     src_tables = {t.table_id: t for t in tree.tables}
@@ -77,9 +79,9 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
         elif b["header"] != list(t.header) or b["rows"] != [list(r) for r in t.rows]:
             errors.append(f"[TABLE-DIFF] {b['table_id']} 与源表不一致")
 
-    # 4) QA 报告无 E- 级残留
+    # 4) QA 报告无 E- 级残留（W- 级如长段提示/表格退格不算失败）
     qa = (art / "qa_report.txt").read_text(encoding="utf-8")
-    residuals = [l for l in qa.splitlines() if "[docqa]" in l]
+    residuals = [l for l in qa.splitlines() if "[docqa]" in l and " E-" in l]
     if residuals:
         errors.append(f"QA 残留 {len(residuals)} 项：\n" + "\n".join(residuals[:5]))
 

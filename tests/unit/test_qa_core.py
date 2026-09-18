@@ -72,3 +72,17 @@ def test_ngram_long_copy_reports_once():
     src = "一二三四五六七八九十一二三四五六七八九十"
     gen = "引子：" + src + "结尾。"
     assert ngram_hits(gen, src) == ["一二三四五六七八九十"]
+
+
+def test_ngram_long_number_plus_unit_exempt():
+    # "8,642.30万元"自身 ≥10 字：数字是 verbatim 铁律，照抄不得判抄袭
+    src = "报告期内实现营业收入 8,642.30 万元，净利润 1,205 万元。"
+    gen = "营业收入 8,642.30 万元已经达成，净利润 1,205 万元保持增长。"
+    assert ngram_hits(gen, src) == []
+
+
+def test_ngram_number_adjoining_prose_structure_still_hits():
+    # 数字折叠后凑满 10 字（9 字 prose + 数字）：引导语+数字+后续短语的原句式照搬
+    src = "市场推广投入 120 万元，渠道建设投入 95 万元，剩余用于培训。"
+    gen = "市场推广环节投入 120 万元，渠道建设方面安排 95 万元，余款培训。"
+    assert ngram_hits(gen, src) == ["投入N万元，渠道建设"]
