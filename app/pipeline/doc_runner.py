@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 
 from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
@@ -20,6 +21,14 @@ from app.schema.doctree import DocTree
 from app.schema.enums import Genre, IssueCode, JobStatus
 
 log = logging.getLogger(__name__)
+
+
+def _render_source(job: _JobLike) -> Path | None:
+    """渲染期源 docx（表格/图片 XML 搬运的锚点）：.docx 原样，.doc 用转换产物。"""
+    src = job.dir / "upload" / job.source_name
+    if src.suffix.lower() == ".doc":
+        src = src.with_name(f"{Path(job.source_name).stem}.converted.docx")
+    return src if src.exists() else None
 
 
 def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
@@ -81,7 +90,10 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
     # ---- 渲染 docx → Word COM 转 PDF → 逐页预览 ----
     job.set_status(JobStatus.RENDERED, "render docx")
     job.save_state()
-    docx = render_docir_to_docx(doc, art / "output.docx")
+    source = _render_source(job)
+    if source is None:
+        log.warning("渲染期源文件缺失，表格/图片按规范样式重建（排版保真降级）")
+    docx = render_docir_to_docx(doc, art / "output.docx", source=source)
 
     n_pages = 1
     if com_export:

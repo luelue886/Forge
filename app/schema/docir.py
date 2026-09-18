@@ -54,7 +54,9 @@ class TableBlock(BaseModel):
     kind: Literal["table"] = "table"
     table_id: str  # 溯源锚点
     header: list[str] = Field(default_factory=list)
-    rows: list[list[str]] = Field(default_factory=list)  # 全 verbatim
+    rows: list[list[str]] = Field(default_factory=list)  # verbatim（C5 起长文本格可改写）
+    src_index: int | None = None   # 透传 DocTable：源 docx 表格序号（XML 搬运用）
+    col_widths: list[float] | None = None  # 透传：无源可搬时的列宽比例
 
 
 DocIRBlock = Annotated[

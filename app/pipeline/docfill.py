@@ -193,7 +193,9 @@ def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
             if t is None:
                 raise DocFillError(f"规划引用了不存在的表格：{tid}")
             blocks.append(TableBlock(table_id=tid, header=list(t.header),
-                                     rows=[list(r) for r in t.rows]))
+                                     rows=[list(r) for r in t.rows],
+                                     src_index=t.src_index,
+                                     col_widths=list(t.col_widths) if t.col_widths else None))
 
     if plan.genre is Genre.LETTER and frame:
         if frame.salutation:

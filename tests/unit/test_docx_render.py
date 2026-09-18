@@ -143,3 +143,76 @@ def test_page_setup_a4_and_margins(tmp_path: Path):
     # 页脚有 PAGE 域
     footer_xml = sec.footer.paragraphs[0]._p.xml
     assert "PAGE" in footer_xml
+
+
+# ---- C3：表格排版保真 ----
+
+def _source_with_merged_table(path: Path) -> Path:
+    from docx.shared import Cm as _Cm
+
+    doc = Document()
+    doc.add_paragraph("表1：测试")
+    t = doc.add_table(rows=2, cols=3)
+    for i, w in enumerate((_Cm(6), _Cm(3), _Cm(2))):
+        t.columns[i].width = w
+    t.cell(0, 0).text = "基本信息"
+    t.cell(0, 2).text = "备注"
+    t.cell(1, 0).text = "张三"
+    t.cell(1, 1).text = "35"
+    t.cell(1, 2).text = "该同志负责产线管理工作。"
+    t.cell(0, 0).merge(t.cell(0, 1))  # gridSpan=2
+    doc.save(str(path))
+    return path
+
+
+def _gridcol_widths(tbl_el) -> list[int]:
+    grid = tbl_el.find(qn("w:tblGrid"))
+    return [int(gc.get(qn("w:w"))) for gc in grid.findall(qn("w:gridCol"))]
+
+
+def test_render_copies_source_table_layout(tmp_path: Path):
+    src = _source_with_merged_table(tmp_path / "src.docx")
+    src_tbl = Document(str(src)).tables[0]._tbl
+
+    doc = DocIR(meta=DocIRMeta(title="信息表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="信息表"),
+        TableBlock(table_id="tbl-001", src_index=0,
+                   header=["基本信息", "基本信息", "备注"],
+                   rows=[["张三", "35", "该同志负责产线管理工作。"]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    d = Document(str(out))
+    assert len(d.tables) == 1
+    got = d.tables[0]
+    # 列宽与源逐值一致（deepcopy 保真），内容 verbatim
+    assert _gridcol_widths(got._tbl) == _gridcol_widths(src_tbl)
+    assert got.cell(1, 1).text == "35"
+
+
+def test_render_source_index_out_of_range_falls_back(tmp_path: Path):
+    src = _source_with_merged_table(tmp_path / "src.docx")
+    doc = DocIR(meta=DocIRMeta(title="表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="表"),
+        TableBlock(table_id="tbl-001", src_index=99,
+                   header=["甲", "乙"], rows=[["1", "2"]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    d = Document(str(out))
+    t = d.tables[0]
+    assert t.cell(0, 0).text == "甲"      # 规范重建路径
+    assert _fill(t.cell(0, 0)) == "D9D9D9"  # 规范表头底纹（拷贝路径没有）
+
+
+def test_render_table_col_widths_ratio(tmp_path: Path):
+    """无源可搬（PDF 源）时按 col_widths 比例设列宽。"""
+    doc = DocIR(meta=DocIRMeta(title="表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="表"),
+        TableBlock(table_id="tbl-001", col_widths=[0.5, 0.3, 0.2],
+                   header=["甲", "乙", "丙"], rows=[["1", "2", "3"]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx")
+    t = Document(str(out)).tables[0]
+    ws = [tc.tcPr.find(qn("w:tcW")).get(qn("w:w"))
+          for tc in t.rows[0]._tr.findall(qn("w:tc"))]
+    assert ws and all(w is not None and w.isdigit() for w in ws)
+    assert int(ws[0]) > int(ws[1]) > int(ws[2]) > 0

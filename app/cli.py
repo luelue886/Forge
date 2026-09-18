@@ -64,7 +64,8 @@ def _cmd_render_docir(args) -> int:
         print("schema 校验未通过（--force 可跳过查看渲染效果）")
         return 1
 
-    out = render_docir_to_docx(doc, Path(args.out))
+    out = render_docir_to_docx(doc, Path(args.out),
+                               source=Path(args.source) if args.source else None)
     print(f"已渲染 {len(doc.blocks)} 块 → {out}")
     if args.pdf:
         from app.services.com_export import export_docx_pdf
@@ -247,6 +248,7 @@ def main(argv: list[str] | None = None) -> int:
     p_render.add_argument("--force", action="store_true", help="schema 校验失败仍继续渲染")
     p_render.add_argument("--docir", action="store_true", help="输入按 DocIR 解析，渲染 docx")
     p_render.add_argument("--pdf", action="store_true", help="docx 再经 Word COM 转 PDF（--docir）")
+    p_render.add_argument("--source", metavar="DOCX", help="源 docx：表格/图片排版保真搬运（--docir）")
     p_render.set_defaults(func=_cmd_render)
 
     p_export = sub.add_parser("export", help="已有 pptx → PNG")

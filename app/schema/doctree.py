@@ -13,7 +13,7 @@ class DocMeta(BaseModel):
 
 
 class DocTable(BaseModel):
-    """源表格，单元格值 verbatim，后续永不经 LLM。"""
+    """源表格，单元格值 verbatim。后续长文本格仿写（C5）直接改写 rows。"""
 
     table_id: str
     section_id: str
@@ -22,6 +22,10 @@ class DocTable(BaseModel):
     header: list[str] = Field(default_factory=list)
     rows: list[list[str]] = Field(default_factory=list)
     caption: str | None = None
+    # 渲染对齐锚点：body 顶层 w:tbl 的 0 基序号（deepcopy 源表格 XML 用）
+    src_index: int | None = None
+    # 归一化列宽比例（和为 1）；docx 读 tblGrid/gridCol，pdf 由单元格 bbox 聚类
+    col_widths: list[float] | None = None
 
     def flat_text(self) -> str:
         parts = [self.caption] if self.caption else []

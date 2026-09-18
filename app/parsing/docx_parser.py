@@ -50,8 +50,25 @@ def _iter_blocks(doc) -> "object":
             yield Table(child, doc)
 
 
+def _grid_col_widths(tbl: Table) -> list[float] | None:
+    """tblGrid/gridCol 的 w:w → 归一化列宽比例；缺失或退化返回 None。"""
+    grid = tbl._tbl.find(qn("w:tblGrid"))
+    if grid is None:
+        return None
+    ws: list[int] = []
+    for gc in grid.findall(qn("w:gridCol")):
+        v = gc.get(qn("w:w"))
+        if v is None or not v.strip().isdigit():
+            return None
+        ws.append(int(v))
+    if len(ws) < 2 or sum(ws) <= 0:
+        return None
+    total = sum(ws)
+    return [w / total for w in ws]
+
+
 def _extract_table(tbl: Table, table_id: str, section_id: str, caption: str | None,
-                   warnings: list[str]) -> DocTable:
+                   warnings: list[str], src_index: int) -> DocTable:
     grid = [[clean_text(c.text) for c in row.cells] for row in tbl.rows]
     if not grid or not grid[0]:
         warnings.append(f"{table_id}：空表格，已跳过内容")
@@ -78,6 +95,7 @@ def _extract_table(tbl: Table, table_id: str, section_id: str, caption: str | No
         table_id=table_id, section_id=section_id,
         n_rows=len(grid), n_cols=n_cols,
         header=header, rows=rows, caption=caption,
+        src_index=src_index, col_widths=_grid_col_widths(tbl),
     )
 
 
@@ -135,7 +153,8 @@ def parse_docx(path: Path) -> DocTree:
             tbl_n += 1
             table_id = f"tbl-{tbl_n:03d}"
             caption = last_para if _CAPTION.match(last_para) else None
-            t = _extract_table(item, table_id, current.section_id, caption, warnings)
+            t = _extract_table(item, table_id, current.section_id, caption,
+                               warnings, src_index=tbl_n - 1)
             tables.append(t)
             blk_n += 1
             current.blocks.append(DocBlock(block_id=f"blk-{blk_n:04d}", kind="table", table_id=table_id))

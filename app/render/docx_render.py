@@ -1,4 +1,8 @@
-"""DocIR → output.docx 纯函数渲染器（python-docx）。"""
+"""DocIR → output.docx 纯函数渲染器（python-docx）。
+
+source（源 docx 路径）存在时，表格走 docx_copy 深拷贝源 XML（排版 100% 保真）
++ 单元格文字替换；否则按规范样式重建，有 col_widths 时设列宽比例。
+"""
 
 from __future__ import annotations
 
@@ -9,9 +13,10 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Pt
+from docx.shared import Emu, Pt
 
 from app.render import docstyle as st
+from app.render import docx_copy
 from app.schema.docir import (
     ClosingBlock,
     DocIR,
@@ -117,7 +122,14 @@ def _render_table(doc: Document, t: TableBlock) -> None:
     n_rows = len(t.rows) + (1 if t.header else 0)
     table = doc.add_table(rows=n_rows, cols=n_cols)
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    table.autofit = True
+    if t.col_widths and len(t.col_widths) == n_cols:
+        table.autofit = False
+        content_w = st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT
+        for c, ratio in enumerate(t.col_widths):
+            for cell in table.columns[c].cells:
+                cell.width = Emu(int(content_w * ratio))
+    else:
+        table.autofit = True
     _borders(table)
 
     r = 0
@@ -137,11 +149,28 @@ def _render_table(doc: Document, t: TableBlock) -> None:
             _add_run(cell.paragraphs[0], font, size, False, text)
 
 
-def render_docir_to_docx(doc: DocIR, out: Path) -> Path:
+def _copy_source_table(src_doc, out_doc: Document, b: TableBlock) -> bool:
+    """源表格 XML 搬运 + 目标网格差异格改写；源序号缺失/越界返回 False 走规范重建。"""
+    if b.src_index is None:
+        return False
+    tbl_el = docx_copy.source_table(src_doc, b.src_index)
+    if tbl_el is None:
+        return False
+    new_el = docx_copy.copy_table(src_doc, out_doc, tbl_el)
+    docx_copy.replace_table_texts(new_el, out_doc, b.header, b.rows)
+    return True
+
+
+def render_docir_to_docx(doc: DocIR, out: Path, source: Path | None = None) -> Path:
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     d = Document()
     _setup_page(d)
+
+    src_doc = None
+    if source is not None and Path(source).suffix.lower() == ".docx" \
+            and Path(source).exists():
+        src_doc = docx_copy.open_source(Path(source))
 
     for b in doc.blocks:
         if isinstance(b, DocTitleBlock):
@@ -182,7 +211,8 @@ def render_docir_to_docx(doc: DocIR, out: Path) -> Path:
                     line_spacing=1.5)
                 _add_run(p, font, size, bold, line)
         elif isinstance(b, TableBlock):
-            _render_table(d, b)
+            if src_doc is None or not _copy_source_table(src_doc, d, b):
+                _render_table(d, b)
 
     _add_page_number(d)
     d.save(str(out))

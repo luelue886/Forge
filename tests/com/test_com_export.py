@@ -62,3 +62,48 @@ def test_convert_doc_to_docx_roundtrip(basic_docx, tmp_path):
     tree = parse_source(legacy)  # converted 已在 → 幂等跳过，直接解析
     assert "智慧园区" in tree.full_text
     assert any(".doc" in w for w in tree.meta.parse_warnings)
+
+
+def test_word_accepts_copied_table_xml(tmp_path):
+    """C3 关键风险：deepcopy 跨包的表格 XML Word 必须能正常打开并导 PDF。"""
+    from docx import Document as DocxDocument
+    from docx.shared import Cm
+
+    from app.render.docx_render import render_docir_to_docx
+    from app.schema.docir import DocIR, DocIRMeta, DocTitleBlock, TableBlock
+    from app.schema.enums import Genre
+    from app.services.com_export import export_docx_pdf
+
+    src = tmp_path / "src.docx"
+    d = DocxDocument()
+    d.add_paragraph("表1：人员")
+    t = d.add_table(rows=3, cols=3)
+    for i, w in enumerate((Cm(6), Cm(3), Cm(2))):
+        t.columns[i].width = w
+    t.cell(0, 0).text = "基本信息"
+    t.cell(0, 2).text = "备注"
+    t.cell(1, 0).text = "张三"
+    t.cell(1, 1).text = "35"
+    t.cell(1, 2).text = "该同志负责产线管理工作。"
+    t.cell(2, 0).text = "李四"
+    t.cell(2, 1).text = "42"
+    t.cell(2, 2).text = "在岗。"
+    t.cell(0, 0).merge(t.cell(0, 1))
+    d.save(str(src))
+
+    ir = DocIR(meta=DocIRMeta(title="人员信息表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="人员信息表"),
+        TableBlock(table_id="tbl-001", src_index=0,
+                   header=["基本信息", "基本信息", "备注"],
+                   rows=[["张三", "35", "该同志负责产线管理工作。"],
+                         ["李四", "42", "在岗。"]]),
+    ])
+    docx = render_docir_to_docx(ir, tmp_path / "out.docx", source=src)
+    pdf = export_docx_pdf(docx, tmp_path / "out.pdf")
+    assert pdf.exists() and pdf.stat().st_size > 2000
+
+    import pymupdf
+
+    with pymupdf.open(str(pdf)) as doc:
+        assert len(doc) >= 1
+        assert "张三" in doc[0].get_text()

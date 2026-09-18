@@ -48,8 +48,26 @@ def _heading_level(text: str, size: float, fontname: str,
     return None
 
 
+def _col_widths_from_cells(cells: list) -> list[float] | None:
+    """单元格 bbox 的 x 边界聚类 → 归一化列宽比例；无边界信息返回 None。"""
+    if not cells:
+        return None
+    try:
+        edges = sorted({round(float(c[0]), 1) for c in cells}
+                       | {round(float(c[2]), 1) for c in cells})
+    except (TypeError, ValueError, IndexError):
+        return None
+    if len(edges) < 3:  # 至少两列才有列宽可言
+        return None
+    ws = [edges[i + 1] - edges[i] for i in range(len(edges) - 1)]
+    if sum(ws) <= 0:
+        return None
+    return [w / sum(ws) for w in ws]
+
+
 def _to_doctable(grid: list[list[str]], table_id: str, section_id: str,
-                 caption: str | None, warnings: list[str]) -> DocTable:
+                 caption: str | None, warnings: list[str],
+                 col_widths: list[float] | None = None) -> DocTable:
     widths = {len(r) for r in grid}
     n_cols = max(widths)
     if len(widths) > 1:
@@ -61,9 +79,12 @@ def _to_doctable(grid: list[list[str]], table_id: str, section_id: str,
     else:
         header, rows = [], grid
         warnings.append(f"{table_id}：未识别出表头，整表按数据行处理")
+    if col_widths and len(col_widths) != n_cols:
+        col_widths = None  # 聚类列数与 grid 不符（罕见），放弃比例
     return DocTable(table_id=table_id, section_id=section_id,
                     n_rows=len(grid), n_cols=n_cols,
-                    header=header, rows=rows, caption=caption)
+                    header=header, rows=rows, caption=caption,
+                    col_widths=col_widths)
 
 
 def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
@@ -89,7 +110,8 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
         grid = [[clean_text(c) if c is not None else "" for c in row] for row in grid]
         grid = [row for row in grid if any(row)]
         if grid:
-            tables.append({"top": t.bbox[1], "bottom": t.bbox[3], "grid": grid})
+            tables.append({"top": t.bbox[1], "bottom": t.bbox[3], "grid": grid,
+                           "col_widths": _col_widths_from_cells(getattr(t, "cells", None))})
 
     def in_table(top: float, bottom: float) -> bool:
         return any(top >= t["top"] - 1 and bottom <= t["bottom"] + 1
@@ -123,7 +145,8 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
                        "size": round(float(biggest.get("size") or 0), 1),
                        "fontname": biggest.get("fontname") or ""})
     for t in tables:
-        events.append({"t": "table", "top": t["top"], "grid": t["grid"]})
+        events.append({"t": "table", "top": t["top"], "grid": t["grid"],
+                       "col_widths": t.get("col_widths")})
     events.sort(key=lambda e: e["top"])
     return events
 
@@ -197,7 +220,8 @@ def parse_pdf(path: Path) -> DocTree:
                 table_id = f"tbl-{tbl_n:03d}"
                 caption = last_para if _CAPTION.match(last_para) else None
                 t = _to_doctable(e["grid"], table_id, current.section_id,
-                                 caption, warnings)
+                                 caption, warnings,
+                                 col_widths=e.get("col_widths"))
                 tables.append(t)
                 blk_n += 1
                 current.blocks.append(DocBlock(block_id=f"blk-{blk_n:04d}",

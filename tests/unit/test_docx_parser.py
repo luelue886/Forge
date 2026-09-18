@@ -41,6 +41,10 @@ def test_table_verbatim_and_caption(basic_docx):
     assert t.section_id == "sec-0002"
     # full_text 必须包含表格原文（数字溯源基准）
     assert "8600" in tree.full_text
+    # 渲染对齐锚点：body 首个表格 + 归一化列宽
+    assert t.src_index == 0
+    assert t.col_widths and len(t.col_widths) == 3
+    assert abs(sum(t.col_widths) - 1.0) < 1e-6
 
 
 def test_resolve_refs(basic_docx):
