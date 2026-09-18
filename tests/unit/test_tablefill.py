@@ -58,6 +58,21 @@ def test_candidate_cells_classification():
     assert list(candidate_cells(t)) == ["2,1"]
 
 
+def test_candidate_cells_merge_expansion_deduped():
+    # python-docx 展开语义：gridSpan 同行相邻重复 / vMerge 同列相邻重复
+    # ——同一物理格只出一个候选，避免两份互相不一致的改写
+    long_text = "负责华东区域 3 个城市的市场维护，移交客户档案 128 份"
+    t = DocTable(
+        table_id="tbl-001", section_id="sec-0001", n_rows=3, n_cols=2,
+        header=["项目", "说明"],
+        rows=[
+            [long_text, long_text],                      # 横向合并展开
+            ["完成整体交接事项 12 项，手续已办理完毕", "备注"],
+            ["完成整体交接事项 12 项，手续已办理完毕", "其他"],  # 纵向合并展开
+        ])
+    assert list(candidate_cells(t)) == ["0,0", "1,0"]
+
+
 def test_min_cell_weight_boundary():
     assert MIN_CELL_WEIGHT == 12
     t = DocTable(table_id="tbl-001", section_id="sec-0001", n_rows=1, n_cols=1,

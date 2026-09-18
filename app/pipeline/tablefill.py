@@ -79,17 +79,28 @@ def _pure_numeric(text: str) -> bool:
 
 
 def candidate_cells(t: DocTable) -> dict[str, str]:
-    """候选改写格 "r,c" → 原文（r 为 rows 内 0 基行号，表头不可寻址）。"""
+    """候选改写格 "r,c" → 原文（r 为 rows 内 0 基行号，表头不可寻址）。
+
+    python-docx 的 row.cells 按展开语义重复合并格（gridSpan 同行相邻重复、
+    vMerge 同列相邻重复）——重复位置只取首个，避免同一物理格产生两份
+    互相不一致的改写（渲染游标只写 span 首格，第二份会被静默丢弃）。
+    """
     out: dict[str, str] = {}
+    prev_row: list[str] = []
     for r, row in enumerate(t.rows):
+        prev_cell = ""
         for c, cell in enumerate(row):
-            if not cell.strip() or "⟦" in cell:
+            above = prev_row[c] if c < len(prev_row) else ""
+            is_merge_dup = bool(cell.strip()) and (cell == prev_cell or cell == above)
+            prev_cell = cell
+            if is_merge_dup or not cell.strip() or "⟦" in cell:
                 continue
             if _pure_numeric(cell):
                 continue
             if text_weight(cell) < MIN_CELL_WEIGHT:
                 continue
             out[f"{r},{c}"] = cell
+        prev_row = list(row)
     return out
 
 

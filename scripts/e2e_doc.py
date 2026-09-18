@@ -1,4 +1,4 @@
-"""3 golden 样例 e2e：run --product doc --auto-confirm → DONE + 仿写硬断言。
+"""4 golden 样例 e2e：run --product doc --auto-confirm → DONE + 仿写硬断言。
 
 断言（独立复检，不信任流水线自报）：
   1) 状态 DONE，qa_report 无 E- 级残留
@@ -7,6 +7,8 @@
   4) 表格：header 逐字一致；改写格（在 artifacts/tables 的 cells 里）ngram 零命中
      + 数字溯源；其余格 == 源 grid 照搬；断点产物齐套
   5) 产物齐套：output.docx / output.pdf / pages/*.png，PNG 数 == PDF 页数
+  6) 排版保真（docx 源）：逐表 tblGrid 列宽与逐行 (gridSpan, vMerge) 序列
+     与源一致；源含图片时输出 word/media 非空
 
 用法：.venv/Scripts/python.exe scripts/e2e_doc.py [样例路径 ...]
 """
@@ -26,7 +28,44 @@ GOLDEN = [
     ROOT / "examples" / "letter_application.docx",
     ROOT / "examples" / "sectioned_report.docx",
     ROOT / "examples" / "text_report.pdf",
+    ROOT / "examples" / "form_personnel.docx",
 ]
+
+
+def _tbl_signatures(docx_path: Path):
+    """逐表 (gridCol 宽度列表, 逐行 [(gridSpan, vMerge), …])——排版指纹。"""
+    from docx import Document
+    from docx.oxml.ns import qn
+
+    d = Document(str(docx_path))
+    out = []
+    for tbl in d.tables:
+        grid = tbl._tbl.find(qn("w:tblGrid"))
+        widths = [gc.get(qn("w:w")) for gc in grid.findall(qn("w:gridCol"))]
+        rows = []
+        for tr in tbl._tbl.findall(qn("w:tr")):
+            sig = []
+            for tc in tr.findall(qn("w:tc")):
+                tc_pr = tc.find(qn("w:tcPr"))
+                span, vm = 1, None
+                if tc_pr is not None:
+                    gs = tc_pr.find(qn("w:gridSpan"))
+                    if gs is not None and (gs.get(qn("w:val")) or "").isdigit():
+                        span = int(gs.get(qn("w:val")))
+                    v = tc_pr.find(qn("w:vMerge"))
+                    if v is not None:
+                        vm = v.get(qn("w:val")) or "continue"
+                sig.append((span, vm))
+            rows.append(sig)
+        out.append((widths, rows))
+    return out
+
+
+def _zip_media(docx_path: Path) -> list[str]:
+    import zipfile
+
+    with zipfile.ZipFile(docx_path) as z:
+        return [n for n in z.namelist() if n.startswith("word/media/")]
 
 
 def run_sample(src: Path) -> tuple[bool, list[str]]:
@@ -138,6 +177,18 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     d = Document(str(docx))
     if len(d.paragraphs) < 3:
         errors.append(f"docx 段落数异常（{len(d.paragraphs)}）")
+
+    # 6) 排版保真（docx 源）：逐表 tblGrid 列宽 + 逐行合并结构与源一致；
+    #    源含图片时输出 word/media 非空
+    if src.suffix.lower() == ".docx":
+        src_docx = job_dir / "upload" / src.name
+        if not src_docx.exists():
+            errors.append("upload 源 docx 缺失，无法比对排版")
+        else:
+            if _tbl_signatures(src_docx) != _tbl_signatures(docx):
+                errors.append("[LAYOUT-DIFF] 表格 tblGrid/合并结构与源不一致")
+            if _zip_media(src_docx) and not _zip_media(docx):
+                errors.append("[LAYOUT-DIFF] 源含图片但输出 word/media 为空")
 
     return not errors, errors
 
