@@ -238,8 +238,8 @@ def test_parse_two_drawings_in_one_paragraph(tmp_path):
 
     doc = Document()
     doc.add_paragraph("流程：")
-    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(4))
-    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(4))
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(8), height=Cm(4))
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(8), height=Cm(4))
     p1, p2 = doc.paragraphs[-2], doc.paragraphs[-1]
     p1._p.append(p2.runs[0]._r)  # 两张图挤进同一段
     src = tmp_path / "two.docx"
@@ -258,3 +258,105 @@ def test_converted_suffix_stripped_from_title(tmp_path):
     doc.save(str(p))
     tree = parse_docx(p)
     assert tree.sections[0].title == "简历模板"
+
+
+# ---- C9: 文本框提取 + 证件照/图标过滤 ----
+
+_W_NS = ('xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+         'xmlns:v="urn:schemas-microsoft-com:vml"')
+
+_TEXTBOX_P = (
+    f'<w:p {_W_NS}><w:r><w:pict>'
+    '<v:shape style="width:198.4pt;height:120pt">'
+    '<v:textbox><w:txbxContent>'
+    '<w:p><w:r><w:t>姓名：张三</w:t></w:r></w:p>'
+    '<w:p><w:r><w:t>求职意向：会计核算</w:t></w:r></w:p>'
+    '</w:txbxContent></v:textbox></v:shape>'
+    '</w:pict></w:r></w:p>')
+
+
+def test_parse_textbox_text(tmp_path):
+    # 文本框设计版（财务简历类）：文字提取为 para，图形不当图片搬运
+    from docx.oxml import parse_xml
+
+    doc = Document()
+    doc.add_paragraph("正文说明段。")
+    doc.paragraphs[-1]._p.addnext(parse_xml(_TEXTBOX_P))
+    p = tmp_path / "txbx.docx"
+    doc.save(str(p))
+
+    tree = parse_docx(p)
+    root = tree.sections[0]
+    assert [b.kind for b in root.blocks] == ["para", "para", "para"]
+    assert root.blocks[1].text == "姓名：张三"
+    assert root.blocks[2].text == "求职意向：会计核算"
+    assert "姓名：张三" in tree.full_text
+    assert tree.images == []  # v:pict 文本框不计为图片
+    assert any("文本框" in w for w in tree.meta.parse_warnings)
+
+
+def test_txbx_text_dedupes_mc_fallback():
+    # 新式文本框 Choice/Fallback 双写同一段文字，只取 Choice 侧
+    from docx.oxml import parse_xml
+
+    from app.parsing.docx_parser import _txbx_text
+
+    mc_ns = ('xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+             'xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" '
+             'xmlns:v="urn:schemas-microsoft-com:vml"')
+    inner = '<w:txbxContent><w:p><w:r><w:t>姓名：张三</w:t></w:r></w:p></w:txbxContent>'
+    p = parse_xml(
+        f'<w:p {mc_ns}><mc:AlternateContent>'
+        f'<mc:Choice Requires="wps">{inner}</mc:Choice>'
+        f'<mc:Fallback><w:pict><v:textbox>{inner}</v:textbox></w:pict></mc:Fallback>'
+        f'</mc:AlternateContent></w:p>')
+    assert _txbx_text(p) == ["姓名：张三"]
+
+
+def _doc_with_sized_image(path, width_cm: float, height_cm: float) -> Path:
+    from docx.shared import Cm
+
+    doc = Document()
+    doc.add_paragraph("说明：")
+    doc.add_picture(io.BytesIO(_PNG_1PX), width=Cm(width_cm), height=Cm(height_cm))
+    doc.save(str(path))
+    return path
+
+
+def test_parse_portrait_photo_skipped(tmp_path):
+    src = _doc_with_sized_image(tmp_path / "portrait.docx", 2.8, 3.5)
+    tree = parse_docx(src)
+    assert tree.images == []
+    assert any("证件照" in w for w in tree.meta.parse_warnings)
+
+
+def test_parse_icon_image_skipped_silently(tmp_path):
+    src = _doc_with_sized_image(tmp_path / "icon.docx", 0.5, 0.5)
+    tree = parse_docx(src)
+    assert tree.images == []
+    assert tree.meta.parse_warnings == []
+
+
+def test_parse_normal_image_kept(tmp_path):
+    src = _doc_with_sized_image(tmp_path / "normal.docx", 6.0, 6.0)
+    tree = parse_docx(src)
+    assert len(tree.images) == 1
+    assert tree.meta.parse_warnings == []
+
+
+def test_parse_vml_portrait_skipped(tmp_path):
+    # VML 图片无 wp:extent，尺寸从 v:shape style 解析
+    from docx.oxml import parse_xml
+
+    doc = Document()
+    doc.add_paragraph("说明：")
+    xml = (f'<w:p {_W_NS}><w:r><w:pict>'
+           '<v:shape style="width:79.4pt;height:99.2pt"/>'
+           '</w:pict></w:r></w:p>')
+    doc.paragraphs[-1]._p.addnext(parse_xml(xml))
+    p = tmp_path / "vml.docx"
+    doc.save(str(p))
+
+    tree = parse_docx(p)
+    assert tree.images == []
+    assert any("证件照" in w for w in tree.meta.parse_warnings)

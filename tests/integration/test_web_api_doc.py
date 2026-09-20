@@ -188,7 +188,8 @@ def test_web_doc_tablefill_fallback(web_app, fake_llm_factory, tmp_path):
         bad_tbl = json.dumps(
             {"cells": {"0,1": "统筹产线日常管理与设备运维督导"}},
             ensure_ascii=False)
-        state["script"] = [SEC1_REPLY, SEC2_REPLY, bad_tbl]
+        # 重试轮仍丢占位符 → 最终退格（tablefill 首轮 + 定向重试各一次调用）
+        state["script"] = [SEC1_REPLY, SEC2_REPLY, bad_tbl, bad_tbl]
         assert client.post(f"/api/jobs/{job_id}/confirm",
                            data={"genre": "report"}).status_code == 200
         d = _wait_status(client, job_id, {"DONE", "FAILED"})

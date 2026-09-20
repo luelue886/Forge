@@ -20,12 +20,16 @@ from docx.oxml.ns import qn
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.shared import Emu
 
-from app.parsing.base import clean_text
+from app.parsing.base import clean_text, image_size_class, vml_style_size_cm
 
 log = logging.getLogger(__name__)
 
 _R_EMBED = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}embed"
 _R_ID = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id"
+_WP_EXTENT = "{http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing}extent"
+_V_SHAPE = "{urn:schemas-microsoft-com:vml}shape"
+_V_IMAGEDATA = "{urn:schemas-microsoft-com:vml}imagedata"
+_EMU_PER_CM = 360000
 
 _SRC_CACHE: dict[str, Document] = {}
 _SRC_CACHE_MAX = 8  # 常驻进程防泄漏：渲染期复用，跨任务不无界增长
@@ -150,9 +154,43 @@ def _normalize_table_width(tbl_el, out_doc: Document) -> None:
         ind.set(qn("w:type"), "dxa")
 
 
+def _strip_portrait_images(tbl_el) -> None:
+    """删表格内嵌的证件照/装饰小图（用户要求取消照片填充）。
+
+    只删 w:drawing / w:pict 节点本身，run 里的文字保留。VML 判尺寸走
+    v:shape 的 style；无尺寸信息不猜、不删。解析期已挡住表格外证件照，
+    这里兜表格 XML 深拷贝带进来的网格内照片。
+    """
+    doomed = []
+    for run in tbl_el.iter(qn("w:r")):
+        for child in run:
+            if child.tag == qn("w:drawing"):
+                ext = child.find(f".//{_WP_EXTENT}")
+                if ext is None:
+                    continue
+                try:
+                    cx, cy = int(ext.get("cx")), int(ext.get("cy"))
+                except (TypeError, ValueError):
+                    continue
+                size = image_size_class(cx / _EMU_PER_CM, cy / _EMU_PER_CM)
+            elif child.tag == qn("w:pict"):
+                if child.find(f".//{_V_IMAGEDATA}") is None:
+                    continue  # 文本框等非图片形状不动
+                shape = child.find(f".//{_V_SHAPE}")
+                style = shape.get("style") if shape is not None else ""
+                size = image_size_class(*vml_style_size_cm(style))
+            else:
+                continue
+            if size is not None:  # icon 或 portrait
+                doomed.append(child)
+    for el in doomed:
+        el.getparent().remove(el)
+
+
 def copy_table(src_doc: Document, out_doc: Document, tbl_el):
     """deepcopy 源 w:tbl 到输出文档末尾（含样式链与内嵌图片重接），返回新元素。"""
     new_el = deepcopy(tbl_el)
+    _strip_portrait_images(new_el)
     rewire_image_rids(src_doc, out_doc, new_el)
     _normalize_table_width(new_el, out_doc)
     tbl_pr = new_el.find(qn("w:tblPr"))

@@ -8,7 +8,12 @@ from docx.oxml.ns import qn
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 
-from app.parsing.base import ParseError, clean_text
+from app.parsing.base import (
+    ParseError,
+    clean_text,
+    image_size_class,
+    vml_style_size_cm,
+)
 from app.schema.doctree import (
     DocBlock,
     DocImage,
@@ -25,8 +30,12 @@ _LIST_STYLE = re.compile(r"^(?:List|列表)", re.IGNORECASE)
 
 _W_PICT = qn("w:pict")
 _W_DRAWING = qn("w:drawing")
+_W_TXBX_CONTENT = qn("w:txbxContent")
 _WP_EXTENT = "{http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing}extent"
 _DGM_RELIDS = "{http://schemas.openxmlformats.org/drawingml/2006/diagram}relIds"
+_MC_FALLBACK = "{http://schemas.openxmlformats.org/markup-compatibility/2006}Fallback"
+_V_SHAPE = "{urn:schemas-microsoft-com:vml}shape"
+_EMU_PER_CM = 360000
 
 
 def _heading_level(p: Paragraph) -> int | None:
@@ -66,6 +75,29 @@ def _iter_blocks(doc):
             yield pos, Table(child, doc)
 
 
+def _txbx_text(p_el) -> list[str]:
+    """段落内文本框（w:txbxContent）的文字，按文档顺序；无文本框返回空。
+
+    新式文本框是 mc:AlternateContent 双写（Choice=新格式，Fallback=旧格式
+    存同一段文字），只取 Choice 侧防重复；旧式 v:textbox 无包裹天然单份。
+    """
+    out: list[str] = []
+    for box in p_el.findall(f".//{_W_TXBX_CONTENT}"):
+        if next(box.iterancestors(_MC_FALLBACK), None) is not None:
+            continue
+        for para in box.iter(qn("w:p")):
+            parts: list[str] = []
+            for t in para.iter(qn("w:t")):
+                # 更深层嵌套文本框的文字由那个框自己负责，防重复
+                if any(a is not box for a in t.iterancestors(_W_TXBX_CONTENT)):
+                    continue
+                parts.append(t.text or "")
+            text = clean_text("".join(parts))
+            if text:
+                out.append(text)
+    return out
+
+
 def _image_extent(p_el) -> tuple[int | None, int | None]:
     ext = p_el.find(f".//{_WP_EXTENT}")
     if ext is None:
@@ -76,18 +108,37 @@ def _image_extent(p_el) -> tuple[int | None, int | None]:
         return None, None
 
 
+def _image_size(p_el) -> str | None:
+    """段内图形的物理尺寸分类；wp:extent 优先，VML 回退 v:shape style。"""
+    cx, cy = _image_extent(p_el)
+    if cx is not None and cy is not None:
+        return image_size_class(cx / _EMU_PER_CM, cy / _EMU_PER_CM)
+    shape = p_el.find(f".//{_V_SHAPE}")
+    if shape is not None:
+        return image_size_class(*vml_style_size_cm(shape.get("style") or ""))
+    return None
+
+
 def _image_of(p_el, image_id: str, section_id: str, pos: int,
               warnings: list[str]) -> DocImage | None:
-    """空文本段落内的 w:drawing / w:pict → DocImage；SmartArt 跳过并告警。"""
+    """空文本段落内的 w:drawing / w:pict → DocImage；SmartArt/文本框/小图跳过。"""
     if p_el.find(f".//{_DGM_RELIDS}") is not None:
         warnings.append(f"{image_id}：SmartArt 依赖多个图表部件，暂不支持复用，已跳过")
         return None
+    if p_el.find(f".//{_W_TXBX_CONTENT}") is not None:
+        return None  # 文本框图形：文字走 _txbx_text，空框不当图片复用
     drawings = p_el.findall(f".//{_W_DRAWING}")
     picts = p_el.findall(f".//{_W_PICT}")
     if not drawings and not picts:
         return None
     if len(drawings) + len(picts) > 1:
         warnings.append(f"{image_id}：段落含多个图形，仅复用首个")
+    size = _image_size(p_el)
+    if size == "portrait":
+        warnings.append(f"{image_id}：疑似证件照，已跳过不搬运")
+        return None
+    if size == "icon":
+        return None
     cx, cy = _image_extent(p_el)
     return DocImage(image_id=image_id, section_id=section_id,
                     body_index=pos, cx_emu=cx, cy_emu=cy)
@@ -166,12 +217,27 @@ def parse_docx(path: Path) -> DocTree:
     blk_n = sec_n = tbl_n = img_n = 0
     parts: list[str] = []
     last_para = ""
+    txbx_warned = False
 
     for pos, item in _iter_blocks(doc):
         if isinstance(item, Paragraph):
             text = clean_text(item.text)
             style = item.style.name or ""
             if not text:
+                txbx = _txbx_text(item._p)
+                if txbx:
+                    # 文本框设计版（简历等）：文字可仿写，图形排版无法保留
+                    if not txbx_warned:
+                        warnings.append(
+                            "文档含文本框：内容按锚点顺序提取，原设计排版无法保留")
+                        txbx_warned = True
+                    for line in txbx:
+                        blk_n += 1
+                        current.blocks.append(DocBlock(
+                            block_id=f"blk-{blk_n:04d}", kind="para", text=line))
+                        parts.append(line)
+                        last_para = line
+                    continue
                 img = _image_of(item._p, f"img-{img_n + 1:03d}",
                                 current.section_id, pos, warnings)
                 if img is not None:

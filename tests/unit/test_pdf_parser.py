@@ -289,3 +289,13 @@ def test_parse_pdf_plain_table_no_merge(tmp_path):
     assert not t.merges
     assert t.col_widths and len(t.col_widths) == 4
     assert all(w >= 0.05 for w in t.col_widths)
+
+
+def test_parse_pdf_portrait_photo_skipped(tmp_path):
+    # 84×85pt ≈ 3.0×3.0cm 近方形 → 疑似证件照，跳过不搬运
+    import fitz
+
+    p = _pdf_with_image(tmp_path / "portrait.pdf", fitz.Rect(200, 100, 284, 185))
+    tree = parse_pdf(p)
+    assert tree.images == []
+    assert any("证件照" in w for w in tree.meta.parse_warnings)

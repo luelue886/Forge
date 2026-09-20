@@ -1,6 +1,6 @@
-## 待改写单元格（编号 [行,列]）
+## 待改写单元格（编号 [行,列|类型]，值格附字段名）
 {% for c in cells %}
-[{{ c.key }}]
+[{{ c.key }}|{{ c.kind }}{% if c.label %}·{{ c.label }}{% endif %}]
 {{ c.text }}
 {% endfor %}
 请输出改写后 JSON。

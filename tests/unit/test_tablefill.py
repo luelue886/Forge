@@ -9,7 +9,9 @@ from app.pipeline.tablefill import (
     candidate_cells,
     cell_passes,
     fill_all_tables,
+    label_value_cells,
     mask_numbers,
+    rewrite_candidates,
     unmask_numbers,
 )
 from app.schema.doctree import DocMeta, DocSection, DocTable, DocTree
@@ -156,20 +158,27 @@ def test_fill_all_tables_rewrite_and_fallback(tmp_path):
     tree = _two_candidate_tree()
     masked_a, tokens_a = mask_numbers(_LONG_A)
     good_b = "区域市场渠道拓展及重点客户维护由其负责，新增 ⟦1⟧ 家渠道伙伴"
-    client = _FakeClient([_CellsOut(cells={
-        "0,1": masked_a,  # 原样照抄（占位符齐全）→ 复检 ngram 命中 → 退格
-        "1,1": good_b,
-    })])
+    client = _FakeClient([
+        _CellsOut(cells={
+            "0,1": masked_a,  # 原样照抄（占位符齐全）→ 复检 ngram 命中 → 退格
+            "1,1": good_b,
+        }),
+        _CellsOut(cells={"0,1": masked_a}),  # 重试轮仍照抄 → 最终退格
+    ])
     rewrites, report = fill_all_tables(tree, client, PromptManager(),
                                        tmp_path / "tables")
     assert client.calls[0][2] == "tablefill/tbl-001"
-    assert len(client.calls) == 1  # 单表单调用
+    assert len(client.calls) == 2  # 首轮 + 失败格定向重试一轮
     # 明文数字永不进入 prompt
     user_msg = client.calls[0][1][1]["content"]
     assert "12" not in user_msg and "45" not in user_msg
     assert "⟦1⟧" in user_msg
     # 短格/表头不进 prompt
     assert "岗位职责一" not in user_msg and "项目" not in user_msg
+    # 重试轮只送失败格，附失败原因
+    retry_msg = client.calls[1][1][1]["content"]
+    assert "[0,1|述]" in retry_msg and "失败原因" in retry_msg
+    assert "[1,1" not in retry_msg
 
     want_b = "区域市场渠道拓展及重点客户维护由其负责，新增 45 家渠道伙伴"
     assert rewrites == {"tbl-001": {"1,1": want_b}}
@@ -190,10 +199,13 @@ def test_fill_all_tables_placeholder_violation_falls_back(tmp_path):
     from app.pipeline.tablefill import _CellsOut
 
     tree = _two_candidate_tree()
-    client = _FakeClient([_CellsOut(cells={
-        "0,1": "统筹产线日常管理与设备运维督导",  # 丢了 ⟦1⟧ → 回填失败
-        "1,1": "负责渠道拓展与客户维护，新增 ⟦1⟧ 家",  # 完整 → 通过
-    })])
+    client = _FakeClient([
+        _CellsOut(cells={
+            "0,1": "统筹产线日常管理与设备运维督导",  # 丢了 ⟦1⟧ → 回填失败
+            "1,1": "负责渠道拓展与客户维护，新增 ⟦1⟧ 家",  # 完整 → 通过
+        }),
+        _CellsOut(cells={"0,1": "统筹产线日常管理与设备运维督导"}),  # 重试仍丢
+    ])
     rewrites, report = fill_all_tables(tree, client, PromptManager(),
                                        tmp_path / "tables")
     assert list(rewrites["tbl-001"]) == ["1,1"]
@@ -243,3 +255,115 @@ def test_norm_key_accepts_llm_variants():
     assert _norm_key("[2,3]") == "2,3"
     assert _norm_key("2，3") == "2,3"
     assert _norm_key("（2,3）") == "2,3"
+
+
+# ---- C9: 字段值格检测 + 虚构改写 + 定向重试 ----
+
+def _pair_tree(rows: list[list[str]], full_text: str | None = None,
+               merges: list[list[int]] | None = None) -> DocTree:
+    t = DocTable(table_id="tbl-001", section_id="sec-0001",
+                 n_rows=len(rows), n_cols=max(len(r) for r in rows),
+                 header=[], rows=rows, merges=merges)
+    text = full_text if full_text is not None else "\n".join(
+        " ".join(r) for r in rows)
+    return _tree(text, [t])
+
+
+def test_label_value_cells_vocabulary():
+    tree = _pair_tree([["姓 名", "张三", "性 别", "男"],
+                       ["民 族", "汉族", "年 龄", "28"],
+                       ["联系电话", "13800001234", "婚 否", "未婚"]])
+    got = label_value_cells(tree.tables[0])
+    # 纯数字值（年龄/电话）不入候选；词汇字段去空格作 label
+    assert got == {"0,1": "姓名", "0,3": "性别", "1,1": "民族", "2,3": "婚否"}
+
+
+def test_label_value_cells_non_vocabulary_and_guards():
+    # 非词汇 label（岗位职责/考核维度）不成对
+    t = _pair_tree([["岗位职责一", _LONG_A]]).tables[0]
+    assert label_value_cells(t) == {}
+    # 值位上又是字段名（表头行漏检）→ 保护字段名不被虚构掉
+    t = _pair_tree([["姓 名", "性 别", "张三"]]).tables[0]
+    assert label_value_cells(t) == {"0,2": "性别"}
+    # 长值（≥12 当量）走事实保留的措辞改写，不虚构
+    t = _pair_tree([["自我评价", _LONG_A]]).tables[0]
+    assert label_value_cells(t) == {}
+
+
+def test_label_value_cells_merge_fragments():
+    rows = [["民 族", "汉族"], ["民 族", "回族"]]
+    # docx 展开语义：label 与上一行同列同文 = vMerge 续行，首行值是真实格
+    t = _pair_tree(rows).tables[0]
+    assert label_value_cells(t) == {"0,1": "民族"}
+    # PDF 重建记录了合并区：label 在纵向合并区内 → 值是被换行拆碎的片段
+    t = _pair_tree(rows, merges=[[0, 0, 2, 1]]).tables[0]
+    assert label_value_cells(t) == {}
+
+
+def test_rewrite_candidates_kinds_disjoint():
+    tree = _pair_tree([["姓 名", "张三"], ["自我评价", _LONG_A]])
+    got = rewrite_candidates(tree.tables[0])
+    assert got == {"0,1": ("张三", "value", "姓名"),
+                   "1,1": (_LONG_A, "text", "")}
+
+
+def test_fill_value_cells_fictional(tmp_path):
+    from app.pipeline.tablefill import _CellsOut
+
+    tree = _pair_tree([["姓 名", "张三", "毕业院校", "浙江工商大学 2012 届"],
+                       ["性 别", "男", "年 龄", "28"],
+                       ["自我评价", _LONG_A, "", ""]])
+    client = _FakeClient([_CellsOut(cells={
+        "0,1": "李慕华", "0,3": "杭州电子科技大学 ⟦1⟧ 届", "1,1": "女",
+        "2,1": "产线管理及运维督导由其统筹，覆盖 ⟦1⟧ 条产线",
+    })])
+    rewrites, report = fill_all_tables(tree, client, PromptManager(),
+                                       tmp_path / "tables")
+    assert report == []
+    got = rewrites["tbl-001"]
+    assert got["0,1"] == "李慕华" and got["0,1"] != "张三"  # 姓名已虚构
+    # 值格只虚构文字部分：学校已换，届别数字占位回填保留
+    assert got["0,3"] == "杭州电子科技大学 2012 届"
+    assert got["1,1"] == "女"
+    assert got["2,1"] == "产线管理及运维督导由其统筹，覆盖 12 条产线"
+    # 纯数字值格（年龄 28）不在候选 → 照搬，明文数字不出现在 prompt
+    user_msg = client.calls[0][1][1]["content"]
+    assert "28" not in user_msg and "2012" not in user_msg
+    assert "值·姓名" in user_msg and "值·毕业院校" in user_msg
+    assert "述" in user_msg  # 长描述格同一次调用
+    # 断点续跑零 LLM
+    rewrites2, _ = fill_all_tables(tree, _NoLLM(), PromptManager(),
+                                   tmp_path / "tables")
+    assert rewrites2 == rewrites
+
+
+def test_value_same_as_source_falls_back(tmp_path):
+    from app.pipeline.tablefill import _CellsOut
+
+    tree = _pair_tree([["姓 名", "张三"]])
+    client = _FakeClient([
+        _CellsOut(cells={"0,1": "张三"}),   # 照抄原值 → 虚构失败
+        _CellsOut(cells={"0,1": "张三"}),   # 重试仍照抄 → 退格
+    ])
+    rewrites, report = fill_all_tables(tree, client, PromptManager(),
+                                       tmp_path / "tables")
+    assert rewrites == {"tbl-001": {}}
+    assert report == ["[tablefill] W-CELL-FALLBACK tbl-001 0,1: 虚构值与原值相同"]
+
+
+def test_retry_recovers_failed_cell(tmp_path):
+    from app.pipeline.tablefill import _CellsOut
+
+    tree = _pair_tree([["姓 名", "张三"], ["性 别", "男"]])
+    client = _FakeClient([
+        _CellsOut(cells={"0,1": "张三", "1,1": "女"}),  # 0,1 照抄失败
+        _CellsOut(cells={"0,1": "李慕华"}),              # 重试通过
+    ])
+    rewrites, report = fill_all_tables(tree, client, PromptManager(),
+                                       tmp_path / "tables")
+    assert len(client.calls) == 2
+    retry_msg = client.calls[1][1][1]["content"]
+    assert "失败原因：虚构值与原值相同" in retry_msg
+    assert "[1,1" not in retry_msg  # 只送失败格
+    assert rewrites == {"tbl-001": {"0,1": "李慕华", "1,1": "女"}}
+    assert report == []

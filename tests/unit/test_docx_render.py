@@ -449,3 +449,84 @@ def test_render_fitting_source_table_untouched(tmp_path):
     assert _gridcol_widths(tbl._tbl) == cols
     ind = tbl._tbl.tblPr.find(qn("w:tblInd"))
     assert ind is not None and ind.get(qn("w:w")) == "152"
+
+
+# ---- C9: 表格内嵌证件照/装饰小图删除 ----
+
+_DRAW_NS = ('xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+            'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
+            'xmlns:v="urn:schemas-microsoft-com:vml" '
+            'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"')
+_V_IMAGEDATA = "{urn:schemas-microsoft-com:vml}imagedata"
+_V_SHAPE = "{urn:schemas-microsoft-com:vml}shape"
+
+
+def _src_with_cell_graphic(path, run_xml: str) -> Path:
+    from docx.oxml import parse_xml
+
+    doc = Document()
+    doc.add_paragraph("表1：含图表格")
+    t = doc.add_table(rows=2, cols=2)
+    t.rows[0].cells[0].text = "姓名"
+    t.rows[0].cells[1].text = "李雷"
+    cell = t.cell(1, 0)
+    cell.paragraphs[0].add_run("照片：")
+    cell.paragraphs[0]._p.append(parse_xml(f'<w:r {_DRAW_NS}>{run_xml}</w:r>'))
+    t.rows[1].cells[1].text = "备注"
+    doc.save(str(path))
+    return path
+
+
+def _form_docir() -> DocIR:
+    return DocIR(meta=DocIRMeta(title="含图表格", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="含图表格"),
+        TableBlock(table_id="tbl-001", src_index=0,
+                   header=[], rows=[["姓名", "李雷"], ["照片：", "备注"]]),
+    ])
+
+
+def test_render_table_strips_portrait_drawing(tmp_path):
+    # 2.8×3.5cm wp:extent → 证件照：表格 XML 搬运时删除，文字保留
+    src = _src_with_cell_graphic(
+        tmp_path / "photo_src.docx",
+        '<w:drawing><wp:inline>'
+        '<wp:extent cx="1008000" cy="1260000"/></wp:inline></w:drawing>')
+    out = render_docir_to_docx(_form_docir(), tmp_path / "out.docx", source=src)
+    tbl = Document(str(out)).tables[0]
+    assert tbl._tbl.find(".//" + qn("w:drawing")) is None
+    assert tbl.cell(1, 0).text == "照片："
+
+
+def test_render_table_strips_portrait_vml_pict(tmp_path):
+    # VML 图片无 wp:extent，尺寸从 v:shape style 解析（79.4×99.2pt ≈ 2.8×3.5cm）
+    src = _src_with_cell_graphic(
+        tmp_path / "vml_src.docx",
+        '<w:pict><v:shape style="width:79.4pt;height:99.2pt">'
+        '<v:imagedata r:id="rId99"/></v:shape></w:pict>')
+    out = render_docir_to_docx(_form_docir(), tmp_path / "out.docx", source=src)
+    tbl = Document(str(out)).tables[0]
+    assert tbl._tbl.find(".//" + _V_IMAGEDATA) is None
+    assert tbl.cell(1, 0).text == "照片："
+
+
+def test_render_table_keeps_content_drawing(tmp_path):
+    # 14×3.2cm 横幅图（golden form_personnel 实测尺寸）非证件照 → 保留
+    src = _src_with_cell_graphic(
+        tmp_path / "banner_src.docx",
+        '<w:drawing><wp:inline>'
+        '<wp:extent cx="5040000" cy="1152000"/></wp:inline></w:drawing>')
+    out = render_docir_to_docx(_form_docir(), tmp_path / "out.docx", source=src)
+    tbl = Document(str(out)).tables[0]
+    assert tbl._tbl.find(".//" + qn("w:drawing")) is not None
+
+
+def test_render_table_keeps_textbox_pict(tmp_path):
+    # v:pict 内是文本框不是图片 → 不动（无尺寸可判也不猜）
+    src = _src_with_cell_graphic(
+        tmp_path / "txbx_src.docx",
+        '<w:pict><v:shape style="width:79.4pt;height:99.2pt">'
+        '<v:textbox><w:txbxContent><w:p><w:r><w:t>备注说明</w:t></w:r></w:p>'
+        '</w:txbxContent></v:textbox></v:shape></w:pict>')
+    out = render_docir_to_docx(_form_docir(), tmp_path / "out.docx", source=src)
+    tbl = Document(str(out)).tables[0]
+    assert tbl._tbl.find(".//" + _V_SHAPE) is not None

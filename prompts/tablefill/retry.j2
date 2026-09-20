@@ -1,0 +1,8 @@
+上一轮以下单元格未通过复检，请重新改写——述格不得复用原文任何连续 10 个字，值格不得照抄原值：
+
+{% for c in cells %}
+[{{ c.key }}|{{ c.kind }}{% if c.label %}·{{ c.label }}{% endif %}]
+{{ c.text }}
+失败原因：{{ c.reason }}
+{% endfor %}
+请输出改写后 JSON。

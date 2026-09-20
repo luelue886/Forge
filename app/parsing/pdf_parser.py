@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pdfplumber
 
-from app.parsing.base import ParseError, clean_text
+from app.parsing.base import ParseError, clean_text, image_size_class
 from app.schema.doctree import (
     DocBlock,
     DocImage,
@@ -25,6 +25,7 @@ _NUM_PREFIX = re.compile(
 _BOLD_FONT = re.compile(r"(?i)bold|simhei|黑体")
 
 _MIN_CHARS_PER_PAGE = 20  # 全文平均每页低于该字数视为扫描件
+_PT_PER_CM = 28.3465
 
 # CJK 及全角符号（含全角标点）——两侧均命中时直连，否则补空格还原词边界
 _CJK_BOUND = re.compile("[　-〿一-鿿＀-￯]")
@@ -259,9 +260,15 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
                                        float(im["x1"]), float(im["bottom"]))
             except (KeyError, TypeError, ValueError):
                 continue
-            if x1 - x0 < 15 or bottom - top < 15:  # 图标/装饰性小图
+            if in_table(top, bottom):  # 表区域内的图随表格重建，不单独复用
                 continue
-            if in_table(top, bottom):  # 表区域内的图防重复计入
+            w_cm, h_cm = (x1 - x0) / _PT_PER_CM, (bottom - top) / _PT_PER_CM
+            size = image_size_class(w_cm, h_cm)
+            if size == "portrait":
+                warnings.append(
+                    f"第 {pno} 页疑似证件照（{w_cm:.1f}×{h_cm:.1f}cm），已跳过不搬运")
+                continue
+            if size == "icon":  # 图标/装饰性小图
                 continue
             out.append({"t": "image", "top": top,
                         "bbox": [x0, top, x1, bottom]})
