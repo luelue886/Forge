@@ -54,6 +54,22 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
         job.save_state()
         return
 
+    # ---- form+PDF 表格 LLM 重建分支（架构师两轮败 → FormBranchFallback 回落）----
+    if plan.genre is Genre.FORM:
+        tree = _load_json(art / "doctree.json", DocTree)
+        if tree.meta.source_format == "pdf" and tree.tables:
+            from app.pipeline.form_branch import (
+                FormBranchFallback,
+                run_form_branch,
+            )
+
+            try:
+                run_form_branch(job, client, pm, plan, tree,
+                                com_export=com_export)
+                return
+            except FormBranchFallback as e:
+                log.warning("form 分支回落既有链路：%s", e)
+
     # ---- fill（逐节落盘，可断点续跑）----
     tree = _load_json(art / "doctree.json", DocTree)
     total = len(plan.items)

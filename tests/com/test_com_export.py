@@ -107,3 +107,54 @@ def test_word_accepts_copied_table_xml(tmp_path):
     with pymupdf.open(str(pdf)) as doc:
         assert len(doc) >= 1
         assert "张三" in doc[0].get_text()
+
+
+def test_convert_html_to_docx(tmp_path):
+    """T4 关键风险：Word HTML 导入 @page/colgroup/rowspan → docx 保真。"""
+    from docx import Document as DocxDocument
+
+    from app.render.form_html import FormBlock, build_form_html
+    from app.schema.tblskeleton import TCell, TRow, TSkeleton, TVisualTable
+    from app.services.com_export import convert_html_to_docx, export_docx_pdf
+
+    sk = TSkeleton(
+        table_title="人员登记表", total_cols=3, src_tables=[], rows=[
+            TRow(cells=[TCell(content="维度", style="header"),
+                        TCell(content="字段", style="header"),
+                        TCell(content="内容", style="header")]),
+            TRow(cells=[TCell(content="基本情况", rowspan=2, style="label"),
+                        TCell(content="姓名", style="label"),
+                        TCell(content="负责产线管理，覆盖 12 条产线")]),
+            TRow(cells=[TCell(content="电话", style="label"),
+                        TCell(content="13800001111")]),
+        ])
+    v = TVisualTable(table_index=0, col_widths=[14, 14, 72],
+                     row_heights=[28, 40, 24])
+    html = build_form_html("人员登记表", [FormBlock(kind="table",
+                                                   table_index=0)], [sk], [v])
+    html_path = tmp_path / "form.html"
+    html_path.write_text(html, encoding="utf-8-sig")
+    docx = convert_html_to_docx(html_path, tmp_path / "form.docx")
+
+    d = DocxDocument(str(docx))
+    assert len(d.tables) == 1
+    xml = d.element.xml
+    assert "gridSpan" in xml or "vMerge" in xml
+    sec = d.sections[0]
+    assert abs(sec.page_width.cm - 21.0) < 0.2
+    assert abs(sec.page_height.cm - 29.7) < 0.2
+    assert abs(sec.top_margin.cm - 2.54) < 0.2
+    assert abs(sec.left_margin.cm - 3.18) < 0.2
+    full = "\n".join(p.text for p in d.paragraphs) + "\n" + "\n".join(
+        c.text for t in d.tables for r in t.rows for c in r.cells)
+    assert "人员登记表" in full and "基本情况" in full
+    assert "13800001111" in full and "12" in full
+    assert "⟦" not in full
+
+    pdf = export_docx_pdf(docx, tmp_path / "form.pdf")
+    import pymupdf
+
+    with pymupdf.open(str(pdf)) as doc:
+        text = "".join(page.get_text() for page in doc)
+        assert "基本情况" in text
+        assert "13800001111" in text and "12" in text

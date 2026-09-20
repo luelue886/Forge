@@ -250,6 +250,27 @@ def convert_doc_to_docx(doc_path: Path, out_path: Path | None = None) -> Path:
     return get_word_com_service().run(_do)
 
 
+def convert_html_to_docx(html_path: Path, out_docx: Path) -> Path:
+    """.html → .docx（Word HTML 导入，wdFormatXMLDocument=16）。
+
+    HTML 须 utf-8-sig 写出（Word 嗅探 BOM 定编码）；@page/表格属性在
+    导入时映射为 docx 节属性。走 Word 专用 STA 队列。
+    """
+
+    def _do(svc: ComService):
+        app = svc._ensure_app()
+        doc = app.Documents.Open(str(Path(html_path).resolve()),
+                                 False, True, False)
+        try:
+            out = Path(out_docx)
+            doc.SaveAs2(str(out.resolve()), FileFormat=16)
+            return out
+        finally:
+            doc.Close(False)
+
+    return get_word_com_service().run(_do)
+
+
 # ---- 渲染清单检查（对已保存 pptx 的确定性核对）----
 
 def _expected_text_shapes(ir: SlideIR) -> set[str]:
