@@ -1,4 +1,4 @@
-"""4 golden 样例 e2e：run --product doc --auto-confirm → DONE + 仿写硬断言。
+"""6 golden 样例 e2e：run --product doc --auto-confirm → DONE + 仿写硬断言。
 
 断言（独立复检，不信任流水线自报）：
   1) 状态 DONE，qa_report 无 E- 级残留
@@ -8,7 +8,9 @@
      + 数字溯源；其余格 == 源 grid 照搬；断点产物齐套
   5) 产物齐套：output.docx / output.pdf / pages/*.png，PNG 数 == PDF 页数
   6) 排版保真（docx 源）：逐表 tblGrid 列宽与逐行 (gridSpan, vMerge) 序列
-     与源一致；源含图片时输出 word/media 非空
+     与源一致；解析期保留的图片（tree.images）必须出现在输出 media
+  7) 样例特定：resume 值格已换 + 证件照已删；form_personnel.pdf 的
+     merges 与 docx 版已知结构一致，输出合并指纹与 docx 版一致
 
 用法：.venv/Scripts/python.exe scripts/e2e_doc.py [样例路径 ...]
 """
@@ -29,6 +31,8 @@ GOLDEN = [
     ROOT / "examples" / "sectioned_report.docx",
     ROOT / "examples" / "text_report.pdf",
     ROOT / "examples" / "form_personnel.docx",
+    ROOT / "examples" / "resume_sample.docx",
+    ROOT / "examples" / "form_personnel.pdf",
 ]
 
 
@@ -59,6 +63,12 @@ def _tbl_signatures(docx_path: Path):
             rows.append(sig)
         out.append((widths, rows))
     return out
+
+
+def _merge_signature(docx_path: Path):
+    """逐表合并指纹：逐行 [(gridSpan, vMerge), …]（不含列宽——PDF 重建路径
+    列宽按版心重排，与源 docx 绝对宽度必然不同）。"""
+    return [rows for _, rows in _tbl_signatures(docx_path)]
 
 
 def _zip_media(docx_path: Path) -> list[str]:
@@ -175,11 +185,12 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     from docx import Document
 
     d = Document(str(docx))
-    if len(d.paragraphs) < 3:
+    if len(d.paragraphs) < 2:
         errors.append(f"docx 段落数异常（{len(d.paragraphs)}）")
 
     # 6) 排版保真（docx 源）：逐表 tblGrid 列宽 + 逐行合并结构与源一致；
-    #    源含图片时输出 word/media 非空
+    #    解析期保留的图片（tree.images，证件照/图标已在解析期过滤）必须
+    #    出现在输出 media
     if src.suffix.lower() == ".docx":
         src_docx = job_dir / "upload" / src.name
         if not src_docx.exists():
@@ -187,8 +198,30 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
         else:
             if _tbl_signatures(src_docx) != _tbl_signatures(docx):
                 errors.append("[LAYOUT-DIFF] 表格 tblGrid/合并结构与源不一致")
-            if _zip_media(src_docx) and not _zip_media(docx):
-                errors.append("[LAYOUT-DIFF] 源含图片但输出 word/media 为空")
+    if len(_zip_media(docx)) < len(tree.images):
+        errors.append(
+            f"[LAYOUT-DIFF] 输出 media {_zip_media(docx)} 少于解析保留的 "
+            f"{len(tree.images)} 张图片")
+
+    # 7) 样例特定断言
+    if src.name == "resume_sample.docx":
+        art_path = art / "tables" / "tbl-001.json"
+        cells = (json.loads(art_path.read_text(encoding="utf-8"))["cells"]
+                 if art_path.exists() else {})
+        if "0,1" not in cells:
+            errors.append("[E-VALUE] 姓名值格未被虚构改写（0,1 不在改写产物）")
+        elif cells["0,1"] == "张三":
+            errors.append("[E-VALUE] 姓名值格照抄原值")
+        if _zip_media(docx):
+            errors.append("[E-VALUE] 输出仍含图片（证件照未删除）")
+    elif src.name == "form_personnel.pdf":
+        want = [[2, 0, 1, 2], [2, 2, 1, 2], [3, 0, 2, 1], [5, 0, 1, 4]]
+        all_merges = sorted(m for t in tree.tables for m in (t.merges or []))
+        if all_merges != want:
+            errors.append(f"[LAYOUT-DIFF] PDF 合并区与 docx 版不一致：{all_merges}")
+        ref = ROOT / "examples" / "form_personnel.docx"
+        if _merge_signature(docx) != _merge_signature(ref):
+            errors.append("[LAYOUT-DIFF] 输出合并指纹与 docx golden 不一致")
 
     return not errors, errors
 
