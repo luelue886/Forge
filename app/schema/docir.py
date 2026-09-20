@@ -214,11 +214,13 @@ def validate_docir(doc: DocIR) -> list[DocIssue]:
     return issues
 
 
-def validate_section_ir(sec: SectionIR, genre: Genre) -> list[DocIssue]:
+def validate_section_ir(sec: SectionIR, genre: Genre,
+                        allow_empty_prose: bool = False) -> list[DocIssue]:
     """单节 fill 落盘前的可重试校验（块级规则）。
 
     跨节结构规则（doc_title 位置、heading 跳级、form 全文表格数、letter 框架顺序）
-    由组装后的 validate_docir 把关。
+    由组装后的 validate_docir 把关。allow_empty_prose=True 豁免"节内没有正文
+    段落"——确定性零段路径（源节无素材可仿写）专用。
     """
     issues: list[DocIssue] = []
     allowed = GENRE_BLOCKS[genre]
@@ -239,6 +241,6 @@ def validate_section_ir(sec: SectionIR, genre: Genre) -> list[DocIssue]:
                 rule=IssueCode.W_DOC_PARA_LONG,
                 detail=f"para {text_weight(b.text):.0f} 汉字当量超过 "
                        f"{DOC_LIMITS['para_weight_warn']:.0f}，建议拆段", seq=i))
-    if not any(b.kind == "para" for b in sec.blocks):
+    if not allow_empty_prose and not any(b.kind == "para" for b in sec.blocks):
         issues.append(DocIssue(rule=IssueCode.V_DOC_EMPTY, detail="节内没有正文段落"))
     return issues

@@ -14,6 +14,7 @@ from app.schema.docir import (
     SignatureBlock,
     TableBlock,
     validate_docir,
+    validate_section_ir,
 )
 from app.schema.enums import Genre, IssueCode
 
@@ -183,3 +184,11 @@ def test_docir_rejects_unknown_block_kind():
             "meta": {"title": "t", "genre": "report"},
             "blocks": [{"kind": "nope", "text": "x"}],
         })
+
+
+def test_validate_section_ir_allow_empty_prose():
+    # 零正文节默认被拒；确定性路径（源节无素材可仿写）传 allow_empty_prose 豁免
+    sec = SectionIR(section_id="s", blocks=[HeadingBlock(level=1, text="一、明细")])
+    issues = validate_section_ir(sec, Genre.FORM)
+    assert any("节内没有正文段落" in i.detail for i in issues)
+    assert validate_section_ir(sec, Genre.FORM, allow_empty_prose=True) == []

@@ -248,3 +248,13 @@ def test_parse_two_drawings_in_one_paragraph(tmp_path):
     tree = parse_docx(src)
     assert len(tree.images) == 1
     assert any("多个图形" in w for w in tree.meta.parse_warnings)
+
+
+def test_converted_suffix_stripped_from_title(tmp_path):
+    # .doc 经 COM 转换产物名为 *.converted.docx：标题回退 stem 时剥掉尾巴
+    doc = Document()
+    doc.add_paragraph("个人简历模板第一段说明文字，用于排版展示。")
+    p = tmp_path / "简历模板.converted.docx"
+    doc.save(str(p))
+    tree = parse_docx(p)
+    assert tree.sections[0].title == "简历模板"

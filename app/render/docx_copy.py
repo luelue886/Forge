@@ -18,6 +18,7 @@ from docx import Document
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
+from docx.shared import Emu
 
 from app.parsing.base import clean_text
 
@@ -102,10 +103,58 @@ def _insert_into_body(out_doc: Document, el) -> None:
         body.append(el)
 
 
+def _normalize_table_width(tbl_el, out_doc: Document) -> None:
+    """源表 dxa 宽度超出输出版心 → 等比缩到版心宽（tblW/gridCol/tcW），tblInd 归零。
+
+    源文档页边距常比输出公文版心窄（709 vs 1803 twips），定宽表按源宽搬运
+    会溢出版心：居中的越界、带 tblInd 的靠左。pct/auto 型由 Word 自适应，不动。
+    """
+    try:
+        sec = out_doc.sections[0]
+        content_tw = Emu(sec.page_width - sec.left_margin - sec.right_margin).twips
+    except Exception:  # noqa: BLE001 — 取不到版心信息则放弃缩放，保持源样
+        return
+    if content_tw <= 0:
+        return
+    tbl_pr = tbl_el.find(qn("w:tblPr"))
+    if tbl_pr is None:
+        return
+    tbl_w = tbl_pr.find(qn("w:tblW"))
+    if tbl_w is None or (tbl_w.get(qn("w:type")) or "") != "dxa":
+        return
+    val = tbl_w.get(qn("w:w")) or ""
+    if not val.isdigit() or int(val) <= content_tw:
+        return
+    scale = content_tw / int(val)
+    tbl_w.set(qn("w:w"), str(content_tw))
+    grid = tbl_el.find(qn("w:tblGrid"))
+    if grid is not None:
+        for gc in grid.findall(qn("w:gridCol")):
+            gw = gc.get(qn("w:w")) or ""
+            if gw.isdigit():
+                gc.set(qn("w:w"), str(int(round(int(gw) * scale))))
+    # 只缩本表直接行的 tc（嵌套表有自己的 tblW，不越级代管）
+    for tr in tbl_el.findall(qn("w:tr")):
+        for tc in tr.findall(qn("w:tc")):
+            tc_pr = tc.find(qn("w:tcPr"))
+            if tc_pr is None:
+                continue
+            tc_w = tc_pr.find(qn("w:tcW"))
+            if tc_w is not None and (tc_w.get(qn("w:type")) or "") == "dxa":
+                tw = tc_w.get(qn("w:w")) or ""
+                if tw.isdigit():
+                    tc_w.set(qn("w:w"), str(int(round(int(tw) * scale))))
+    ind = tbl_pr.find(qn("w:tblInd"))
+    if ind is not None:
+        ind.set(qn("w:w"), "0")
+        ind.set(qn("w:type"), "dxa")
+
+
 def copy_table(src_doc: Document, out_doc: Document, tbl_el):
     """deepcopy 源 w:tbl 到输出文档末尾（含样式链与内嵌图片重接），返回新元素。"""
     new_el = deepcopy(tbl_el)
     rewire_image_rids(src_doc, out_doc, new_el)
+    _normalize_table_width(new_el, out_doc)
     tbl_pr = new_el.find(qn("w:tblPr"))
     if tbl_pr is not None:
         style = tbl_pr.find(qn("w:tblStyle"))

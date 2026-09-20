@@ -156,8 +156,10 @@ def parse_docx(path: Path) -> DocTree:
     images: list[DocImage] = []
     flat_sections: list[DocSection] = []
 
+    # .doc 经 COM 转换产物名为 *.converted.docx，stem 尾巴不得漏进标题
+    stem = path.stem.removesuffix(".converted")
     root = DocSection(section_id="sec-0000", level=0,
-                      title=clean_text(doc.core_properties.title or "") or path.stem or "正文")
+                      title=clean_text(doc.core_properties.title or "") or stem or "正文")
     stack: list[DocSection] = [root]
     current = root
 
@@ -179,7 +181,7 @@ def parse_docx(path: Path) -> DocTree:
                     current.blocks.append(DocBlock(
                         block_id=f"blk-{blk_n:04d}", kind="image", image_id=img.image_id))
                 continue
-            if style in ("Title", "标题") and root.title in ("", path.stem, "正文"):
+            if style in ("Title", "标题") and root.title in ("", stem, "正文"):
                 root.title = text
                 parts.append(text)
                 continue

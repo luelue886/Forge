@@ -374,3 +374,78 @@ def test_render_pdf_source_image(tmp_path: Path):
     content_w = st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT
     expect = int(content_w * 300 / 595)
     assert abs(d.inline_shapes[0].width - expect) < 20000
+
+
+# ---- C8：宽表缩放（源页边距窄 → dxa 定宽表溢出输出版心）----
+
+def _source_with_dxa_table(path: Path, col_tw: list[int]) -> Path:
+    """造 tblW=dxa 定宽表（gridCol/tcW 逐值 + tblInd 152），模拟小边距源文档。"""
+    from docx.oxml import OxmlElement
+    from docx.shared import Twips
+
+    doc = Document()
+    doc.add_paragraph("表1：宽表")
+    t = doc.add_table(rows=2, cols=len(col_tw))
+    for c, w in enumerate(col_tw):
+        t.columns[c].width = Twips(w)
+        for r in range(2):
+            t.cell(r, c).width = Twips(w)
+    tbl_pr = t._tbl.tblPr
+    tbl_w = tbl_pr.find(qn("w:tblW"))
+    if tbl_w is None:
+        tbl_w = OxmlElement("w:tblW")
+        tbl_pr.append(tbl_w)
+    tbl_w.set(qn("w:type"), "dxa")
+    tbl_w.set(qn("w:w"), str(sum(col_tw)))
+    ind = tbl_pr.find(qn("w:tblInd"))
+    if ind is None:
+        ind = OxmlElement("w:tblInd")
+        tbl_pr.append(ind)
+    ind.set(qn("w:type"), "dxa")
+    ind.set(qn("w:w"), "152")
+    doc.save(str(path))
+    return path
+
+
+def test_render_wide_source_table_scaled(tmp_path):
+    # 10425 dxa（六种合集实测宽度）> 输出版心 ~8300 → 等比缩放 + tblInd 归零
+    from docx.shared import Emu
+
+    from app.render import docstyle as st
+
+    cols = [2880, 3742, 3803]  # 和 10425
+    src = _source_with_dxa_table(tmp_path / "wide_src.docx", cols)
+    doc = DocIR(meta=DocIRMeta(title="宽表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="宽表"),
+        TableBlock(table_id="tbl-001", src_index=0,
+                   header=["字段", "值", "备注"], rows=[["甲", "乙", "丙"]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    tbl = Document(str(out)).tables[0]
+    content_tw = Emu(st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT).twips
+
+    tbl_w = tbl._tbl.tblPr.find(qn("w:tblW"))
+    assert tbl_w.get(qn("w:type")) == "dxa"
+    assert int(tbl_w.get(qn("w:w"))) <= content_tw
+    got = _gridcol_widths(tbl._tbl)
+    assert sum(got) <= content_tw + 3  # 逐列舍入余量
+    for s, g in zip(cols, got):  # 列宽比例保持
+        assert abs(g / sum(got) - s / sum(cols)) < 0.02
+    ind = tbl._tbl.tblPr.find(qn("w:tblInd"))
+    assert ind is not None and int(ind.get(qn("w:w")) or 0) == 0
+
+
+def test_render_fitting_source_table_untouched(tmp_path):
+    # 表宽 ≤ 版心：原样搬运（列宽与 tblInd 均不动）
+    cols = [2000, 2500, 3000]  # 和 7500 ≤ ~8300
+    src = _source_with_dxa_table(tmp_path / "fit_src.docx", cols)
+    doc = DocIR(meta=DocIRMeta(title="表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="表"),
+        TableBlock(table_id="tbl-001", src_index=0,
+                   header=["字段", "值", "备注"], rows=[["甲", "乙", "丙"]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx", source=src)
+    tbl = Document(str(out)).tables[0]
+    assert _gridcol_widths(tbl._tbl) == cols
+    ind = tbl._tbl.tblPr.find(qn("w:tblInd"))
+    assert ind is not None and ind.get(qn("w:w")) == "152"

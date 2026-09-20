@@ -331,3 +331,64 @@ def test_assemble_missing_image_raises():
                                       blocks=[ParaBlock(text="内容。")])}
     with pytest.raises(DocFillError, match="不存在的图片"):
         assemble_docir(plan, sections, _tree("表"))
+
+
+# ---- C8: form 空模板零 LLM ----
+
+def test_fill_form_tiny_prose_skips_llm():
+    # form 空模板合集：源正文当量 < 30（仅一句模板说明），无素材可仿写 → 零段零调用
+    tree = _tree("六种简历模板合集", root_blocks=[
+        _blk("个人简历"),
+        DocBlock(block_id="blk-9101", kind="table", table_id="tbl-001"),
+    ], tables=[DocTable(table_id="tbl-001", section_id="sec-0000",
+                        n_rows=2, n_cols=2, header=["姓名", "学校"],
+                        rows=[["张三", "北方大学"]])])
+    plan = DocPlan(genre=Genre.FORM, title="六种简历模板合集",
+                   items=[_item("sec-0000", seq=1, table_ids=["tbl-001"])])
+    client = FakeClient([])
+    sec = fill_section(plan.items[0], plan, tree, client)
+    assert sec.blocks == [] and len(client.calls) == 0
+
+
+def test_fill_form_enough_prose_uses_llm():
+    tree = _tree("员工登记说明", root_blocks=[
+        _blk("本表用于登记员工基本信息，包含姓名、岗位、入职日期与联系方式等字段。"),
+        _blk("填写时请确保各项内容真实有效，并由人事部门统一归档管理备查。"),
+    ])
+    plan = DocPlan(genre=Genre.FORM, title="员工登记说明",
+                   items=[_item("sec-0000", seq=1)])
+    client = FakeClient([type("Out", (), {"paras": ["请如实填写员工信息。"]})()])
+    sec = fill_section(plan.items[0], plan, tree, client)
+    assert len(client.calls) == 1
+    assert [b.kind for b in sec.blocks] == ["para"]
+
+
+def test_fill_deterministic_overlong_heading_dropped():
+    # 确定性路径仍过块级校验：源标题 26 当量超限 → 丢标题保零段，不拦整个任务
+    tree = _tree("表", subs=[
+        _sec("sec-0001", 1, "超" * 26,
+             [DocBlock(block_id="blk-9102", kind="table", table_id="tbl-001")]),
+    ], tables=[DocTable(table_id="tbl-001", section_id="sec-0001",
+                        n_rows=1, n_cols=1, rows=[["数据"]])])
+    plan = DocPlan(genre=Genre.FORM, title="表",
+                   items=[_item("sec-0001", "超" * 26, 1, seq=1)])
+    sec = fill_section(plan.items[0], plan, tree, FakeClient([]))
+    assert sec.blocks == []
+
+
+def test_fill_assemble_form_template_zero_paras(tmp_path):
+    # 单元级端到端：空模板合集 → 零 LLM、DocIR 无 para 块、doc 级校验通过
+    tree = _tree("简历模板合集", root_blocks=[
+        _blk("个人简历"),
+        DocBlock(block_id="blk-9103", kind="table", table_id="tbl-001"),
+    ], tables=[DocTable(table_id="tbl-001", section_id="sec-0000",
+                        n_rows=2, n_cols=2, header=["姓名", "籍贯"],
+                        rows=[["张三", "杭州"]])])
+    plan = DocPlan(genre=Genre.FORM, title="简历模板合集",
+                   items=[_item("sec-0000", seq=1, table_ids=["tbl-001"])])
+    client = FakeClient([])
+    sections = fill_all_sections(plan, tree, client, tmp_path)
+    assert len(client.calls) == 0
+    doc = assemble_docir(plan, sections, tree)
+    assert [b.kind for b in doc.blocks] == ["doc_title", "table"]
+    assert validate_docir(doc) == []

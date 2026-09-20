@@ -28,12 +28,16 @@ from app.schema.docir import (
 from app.schema.docplan import DocPlan, DocPlanItem
 from app.schema.doctree import DocTree
 from app.schema.enums import Genre, IssueCode
+from app.schema.textlen import text_weight
 
 log = logging.getLogger(__name__)
 
 
 class DocFillError(Exception):
     pass
+
+
+_FORM_PROSE_MIN = 30.0  # form 节源正文低于此汉字当量视为空模板，无素材可仿写
 
 
 class _ParasOut(BaseModel):
@@ -68,20 +72,45 @@ def _has_prose(item: DocPlanItem, tree: DocTree) -> bool:
     return False
 
 
-def _fill_deterministic(item: DocPlanItem) -> SectionIR:
-    """源节无正文素材（纯表格节/空容器节）：标题照抄，零 LLM。"""
+def _prose_weight(item: DocPlanItem, tree: DocTree) -> float:
+    """src_refs 各节 para/list_item 文本当量合计（表格 flat_text 不计）。"""
+    secs = _section_map(tree)
+    total = 0.0
+    for ref in item.src_refs:
+        sec = secs.get(ref)
+        if sec is not None:
+            total += sum(text_weight(b.text) for b in sec.blocks
+                         if b.kind in ("para", "list_item"))
+    return total
+
+
+def _fill_deterministic(item: DocPlanItem, genre: Genre) -> SectionIR:
+    """源节无正文素材（纯表格节/空容器节/form 空模板）：标题照抄，零 LLM。
+
+    仍过块级校验（豁免零正文）：源标题超长/体裁不允许 heading 时丢标题保零段
+    ——这类块留着会被 doc 级校验拦下整个任务。
+    """
     blocks = []
     if item.heading_level >= 1 and item.heading.strip():
         blocks.append(HeadingBlock(level=min(item.heading_level, 2),
                                    text=item.heading))
-    return SectionIR(section_id=item.section_id, blocks=blocks)
+    sec = SectionIR(section_id=item.section_id, blocks=blocks)
+    issues = validate_section_ir(sec, genre, allow_empty_prose=True)
+    if issues:
+        log.warning("节 %s 确定性零段丢弃标题：%s", item.section_id,
+                    "；".join(i.detail for i in issues))
+        sec.blocks = []
+    return sec
 
 
 def fill_section(item: DocPlanItem, plan: DocPlan, tree: DocTree,
                  client: LLMClient, pm: PromptManager | None = None) -> SectionIR:
     """单节规划 → SectionIR。无正文素材走确定性路径；否则 LLM 仿写 + 一次纠错重试。"""
     if not _has_prose(item, tree):
-        return _fill_deterministic(item)
+        return _fill_deterministic(item, plan.genre)
+    if plan.genre is Genre.FORM and _prose_weight(item, tree) < _FORM_PROSE_MIN:
+        # form 空模板合集（源正文 < 30 当量）：LLM 无素材只会编造营销文案
+        return _fill_deterministic(item, plan.genre)
 
     pm = pm or PromptManager()
     # letter 一律只出正文段；报告/表格文档的根前言（level 0）同样无标题
