@@ -7,8 +7,9 @@
 1. build_mask_pool：全文档表格格文本去空白去重 → 全局 ⟦N⟧ 数字掩码池；
    数字永不以明文进 prompt（错误清单回传 LLM 时同样用掩码文本）。
 2. run_architect：掩码碎片视图 + 三种碎片模式指导 → ArchitectOut →
-   validate_skeleton + coverage_missing → 1 次定向重试（错误清单附入）→
-   仍败 raise FormBranchFallback（编排层回落旧链路）。
+   validate_skeleton + coverage_missing + 竖排保序检查 → 至多 2 次定向重试
+   （错误清单 + 上轮骨架锚定最小修改）→ 仍败 raise FormBranchFallback
+   （编排层回落旧链路）。
 3. 确定性回填：骨架格内容 := 命中的池原文（数字占位符回填池值），池外
    残留保留架构师回声并落 W 报告行。
 
@@ -41,7 +42,13 @@ log = logging.getLogger(__name__)
 # 池外残留判"有意义字符"：字母/数字/CJK 统一表意文字（标点豁免——架构师
 # 拼接碎片时常补 ：/（）等连接符）
 _MEANING = re.compile(r"[0-9A-Za-zＡ-Ｚａ-ｚ０-９一-鿿]")
+_CJK = re.compile(r"[一-鿿]")
 _MAX_RETRY_ERRORS = 20
+
+# glm-5.3 thinking 模式在网格重建上烧 10 分钟级推理 token（实测 3 碎片文档
+# 600s 超时，禁用后 16s 且过校验）；骨架正确性由 validate_skeleton +
+# coverage_missing 确定性把关，不需要模型推理兜底
+_THINKING_OFF = {"thinking": {"type": "disabled"}}
 
 
 class FormBranchFallback(Exception):
@@ -116,13 +123,42 @@ def _fragments(tree: DocTree, pool: MaskPool) -> list[str]:
     return lines
 
 
-def _check(out: ArchitectOut, pool: MaskPool) -> list[str]:
-    if not out.tables:
+def _vertical_joins(tree: DocTree, pool: MaskPool) -> list[str]:
+    """1 列源碎片（竖排侧栏）非空格按序拼接（掩码态）。
+
+    单字符格在 coverage 是噪声豁免的，但拼接态承载语义（"考/勤/情/况" =
+    "考勤情况"）——必须整体且按源序进骨架，否则侧栏标签整体丢失。
+    """
+    out: list[str] = []
+    for t in tree.tables:
+        if t.n_cols != 1:
+            continue
+        grid = ([t.header] if t.header else []) + list(t.rows)
+        joined = _despace("".join(_masked_cell(c, pool)
+                                  for row in grid for c in row))
+        if len(joined) >= 3 and _CJK.search(joined):
+            out.append(joined)
+    return out
+
+
+def _check(tables: list[TSkeleton], pool: MaskPool,
+           vert: list[str]) -> list[str]:
+    if not tables:
         return ["未返回任何表骨架"]
     errors: list[str] = []
-    for s in out.tables:
+    for s in tables:
         errors += validate_skeleton(s)
-    errors += coverage_missing(out.tables, pool)
+    errors += coverage_missing(tables, pool)
+    joined = _despace("".join(
+        [s.table_title for s in tables]
+        + [c.content for s in tables
+           for row in s.rows for c in row.cells]))
+    for v in vert:
+        # 掩码态（LLM 刚产出）与回填态（断点产物）任一命中即可
+        plain = PLACEHOLDER_RE.sub(
+            lambda m: pool.values.get(int(m.group(1)), m.group(0)), v)
+        if v not in joined and plain not in joined:
+            errors.append(f"竖排碎片未按序整体进骨架：{v[:24]}")
     return errors
 
 
@@ -185,17 +221,16 @@ def _rebuild_skeleton(s: TSkeleton, pool: MaskPool, ti: int,
             cell.content = new_text
 
 
-def _load_artifact(path: Path, pool: MaskPool
+def _load_artifact(path: Path, pool: MaskPool, vert: list[str]
                    ) -> tuple[list[TSkeleton], list[str]] | None:
-    """断点产物逐项复检（结构 + 覆盖）；任何失效 → 整体重做。"""
+    """断点产物逐项复检（结构 + 覆盖 + 竖排保序）；任何失效 → 整体重做。"""
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         tables = [TSkeleton.model_validate(t) for t in data["tables"]]
         report = [str(x) for x in data.get("report", [])]
     except (OSError, ValueError, KeyError, TypeError):
         return None
-    errors = [e for s in tables for e in validate_skeleton(s)]
-    errors += coverage_missing(tables, pool)
+    errors = _check(tables, pool, vert)
     if errors:
         log.info("tblarch 断点产物校验失败，重做：%s", errors[:3])
         return None
@@ -214,8 +249,9 @@ def run_architect(tree: DocTree, plan: DocPlan, client: LLMClient,
         raise FormBranchFallback("源表格无任何格文本，无重建对象")
 
     art_path = art_dir / "tblarch.json"
+    vert = _vertical_joins(tree, pool)
     if art_path.exists():
-        got = _load_artifact(art_path, pool)
+        got = _load_artifact(art_path, pool, vert)
         if got is not None:
             return got[0], pool, got[1]
 
@@ -226,30 +262,36 @@ def run_architect(tree: DocTree, plan: DocPlan, client: LLMClient,
     system = pm.render("tblarch/system.md")
     errors: list[str] = []
     out: ArchitectOut | None = None
-    for attempt in (1, 2):
+    for attempt in (1, 2, 3):
         if attempt == 1:
             messages = [
                 {"role": "system", "content": system},
                 {"role": "user", "content": user_ctx},
             ]
         else:
+            # 上轮骨架整体附入并要求最小修改——否则模型每轮从头重写，
+            # 修好旧缺失又丢新文本（24 碎片实测两轮互踢皮球不收敛）
             messages = [
                 {"role": "system", "content": system},
                 {"role": "user", "content": pm.render(
                     "tblarch/retry.j2", errors=errors[:_MAX_RETRY_ERRORS],
+                    skeleton_json=json.dumps(
+                        [s.model_dump() for s in out.tables],
+                        ensure_ascii=False),
                     context=user_ctx)},
             ]
         try:
             out = client.structured(ArchitectOut, messages,
-                                    stage=f"tblarch#a{attempt}")
+                                    stage=f"tblarch#a{attempt}",
+                                    extra_body=_THINKING_OFF)
         except Exception as e:  # noqa: BLE001 — LLM 连续不可用 → 回落旧链路
             raise FormBranchFallback(f"架构师 LLM 调用失败：{e}") from e
-        errors = _check(out, pool)
+        errors = _check(out.tables, pool, vert)
         if not errors:
             break
     if errors or out is None:
         raise FormBranchFallback(
-            f"架构师两轮未过校验（{len(errors)} 项）："
+            f"架构师三轮未过校验（{len(errors)} 项）："
             + "；".join(errors[:5]))
 
     report: list[str] = []

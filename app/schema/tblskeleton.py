@@ -15,7 +15,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from app.schema.textlen import text_weight
 
@@ -48,6 +48,15 @@ class TSkeleton(BaseModel):
 class ArchitectOut(BaseModel):
     tables: list[TSkeleton] = Field(default_factory=list)
     notes: str = ""
+
+    @model_validator(mode="before")
+    @classmethod
+    def _wrap_bare_table(cls, data):
+        # 单逻辑表文档上 glm 常直接输出裸 TSkeleton（顶层 table_title/total_cols/
+        # rows），而不是 {"tables":[…]} 包装——容忍之并包装
+        if isinstance(data, dict) and "tables" not in data and "rows" in data:
+            return {"tables": [data]}
+        return data
 
 
 class TVisualTable(BaseModel):
@@ -192,18 +201,23 @@ def coverage_missing(skeletons: list[TSkeleton], pool: MaskPool) -> list[str]:
 
     掩码态与回填态骨架都适用：掩码文本与去空白原文任一命中即算覆盖；
     表题（table_title 会渲染为表上方题注）同样计入覆盖。
+    解析器把同一逻辑文本拆成多个碎片格（竖排侧栏/跨片重复）——缺失文本若是
+    某个已覆盖更长池条目的子串，内容已无损失，豁免。
     错误信息用掩码文本——数字永不以明文回到 LLM。
     """
     joined = _despace("".join(
         [s.table_title for s in skeletons]
         + [cell.content for s in skeletons
            for row in s.rows for cell in row.cells]))
+    covered = {orig for orig, masked in pool.texts.items()
+               if _despace(masked) in joined or _despace(orig) in joined}
     errors: list[str] = []
     for orig, masked in pool.texts.items():
-        if text_weight(orig) < 2:
+        if text_weight(orig) < 2 or orig in covered:
             continue  # 单字符/% 等噪声豁免
-        if _despace(masked) not in joined and _despace(orig) not in joined:
-            errors.append(f"源池文本未进骨架：{_despace(masked)[:24]}")
+        if any(orig in c and len(c) > len(orig) for c in covered):
+            continue  # 碎片子串被更长已覆盖条目吸收
+        errors.append(f"源池文本未进骨架：{_despace(masked)[:24]}")
     known = set(pool.values)
     for m in PLACEHOLDER_RE.finditer(joined):
         if int(m.group(1)) not in known:

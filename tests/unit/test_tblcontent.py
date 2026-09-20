@@ -117,6 +117,50 @@ def test_skeleton_candidates_rowspan_label_value():
     }
 
 
+def test_skeleton_candidates_header_above_identity_value():
+    # 列式表头（姓名）正下方人形值 → 值；部门/日期列（非字段表头/含数字）照搬
+    s = TSkeleton(table_title="t", total_cols=3, rows=[
+        TRow(cells=[TCell(content="姓名", style="header"),
+                    TCell(content="部门", style="header"),
+                    TCell(content="入职日期", style="header")]),
+        TRow(cells=[TCell(content="张伟", style="input"),
+                    TCell(content="市场部", style="input"),
+                    TCell(content="2021年3月", style="input")]),
+    ])
+    cand = _skeleton_candidates(s, 0, [])
+    assert cand == {"1,0": ("张伟", "value", "姓名")}
+
+
+def test_skeleton_candidates_header_above_shape_gates():
+    # 字段表头下纯数字值不虚构；上方格非字段词汇（备注）不触发
+    s = TSkeleton(table_title="t", total_cols=2, rows=[
+        TRow(cells=[TCell(content="联系电话", style="header"),
+                    TCell(content="备注", style="label")]),
+        TRow(cells=[TCell(content="13800001234", style="input"),
+                    TCell(content="王芳", style="input")]),  # 上方非字段词汇
+    ])
+    cand = _skeleton_candidates(s, 0, [])
+    assert cand == {}
+
+
+def test_skeleton_candidates_label_above_identity_value():
+    # 人事表实测形状：架构师把身份栏顶行标成 label 而非 header——张伟列
+    # （label+字段词汇）正下方的 input 人形值仍须虚构；非字段（部门）、
+    # 含数字（日期/电话）照搬
+    s = TSkeleton(table_title="t", total_cols=4, rows=[
+        TRow(cells=[TCell(content="姓名", style="label"),
+                    TCell(content="部门", style="label"),
+                    TCell(content="入职日期", style="label"),
+                    TCell(content="联系电话", style="label")]),
+        TRow(cells=[TCell(content="张伟", style="input"),
+                    TCell(content="市场部", style="input"),
+                    TCell(content="2021年3月", style="input"),
+                    TCell(content="13800001234", style="input")]),
+    ])
+    cand = _skeleton_candidates(s, 0, [])
+    assert cand == {"1,0": ("张伟", "value", "姓名")}
+
+
 def test_prose_candidates_weight_gate():
     tree = _tree(prose=("短句", "本表用于年度绩效考核与员工发展跟踪评估"))
     cand = _prose_candidates(tree)

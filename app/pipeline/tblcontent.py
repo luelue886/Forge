@@ -5,9 +5,12 @@
   （⟦ 残留落 W 报告行）；
 - ≥12 汉字当量的 input/note/declare 格 → 述（措辞改写，事实不变）；
 - <12 当量、左邻格为字段名词汇（姓名/性别/民族…）且自身非字段名的值格
-  → 值（虚构同类型新值，同 C9 语义：数字原样保留、日期类值诚实退格）。
+  → 值（虚构同类型新值，同 C9 语义：数字原样保留、日期类值诚实退格）；
+- 列式表头（姓名/电话…字段词）正下方 2-4 字纯中文值 → 值（列式表单的
+  身份值格，如花名册首列人名；部门/金额/日期等非字段表头不触发，事实
+  列照搬）。
 
-左邻按占位网格解析（跨行 label 的值同样能配对）。掩码与复检沿用
+左邻/表头均按占位网格解析（跨行 label 的值同样能配对）。掩码与复检沿用
 tablefill 语义：格内 ⟦N⟧ 局部占位、unmask 逐个恰一次、ngram+数字溯源、
 值≠原值；失败项定向重试一轮，仍败退回照搬落 W 行。散文段（≥12 当量）
 并入同一次调用（键 p{i}）。
@@ -20,6 +23,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from pathlib import Path
 
 from pydantic import BaseModel, Field
@@ -42,6 +46,7 @@ from app.schema.textlen import text_weight
 log = logging.getLogger(__name__)
 
 _VERBATIM_STYLES = ("header", "label", "option")
+_NAME_SHAPE_RE = re.compile(r"[一-鿿]{2,4}")  # 人形值：2-4 纯中文
 
 
 class _CellsOut(BaseModel):
@@ -78,6 +83,17 @@ def _skeleton_candidates(s: TSkeleton, ti: int,
         if left is not None and _is_field_label(left.content) \
                 and not _is_field_label(text):
             out[f"{r},{c}"] = (text, "value", _despace(left.content))
+            continue
+        above = grid.get((r - 1, c))
+        # 架构师对身份栏顶行（姓名/联系电话…）会用 header 或 label 两种措辞，
+        # 均视为字段表头（人事表实测 label 导致值格漏虚构）；仅 input 格生效，
+        # note/declare 书写区说明不虚构
+        if above is not None and above.style in ("header", "label") \
+                and cell.style == "input" \
+                and _is_field_label(above.content) \
+                and not _is_field_label(text) \
+                and _NAME_SHAPE_RE.fullmatch(_despace(text)):
+            out[f"{r},{c}"] = (text, "value", _despace(above.content))
     return out
 
 

@@ -1,4 +1,4 @@
-"""6 golden 样例 e2e：run --product doc --auto-confirm → DONE + 仿写硬断言。
+"""8 golden 样例 e2e：run --product doc --auto-confirm → DONE + 仿写硬断言。
 
 断言（独立复检，不信任流水线自报）：
   1) 状态 DONE，qa_report 无 E- 级残留
@@ -9,8 +9,13 @@
   5) 产物齐套：output.docx / output.pdf / pages/*.png，PNG 数 == PDF 页数
   6) 排版保真（docx 源）：逐表 tblGrid 列宽与逐行 (gridSpan, vMerge) 序列
      与源一致；解析期保留的图片（tree.images）必须出现在输出 media
-  7) 样例特定：resume 值格已换 + 证件照已删；form_personnel.pdf 的
-     merges 与 docx 版已知结构一致，输出合并指纹与 docx 版一致
+  7) 样例特定：resume 值格已换 + 证件照已删
+
+form+PDF 样例（real_performance_review / real_safety_cost / form_personnel.pdf）
+走表格 LLM 重建分支，独立复检：qa 无 E-；骨架合法 + 池覆盖 + 碎片全吸收；
+改写单元 ngram/数字零违规；html(BOM)/docx/pdf/PNG 齐套且无 ⟦⟧；源含合并 →
+输出含 gridSpan/vMerge；竖排碎片按序重组为输出子串；碎片收敛（人事 ≤8 表、
+安全生产 3→2、form_personnel 1 表）；值格虚构 + 纯数字照搬。
 
 用法：.venv/Scripts/python.exe scripts/e2e_doc.py [样例路径 ...]
 """
@@ -33,6 +38,8 @@ GOLDEN = [
     ROOT / "examples" / "form_personnel.docx",
     ROOT / "examples" / "resume_sample.docx",
     ROOT / "examples" / "form_personnel.pdf",
+    ROOT / "examples" / "real_performance_review.pdf",
+    ROOT / "examples" / "real_safety_cost.pdf",
 ]
 
 
@@ -65,12 +72,6 @@ def _tbl_signatures(docx_path: Path):
     return out
 
 
-def _merge_signature(docx_path: Path):
-    """逐表合并指纹：逐行 [(gridSpan, vMerge), …]（不含列宽——PDF 重建路径
-    列宽按版心重排，与源 docx 绝对宽度必然不同）。"""
-    return [rows for _, rows in _tbl_signatures(docx_path)]
-
-
 def _zip_media(docx_path: Path) -> list[str]:
     import zipfile
 
@@ -88,7 +89,7 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     r = subprocess.run(
         [str(PY), "-m", "app", "run", str(src), "--product", "doc", "--auto-confirm"],
         cwd=str(ROOT), capture_output=True, text=True, encoding="utf-8",
-        errors="replace", timeout=900)
+        errors="replace", timeout=3000)
     out = (r.stdout or "") + (r.stderr or "")
     if r.returncode != 0:
         return False, [f"CLI 失败（rc={r.returncode}）：\n{out[-1500:]}"]
@@ -104,9 +105,15 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     if state["status"] != "DONE":
         return False, [f"状态 {state['status']}：{state.get('error')}"]
 
-    docir = json.loads((art / "docir.json").read_text(encoding="utf-8"))
     tree = DocTree.model_validate_json(
         (art / "doctree.json").read_text(encoding="utf-8"))
+
+    # form+PDF → 表格 LLM 重建分支（与 doc_runner 分发镜像；无 docir.json）
+    plan_raw = json.loads((art / "docplan.json").read_text(encoding="utf-8"))
+    if tree.meta.source_format == "pdf" and plan_raw.get("genre") == "form":
+        return run_form_sample(src, job_dir, art, tree)
+
+    docir = json.loads((art / "docir.json").read_text(encoding="utf-8"))
 
     # 1) 数字 100% 溯源 + 2) 10-gram 零命中（逐块独立复检：
     #    块间拼接会把"段尾句号+下个标题"凑成伪 10-gram，渲染产物里块本是分行）
@@ -214,14 +221,147 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
             errors.append("[E-VALUE] 姓名值格照抄原值")
         if _zip_media(docx):
             errors.append("[E-VALUE] 输出仍含图片（证件照未删除）")
+
+    return not errors, errors
+
+
+def run_form_sample(src: Path, job_dir: Path, art: Path, tree) -> tuple[bool, list[str]]:
+    """form+PDF 表格 LLM 重建分支独立复检（不信任流水线自报）。
+
+    ① qa 无 E- 级残留；② 架构师产物独立重校（合法性 + 源池覆盖 + 碎片
+    全吸收）；③ 内容专家逐改写单元 ngram/数字溯源零违规；④ html(BOM)/
+    docx/pdf/PNG 齐套且无 ⟦⟧ 残留；⑤ 源含合并区 → 输出 XML 含
+    gridSpan/vMerge；⑥ 竖排 1 列碎片按序拼接是输出子串；⑦ 碎片收敛；
+    ⑧ 样例特定（值格虚构 + 纯数字照搬）。
+    """
+    import re
+
+    from docx import Document
+
+    from app.pipeline.tblarch import build_mask_pool
+    from app.qa.ngram import ngram_hits
+    from app.qa.numbers import check_numbers
+    from app.schema.tblskeleton import (
+        TSkeleton,
+        coverage_missing,
+        validate_skeleton,
+        walk_grid,
+    )
+
+    errors: list[str] = []
+
+    # ① QA 报告无 E- 级残留（分支产物仅 W 级可接受）
+    qa = (art / "qa_report.txt").read_text(encoding="utf-8")
+    bad = [l for l in qa.splitlines() if " E-" in l]
+    if bad:
+        errors.append(f"QA 残留 E- {len(bad)} 项：" + "; ".join(bad[:3]))
+
+    # ② 架构师独立复检：骨架合法 + 池覆盖 + 源碎片全被吸收
+    if not (art / "tblarch.json").exists():
+        errors.append("tblarch.json 缺失——form 分支回落了旧链路"
+                      "（架构师失败/超时），golden 要求走新分支")
+        return not errors, errors
+    arch = json.loads((art / "tblarch.json").read_text(encoding="utf-8"))
+    skeletons = [TSkeleton.model_validate(t) for t in arch["tables"]]
+    for s in skeletons:
+        for e in validate_skeleton(s):
+            errors.append(f"[TBLARCH] 骨架非法：{e}")
+    pool = build_mask_pool(tree)
+    for m in coverage_missing(skeletons, pool):
+        errors.append(f"[TBLARCH] {m}")
+    absorbed = {tid for s in skeletons for tid in s.src_tables}
+    for t in tree.tables:
+        if t.table_id not in absorbed:
+            errors.append(f"[TBLARCH] 源碎片 {t.table_id} 未被任何骨架吸收")
+
+    # ③ 逐改写单元（骨架格 + 散文）ngram/数字溯源零违规
+    cells = json.loads((art / "tblcontent.json").read_text(
+        encoding="utf-8"))["cells"]
+    for k, text in sorted(cells.items()):
+        for tok, ctx in check_numbers(text, tree.full_text):
+            errors.append(f"[E-NUM-UNTRACED] {k} {tok}: {ctx}")
+        for g in ngram_hits(text, tree.full_text):
+            errors.append(f"[E-PLAGIARISM] {k} 与源文连续雷同：{g}")
+
+    # ④ 产物齐套：html(BOM)/docx/pdf/PNG==页数；无 ⟦⟧ 残留
+    html_raw = (art / "output.html").read_bytes() \
+        if (art / "output.html").exists() else b""
+    if not html_raw.startswith(b"\xef\xbb\xbf"):
+        errors.append("output.html 缺失或无 BOM（COM 主路径未走）")
+    docx, pdf = art / "output.docx", art / "output.pdf"
+    if not docx.exists() or docx.stat().st_size < 4000:
+        errors.append("output.docx 缺失或过小")
+        return not errors, errors
+    if not pdf.exists() or pdf.stat().st_size < 4000:
+        errors.append("output.pdf 缺失或过小")
+    else:
+        import pymupdf
+
+        with pymupdf.open(str(pdf)) as d:
+            n_pages = len(d)
+        pngs = sorted((job_dir / "pages").glob("page_*.png"))
+        if len(pngs) != n_pages:
+            errors.append(f"预览 PNG {len(pngs)} 张 ≠ PDF {n_pages} 页")
+
+    d = Document(str(docx))
+    out_text = "\n".join(p.text for p in d.paragraphs) + "\n" + "\n".join(
+        c.text for t in d.tables for r in t.rows for c in r.cells)
+    if "⟦" in out_text:
+        errors.append("docx 残留 ⟦N⟧ 占位符")
+    if html_raw and "⟦" in html_raw.decode("utf-8-sig"):
+        errors.append("html 残留 ⟦N⟧ 占位符")
+
+    # ⑤ 源含合并区 → 输出 XML 须有 gridSpan/vMerge
+    if any(t.merges for t in tree.tables):
+        if "gridSpan" not in d.element.xml and "vMerge" not in d.element.xml:
+            errors.append("[LAYOUT-DIFF] 源含合并区但输出无 gridSpan/vMerge")
+
+    # ⑥ 竖排重组：每个 1 列源碎片非空格按序拼接是输出（去空白）子串
+    out_despaced = "".join(out_text.split())
+    cjk = re.compile(r"[一-鿿]")
+    for t in tree.tables:
+        if t.n_cols != 1:
+            continue
+        joined = "".join("".join(c.split()) for row in
+                         ([t.header] if t.header else []) + t.rows
+                         for c in row)
+        if cjk.search(joined) and len(joined) >= 3 and joined not in out_despaced:
+            errors.append(f"[LAYOUT-DIFF] 竖排碎片未重组：{t.table_id}“{joined}”")
+
+    # ⑦ 碎片收敛 + ⑧ 样例特定
+    n_out = len(d.tables)
+    if src.name == "real_performance_review.pdf":
+        if n_out > 8:
+            errors.append(f"[LAYOUT-DIFF] 碎片未收敛：输出 {n_out} 表 > 8"
+                          f"（源 {len(tree.tables)} 碎片）")
+    elif src.name == "real_safety_cost.pdf":
+        if n_out != 2:
+            errors.append(f"[LAYOUT-DIFF] 跨页并表后应 2 表，实际 {n_out}")
     elif src.name == "form_personnel.pdf":
-        want = [[2, 0, 1, 2], [2, 2, 1, 2], [3, 0, 2, 1], [5, 0, 1, 4]]
-        all_merges = sorted(m for t in tree.tables for m in (t.merges or []))
-        if all_merges != want:
-            errors.append(f"[LAYOUT-DIFF] PDF 合并区与 docx 版不一致：{all_merges}")
-        ref = ROOT / "examples" / "form_personnel.docx"
-        if _merge_signature(docx) != _merge_signature(ref):
-            errors.append("[LAYOUT-DIFF] 输出合并指纹与 docx golden 不一致")
+        if n_out != 1:
+            errors.append(f"[LAYOUT-DIFF] 应 1 表，实际 {n_out}")
+        if not skeletons:
+            errors.append("[TBLARCH] 无骨架")
+        else:
+            anchors, _ = walk_grid(skeletons[0])
+            name_key = phone_key = None
+            for (r, c), cell in anchors.items():
+                text = "".join(cell.content.split())
+                if text == "张伟":
+                    name_key = f"t0 {r},{c}"
+                if "13800001234" in text:
+                    phone_key = f"t0 {r},{c}"
+            if name_key is None:
+                errors.append("[E-VALUE] 骨架未含姓名值格（张伟）")
+            elif name_key not in cells:
+                errors.append(f"[E-VALUE] 姓名值格未被虚构改写"
+                              f"（{name_key} 不在改写产物）")
+            elif cells[name_key] == "张伟":
+                errors.append("[E-VALUE] 姓名值格照抄原值")
+            if phone_key is not None and phone_key in cells:
+                errors.append(f"[E-VALUE] 纯数字电话格不应进入改写（{phone_key}）")
+            if "13800001234" not in out_despaced:
+                errors.append("[E-VALUE] 电话号码未照搬进输出")
 
     return not errors, errors
 

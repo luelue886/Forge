@@ -7,6 +7,8 @@ import pytest
 from app.llm.prompts import PromptManager
 from app.pipeline.tblarch import (
     FormBranchFallback,
+    _check,
+    _vertical_joins,
     build_mask_pool,
     run_architect,
 )
@@ -14,6 +16,7 @@ from app.schema.doctree import DocBlock, DocMeta, DocSection, DocTable, DocTree
 from app.schema.docplan import DocPlan
 from app.schema.enums import Genre
 from app.schema.tblskeleton import (
+    ArchitectOut,
     TCell,
     TRow,
     TSkeleton,
@@ -158,6 +161,35 @@ def test_build_mask_pool_dedup_and_global_ids():
 
 # ---- coverage_missing ----
 
+def test_architect_out_wraps_bare_skeleton():
+    # 单逻辑表文档上 glm 常直接输出裸 TSkeleton（顶层 rows）而非 {"tables":[…]}
+    bare = {"table_title": "考核表", "total_cols": 2,
+            "src_tables": ["tbl-001"],
+            "rows": [{"cells": [{"content": "姓名", "style": "label"},
+                                 {"content": "", "style": "input"}]}]}
+    out = ArchitectOut.model_validate(bare)
+    assert len(out.tables) == 1 and out.tables[0].table_title == "考核表"
+    wrapped = ArchitectOut.model_validate({"tables": [bare], "notes": "x"})
+    assert len(wrapped.tables) == 1 and wrapped.notes == "x"
+
+
+def test_coverage_subsumed_crumb_exempt():
+    # 解析器把同一逻辑文本拆成碎片格：缺失子串被更长已覆盖条目吸收 → 豁免；
+    # 完整条目也缺失时仍报错
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
+                 header=["员工意见", "说明"], rows=[["工意见", "占预算 5%"]])
+    pool = build_mask_pool(_tree([t]))
+    s = _sk("t", 2, [
+        [("员工意见", 1, 1, "header"), ("说明", 1, 1, "header")],
+        [("工见", 1, 1, "input"), (pool.texts["占预算5%"], 1, 1, "input")],
+    ])
+    assert coverage_missing([s], pool) == []
+    s2 = _sk("t", 2, [
+        [("工见", 1, 1, "input"), (pool.texts["占预算5%"], 1, 1, "input")],
+    ])
+    assert any("工意见" in e for e in coverage_missing([s2], pool))
+
+
 def _cov_tree():
     t = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
                  header=["项目", "说明"], rows=[["安全生产费用", "占预算 5%"]])
@@ -199,6 +231,23 @@ def test_coverage_noise_exempt():
 
 
 # ---- run_architect：LLM 编排 + 确定性回填 ----
+
+def test_vertical_join_order_enforced():
+    # 竖排侧栏单字格在 coverage 是噪声豁免——拼接态必须整体按源序进骨架
+    # （人事表实测："考/勤/情/况/10%" 侧栏被整体丢弃而 coverage 全绿）
+    t1 = DocTable(table_id="tbl-001", section_id="s", n_rows=5, n_cols=1,
+                  rows=[["考"], ["勤"], ["情"], ["况"], ["10%"]])
+    tree = _tree([t1])
+    pool = build_mask_pool(tree)
+    vert = _vertical_joins(tree, pool)
+    assert vert == ["考勤情况" + pool.texts["10%"]]
+    bad = _sk("t", 3, [[("况", 1, 1, "input"), ("勤", 1, 1, "input"),
+                        ("考", 1, 1, "input")]])
+    errs = _check([bad], pool, vert)
+    assert any("竖排碎片未按序整体进骨架" in e for e in errs)
+    good = _sk("t", 1, [[("考勤情况" + pool.texts["10%"], 1, 1, "label")]])
+    assert _check([good], pool, vert) == []
+
 
 def _fee_tree() -> DocTree:
     main = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
@@ -281,9 +330,10 @@ def test_run_architect_retry_with_errors_then_pass(tmp_path):
     client = _FakeClient([bad, good])
     tables, _, _ = run_architect(tree, _plan(), client, PromptManager(), tmp_path)
     assert len(client.calls) == 2
-    # 重试轮只送错误清单 + 原始输入，错误信息为掩码态
+    # 重试轮带上错误清单 + 上轮骨架锚（最小修改）+ 原始输入，错误信息为掩码态
     retry_user = client.calls[1][1][1]["content"]
     assert "未进骨架" in retry_user and "金额" in retry_user
+    assert '"table_title"' in retry_user and "保持完全不变" in retry_user
     assert tables[0].rows[0].cells[1].content == "金额"
 
 
@@ -298,12 +348,12 @@ def test_run_architect_unknown_placeholder_retry(tmp_path):
     assert tables[0].rows[2].cells[0].content == "5000"
 
 
-def test_run_architect_two_rounds_fail_falls_back(tmp_path):
+def test_run_architect_three_rounds_fail_falls_back(tmp_path):
     tree = _fee_tree()
     bad = type("Out", (), {"tables": [_fee_skeleton(missing="金额")],
                            "notes": ""})()
-    client = _FakeClient([bad, bad])
-    with pytest.raises(FormBranchFallback, match="两轮未过校验"):
+    client = _FakeClient([bad, bad, bad])
+    with pytest.raises(FormBranchFallback, match="三轮未过校验"):
         run_architect(tree, _plan(), client, PromptManager(), tmp_path)
 
 
