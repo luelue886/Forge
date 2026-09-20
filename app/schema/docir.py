@@ -57,6 +57,8 @@ class TableBlock(BaseModel):
     rows: list[list[str]] = Field(default_factory=list)  # verbatim（C5 起长文本格可改写）
     src_index: int | None = None   # 透传 DocTable：源 docx 表格序号（XML 搬运用）
     col_widths: list[float] | None = None  # 透传：无源可搬时的列宽比例
+    merges: list[list[int]] | None = None  # 透传：合并区 [[r,c,rs,cs]]（含表头行网格坐标）
+    row_heights: list[float] | None = None  # 透传：行高（pt，atLeast）
 
 
 class ImageBlock(BaseModel):

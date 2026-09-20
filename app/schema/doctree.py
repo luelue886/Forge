@@ -26,6 +26,11 @@ class DocTable(BaseModel):
     src_index: int | None = None
     # 归一化列宽比例（和为 1）；docx 读 tblGrid/gridCol，pdf 由单元格 bbox 聚类
     col_widths: list[float] | None = None
+    # 合并区 [[r, c, rowspan, colspan]]，仅记左上角；坐标为含表头行的网格坐标
+    # （docx 展开 grid / pdf 重建网格一致）。无合并信息为 None（docx 展开已天然含）。
+    merges: list[list[int]] | None = None
+    # 行高（pt，atLeast 语义）；pdf 重建时由行边界差得出
+    row_heights: list[float] | None = None
 
     def flat_text(self) -> str:
         parts = [self.caption] if self.caption else []

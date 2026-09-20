@@ -203,7 +203,9 @@ def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
             blocks.append(TableBlock(table_id=tid, header=list(t.header),
                                      rows=rows,
                                      src_index=t.src_index,
-                                     col_widths=list(t.col_widths) if t.col_widths else None))
+                                     col_widths=list(t.col_widths) if t.col_widths else None,
+                                     merges=[list(m) for m in t.merges] if t.merges else None,
+                                     row_heights=list(t.row_heights) if t.row_heights else None))
         for iid in item.image_ids:
             im = images.get(iid)
             if im is None:

@@ -130,27 +130,74 @@ def _render_table(doc: Document, t: TableBlock) -> None:
         table.autofit = False
         content_w = st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT
         for c, ratio in enumerate(t.col_widths):
+            w = Emu(int(content_w * ratio))
+            table.columns[c].width = w  # tblGrid/gridCol（固定布局的列宽基准）
             for cell in table.columns[c].cells:
-                cell.width = Emu(int(content_w * ratio))
+                cell.width = w             # tcW（合并格的宽度基准）
     else:
         table.autofit = True
     _borders(table)
 
-    r = 0
+    # 合并区 [[r,c,rs,cs]]（含表头行网格坐标）：维度合法且互不重叠才应用。
+    # 有合并时禁表头 shading 与斑马纹——首行常为整行标题合并，展开同值会被
+    # 误判表头；斑马纹打断合并区视觉整体感。
+    merged = False
+    if t.merges:
+        occupied: set[tuple[int, int]] = set()
+        ok: list[tuple[int, int, int, int]] = []
+        for m in t.merges:
+            if len(m) != 4:
+                continue
+            r, c, rs, cs = (int(m[0]), int(m[1]), int(m[2]), int(m[3]))
+            if rs < 1 or cs < 1 or r + rs > n_rows or c + cs > n_cols \
+                    or (rs == 1 and cs == 1):
+                continue
+            region = [(i, j) for i in range(r, r + rs) for j in range(c, c + cs)]
+            if any(p in occupied for p in region):
+                continue
+            occupied.update(region)
+            ok.append((r, c, rs, cs))
+        has_widths = bool(t.col_widths) and len(t.col_widths) == n_cols
+        content_w = st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT
+        for r, c, rs, cs in ok:
+            merged_cell = table.cell(r, c).merge(
+                table.cell(r + rs - 1, c + cs - 1))
+            if has_widths:
+                # merge 后存活 tc 的 tcW 只剩首列宽，显式补成覆盖列之和
+                merged_cell.width = Emu(int(
+                    content_w * sum(t.col_widths[c:c + cs])))
+        merged = bool(ok)
+
+    if t.row_heights and len(t.row_heights) == n_rows:
+        for i, h_pt in enumerate(t.row_heights):
+            tr_pr = table.rows[i]._tr.get_or_add_trPr()
+            tr_h = OxmlElement("w:trHeight")
+            tr_h.set(qn("w:val"), str(int(round(h_pt * 20))))  # pt → twips
+            tr_h.set(qn("w:hRule"), "atLeast")
+            tr_pr.append(tr_h)
+
+    # 合并后同区各坐标返回同一物理格：按 tc 元素去重（表头/数据行统一）。
+    # 必须持有元素引用而非 id()——lxml 代理被 GC 后地址会复用造成误判。
+    written: set = set()
+
+    def _put(r: int, c: int, text: str, bold: bool, fill: str | None) -> None:
+        cell = table.cell(r, c)
+        if cell._tc in written:
+            return
+        written.add(cell._tc)
+        if fill and not merged:
+            _shade(cell, fill)
+        _add_run(cell.paragraphs[0], font, size, bold, text)
+
     if t.header:
         for c, text in enumerate(t.header):
-            cell = table.cell(0, c)
-            _shade(cell, st.TABLE_HEADER_FILL)
-            p = cell.paragraphs[0]
-            _add_run(p, font, size, True, text)  # 表头加粗
-        r = 1
+            _put(0, c, text, True, st.TABLE_HEADER_FILL)
+    r0 = 1 if t.header else 0
     for i, row in enumerate(t.rows):
         for c in range(n_cols):
             text = row[c] if c < len(row) else ""
-            cell = table.cell(r + i, c)
-            if i % 2 == 1:
-                _shade(cell, st.TABLE_ZEBRA_FILL)
-            _add_run(cell.paragraphs[0], font, size, False, text)
+            _put(r0 + i, c, text, False,
+                 st.TABLE_ZEBRA_FILL if i % 2 == 1 else None)
 
 
 def _copy_source_table(src_doc, out_doc: Document, b: TableBlock) -> bool:

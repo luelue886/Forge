@@ -133,6 +133,81 @@ def test_wide_table_shrinks_font(tmp_path: Path):
     assert d.tables[0].cell(1, 0).paragraphs[0].runs[0].font.size == Pt(9)
 
 
+# ---- C7：合并区/行高渲染（PDF 源表格重建路径）----
+
+def _row_spans(tr):
+    """一行 [(gridSpan, vMerge), …]——合并结构指纹。"""
+    out = []
+    for tc in tr.findall(qn("w:tc")):
+        tc_pr = tc.find(qn("w:tcPr"))
+        span, vm = 1, None
+        if tc_pr is not None:
+            gs = tc_pr.find(qn("w:gridSpan"))
+            if gs is not None and (gs.get(qn("w:val")) or "").isdigit():
+                span = int(gs.get(qn("w:val")))
+            v = tc_pr.find(qn("w:vMerge"))
+            if v is not None:
+                vm = v.get(qn("w:val")) or "continue"
+        out.append((span, vm))
+    return out
+
+
+def test_table_merge_and_row_heights_render(tmp_path: Path):
+    # 表头行本身含合并区（PDF 重建常见形态：首行整行/局部合并被识别为表头）
+    doc = DocIR(meta=DocIRMeta(title="合并表格", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="合并表格"),
+        TableBlock(
+            table_id="tbl-001",
+            header=["合并区甲", "合并区甲", "字段乙", "字段乙"],
+            rows=[["合并区甲", "合并区甲", "子项丙", "子项丁"],
+                  ["行三一", "行三二", "行三三", "行三四"]],
+            col_widths=[0.25, 0.25, 0.25, 0.25],
+            merges=[[0, 0, 2, 2], [0, 2, 1, 2]],
+            row_heights=[40.0, 50.0, 60.0]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "merged.docx")
+    d = Document(str(out))
+    assert len(d.tables) == 1
+    tbl = d.tables[0]
+    rows = tbl._tbl.findall(qn("w:tr"))
+    assert len(rows) == 3
+    # 首行：2×2 区左上角（restart）+ 横向 1×2 区
+    assert _row_spans(rows[0]) == [(2, "restart"), (2, None)]
+    # 次行：2×2 区纵向延续 + 两个普通格
+    assert _row_spans(rows[1]) == [(2, "continue"), (1, None), (1, None)]
+    assert _row_spans(rows[2]) == [(1, None)] * 4
+    # 行高 atLeast（pt × 20 twips）
+    tr_pr = rows[1].find(qn("w:trPr"))
+    tr_h = tr_pr.find(qn("w:trHeight"))
+    assert tr_h.get(qn("w:val")) == "1000"
+    assert tr_h.get(qn("w:hRule")) == "atLeast"
+    # 合并表禁表头/斑马纹底纹
+    assert _fill(tbl.cell(0, 0)) is None
+    assert _fill(tbl.cell(2, 1)) is None
+    # 合并区文本只写一次（展开位去重）
+    assert tbl.cell(0, 0).text == "合并区甲"
+    assert tbl.cell(1, 0).text == "合并区甲"
+    assert tbl.cell(0, 2).text == "字段乙"
+
+
+def test_table_invalid_merges_skipped(tmp_path: Path):
+    # 越界/重叠/退化合并项被丢弃，表格照常渲染不崩
+    doc = DocIR(meta=DocIRMeta(title="坏合并", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="坏合并"),
+        TableBlock(table_id="tbl-001", header=["甲", "乙"],
+                   rows=[["1", "2"], ["3", "4"]],
+                   merges=[[0, 0, 9, 9], [0, 0, 1, 1], [1, 1, 2, 2]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "bad.docx")
+    d = Document(str(out))
+    rows = d.tables[0]._tbl.findall(qn("w:tr"))
+    # [1,1,2,2] 越界丢弃、[0,0,1,1] 退化丢弃 → 无合并生效，
+    # 且普通渲染路径（含表头底纹）不受影响
+    assert all(span == 1 and vm is None
+               for r in rows for span, vm in _row_spans(r))
+    assert _fill(d.tables[0].cell(0, 0)) == "D9D9D9"
+
+
 def test_page_setup_a4_and_margins(tmp_path: Path):
     out = render_docir_to_docx(_letter_doc(), tmp_path / "page.docx")
     sec = Document(str(out)).sections[0]

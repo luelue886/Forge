@@ -215,3 +215,77 @@ def test_parse_pdf_tiny_image_ignored(tmp_path):
     p = _pdf_with_image(tmp_path / "tiny.pdf", fitz.Rect(100, 100, 105, 105))
     tree = parse_pdf(p)
     assert tree.images == []
+
+
+# ---- C7: 表格结构重建（合并 + 双线边框噪声）----
+
+def _merged_table_pdf(path: Path) -> Path:
+    """4×4 网格，含 2×2 与 1×2 合并；每条边框双线（间距 4pt）模拟粗/双边框。
+
+    合并区：(0,0) 跨 2 行 2 列、(0,2) 跨 2 列——对应内部线段不画。
+    """
+    import fitz
+
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    xs = [72, 162, 252, 342, 522]
+    ys = [100, 150, 200, 250, 300]
+    d = 5.5  # 双线间距（真实文件实测 5.3-5.5pt）
+    # 竖线 (x, y0, y1)：每条画 x 与 x+d 两笔
+    for x, y0, y1 in [(72, 100, 300), (162, 200, 300), (252, 100, 300),
+                      (342, 150, 300), (522, 100, 300)]:
+        page.draw_line((x, y0), (x, y1), width=1)
+        page.draw_line((x + d, y0), (x + d, y1), width=1)
+    # 横线 (y, x0, x1)：每条画 y 与 y+d 两笔
+    for y, x0, x1 in [(100, 72, 522), (150, 252, 522), (200, 72, 522),
+                      (250, 72, 522), (300, 72, 522)]:
+        page.draw_line((x0, y), (x1, y), width=1)
+        page.draw_line((x0, y + d), (x1, y + d), width=1)
+    # 文本：合并区 + 普通格（合并覆盖区外）
+    page.insert_text((81, 124), "合并区甲", fontname="china-s", fontsize=11)
+    page.insert_text((258, 124), "横向乙", fontname="china-s", fontsize=11)
+    cell_x = [76, 166, 256, 346]
+    cell_y = [104, 154, 204, 254]
+    for (r, c), v in {(1, 2): "子项丙", (1, 3): "子项丁",
+                      (2, 0): "格一", (2, 1): "格二",
+                      (2, 2): "格三", (2, 3): "格四",
+                      (3, 0): "行四一", (3, 1): "行四二",
+                      (3, 2): "行四三", (3, 3): "行四四"}.items():
+        page.insert_text((cell_x[c] + 5, cell_y[r] + 20), v,
+                         fontname="china-s", fontsize=11)
+    doc.save(str(path))
+    doc.close()
+    return path
+
+
+def test_parse_pdf_table_merge_reconstruction(tmp_path):
+    p = _merged_table_pdf(tmp_path / "合并表格.pdf")
+    tree = parse_pdf(p)
+
+    assert len(tree.tables) == 1
+    t = tree.tables[0]
+    assert t.n_rows == 4 and t.n_cols == 4
+    # 双线边框聚类后无幻影细列：列宽比例全部 ≥ 5%
+    assert t.col_widths and len(t.col_widths) == 4
+    assert all(w >= 0.05 for w in t.col_widths)
+    # 合并区恢复（仅记左上角，网格坐标）
+    assert sorted(t.merges or []) == [[0, 0, 2, 2], [0, 2, 1, 2]]
+    # 展开语义：span 文本复制到全部覆盖位（与 docx 解析的 python-docx 展开一致）
+    grid = ([list(t.header)] if t.header else []) + [list(r) for r in t.rows]
+    assert len(grid) == 4
+    assert grid[0][0] == grid[0][1] == grid[1][0] == grid[1][1] == "合并区甲"
+    assert grid[0][2] == grid[0][3] == "横向乙"
+    assert grid[1][2] == "子项丙" and grid[2][3] == "格四" and grid[3][0] == "行四一"
+    # 行高恢复（pt，源行高 ~48-50）
+    assert t.row_heights and len(t.row_heights) == 4
+    assert all(30 <= h <= 70 for h in t.row_heights)
+
+
+def test_parse_pdf_plain_table_no_merge(tmp_path):
+    # 无合并的普通表（既有 _table_pdf）：重建路径不应虚构合并区
+    p = _table_pdf(tmp_path / "普通表格.pdf")
+    tree = parse_pdf(p)
+    t = tree.tables[0]
+    assert not t.merges
+    assert t.col_widths and len(t.col_widths) == 4
+    assert all(w >= 0.05 for w in t.col_widths)
