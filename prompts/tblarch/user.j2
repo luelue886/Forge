@@ -1,0 +1,10 @@
+## 文档标题（数字已掩码）
+{{ title }}
+
+{% if prose %}## 正文行（语境参考，非表格内容）
+{% for line in prose %}{{ line }}
+{% endfor %}
+{% endif %}## 表格碎片（grid 为格网文字、数字已掩码为 ⟦N⟧；cw=列宽%提示；mg=合并区提示 [行,列,行跨,列跨]）
+{% for f in fragments %}{{ f }}
+{% endfor %}
+请把以上碎片重组为逻辑表骨架：一张逻辑表一个骨架，吸收的碎片 id 记入 src_tables，全部碎片必须被吸收。
