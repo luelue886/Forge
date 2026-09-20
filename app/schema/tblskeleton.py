@@ -79,6 +79,27 @@ def _despace(s: str) -> str:
     return re.sub(r"\s+", "", s)
 
 
+def walk_grid(s: TSkeleton) -> tuple[dict[tuple[int, int], TCell],
+                                     dict[tuple[int, int], TCell]]:
+    """游标走格 → (锚点格, 全占位格)。锚点 = 跨行/列格的起始位。
+
+    要求骨架已过 validate_skeleton（不重叠不越界无空洞）。
+    """
+    anchors: dict[tuple[int, int], TCell] = {}
+    grid: dict[tuple[int, int], TCell] = {}
+    for r, row in enumerate(s.rows):
+        c = 0
+        for cell in row.cells:
+            while (r, c) in grid:
+                c += 1
+            anchors[(r, c)] = cell
+            for dr in range(cell.rowspan):
+                for dc in range(cell.colspan):
+                    grid[(r + dr, c + dc)] = cell
+            c += cell.colspan
+    return anchors, grid
+
+
 def validate_skeleton(s: TSkeleton) -> list[str]:
     """占位网格游标走格：不重叠、不越界、无空洞。返回错误清单（空即合法）。"""
     errors: list[str] = []
@@ -169,11 +190,14 @@ def renormalize_widths(widths: list[int]) -> list[int]:
 def coverage_missing(skeletons: list[TSkeleton], pool: MaskPool) -> list[str]:
     """源池文本（权重 ≥2 当量）须在骨架拼接内容中出现；骨架占位符 id 须存在于池。
 
-    掩码态与回填态骨架都适用：掩码文本与去空白原文任一命中即算覆盖。
+    掩码态与回填态骨架都适用：掩码文本与去空白原文任一命中即算覆盖；
+    表题（table_title 会渲染为表上方题注）同样计入覆盖。
     错误信息用掩码文本——数字永不以明文回到 LLM。
     """
     joined = _despace("".join(
-        cell.content for s in skeletons for row in s.rows for cell in row.cells))
+        [s.table_title for s in skeletons]
+        + [cell.content for s in skeletons
+           for row in s.rows for cell in row.cells]))
     errors: list[str] = []
     for orig, masked in pool.texts.items():
         if text_weight(orig) < 2:

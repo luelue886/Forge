@@ -1,0 +1,8 @@
+上一轮视觉参数未通过校验，共 {{ errors|length }} 项错误：
+{% for e in errors %}- {{ e }}
+{% endfor %}
+
+原始输入重列如下：
+{{ context }}
+
+请修正以上全部问题（每张表一项、table_index 完整、列宽和为 100 且每列 ≥4%、行高在 [14,400]pt），重新输出完整 JSON。

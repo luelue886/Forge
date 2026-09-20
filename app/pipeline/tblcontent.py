@@ -36,7 +36,7 @@ from app.pipeline.tablefill import (
     unmask_numbers,
 )
 from app.schema.doctree import DocTree
-from app.schema.tblskeleton import TCell, TSkeleton
+from app.schema.tblskeleton import TCell, TSkeleton, walk_grid
 from app.schema.textlen import text_weight
 
 log = logging.getLogger(__name__)
@@ -56,28 +56,10 @@ def _norm_key(key: str) -> str:
     return s
 
 
-def _walk(s: TSkeleton) -> tuple[dict[tuple[int, int], TCell],
-                                 dict[tuple[int, int], TCell]]:
-    """骨架游标走格 → (锚点格, 全占位格)。锚点 = 跨行/列格的起始位。"""
-    anchors: dict[tuple[int, int], TCell] = {}
-    grid: dict[tuple[int, int], TCell] = {}
-    for r, row in enumerate(s.rows):
-        c = 0
-        for cell in row.cells:
-            while (r, c) in grid:
-                c += 1
-            anchors[(r, c)] = cell
-            for dr in range(cell.rowspan):
-                for dc in range(cell.colspan):
-                    grid[(r + dr, c + dc)] = cell
-            c += cell.colspan
-    return anchors, grid
-
-
 def _skeleton_candidates(s: TSkeleton, ti: int,
                          report: list[str]) -> dict[str, tuple[str, str, str]]:
     """骨架物理格 "r,c"（网格坐标）→ (原文, 类型 text|value, 字段名)。"""
-    anchors, grid = _walk(s)
+    anchors, grid = walk_grid(s)
     out: dict[str, tuple[str, str, str]] = {}
     for (r, c), cell in sorted(anchors.items()):
         text = cell.content
