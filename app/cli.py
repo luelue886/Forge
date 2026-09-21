@@ -237,7 +237,7 @@ def main(argv: list[str] | None = None) -> int:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except (AttributeError, OSError):
         pass
-    parser = argparse.ArgumentParser(prog="app", description="AIGC 文档仿写 PPT Agent")
+    parser = argparse.ArgumentParser(prog="app", description="Forge — 文档/PPT 仿写生成 Agent")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     p_render = sub.add_parser("render", help="SlideIR/DocIR JSON → pptx/docx（调试用）")
