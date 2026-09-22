@@ -44,7 +44,11 @@ GOLDEN = [
 
 
 def _tbl_signatures(docx_path: Path):
-    """逐表 (gridCol 宽度列表, 逐行 [(gridSpan, vMerge), …])——排版指纹。"""
+    """逐表 (gridCol 宽度比例列表, 逐行 [(gridSpan, vMerge), …])——排版指纹。
+
+    宽度归一成比例：搬运期会把超版心的宽表等比缩到版心（S5b），
+    绝对宽度变了但列比例与合并结构不变——保真语义按比例比对。
+    """
     from docx import Document
     from docx.oxml.ns import qn
 
@@ -52,7 +56,10 @@ def _tbl_signatures(docx_path: Path):
     out = []
     for tbl in d.tables:
         grid = tbl._tbl.find(qn("w:tblGrid"))
-        widths = [gc.get(qn("w:w")) for gc in grid.findall(qn("w:gridCol"))]
+        widths = [float(gc.get(qn("w:w")) or 0)
+                  for gc in grid.findall(qn("w:gridCol"))]
+        total = sum(widths) or 1.0
+        ratios = [round(w / total, 4) for w in widths]
         rows = []
         for tr in tbl._tbl.findall(qn("w:tr")):
             sig = []
@@ -68,7 +75,7 @@ def _tbl_signatures(docx_path: Path):
                         vm = v.get(qn("w:val")) or "continue"
                 sig.append((span, vm))
             rows.append(sig)
-        out.append((widths, rows))
+        out.append((ratios, rows))
     return out
 
 
@@ -77,6 +84,28 @@ def _zip_media(docx_path: Path) -> list[str]:
 
     with zipfile.ZipFile(docx_path) as z:
         return [n for n in z.namelist() if n.startswith("word/media/")]
+
+
+def _check_spotcheck(art: Path, errors: list[str]) -> None:
+    """抽检产物：存在、schema 合法、轮数 ≤3。verdict 不硬断言（真实 LLM
+    有方差；degraded 模式也合法——降级本身是设计内的稳健行为）。"""
+    p = art / "spotcheck.json"
+    if not p.exists():
+        errors.append("spotcheck.json 缺失——抽检循环未跑（COM 导出应触发）")
+        return
+    try:
+        sc = json.loads(p.read_text(encoding="utf-8"))
+    except ValueError as e:
+        errors.append(f"spotcheck.json 解析失败：{e}")
+        return
+    if sc.get("schema") != "spotcheck/1.0":
+        errors.append(f"spotcheck schema 非法：{sc.get('schema')}")
+    if sc.get("mode") not in ("vision", "degraded"):
+        errors.append(f"spotcheck mode 非法：{sc.get('mode')}")
+    if len(sc.get("rounds", [])) > 3:
+        errors.append(f"抽检轮数超限：{len(sc['rounds'])} > 3")
+    if not isinstance(sc.get("report"), list):
+        errors.append("spotcheck report 非列表")
 
 
 def run_sample(src: Path) -> tuple[bool, list[str]]:
@@ -108,9 +137,9 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     tree = DocTree.model_validate_json(
         (art / "doctree.json").read_text(encoding="utf-8"))
 
-    # form+PDF → 表格 LLM 重建分支（与 doc_runner 分发镜像；无 docir.json）
+    # form（不限源）→ 表格 LLM 重建分支（与 doc_runner 分发镜像；无 docir.json）
     plan_raw = json.loads((art / "docplan.json").read_text(encoding="utf-8"))
-    if tree.meta.source_format == "pdf" and plan_raw.get("genre") == "form":
+    if plan_raw.get("genre") == "form" and tree.tables:
         return run_form_sample(src, job_dir, art, tree)
 
     docir = json.loads((art / "docir.json").read_text(encoding="utf-8"))
@@ -194,6 +223,18 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
     d = Document(str(docx))
     if len(d.paragraphs) < 2:
         errors.append(f"docx 段落数异常（{len(d.paragraphs)}）")
+
+    # 5b) 抽检产物（spotcheck.json；degraded 或有 FAIL 轮 → qa_report 必有抽检行，
+    #     全 PASS 首轮零行是合法的——通过不入报告）
+    _check_spotcheck(art, errors)
+    if (art / "spotcheck.json").exists():
+        sc = json.loads((art / "spotcheck.json").read_text(encoding="utf-8"))
+        need_line = sc.get("mode") == "degraded" or any(
+            not r.get("passed") for r in sc.get("rounds", []))
+        if need_line:
+            qa_all = (art / "qa_report.txt").read_text(encoding="utf-8")
+            if "spotcheck" not in qa_all:
+                errors.append("qa_report 缺抽检行（degraded/FAIL 轮必有痕迹）")
 
     # 6) 排版保真（docx 源）：逐表 tblGrid 列宽 + 逐行合并结构与源一致；
     #    解析期保留的图片（tree.images，证件照/图标已在解析期过滤）必须
@@ -328,6 +369,15 @@ def run_form_sample(src: Path, job_dir: Path, art: Path, tree) -> tuple[bool, li
         if cjk.search(joined) and len(joined) >= 3 and joined not in out_despaced:
             errors.append(f"[LAYOUT-DIFF] 竖排碎片未重组：{t.table_id}“{joined}”")
 
+    # ⑧ 抽检产物（form 分支：意见驱动的视觉重跑是核心旋钮）
+    _check_spotcheck(art, errors)
+    if (art / "spotcheck.json").exists():
+        sc = json.loads((art / "spotcheck.json").read_text(encoding="utf-8"))
+        need_line = sc.get("mode") == "degraded" or any(
+            not r.get("passed") for r in sc.get("rounds", []))
+        if need_line and "spotcheck" not in qa:
+            errors.append("qa_report 缺抽检行（degraded/FAIL 轮必有痕迹）")
+
     # ⑦ 碎片收敛 + ⑧ 样例特定
     n_out = len(d.tables)
     if src.name == "real_performance_review.pdf":
@@ -362,6 +412,32 @@ def run_form_sample(src: Path, job_dir: Path, art: Path, tree) -> tuple[bool, li
                 errors.append(f"[E-VALUE] 纯数字电话格不应进入改写（{phone_key}）")
             if "13800001234" not in out_despaced:
                 errors.append("[E-VALUE] 电话号码未照搬进输出")
+    elif src.name in ("form_personnel.docx", "resume_sample.docx"):
+        # docx 源 form（含简历）走表格分支：值格虚构 + 纯数字照搬
+        if not skeletons:
+            errors.append("[TBLARCH] 无骨架")
+        else:
+            probe = "张伟" if "form_personnel" in src.name else "张三"
+            anchors, _ = walk_grid(skeletons[0])
+            name_key = phone_key = None
+            for (r, c), cell in anchors.items():
+                text = "".join(cell.content.split())
+                if text == probe:
+                    name_key = f"t0 {r},{c}"
+                if "13800001234" in text:
+                    phone_key = f"t0 {r},{c}"
+            if name_key is None:
+                errors.append(f"[E-VALUE] 骨架未含姓名值格（{probe}）")
+            elif name_key not in cells:
+                errors.append(f"[E-VALUE] 姓名值格未被虚构改写（{name_key}）")
+            elif cells[name_key] == probe:
+                errors.append("[E-VALUE] 姓名值格照抄原值")
+            if phone_key is not None and phone_key in cells:
+                errors.append(f"[E-VALUE] 纯数字电话格不应进入改写（{phone_key}）")
+            if "13800001234" not in out_despaced:
+                errors.append("[E-VALUE] 电话号码未照搬进输出")
+        if src.name == "resume_sample.docx" and _zip_media(docx):
+            errors.append("[E-VALUE] 输出仍含图片（证件照未过滤）")
 
     return not errors, errors
 

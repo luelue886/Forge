@@ -138,36 +138,58 @@ def _load_artifact(path: Path, skeletons: list[TSkeleton]
 
 
 def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
-               pm: PromptManager, art_dir: Path
+               pm: PromptManager, art_dir: Path, *,
+               feedback: list[str] | None = None
                ) -> tuple[list[TVisualTable], list[str]]:
-    """骨架 → 视觉参数（断点安全）。返回 (逐表视觉参数, W 级报告行)。"""
+    """骨架 → 视觉参数（断点安全）。返回 (逐表视觉参数, W 级报告行)。
+
+    feedback 模式（抽检意见重跑）：绕过幂等门，旧参数锚定最小修改；失败
+    保留旧参数返回（调用方按收敛处理），不走确定性兜底——兜底会丢掉
+    已验证可用的参数引发震荡。
+    """
     art_path = art_dir / "tblvisual.json"
-    if art_path.exists():
+    if feedback is None and art_path.exists():
         got = _load_artifact(art_path, skeletons)
         if got is not None:
             return got
 
+    old: list[TVisualTable] | None = None
+    if feedback is not None:
+        if art_path.exists():
+            got = _load_artifact(art_path, skeletons)
+            if got is not None:
+                old = got[0]
+        if old is None:
+            return [], ["[tblvisual] W-VISUAL-FEEDBACK-FAIL 无旧参数可锚定，跳过意见重跑"]
+
     visuals: list[TVisualTable] = []
     report: list[str] = []
-    source = "llm"
+    source = "llm-feedback" if feedback is not None else "llm"
     stats = [_table_stats(ti, s) for ti, s in enumerate(skeletons)]
-    user_ctx = pm.render("tblvisual/user.j2", tables=stats,
-                         content_width_cm=CONTENT_WIDTH_CM)
     system = pm.render("tblvisual/system.md")
+    if feedback is not None:
+        base_user = pm.render(
+            "tblvisual/feedback.j2", tables=stats,
+            content_width_cm=CONTENT_WIDTH_CM, feedback=feedback,
+            old_params=json.dumps([v.model_dump() for v in old],
+                                  ensure_ascii=False))
+    else:
+        base_user = pm.render("tblvisual/user.j2", tables=stats,
+                              content_width_cm=CONTENT_WIDTH_CM)
     out: VisualOut | None = None
     errors: list[str] = []
     for attempt in (1, 2):
         if attempt == 1:
-            user = user_ctx
+            user = base_user
         else:
             user = pm.render("tblvisual/retry.j2", errors=errors[:10],
-                             context=user_ctx)
+                             context=base_user)
         try:
             out = client.structured(
                 VisualOut,
                 [{"role": "system", "content": system},
                  {"role": "user", "content": user}],
-                stage=f"tblvisual#a{attempt}")
+                stage=f"tblvisual{'-fb' if feedback is not None else ''}#a{attempt}")
         except Exception as e:  # noqa: BLE001 — LLM 不可用 → 兜底
             log.warning("视觉总监调用失败，走确定性兜底：%s", e)
             out = None
@@ -183,6 +205,9 @@ def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
                 table_index=ti, col_widths=renormalize_widths(by_index[ti].col_widths),
                 row_heights=by_index[ti].row_heights)
             for ti in range(len(skeletons))]
+    elif feedback is not None:
+        reason = errors[0][:60] if errors else "未知"
+        return old, [f"[tblvisual] W-VISUAL-FEEDBACK-FAIL 意见重跑未成功：{reason}（保留原参数）"]
     else:
         source = "fallback"
         reason = errors[0][:60] if errors else "未知"

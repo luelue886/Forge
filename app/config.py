@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     llm_base_url: str = ""
     llm_api_key: str = ""
     llm_model: str = ""
+    llm_vision_model: str = ""  # 空 = 用 LLM_MODEL
     llm_temperature: float = 0.3
     llm_timeout_s: float = 120.0
 

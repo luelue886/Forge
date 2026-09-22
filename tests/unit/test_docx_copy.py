@@ -167,3 +167,83 @@ def test_copy_table_bring_style_chain(tmp_path: Path):
             bo = el.find(qn("w:basedOn"))
             based = bo.get(qn("w:val")) if bo is not None else None
     assert based in out_ids
+
+
+# ---- 宽表缩放：auto 型按 gridCol 合计判溢出（用户实测溢出回归）----
+
+def _wide_auto_table(path: Path, col_tw: list[int]) -> Path:
+    """tblW=auto 但 gridCol 合计远超版心的表（复刻《安全生产台账》源）。"""
+    from docx.oxml import OxmlElement
+
+    doc = Document()
+    doc.add_paragraph("宽表")
+    t = doc.add_table(rows=2, cols=len(col_tw))
+    tbl_pr = t._tbl.tblPr
+    for tag in ("w:tblW",):
+        el = tbl_pr.find(qn(tag))
+        if el is not None:
+            tbl_pr.remove(el)
+    tbl_w = OxmlElement("w:tblW")
+    tbl_w.set(qn("w:type"), "auto")
+    tbl_w.set(qn("w:w"), "0")
+    tbl_pr.append(tbl_w)
+    grid = t._tbl.find(qn("w:tblGrid"))
+    for gc, w in zip(grid.findall(qn("w:gridCol")), col_tw):
+        gc.set(qn("w:w"), str(w))
+    for r in range(2):
+        for c in range(len(col_tw)):
+            t.cell(r, c).text = "x"
+    doc.save(str(path))
+    return path
+
+
+def test_normalize_scales_auto_table_over_content(tmp_path: Path):
+    """gridCol 合计 16594 twips（≈2 倍版心）→ 等比缩到版心 + tblW 转固定宽。"""
+    src = _make_source(tmp_path / "src.docx")  # 复用公文案版心（窄）
+    src_doc = Document(str(src))
+    wide = _wide_auto_table(tmp_path / "wide.docx",
+                            [907, 2731, 3869, 1709, 1685, 1714, 1704, 2275])
+    wide_doc = Document(str(wide))
+    tbl_el = wide_doc.tables[0]._tbl
+    docx_copy._normalize_table_width(tbl_el, src_doc)
+    from docx.shared import Emu
+
+    sec = src_doc.sections[0]
+    content_tw = Emu(sec.page_width - sec.left_margin
+                     - sec.right_margin).twips
+    widths = _gridcol_widths(tbl_el)
+    assert sum(widths) <= content_tw + len(widths)  # 舍入容差
+    tbl_w = tbl_el.find(qn("w:tblPr")).find(qn("w:tblW"))
+    assert tbl_w.get(qn("w:type")) == "dxa"
+    assert int(tbl_w.get(qn("w:w"))) == content_tw
+    # 等比：最宽列仍最宽
+    assert widths[2] == max(widths)
+
+
+def test_normalize_keeps_fitting_auto_table(tmp_path: Path):
+    """gridCol 合计 < 版心的 auto 表不动。"""
+    src = _make_source(tmp_path / "src.docx")
+    src_doc = Document(str(src))
+    small = _wide_auto_table(tmp_path / "small.docx", [1000, 1000, 1000])
+    small_doc = Document(str(small))
+    tbl_el = small_doc.tables[0]._tbl
+    before = _gridcol_widths(tbl_el)
+    docx_copy._normalize_table_width(tbl_el, src_doc)
+    assert _gridcol_widths(tbl_el) == before
+
+
+def test_normalize_keeps_pct_table_within_100(tmp_path: Path):
+    """tblW pct ≤ 100% 自适应版心（gridCol 只是提示），不缩放。"""
+    from docx.oxml import OxmlElement
+
+    src = _make_source(tmp_path / "src.docx")
+    src_doc = Document(str(src))
+    pct = _wide_auto_table(tmp_path / "pct.docx", [4000, 4000, 4000])
+    pct_doc = Document(str(pct))
+    tbl_el = pct_doc.tables[0]._tbl
+    tbl_w = tbl_el.find(qn("w:tblPr")).find(qn("w:tblW"))
+    tbl_w.set(qn("w:type"), "pct")
+    tbl_w.set(qn("w:w"), "3000")  # 60%
+    before = _gridcol_widths(tbl_el)
+    docx_copy._normalize_table_width(tbl_el, src_doc)
+    assert _gridcol_widths(tbl_el) == before

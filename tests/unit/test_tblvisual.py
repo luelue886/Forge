@@ -180,3 +180,57 @@ def test_run_visual_artifact_invalid_redone(tmp_path):
                             PromptManager(), tmp_path)
     assert len(client.calls) == 1
     assert visuals[0].col_widths == [20, 50, 30]
+
+
+# ---- feedback 模式（抽检意见重跑）----
+
+def _fb_visual() -> TVisualTable:
+    return TVisualTable(table_index=0, col_widths=[16, 50, 34],
+                        row_heights=[28, 24, 90])
+
+
+def test_run_visual_feedback_anchored_and_overwrites(tmp_path):
+    """feedback 绕过幂等门：有产物仍调 LLM；prompt 含意见 + 旧参数锚。"""
+    tree = _tree([])
+    # 先跑一遍产出旧参数（正常路径）
+    run_visual([_skeleton()], tree,
+               _FakeClient([type("Out", (), {"tables": [_llm_visual()]})()]),
+               PromptManager(), tmp_path)
+    client = _FakeClient([type("Out", (), {"tables": [_fb_visual()]})()])
+    visuals, report = run_visual(
+        [_skeleton()], tree, client, PromptManager(), tmp_path,
+        feedback=["第3列过窄文字竖排（建议：加宽第3列）"])
+    assert len(client.calls) == 1  # 幂等门被绕过
+    user = client.calls[0][1][1]["content"]
+    assert "第3列过窄" in user and '"col_widths": [20, 50, 30]' in user
+    assert visuals[0].col_widths == [16, 50, 34]
+    assert report == []
+    art = json.loads((tmp_path / "tblvisual.json").read_text(encoding="utf-8"))
+    assert art["source"] == "llm-feedback"
+
+
+def test_run_visual_feedback_fail_keeps_old(tmp_path):
+    """意见重跑失败 → 保留旧参数 + W 行（不走确定性兜底防震荡）。"""
+    tree = _tree([])
+    run_visual([_skeleton()], tree,
+               _FakeClient([type("Out", (), {"tables": [_llm_visual()]})()]),
+               PromptManager(), tmp_path)
+
+    class _Boom:
+        def structured(self, *a, **kw):
+            raise RuntimeError("down")
+
+    visuals, report = run_visual(
+        [_skeleton()], tree, _Boom(), PromptManager(), tmp_path,
+        feedback=["意见"])
+    assert visuals[0].col_widths == [20, 50, 30]  # 旧参数
+    assert any("W-VISUAL-FEEDBACK-FAIL" in w for w in report)
+
+
+def test_run_visual_feedback_no_old_params(tmp_path):
+    """无旧参数可锚 → 不调 LLM，返回空 + W 行（调用方按无旋钮处理）。"""
+    visuals, report = run_visual(
+        [_skeleton()], _tree([]), _NoLLM(), PromptManager(), tmp_path,
+        feedback=["意见"])
+    assert visuals == []
+    assert any("W-VISUAL-FEEDBACK-FAIL" in w for w in report)

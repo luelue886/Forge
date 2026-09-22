@@ -38,6 +38,7 @@ class LLMClient:
             max_retries=0,  # SDK 内置重试会让超时 ×3 且不落日志；重试统一由 chat() 做
         )
         self.model = s.llm_model
+        self.vision_model = s.llm_vision_model or s.llm_model
         self.temperature = s.llm_temperature
         self.log_path = Path(log_path) if log_path else DATA_DIR / "llm_calls.jsonl"
         # json_object | prompt（首次失败自动永久降级，进程内缓存）
@@ -47,8 +48,9 @@ class LLMClient:
     # ---- 底层调用 ----
 
     def _create(self, messages: list[dict], response_format: dict | None,
-                extra_body: dict | None = None):
-        kwargs = dict(model=self.model, messages=messages, temperature=self.temperature)
+                extra_body: dict | None = None, model: str | None = None):
+        kwargs = dict(model=model or self.model, messages=messages,
+                      temperature=self.temperature)
         if response_format is not None:
             kwargs["response_format"] = response_format
         if extra_body is not None:
@@ -56,13 +58,14 @@ class LLMClient:
         return self.client.chat.completions.create(**kwargs)
 
     def chat(self, messages: list[dict], *, stage: str = "chat",
-             extra_body: dict | None = None) -> str:
+             extra_body: dict | None = None,
+             model: str | None = None) -> str:
         response_format = {"type": "json_object"} if self.json_mode == "json_object" and self._mentions_json(messages) else None
         last_err: Exception | None = None
         for attempt in range(1, 4):
             t0 = time.monotonic()
             try:
-                resp = self._create(messages, response_format, extra_body)
+                resp = self._create(messages, response_format, extra_body, model)
                 text = (resp.choices[0].message.content or "").strip()
                 self._log(stage, messages, text, time.monotonic() - t0, attempt, ok=True)
                 return text
@@ -89,7 +92,8 @@ class LLMClient:
     # ---- 结构化输出 ----
 
     def structured(self, schema: type[T], messages: list[dict], *, stage: str = "structured",
-                   max_attempts: int = 3, extra_body: dict | None = None) -> T:
+                   max_attempts: int = 3, extra_body: dict | None = None,
+                   model: str | None = None) -> T:
         schema_str = json.dumps(schema.model_json_schema(), ensure_ascii=False)
         base = list(messages) + [{
             "role": "system",
@@ -99,7 +103,8 @@ class LLMClient:
         history = list(base)
         last_detail = "unknown"
         for attempt in range(1, max_attempts + 1):
-            raw = self.chat(history, stage=f"{stage}#a{attempt}", extra_body=extra_body)
+            raw = self.chat(history, stage=f"{stage}#a{attempt}", extra_body=extra_body,
+                            model=model)
             data, err = self._parse(raw)
             if err:
                 last_detail = err

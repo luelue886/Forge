@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -59,14 +60,23 @@ class _FakeJob:
 
 
 class _ReplyClient:
-    """按调用序弹出的假 LLM：架构师 → 内容专家 → 视觉总监。"""
+    """按调用序弹出的假 LLM：架构师 → 内容专家 → 视觉总监。
+
+    视觉抽检调用（SpotCheckOut schema）不占回复序，直接首轮通过——
+    循环行为由 test_spotcheck.py 单独覆盖。
+    """
 
     def __init__(self, replies):
         self._replies = list(replies)
         self.calls = 0
+        self.vision_model = "fake-vision"
 
     def structured(self, schema, messages, stage=None, **kw):
         self.calls += 1
+        if schema.__name__ == "SpotCheckOut":
+            from app.schema.spotcheck import SpotCheckOut
+
+            return SpotCheckOut(passed=True)
         if not self._replies:
             raise AssertionError("FakeClient 收到了多余的调用")
         return self._replies.pop(0)
@@ -233,7 +243,8 @@ def test_run_form_branch_com_path(tmp_path, monkeypatch):
     assert "@page" in html_raw.decode("utf-8-sig")
     assert (art / "output.pdf").exists()
     assert len(list((tmp_path / "pages").glob("*.png"))) == 1
-    assert job.statuses[-1] == (JobStatus.DONE, "1 表 · 1 页")
+    assert (art / "spotcheck.json").exists()  # 抽检产物落盘
+    assert job.statuses[-1] == (JobStatus.DONE, "1 表 · 1 页 · 抽检通过")
 
 
 def test_run_form_branch_sanity_fail_rerender(tmp_path, monkeypatch):
@@ -420,14 +431,24 @@ def test_dispatch_form_pdf_enters_branch(tmp_path, monkeypatch):
     assert calls[0][1]["com_export"] is False
 
 
-def test_dispatch_form_docx_skips_branch(tmp_path, monkeypatch):
-    from app.pipeline import doc_runner
+def test_dispatch_form_docx_enters_branch(tmp_path, monkeypatch):
+    """docx/.doc 源 form 文书同样走表格 LLM 重建（用户需求 S5c）。"""
+    from app.pipeline import doc_runner, form_branch
 
     job = _setup_dispatch_job(tmp_path, "docx", Genre.FORM)
-    monkeypatch.setattr(doc_runner, "fill_all_sections",
-                        lambda *a, **kw: (_ for _ in ()).throw(_Sentinel()))
-    with pytest.raises(_Sentinel):
-        run_doc_pipeline(job, client=object(), com_export=False)
+    calls: list = []
+
+    def fake_branch(*a, **kw):
+        calls.append((a, kw))
+        return None
+
+    def no_fill(*a, **kw):
+        raise _Sentinel("不应进入旧链路")
+
+    monkeypatch.setattr(form_branch, "run_form_branch", fake_branch)
+    monkeypatch.setattr(doc_runner, "fill_all_sections", no_fill)
+    run_doc_pipeline(job, client=object(), com_export=False)
+    assert len(calls) == 1
 
 
 def test_dispatch_report_pdf_skips_branch(tmp_path, monkeypatch):
@@ -463,3 +484,133 @@ def test_dispatch_fallback_continues_legacy(tmp_path, monkeypatch):
                         lambda *a, **kw: (_ for _ in ()).throw(_Sentinel()))
     with pytest.raises(_Sentinel):  # 旧链路被继续执行
         run_doc_pipeline(job, client=object(), com_export=False)
+
+
+# ---- run_form_branch：抽检闭环（意见 → 视觉重跑 → 重渲染）----
+
+def test_run_form_branch_spot_check_loop(tmp_path, monkeypatch):
+    """R1 major+table 意见 → run_visual(feedback) → 重渲染 → R2 过。"""
+    from app.pipeline import form_branch as fb
+    from app.schema.spotcheck import SpotCheckOut, SpotIssue
+    from app.schema.tblskeleton import TVisualTable
+
+    convert_n = [0]
+
+    def fake_convert(html_path, out_docx):
+        convert_n[0] += 1
+        _write_ok_docx(out_docx, TITLE)
+        return out_docx
+
+    def fake_pdf(docx, out_pdf):
+        import pymupdf
+
+        doc = pymupdf.open()
+        doc.new_page()
+        doc.save(str(out_pdf))
+        doc.close()
+        return out_pdf
+
+    from app.services import com_export as ce
+
+    monkeypatch.setattr(ce, "convert_html_to_docx", fake_convert)
+    monkeypatch.setattr(ce, "export_docx_pdf", fake_pdf)
+
+    old_visual = [TVisualTable(table_index=0, col_widths=[14, 14, 72],
+                               row_heights=[28, 40, 24])]
+    new_visual = [TVisualTable(table_index=0, col_widths=[14, 14, 68],
+                               row_heights=[28, 40, 26])]
+    fb_calls: list = []
+
+    def fake_run_visual(skeletons, tree, client, pm, art_dir, *, feedback=None):
+        fb_calls.append(feedback)
+        if feedback is None:
+            return old_visual, []
+        return new_visual, []  # 变了列宽（差 4 ≥1）→ 不收敛
+
+    monkeypatch.setattr(fb, "run_visual", fake_run_visual)
+
+    spot_replies = [SpotCheckOut(passed=False, issues=[SpotIssue(
+        area="table", severity="major", problem="第3列文字竖排",
+        suggestion="加宽第3列")]), SpotCheckOut(passed=True)]
+
+    class _LoopClient(_ReplyClient):
+        def structured(self, schema, messages, stage=None, **kw):
+            if schema.__name__ == "SpotCheckOut":
+                assert spot_replies, "抽检调用次数超预期"
+                return spot_replies.pop(0)
+            return _ReplyClient.structured(self, schema, messages, stage, **kw)
+
+    (tmp_path / "upload").mkdir()
+    job = _FakeJob(tmp_path)
+    run_form_branch(job, _LoopClient([
+        ArchitectOut(tables=[_arch_skeleton()], notes=""),
+        _CellsOut(cells={"t0 1,2": LONG_RW, "p0": PROSE_RW}),
+        type("Out", (), {"tables": old_visual})(),
+    ]), PromptManager(), _plan(), _tree(), com_export=True)
+
+    # R1 意见 → feedback 重跑 → 重渲染 → R2 通过
+    assert fb_calls == [None, ["第3列文字竖排（建议：加宽第3列）"]]
+    assert convert_n[0] == 2  # 初渲染 + 1 次重渲染
+    art = tmp_path / "artifacts"
+    sc = json.loads((art / "spotcheck.json").read_text(encoding="utf-8"))
+    assert sc["mode"] == "vision" and len(sc["rounds"]) == 2
+    assert sc["rounds"][0]["passed"] is False
+    assert sc["rounds"][1]["passed"] is True
+    qa = (art / "qa_report.txt").read_text(encoding="utf-8")
+    assert "[spotcheck]" in qa and "第3列文字竖排" in qa
+    # R1 的 FAIL + 意见行进 qa_report（2 项），最终通过 → 抽检通过
+    assert job.statuses[-1] == (
+        JobStatus.DONE, "1 表 · 1 页 · 抽检通过 · QA 残留 2 项（见 qa_report.txt）")
+
+
+# ---- docx 源图片提取（form 分支 docx 化）----
+
+def test_docx_image_b64(tmp_path):
+    import base64
+    import io
+
+    from docx import Document as _Doc
+    from PIL import Image as _Img
+
+    from app.pipeline.form_branch import _docx_image_b64
+    from app.schema.doctree import DocImage
+
+    buf = io.BytesIO()
+    _Img.new("RGB", (60, 30), "red").save(buf, "PNG")
+    png = buf.getvalue()
+    d = _Doc()
+    d.add_paragraph("题")
+    d.add_picture(io.BytesIO(png))
+    path = tmp_path / "src.docx"
+    d.save(str(path))
+
+    d2 = _Doc(str(path))
+    body = d2.element.body
+    idx = next(i for i, el in enumerate(body)
+               if el.findall(".//{*}blip"))
+    from docx.oxml.ns import qn as _qn
+
+    blip = body[idx].find(f".//{_qn('a:blip')}")
+    rid = blip.get(_qn("r:embed"))
+    part = d2.part.related_parts[rid]
+    im = DocImage(image_id="img-001", section_id="s",
+                  body_index=idx, cx_emu=540000, cy_emu=270000)
+    got = _docx_image_b64(path, im)
+    assert got is not None
+    b64, width_cm = got
+    assert base64.b64decode(b64) == part.blob
+    assert abs(width_cm - 1.5) < 0.01  # 540000 EMU = 1.5cm
+
+
+def test_docx_image_b64_bad_index(tmp_path):
+    from docx import Document as _Doc
+
+    from app.pipeline.form_branch import _docx_image_b64
+    from app.schema.doctree import DocImage
+
+    d = _Doc()
+    d.add_paragraph("x")
+    path = tmp_path / "s.docx"
+    d.save(str(path))
+    im = DocImage(image_id="img", section_id="s", body_index=99)
+    assert _docx_image_b64(path, im) is None

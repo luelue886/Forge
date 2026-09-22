@@ -108,10 +108,12 @@ def _insert_into_body(out_doc: Document, el) -> None:
 
 
 def _normalize_table_width(tbl_el, out_doc: Document) -> None:
-    """源表 dxa 宽度超出输出版心 → 等比缩到版心宽（tblW/gridCol/tcW），tblInd 归零。
+    """源表宽度超出输出版心 → 等比缩到版心宽（tblW/gridCol/tcW），tblInd 归零。
 
-    源文档页边距常比输出公文版心窄（709 vs 1803 twips），定宽表按源宽搬运
-    会溢出版心：居中的越界、带 tblInd 的靠左。pct/auto 型由 Word 自适应，不动。
+    源文档页边距常比输出公文版心窄（709 vs 1803 twips），按源宽搬运会
+    溢出版心：居中的越界、带 tblInd 的靠左。dxa 定宽表按 tblW 判；auto/
+    pct/缺失型按 gridCol 合计判——Word 渲染 auto 表仍以 gridCol 为提示
+    宽度，合计超版心即实际溢出（实测源表 gridCol 合计可达版心 2 倍）。
     """
     try:
         sec = out_doc.sections[0]
@@ -123,15 +125,29 @@ def _normalize_table_width(tbl_el, out_doc: Document) -> None:
     tbl_pr = tbl_el.find(qn("w:tblPr"))
     if tbl_pr is None:
         return
-    tbl_w = tbl_pr.find(qn("w:tblW"))
-    if tbl_w is None or (tbl_w.get(qn("w:type")) or "") != "dxa":
-        return
-    val = tbl_w.get(qn("w:w")) or ""
-    if not val.isdigit() or int(val) <= content_tw:
-        return
-    scale = content_tw / int(val)
-    tbl_w.set(qn("w:w"), str(content_tw))
     grid = tbl_el.find(qn("w:tblGrid"))
+    grid_cols = ([int(gc.get(qn("w:w")))
+                  for gc in grid.findall(qn("w:gridCol"))
+                  if (gc.get(qn("w:w")) or "").isdigit()]
+                 if grid is not None else [])
+    grid_sum = sum(grid_cols)
+
+    tbl_w = tbl_pr.find(qn("w:tblW"))
+    w_type = (tbl_w.get(qn("w:type")) or "") if tbl_w is not None else ""
+    w_val = tbl_w.get(qn("w:w")) or "" if tbl_w is not None else ""
+    if w_type == "pct" and w_val.isdigit() and int(w_val) <= 5000:
+        return  # ≤100% 自适应版心，gridCol 只是提示，不缩
+    if w_type == "dxa" and w_val.isdigit() and int(w_val) > content_tw:
+        total = int(w_val)
+    elif grid_sum > content_tw:
+        # auto/缺失/pct>100%：按 gridCol 合计判溢出（Word 以其为渲染提示）
+        total = grid_sum
+    else:
+        return
+    scale = content_tw / total
+    if tbl_w is not None:
+        tbl_w.set(qn("w:w"), str(content_tw))
+        tbl_w.set(qn("w:type"), "dxa")
     if grid is not None:
         for gc in grid.findall(qn("w:gridCol")):
             gw = gc.get(qn("w:w")) or ""
