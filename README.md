@@ -6,7 +6,7 @@ verbatim 一致，其余措辞改写**。两条产品线共用同一任务框架
 
 ## 设计立场：Pipeline，不是自由 Agent
 
-LLM 只出现在少数提案点（体裁识别 / 规划 / 填充 / 表格重建 / 修复），其余全部是确定性代码。
+LLM 只出现在少数提案点（体裁识别 / 规划 / 填充 / 表格重建 / 修复 / 视觉抽检），其余全部是确定性代码。
 LLM 的每个输出都要过确定性校验器，不过则定向重试，再不过退回原文。三条铁律贯穿全系统：
 
 1. **数字永不以明文进 prompt**——所有数字先折叠为 ⟦N⟧ 占位符（全局掩码池），LLM 只见到
@@ -29,7 +29,7 @@ LLM 提案 → 确定性校验 → 通过？
   （`doc_runner` / `form_branch` / `runner`）的确定性代码决定。
 - 重试不是重发：错误清单 + 上轮产物锚定"最小修改"（表格架构师三轮锚定重试——从头重写
   会修好旧缺失又丢新文本，实测不收敛）。
-- 循环有硬上界（单元 1 次、架构师 3 轮、修复 2 轮），出界即降级，绝不无限拉扯。
+- 循环有硬上界（单元 1 次、架构师 3 轮、修复 2 轮、抽检 3 轮），出界即降级，绝不无限拉扯。
 
 ## 工具层
 
@@ -41,7 +41,7 @@ LLM 触达不到的确定性能力，全部是编排器的"手"：
 | 解析 | `app/parsing/` | docx（python-docx + XML）、PDF（pdfplumber，表格 bbox 聚类重建合并区/列宽）、pptx；扫描件拒收 |
 | 渲染 | `app/render/` | python-docx（体裁版式）、表格 XML deepcopy 搬运（docx 源排版保真）、form HTML（@page 公文版式）、python-pptx + 皮肤系统（`templates/skins/*.yaml`） |
 | COM 服务 | `app/services/com_export.py` | Word/PowerPoint 自动化：.doc→docx、HTML→docx、docx→PDF、pptx→PNG；STA 专用队列 + 超时击杀自恢复 |
-| QA | `app/qa/` | ngram 抄袭检测、数字溯源、逐单元校验器 |
+| QA | `app/qa/` | ngram 抄袭检测、数字溯源、逐单元校验器、视觉抽检（`spotcheck.py`） |
 | 提示词 | `prompts/` | Jinja2 模板（system.md + user.j2 + retry.j2），版本随代码 |
 
 ## 确定性 Workflow
@@ -57,8 +57,8 @@ PARSED → UNDERSTOOD → PLANNED（人工确认大纲，可改体裁）→ GENE
 
 | 路由 | 走法 |
 |---|---|
-| docx 源（任意体裁） | 表格 XML 原样搬运保排版，散文掩码仿写 |
-| PDF 源 + form 体裁 | **表格分支**：表格架构师（碎片→JSON 骨架）→ 确定性回填 → 内容专家（值格虚构/长格改写）→ 视觉总监（列宽%+行高）→ JSON→HTML → Word COM → docx；架构师失败自动 `FormBranchFallback` 回落通用链路 |
+| form 体裁（不限源：PDF / docx / .doc） | **表格分支**：表格架构师（碎片→JSON 骨架）→ 确定性回填 → 内容专家（值格虚构/长格改写）→ 视觉总监（列宽%+行高）→ JSON→HTML → Word COM → docx；架构师失败自动 `FormBranchFallback` 回落通用链路 |
+| docx 源（letter / report 体裁） | 表格 XML 原样搬运保排版，散文掩码仿写 |
 | PDF 源 + letter/report | 通用链路：tablefill 掩码表格仿写 + docfill 散文仿写 |
 
 确认页改体裁是用户的**逃生门**：单文件效果不佳时可强制换链路。PPT 线独立走
@@ -73,7 +73,8 @@ data/jobs/<job_id>/
   upload/        源文件
   state.json     状态机（status/detail/error）
   artifacts/     每阶段产物：docplan.json · doctree.json · tblarch.json ·
-                 tblcontent.json · tblvisual.json · output.docx/.html/.pdf · qa_report.txt
+                 tblcontent.json · tblvisual.json · spotcheck.json ·
+                 output.docx/.html/.pdf · qa_report.txt
   pages/         PDF→PNG 逐页预览
   logs/          llm_calls.jsonl（全量调用审计，响应截断 20KB，可离线复检）
 ```
@@ -84,7 +85,7 @@ data/jobs/<job_id>/
 
 ## QA Loop
 
-三级防线，事前约束、事中拦截、事后兜底：
+四级防线——前三级管**内容对不对**，第四级管**排版好不好**：
 
 1. **prompt 约束**（事前）：⟦N⟧ 原样保留禁止新数字、label/header 原样、不编造——写进每个
    system.md。
@@ -93,8 +94,17 @@ data/jobs/<job_id>/
    + 原因），再失败退格照搬并落 W 报告行。
 3. **终检**（事后）：`qa_report.txt` 汇总 E-（阻断，退格项已兜底）与 W-（保留回声/池外
    文本），e2e 断言零 E-。
+4. **视觉抽检**（交付前）：内容防线全部通过后，抽样渲染页 PNG（≤6 页）→ 视觉 LLM 审排版
+   （列宽挤压/合并格错乱/溢出版心）→ 意见驱动的**排版参数重生成**循环，≤3 轮：
+   - form 分支：视觉总监带意见重跑（旧参数锚定最小修改）→ 重建 HTML → COM → PDF/PNG 再检
+   - 通用链路 PDF 源：表格布局补丁（列宽分数/行高）→ 重渲染再检
+   - docx 源 XML 搬运 / 非表格意见：无旋钮，只如实记录进 qa_report
+   - 收敛判停（列宽差 <1pp / 行高差 <2pt）防烧轮次；视觉调用连败降级报告模式，绝不阻断交付
 
-门禁：**295 单测 + 6 COM 集成 + 8 golden 端到端样例**（含真实复杂表格 PDF：竖排侧栏重组、
+   铁律不变式：抽检 LLM 读的是渲染成品（真实数字可见），但**输出只流向视觉参数
+   （int 校验）与报告文本，永不回流文档内容**——排版修正不重掷内容骰子。
+
+门禁：**327 单测 + 6 COM 集成 + 8 golden 端到端样例**（含真实复杂表格 PDF：竖排侧栏重组、
 跨页并表、值格虚构+电话照搬）。
 
 ## 快速开始
