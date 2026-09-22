@@ -1,0 +1,13 @@
+排版抽检对渲染成品提出以下表格布局意见：
+{% for f in feedback %}- {{ f }}
+{% endfor %}
+
+相关表格当前参数 JSON（在它基础上做最小修改：只动意见涉及的表/列/行，其余原样保留）：
+{{ old_params }}
+
+版心宽度 {{ content_width_cm }}cm（A4 减页边距），表格总宽即版心宽。
+逐表摘要：
+{% for t in tables %}
+{{ t }}
+{% endfor %}
+请输出调整后的完整 JSON（每张表一项、table_index 完整、列宽和为 100 且每列 ≥4%、行高在 [14,400]pt）。
