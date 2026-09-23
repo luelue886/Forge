@@ -299,3 +299,91 @@ def test_parse_pdf_portrait_photo_skipped(tmp_path):
     tree = parse_pdf(p)
     assert tree.images == []
     assert any("证件照" in w for w in tree.meta.parse_warnings)
+
+
+# ---- B4：无边框表格文本对齐兜底 ----
+
+def _borderless_pdf(path: Path) -> Path:
+    """无边框 4 列表格：纯文本对齐，无任何画线。"""
+    import fitz
+
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    rows = [
+        ["序号", "项目名称", "金额（元）", "完成情况"],
+        ["1", "办公用品采购", "12500", "已完成"],
+        ["2", "设备例行维护", "8300", "进行中"],
+        ["3", "会议室改造", "43000", "已验收"],
+    ]
+    xs = [72, 120, 260, 380]
+    y = 100.0
+    for row in rows:
+        for x, v in zip(xs, row):
+            page.insert_text((x, y), v, fontname="china-s", fontsize=11)
+        y += 22
+    doc.save(str(path))
+    doc.close()
+    return path
+
+
+def test_parse_pdf_borderless_table_detected(tmp_path):
+    tree = parse_pdf(_borderless_pdf(tmp_path / "blf.pdf"))
+    assert len(tree.tables) == 1
+    t = tree.tables[0]
+    assert t.n_cols == 4 and t.n_rows == 4
+    assert t.header == ["序号", "项目名称", "金额（元）", "完成情况"]
+    assert t.rows[0] == ["1", "办公用品采购", "12500", "已完成"]
+    assert t.rows[2] == ["3", "会议室改造", "43000", "已验收"]
+    assert t.col_widths and abs(sum(t.col_widths) - 1.0) < 0.01
+    # 表内文本不再重复进正文
+    assert "办公用品采购" not in tree.full_text or "12500" in t.flat_text()
+
+
+def test_parse_pdf_prose_not_misdetected(tmp_path):
+    # 散文页：多词行但位置散乱——不得误判为表格
+    import fitz
+
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    lines = [
+        "本季度公司整体经营情况保持平稳向好的发展态势，各项核心指标均达成。",
+        "市场推广方面投入持续加大，渠道合作伙伴数量稳步提升至新的水平。",
+        "内部管理流程经过优化调整后运转效率明显改善，员工满意度提高。",
+        "财务口径下的成本控制措施初见成效，费用率较去年同期有所下降。",
+        "下一阶段将聚焦重点区域的客户深耕，同时推进数字化工具的落地。",
+    ]
+    y = 90.0
+    for text in lines:
+        page.insert_text((72, y), text, fontname="china-s", fontsize=11)
+        y += 24
+    doc.save(str(tmp_path / "prose.pdf"))
+    doc.close()
+    tree = parse_pdf(tmp_path / "prose.pdf")
+    assert tree.tables == []
+    assert "经营情况" in tree.full_text
+
+
+def test_parse_pdf_numbered_list_not_misdetected(tmp_path):
+    # 编号列表（标记与正文仅一空格之隔，无列间设计留白）不得判为表格
+    import fitz
+
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    items = ["市场情况回顾与总结", "渠道建设工作进展", "财务指标完成情况",
+             "下季度工作计划安排", "风险事项与应对措施"]
+    y = 90.0
+    for i, text in enumerate(items, 1):
+        page.insert_text((72, y), f"{i}. {text}",
+                         fontname="china-s", fontsize=11)
+        y += 24
+    doc.save(str(tmp_path / "list.pdf"))
+    doc.close()
+    tree = parse_pdf(tmp_path / "list.pdf")
+    assert tree.tables == []
+
+
+def test_parse_pdf_bordered_table_not_duplicated(tmp_path):
+    # 画线表优先：同页已有边框表不被兜底重复计为无边框表
+    tree = parse_pdf(_table_pdf(tmp_path / "bordered.pdf"))
+    assert len(tree.tables) == 1
+    assert tree.tables[0].rows[0] == ["直销", "56", "43.8%", "重点"]

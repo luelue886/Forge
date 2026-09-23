@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import bisect
 import re
 from collections import Counter
 from pathlib import Path
@@ -176,6 +177,107 @@ def _cell_text(page, bbox) -> str:
     return out
 
 
+# ---- B4：无边框表格文本对齐兜底（保守触发防散文误判）----
+
+_BLF_OCCUPANCY = 0.8   # 稳定列门槛：该列在 ≥80% 行有内容才算真实列
+_BLF_COL_GAP = 6.0     # 列间空白带下限：相邻稳定列间须留 ≥6pt 设计空白
+
+
+def _layout(run: list[dict], bounds: list[float]
+            ) -> tuple[list[list[str]], list[list[float]]]:
+    """按列边界逐词归列 → (格文本网格, 每行每列最右词 x1)。"""
+    n_cols = len(bounds)
+    grid: list[list[str]] = []
+    exts: list[list[float]] = []
+    for ln in run:
+        row = [""] * n_cols
+        ext = [0.0] * n_cols
+        for w in sorted(ln["parts"], key=lambda w: w["x0"]):
+            ci = max(bisect.bisect_right(bounds, w["x0"] + _EDGE_TOL) - 1, 0)
+            row[ci] = _join(row[ci], w["text"]) if row[ci] else w["text"]
+            ext[ci] = max(ext[ci], w["x1"])
+        grid.append(row)
+        exts.append(ext)
+    return grid, exts
+
+
+def _align_grid(run: list[dict]) -> tuple[list[list[str]], list[float]] | None:
+    """行段 → 无边框网格。词 x0/x1 投影聚类求列边界（左对齐列看起点、
+    右对齐数值列看终点），逐词按 x0 归列。
+
+    门控（任一不过返回 None，宁可漏检不误判散文）：
+    - ≥3 行、≥2 列（清洗后）；
+    - 每行 ≥2 个非空格——单列行 = 换行续行/散文（CJK 散文行常整行一词，
+      天然被此门拦下）；
+    - ≥2 个稳定列（≥80% 行有内容）——散文词位置散乱聚不出高占位列；
+    - 列间空白门——相邻稳定列之间 ≥80% 行存在 ≥6pt 纵向空白带：目录页
+      点线引导、编号列表"标记+空格+正文"的紧贴形态靠此门拒绝（真实
+      表格列间必有设计留白）。
+    """
+    words = [w for ln in run for w in ln["parts"]]
+    if len(run) < 3 or len(words) < 6:
+        return None
+    proj = [w["x0"] for w in words] + [w["x1"] for w in words]
+    means, _assign = _axis_clusters(proj, _EDGE_TOL)
+    _xmap, bounds = _drop_thin(means, _THIN_GAP)  # 相邻 <12pt 边界并列
+    if len(bounds) < 2:
+        return None
+    # 空列剪枝至收敛：散点 x1 簇会制造无词起始的幻影列（如 CJK 整行一词
+    # 的散文 x1 散布）；剪后重排，被拆散的格文本随边界合并自行愈合
+    for _ in range(4):
+        grid, exts = _layout(run, bounds)
+        keep = [ci for ci in range(len(bounds)) if any(r[ci] for r in grid)]
+        if len(keep) < 2:
+            return None
+        if len(keep) == len(bounds):
+            break
+        bounds = [bounds[ci] for ci in keep]
+    else:
+        grid, exts = _layout(run, bounds)
+    n_rows, n_cols = len(grid), len(bounds)
+    if any(sum(1 for c in r if c) < 2 for r in grid):
+        return None
+    stable = [ci for ci in range(n_cols)
+              if sum(1 for r in grid if r[ci]) >= _BLF_OCCUPANCY * n_rows]
+    if len(stable) < 2:
+        return None
+    for a, b in zip(stable, stable[1:]):
+        gaps = [bounds[b] - exts[r][a] for r in range(n_rows) if exts[r][a]]
+        if not gaps or sum(1 for g in gaps
+                           if g >= _BLF_COL_GAP) < _BLF_OCCUPANCY * len(gaps):
+            return None
+    right = max(w["x1"] for w in words)
+    if right - bounds[0] <= 0:
+        return None
+    edges = bounds + [right]
+    widths = [(b - a) / (right - bounds[0]) for a, b in zip(edges, edges[1:])]
+    return grid, widths
+
+
+def _detect_borderless(raw_lines: list[dict], in_table) -> list[dict]:
+    """未被画线表覆盖的连续行段 → 无边框表事件（top/bottom 供行剔除复用）。"""
+    out: list[dict] = []
+    n = len(raw_lines)
+    i = 0
+    while i < n:
+        if in_table(raw_lines[i]["top"], raw_lines[i]["bottom"]):
+            i += 1
+            continue
+        j = i
+        while j < n and not in_table(raw_lines[j]["top"], raw_lines[j]["bottom"]):
+            j += 1
+        run = raw_lines[i:j]
+        if len(run) >= 3:
+            got = _align_grid(run)
+            if got is not None:
+                grid, widths = got
+                out.append({"top": run[0]["top"], "bottom": run[-1]["bottom"],
+                            "grid": grid, "col_widths": widths,
+                            "merges": None, "row_heights": None})
+        i = j
+    return out
+
+
 def _to_doctable(grid: list[list[str]], table_id: str, section_id: str,
                  caption: str | None, warnings: list[str],
                  col_widths: list[float] | None = None,
@@ -287,6 +389,10 @@ def _collect_page(page, pno: int, warnings: list[str]) -> list[dict]:
             ln["bottom"] = max(ln["bottom"], w["bottom"])
         else:
             raw_lines.append({"parts": [w], "top": w["top"], "bottom": w["bottom"]})
+
+    # B4：无边框表格兜底——未覆盖行段投影聚类检表，追加进 tables 后
+    # in_table 覆盖其行区域（行事件自动剔除防重复，图片同理）
+    tables.extend(_detect_borderless(raw_lines, in_table))
 
     events: list[dict] = []
     for ln in raw_lines:
