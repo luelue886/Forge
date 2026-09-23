@@ -71,6 +71,7 @@ class ImageBlock(BaseModel):
     bbox: list[float] | None = None  # pdf 源：页面区域 (x0, top, x1, bottom)
     cx_emu: int | None = None
     cy_emu: int | None = None
+    smartart: bool = False  # B5：渲染期 COM 光栅化 PNG 插入（内容不经 LLM）
 
 
 DocIRBlock = Annotated[

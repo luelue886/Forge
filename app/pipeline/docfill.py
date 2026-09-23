@@ -242,7 +242,8 @@ def assemble_docir(plan: DocPlan, sections: dict[str, SectionIR], tree: DocTree,
             blocks.append(ImageBlock(image_id=iid, body_index=im.body_index,
                                      page=im.page,
                                      bbox=list(im.bbox) if im.bbox else None,
-                                     cx_emu=im.cx_emu, cy_emu=im.cy_emu))
+                                     cx_emu=im.cx_emu, cy_emu=im.cy_emu,
+                                     smartart=im.smartart))
 
     if plan.genre is Genre.LETTER and frame:
         if frame.salutation:

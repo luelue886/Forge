@@ -530,3 +530,105 @@ def test_render_table_keeps_textbox_pict(tmp_path):
     out = render_docir_to_docx(_form_docir(), tmp_path / "out.docx", source=src)
     tbl = Document(str(out)).tables[0]
     assert tbl._tbl.find(".//" + _V_SHAPE) is not None
+
+
+# ---- B5：SmartArt 光栅化 PNG 插入 ----
+
+def _smartart_docir():
+    return DocIR(meta=DocIRMeta(title="实施流程", genre=Genre.REPORT), blocks=[
+        DocTitleBlock(text="实施流程说明"),
+        ParaBlock(text="项目整体流程如下示意，各环节按序推进。"),
+        ImageBlock(image_id="img-001", body_index=4,
+                   cx_emu=3600000, cy_emu=2700000, smartart=True),
+    ])
+
+
+def _write_png(path: Path) -> Path:
+    import base64
+
+    path.write_bytes(base64.b64decode(
+        "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ"
+        "AAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="))
+    return path
+
+
+def test_smartart_inserted_as_picture(tmp_path, monkeypatch):
+    from docx.shared import Emu
+
+    import app.services.com_export as ce
+    from app.render import docx_render
+
+    src = tmp_path / "sa_src.docx"
+    Document().save(str(src))  # 任意合法 docx 源（rasterize 已桩掉）
+
+    png = _write_png(tmp_path / "smartart_4.png")
+    calls: dict = {}
+
+    def fake_rasterize(docx_path, out_dir, indices):
+        calls["args"] = (docx_path, list(indices))
+        return {4: png}
+
+    monkeypatch.setattr(ce, "rasterize_smartarts", fake_rasterize)
+    out = docx_render.render_docir_to_docx(_smartart_docir(),
+                                           tmp_path / "out.docx", source=src)
+    assert calls["args"][1] == [4]  # body_index 升序
+    d = Document(str(out))
+    assert len(d.inline_shapes) == 1
+    shp = d.inline_shapes[0]
+    assert shp.width == Emu(3600000) and shp.height == Emu(2700000)  # 源显示尺寸
+
+
+def test_smartart_rasterize_failure_degrades(tmp_path, monkeypatch):
+    from app.render import docx_render
+
+    src = tmp_path / "sa_src.docx"
+    Document().save(str(src))
+
+    def boom(*a, **kw):
+        raise RuntimeError("COM 不可用")
+
+    import app.services.com_export as ce
+
+    monkeypatch.setattr(ce, "rasterize_smartarts", boom)
+    out = docx_render.render_docir_to_docx(_smartart_docir(),
+                                           tmp_path / "out.docx", source=src)
+    d = Document(str(out))
+    assert len(d.inline_shapes) == 0  # 降级跳过，不崩整篇
+    assert out.exists()
+
+
+def test_smartart_png_crop_content_bbox(tmp_path):
+    # 裁剪函数：画框+文字的单页 PDF → 内容 bbox PNG（非 COM 可测部分）
+    import fitz
+
+    from app.services.com_export import _crop_content_png
+
+    pdf_path = tmp_path / "iso.pdf"
+    doc = fitz.open()
+    page = doc.new_page(width=595, height=842)
+    page.draw_rect(fitz.Rect(200, 100, 400, 180), width=1)
+    page.insert_text((220, 150), "流程图示意", fontname="china-s", fontsize=12)
+    doc.save(str(pdf_path))
+    doc.close()
+
+    out = tmp_path / "crop.png"
+    got = _crop_content_png(pdf_path, out, zoom=2.0)
+    assert got == out and out.exists() and out.stat().st_size > 100
+    from PIL import Image
+
+    with Image.open(out) as im:
+        # 内容 bbox ≈ (200,100)-(400,180)，2pt 边距 + 2 倍缩放 → 408×168 px
+        assert abs(im.size[0] - 408) <= 8 and abs(im.size[1] - 168) <= 8
+
+
+def test_smartart_empty_pdf_crop_returns_none(tmp_path):
+    import fitz
+
+    from app.services.com_export import _crop_content_png
+
+    pdf_path = tmp_path / "empty.pdf"
+    doc = fitz.open()
+    doc.new_page(width=595, height=842)
+    doc.save(str(pdf_path))
+    doc.close()
+    assert _crop_content_png(pdf_path, tmp_path / "x.png") is None

@@ -121,11 +121,13 @@ def _image_size(p_el) -> str | None:
 
 def _image_of(p_el, image_id: str, section_id: str, pos: int,
               warnings: list[str]) -> DocImage | None:
-    """空文本段落内的 w:drawing / w:pict → DocImage；SmartArt/文本框/小图跳过。"""
-    if p_el.find(f".//{_DGM_RELIDS}") is not None:
-        warnings.append(f"{image_id}：SmartArt 依赖多个图表部件，暂不支持复用，已跳过")
-        return None
-    if p_el.find(f".//{_W_TXBX_CONTENT}") is not None:
+    """空文本段落内的 w:drawing / w:pict → DocImage；文本框/小图跳过。
+
+    SmartArt（dgm:relIds）改走 B5：标记 smartart=True 交给渲染期 COM
+    光栅化（XML 整搬需复制 4 个图表部件及关系链，太脆弱，不做）。
+    """
+    smartart = p_el.find(f".//{_DGM_RELIDS}") is not None
+    if not smartart and p_el.find(f".//{_W_TXBX_CONTENT}") is not None:
         return None  # 文本框图形：文字走 _txbx_text，空框不当图片复用
     drawings = p_el.findall(f".//{_W_DRAWING}")
     picts = p_el.findall(f".//{_W_PICT}")
@@ -138,10 +140,13 @@ def _image_of(p_el, image_id: str, section_id: str, pos: int,
         warnings.append(f"{image_id}：疑似证件照，已跳过不搬运")
         return None
     if size == "icon":
+        if smartart:
+            warnings.append(f"{image_id}：SmartArt 尺寸过小，跳过不复用")
         return None
     cx, cy = _image_extent(p_el)
     return DocImage(image_id=image_id, section_id=section_id,
-                    body_index=pos, cx_emu=cx, cy_emu=cy)
+                    body_index=pos, cx_emu=cx, cy_emu=cy,
+                    smartart=smartart)
 
 
 def _grid_col_widths(tbl: Table) -> list[float] | None:

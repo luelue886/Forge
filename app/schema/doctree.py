@@ -55,6 +55,7 @@ class DocImage(BaseModel):
     cx_emu: int | None = None  # docx wp:extent 显示尺寸
     cy_emu: int | None = None
     caption: str | None = None
+    smartart: bool = False  # B5：SmartArt 图形——渲染期 COM 光栅化为图片复用
 
 
 class DocBlock(BaseModel):
