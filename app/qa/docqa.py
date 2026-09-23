@@ -19,7 +19,7 @@ from pydantic import BaseModel, Field
 from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
 from app.pipeline.genre import is_letter_frame_line
-from app.qa.ngram import ngram_hits
+from app.qa.ngram import exempt_from_tree, ngram_hits
 from app.qa.numbers import check_numbers
 from app.schema.docir import (
     DOC_LIMITS,
@@ -42,11 +42,12 @@ class DocQAIssue(BaseModel):
     detail: str
 
 
-def _text_issues(text: str, full_text: str) -> list[tuple[IssueCode, str]]:
+def _text_issues(text: str, full_text: str,
+                 exempt: set[str] | None = None) -> list[tuple[IssueCode, str]]:
     out: list[tuple[IssueCode, str]] = []
     for tok, ctx in check_numbers(text, full_text):
         out.append((IssueCode.E_NUM_UNTRACED, f"数字 {tok} 未在源文档出现：{ctx}"))
-    for g in ngram_hits(text, full_text):
+    for g in ngram_hits(text, full_text, exempt=exempt):
         out.append((IssueCode.E_PLAGIARISM, f"与源文连续 {len(g)} 字雷同：{g}"))
     return out
 
@@ -55,6 +56,7 @@ def check_sections(plan: DocPlan, tree: DocTree,
                    sections: dict[str, SectionIR]) -> list[DocQAIssue]:
     issues: list[DocQAIssue] = []
     full_text = tree.full_text
+    exempt = exempt_from_tree(tree)  # 表头/标题/源内重复模板话术（B3 窄豁免）
     for item in plan.items:
         sec = sections.get(item.section_id)
         if sec is None:
@@ -62,7 +64,7 @@ def check_sections(plan: DocPlan, tree: DocTree,
         for b in sec.blocks:
             if b.kind not in ("heading", "para") or not b.text.strip():
                 continue
-            for code, detail in _text_issues(b.text, full_text):
+            for code, detail in _text_issues(b.text, full_text, exempt):
                 issues.append(DocQAIssue(
                     code=code, severity=Severity.BLOCKING,
                     section_id=item.section_id,
@@ -86,8 +88,8 @@ _REPAIR_HINTS = {
 
 
 def _block_ok(b: HeadingBlock | ParaBlock, genre: Genre,
-              full_text: str) -> bool:
-    if not b.text.strip() or _text_issues(b.text, full_text):
+              full_text: str, exempt: set[str] | None = None) -> bool:
+    if not b.text.strip() or _text_issues(b.text, full_text, exempt):
         return False
     if genre is Genre.LETTER and (isinstance(b, HeadingBlock)
                                    or is_letter_frame_line(b.text)):
@@ -110,13 +112,14 @@ def _block_index(key: str) -> int | None:
 
 
 def _repair_section(sec: SectionIR, plan: DocPlan, client: LLMClient,
-                    pm: PromptManager, full_text: str) -> bool:
+                    pm: PromptManager, full_text: str,
+                    exempt: set[str] | None = None) -> bool:
     """违规块送 LLM 微修订；改写后复检通过才替换原块。返回是否有改动。"""
     flagged: dict[int, list[tuple[IssueCode, str]]] = {}
     for idx, b in enumerate(sec.blocks):
         if b.kind not in ("heading", "para") or not b.text.strip():
             continue
-        probs = _text_issues(b.text, full_text)
+        probs = _text_issues(b.text, full_text, exempt)
         if probs:
             flagged[idx] = probs
     if not flagged:
@@ -156,7 +159,7 @@ def _repair_section(sec: SectionIR, plan: DocPlan, client: LLMClient,
         cand = (HeadingBlock(level=old.level, text=new_text.strip())
                 if isinstance(old, HeadingBlock)
                 else ParaBlock(text=new_text.strip()))
-        if _block_ok(cand, plan.genre, full_text):
+        if _block_ok(cand, plan.genre, full_text, exempt):
             sec.blocks[idx] = cand
             changed = True
     return changed
@@ -174,6 +177,7 @@ def qa_and_repair(plan: DocPlan, tree: DocTree,
     """
     pm = pm or PromptManager()
     seq_of = {it.section_id: it.seq for it in plan.items}
+    exempt = exempt_from_tree(tree)
     issues = check_sections(plan, tree, sections)
     for _round in range(1, max_rounds + 1):
         if not issues:
@@ -182,7 +186,7 @@ def qa_and_repair(plan: DocPlan, tree: DocTree,
             sec = sections.get(sid)
             if sec is None:
                 continue
-            _repair_section(sec, plan, client, pm, tree.full_text)
+            _repair_section(sec, plan, client, pm, tree.full_text, exempt)
             if sections_dir is not None and sid in seq_of:
                 p = sections_dir / f"sec_{seq_of[sid]:02d}.ir.json"
                 p.write_text(sec.model_dump_json(indent=2), encoding="utf-8")

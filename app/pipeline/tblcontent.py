@@ -39,6 +39,7 @@ from app.pipeline.tablefill import (
     mask_numbers,
     unmask_numbers,
 )
+from app.qa.ngram import exempt_from_tree
 from app.schema.doctree import DocTree
 from app.schema.tblskeleton import TCell, TSkeleton, walk_grid
 from app.schema.textlen import text_weight
@@ -125,7 +126,8 @@ def _all_candidates(skeletons: list[TSkeleton], tree: DocTree
 def _round(cand: dict[str, tuple[str, str, str]],
            masked: dict[str, tuple[str, list[str]]], full_text: str,
            client: LLMClient, pm: PromptManager,
-           reasons: dict[str, str] | None
+           reasons: dict[str, str] | None,
+           exempt: set[str] | None = None,
            ) -> tuple[dict[str, str], dict[str, str]]:
     """一轮 LLM 调用 → (通过项, 退回项)。reasons 非 None 为重试轮。"""
     keys = sorted(masked) if reasons is None else sorted(reasons)
@@ -160,7 +162,7 @@ def _round(cand: dict[str, tuple[str, str, str]],
             fallbacks[k] = "占位符回填失败"
         elif cand[k][1] == "value" and restored == cand[k][0]:
             fallbacks[k] = "虚构值与原值相同"
-        elif not cell_passes(restored, full_text):
+        elif not cell_passes(restored, full_text, exempt):
             fallbacks[k] = "改写后未过复检（雷同/数字）"
         else:
             cells[k] = restored
@@ -180,7 +182,8 @@ def _split(cells: dict[str, str]) -> tuple[dict[int, dict[str, str]],
     return out_tables, out_prose
 
 
-def _load_artifact(path: Path, skeletons: list[TSkeleton], tree: DocTree
+def _load_artifact(path: Path, skeletons: list[TSkeleton], tree: DocTree,
+                   exempt: set[str] | None = None
                    ) -> tuple[dict[int, dict[str, str]], dict[str, str],
                               list[str]] | None:
     """断点产物逐项复检；任何失效 → 整体重做。"""
@@ -192,7 +195,7 @@ def _load_artifact(path: Path, skeletons: list[TSkeleton], tree: DocTree
         return None
     cand, _ = _all_candidates(skeletons, tree)
     for k, text in cells.items():
-        if k not in cand or not cell_passes(text, tree.full_text):
+        if k not in cand or not cell_passes(text, tree.full_text, exempt):
             return None
         if cand[k][1] == "value" and text == cand[k][0]:
             return None
@@ -209,8 +212,9 @@ def run_content(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
     W 级报告行)。骨架本体不改——映射由编排层渲染前套用。
     """
     art_path = art_dir / "tblcontent.json"
+    exempt = exempt_from_tree(tree)  # 表头/标题/源内重复模板话术（B3 窄豁免）
     if art_path.exists():
-        got = _load_artifact(art_path, skeletons, tree)
+        got = _load_artifact(art_path, skeletons, tree, exempt)
         if got is not None:
             return got
 
@@ -219,11 +223,12 @@ def run_content(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
     fallbacks: dict[str, str] = {}
     if cand:
         masked = {k: mask_numbers(v[0]) for k, v in cand.items()}
-        cells, fallbacks = _round(cand, masked, tree.full_text, client, pm, None)
+        cells, fallbacks = _round(cand, masked, tree.full_text, client, pm,
+                                  None, exempt)
         if fallbacks:
             # 退格前定向重试一轮：只送失败项 + 失败原因，仍败照搬
             again, still = _round(cand, masked, tree.full_text, client, pm,
-                                  fallbacks)
+                                  fallbacks, exempt)
             cells.update(again)
             fallbacks = still
     for k, reason in sorted(fallbacks.items()):

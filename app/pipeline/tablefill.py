@@ -26,7 +26,7 @@ from pydantic import BaseModel, Field
 
 from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
-from app.qa.ngram import ngram_hits
+from app.qa.ngram import exempt_from_tree, ngram_hits
 from app.qa.numbers import (
     check_numbers,
     extract_number_tokens,
@@ -190,8 +190,11 @@ def rewrite_candidates(t: DocTable) -> dict[str, tuple[str, str, str]]:
     return cand
 
 
-def cell_passes(new_text: str, full_text: str) -> bool:
-    return not ngram_hits(new_text, full_text) and not check_numbers(new_text, full_text)
+def cell_passes(new_text: str, full_text: str,
+                exempt: set[str] | None = None) -> bool:
+    """ngram 豁免集（B3）由调用方从源树构建：表头/标题/源内重复模板话术。"""
+    return (not ngram_hits(new_text, full_text, exempt=exempt)
+            and not check_numbers(new_text, full_text))
 
 
 def _norm_key(key: str) -> str:
@@ -205,7 +208,8 @@ def _artifact_path(tables_dir: Path, table_id: str) -> Path:
 
 
 def _load_artifact(path: Path, t: DocTable,
-                   full_text: str) -> tuple[dict[str, str], dict[str, str]] | None:
+                   full_text: str, exempt: set[str] | None = None
+                   ) -> tuple[dict[str, str], dict[str, str]] | None:
     """断点产物逐格复检；任何失效 → 整表重做。"""
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -215,7 +219,7 @@ def _load_artifact(path: Path, t: DocTable,
         return None
     cand = rewrite_candidates(t)
     for key, text in cells.items():
-        if key not in cand or not cell_passes(text, full_text):
+        if key not in cand or not cell_passes(text, full_text, exempt):
             return None
     return cells, fallbacks
 
@@ -224,6 +228,7 @@ def _round(t: DocTable, client: LLMClient, pm: PromptManager,
            cand: dict[str, tuple[str, str, str]],
            masked: dict[str, tuple[str, list[str]]], full_text: str,
            reasons: dict[str, str] | None,
+           exempt: set[str] | None = None,
            ) -> tuple[dict[str, str], dict[str, str]]:
     """一轮 LLM 调用 → (通过格, 退格格)。reasons 非 None 为重试轮（只送失败格）。"""
     keys = sorted(masked) if reasons is None else sorted(reasons)
@@ -258,7 +263,7 @@ def _round(t: DocTable, client: LLMClient, pm: PromptManager,
             fallbacks[k] = "占位符回填失败"
         elif cand[k][1] == "value" and restored == cand[k][0]:
             fallbacks[k] = "虚构值与原值相同"
-        elif not cell_passes(restored, full_text):
+        elif not cell_passes(restored, full_text, exempt):
             fallbacks[k] = "改写后未过复检（雷同/数字）"
         else:
             cells[k] = restored
@@ -266,10 +271,12 @@ def _round(t: DocTable, client: LLMClient, pm: PromptManager,
 
 
 def _fill_table(t: DocTable, client: LLMClient, pm: PromptManager,
-                tables_dir: Path, full_text: str) -> tuple[dict[str, str], dict[str, str]]:
+                tables_dir: Path, full_text: str,
+                exempt: set[str] | None = None
+                ) -> tuple[dict[str, str], dict[str, str]]:
     path = _artifact_path(tables_dir, t.table_id)
     if path.exists():
-        got = _load_artifact(path, t, full_text)
+        got = _load_artifact(path, t, full_text, exempt)
         if got is not None:
             return got
 
@@ -278,11 +285,12 @@ def _fill_table(t: DocTable, client: LLMClient, pm: PromptManager,
     fallbacks: dict[str, str] = {}
     if cand:
         masked = {k: mask_numbers(v[0]) for k, v in cand.items()}
-        cells, fallbacks = _round(t, client, pm, cand, masked, full_text, None)
+        cells, fallbacks = _round(t, client, pm, cand, masked, full_text, None,
+                                  exempt)
         if fallbacks:
             # 退格前定向重试一轮：只送失败格 + 失败原因，仍败照搬
             again, still = _round(t, client, pm, cand, masked, full_text,
-                                  fallbacks)
+                                  fallbacks, exempt)
             cells.update(again)
             fallbacks = still
     path.write_text(json.dumps(
@@ -297,8 +305,10 @@ def fill_all_tables(tree: DocTree, client: LLMClient, pm: PromptManager,
     tables_dir.mkdir(parents=True, exist_ok=True)
     rewrites: dict[str, dict[str, str]] = {}
     report: list[str] = []
+    exempt = exempt_from_tree(tree)  # 表头/标题/源内重复模板话术（B3 窄豁免）
     for t in tree.tables:
-        cells, fallbacks = _fill_table(t, client, pm, tables_dir, tree.full_text)
+        cells, fallbacks = _fill_table(t, client, pm, tables_dir,
+                                       tree.full_text, exempt)
         rewrites[t.table_id] = cells
         for key, reason in sorted(fallbacks.items()):
             report.append(f"[tablefill] W-CELL-FALLBACK {t.table_id} {key}: {reason}")

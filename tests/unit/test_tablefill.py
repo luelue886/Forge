@@ -118,6 +118,18 @@ def test_cell_passes():
     assert not cell_passes("覆盖 1200 条产线的统筹工作由该同志负责", full)  # 编造数字
 
 
+def test_cell_passes_exempt_template_phrasing():
+    # B3 误伤回归：源内重复 ≥2 次的模板话术（"评价标准"列主力）带豁免照搬通过
+    tmpl = "对岗位相关知识的掌握运用及解决实际问题的能力较强"
+    full = f"评价标准 {tmpl} 评价标准 {tmpl} 其他职责描述各有不同"
+    assert not cell_passes(tmpl, full)  # 无豁免：照抄命中 → 退格（旧行为）
+    assert cell_passes(tmpl, full, exempt={tmpl})  # 豁免后通过
+    # 豁免只放行术语本身：独特表达照抄仍不过
+    unique = "负责华东区域市场渠道的整体拓展与重点客户维护工作"
+    full2 = f"{unique} 评价标准 {tmpl}"
+    assert not cell_passes(unique, full2, exempt={tmpl})
+
+
 # ---- fill_all_tables：零候选零 LLM ----
 
 def test_fill_all_tables_zero_llm_without_candidates(tmp_path):
@@ -142,6 +154,31 @@ def test_fill_all_tables_zero_llm_without_candidates(tmp_path):
 
 _LONG_A = "统筹产线日常管理与设备运维督导，覆盖 12 条产线"
 _LONG_B = "负责区域市场渠道拓展与重点客户维护，新增 45 家渠道"
+
+
+def test_fill_all_tables_exempt_template_no_fallback(tmp_path):
+    """B3 端到端：源内重复 ≥2 次的模板话术格，LLM 原样返回不再退格。
+
+    旧行为：模板话术照搬 → ngram 命中 → W-CELL-FALLBACK（实测评价标准列主力）。
+    两表各一格（同列相邻重复会被 vMerge 去重逻辑跳过，分表才是真实形态）。
+    """
+    from app.pipeline.tablefill import _CellsOut
+
+    tmpl = "对岗位相关知识的掌握运用及解决实际问题的能力较强"
+    t1 = DocTable(table_id="tbl-001", section_id="sec-0001", n_rows=1, n_cols=2,
+                  header=["评价标准", "分值"], rows=[[tmpl, "10"]])
+    t2 = DocTable(table_id="tbl-002", section_id="sec-0001", n_rows=1, n_cols=2,
+                  header=["评价标准", "分值"], rows=[[tmpl, "8"]])
+    tree = _tree(f"评价标准 {tmpl} 评价标准 {tmpl}", [t1, t2])
+    client = _FakeClient([
+        _CellsOut(cells={"0,0": tmpl}),  # 首轮：表1 模板话术原样返回
+        _CellsOut(cells={"0,0": tmpl}),  # 首轮：表2 模板话术原样返回
+    ])
+    rewrites, report = fill_all_tables(tree, client, PromptManager(),
+                                       tmp_path / "tables")
+    assert len(client.calls) == 2  # 每表一轮，无退格重试
+    assert rewrites == {"tbl-001": {"0,0": tmpl}, "tbl-002": {"0,0": tmpl}}
+    assert report == []  # 零 W-CELL-FALLBACK
 
 
 def _two_candidate_tree() -> DocTree:

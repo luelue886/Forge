@@ -184,11 +184,13 @@ def test_qa_and_repair_clean_block_never_sent_or_replaced():
 
 
 def test_qa_and_repair_heading_overlong_rejected():
-    # 标题雷同送修，但改写后 >25 汉字当量 → 拒收，保留旧标题（残留上报）
+    # 标题雷同送修，但改写后 >25 汉字当量 → 拒收，保留旧标题（残留上报）。
+    # B3 后章节标题镜像源章节标题不再误伤——雷同对象须是源文正文（非标题）
     h = "一、智慧办公平台推广项目实施进展说明"
     root = DocSection(section_id="sec-0000", level=0, title="工作总结")
-    root.subsections = [DocSection(section_id="sec-0001", level=1, title=h,
-                                   blocks=[_blk("正文段落与源文不雷同。")])]
+    root.subsections = [DocSection(section_id="sec-0001", level=1,
+                                   title="一、项目进展",
+                                   blocks=[_blk(h)])]
     parts = [root.title, root.subsections[0].title,
              *[b.text for b in root.subsections[0].blocks]]
     tree = DocTree(
