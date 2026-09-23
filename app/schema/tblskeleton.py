@@ -109,6 +109,66 @@ def walk_grid(s: TSkeleton) -> tuple[dict[tuple[int, int], TCell],
     return anchors, grid
 
 
+def normalize_skeleton(s: TSkeleton, ti: int = 0) -> tuple[TSkeleton, list[str]]:
+    """几何非法骨架的确定性降维重排（A1）——修几何，不碰内容语义。
+
+    背景：LLM 架构师对复杂合并网格的 span 数学不稳（实测三类错：越界/
+    空洞/重叠，且 retry 每轮犯不同错互踢皮球）。合法骨架原样返回（合法
+    rowspan 保留，正常路径零影响）；非法时降维重排：
+
+    - rowspan 全部降 1——跨行视觉语义放弃（竖排完整性由 _vertical_joins
+      的字符串序检查保障，不依赖 rowspan；实测两次成功运行的最终骨架
+      也全部 rowspan=1，即此形态本就是正确输出的常见形态）；
+    - 逐行游标走位：越界格截断 colspan 至剩余宽度；走满后剩余格丢弃
+      （格内容是掩码占位符，丢失会被 coverage_missing 抓为语义错误
+      如实 retry——修几何不隐瞒内容损失）；行尾未满则末格扩宽补洞；
+      空行补整行 note 格。
+
+    返回 (修复骨架, W 报告行)；无法重排的（total_cols<1 / rows 空 /
+    规模超限等非几何错）原样传出。
+    """
+    errors = validate_skeleton(s)
+    if not errors:
+        return s, []
+    tag = f"[tblarch-normalize] t{ti}"
+    head = errors[0]
+    report = [f"{tag}: 几何自动重排（{head}"
+              + (f" 等 {len(errors)} 项" if len(errors) > 1 else "") + "）"]
+    if (s.total_cols < 1 or not s.rows
+            or any("超限" in e for e in errors)):  # 规模错重排救不了
+        return s, [f"{tag}: 无法自动重排（{head}）"]
+    new_rows: list[TRow] = []
+    for r, row in enumerate(s.rows):
+        cells: list[TCell] = []
+        c = 0
+        for cell in row.cells:
+            if c >= s.total_cols:
+                report.append(f"{tag} 第{r}行溢出格丢弃"
+                              f"（{cell.content[:12]}）")
+                continue
+            rowspan = 1
+            colspan = max(cell.colspan, 1)
+            if c + colspan > s.total_cols:
+                colspan = s.total_cols - c
+                report.append(f"{tag} 第{r}行格截断至剩余宽度 {colspan}")
+            cells.append(cell.model_copy(update={"rowspan": rowspan,
+                                                 "colspan": colspan}))
+            c += colspan
+        if not cells:
+            cells = [TCell(colspan=s.total_cols, style="note")]
+            report.append(f"{tag} 第{r}行无有效格，补整行 note 格")
+        elif c < s.total_cols:
+            cells[-1] = cells[-1].model_copy(
+                update={"colspan": cells[-1].colspan + s.total_cols - c})
+            report.append(f"{tag} 第{r}行末格扩宽补洞")
+        new_rows.append(TRow(cells=cells))
+    fixed = s.model_copy(update={"rows": new_rows})
+    post = validate_skeleton(fixed)
+    if post:  # 理论不可达（行行走位必满足三不变量）；防御性回退
+        return s, [f"{tag}: 自动重排失败，保留原骨架（{post[0]}）"]
+    return fixed, report
+
+
 def validate_skeleton(s: TSkeleton) -> list[str]:
     """占位网格游标走格：不重叠、不越界、无空洞。返回错误清单（空即合法）。"""
     errors: list[str] = []

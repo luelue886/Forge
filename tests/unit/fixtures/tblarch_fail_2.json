@@ -1,0 +1,987 @@
+{
+ "tables": [
+  {
+   "table_title": "人事专员绩效考核表",
+   "total_cols": 10,
+   "rows": [
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "所属部门",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "人力资源部",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "职位名称",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "人力资源专员",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "考核者职位",
+       "colspan": 1,
+       "rowspan": 3,
+       "style": "label"
+      },
+      {
+       "content": "人力资源经理",
+       "colspan": 2,
+       "rowspan": 3,
+       "style": "input"
+      },
+      {
+       "content": "考核时间",
+       "colspan": 1,
+       "rowspan": 3,
+       "style": "label"
+      },
+      {
+       "content": "",
+       "colspan": 2,
+       "rowspan": 3,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "考核指标",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "header"
+      },
+      {
+       "content": "具体标准及计分方式",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "header"
+      },
+      {
+       "content": "权重",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "header"
+      },
+      {
+       "content": "数据来源",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "header"
+      },
+      {
+       "content": "员工自评",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "header"
+      },
+      {
+       "content": "上级评分",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "header"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "出勤情况",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "⟦1⟧.对迟到早退及请假情况进行考核，总分⟦3⟧分⟦4⟧.迟到早退等情况每发生一次扣⟦5⟧分，请假一天扣⟦6⟧分",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦2⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "考勤记录",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "招聘任务执行情况",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "A（⟦7⟧-⟦8⟧分）：招聘基础工作优秀完成，招聘任务完成⟦9⟧%以上B（⟦10⟧-⟦11⟧分）：招聘基础工作基本无疏漏，招聘任务完成⟦12⟧%-⟦13⟧%之间C（⟦14⟧-⟦15⟧分）：招聘基础工作有较小疏漏，招聘任务完成⟦16⟧%-⟦17⟧%之间D（⟦20⟧分以下）:招聘基础工作有较大疏漏，招聘任务完成⟦21⟧%-⟦22⟧%之间备注：招聘基础工作包括：招聘信息及时有效地发布、面试邀约及面试人员情况跟进与维护、招聘的开发招聘任务完成情况未达⟦23⟧%者⟦24⟧分招聘任务完成情况指标P=实际招聘人数/计划招聘人数",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦18⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "招聘工作实际情况",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "人事档案管理",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "A（⟦25⟧-⟦26⟧分）:档案与花名册无损、无错、及时更新B（⟦27⟧-⟦28⟧分）:档案与花名册有轻微损坏或错误并及时修改好C（⟦29⟧-⟦30⟧分）:档案与花名册有损坏或错误没能及时改正影响工作D（⟦31⟧-⟦32⟧分）:档案与花名册有损坏或错误导致严重工作失误",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦2⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "人事档案管理检查",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "人事手续",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "入职、离职、岗位调动等各项人事手续办理完整且及时",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦2⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "入职规范与检查",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "个人违规及客户投诉",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "A（⟦33⟧-⟦34⟧分）:违规及投诉⟦35⟧次B（⟦36⟧-⟦37⟧分）:违规及投诉⟦38⟧次C（⟦39⟧-⟦40⟧分）:违规及投诉⟦41⟧-⟦42⟧次D（⟦43⟧-⟦44⟧分）:违规及投诉⟦45⟧次以上客户包括外部客户和内部客户，内部客户包括公司各部门和员工",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦2⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "内外部数据调查收集",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "工作技能",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "A（⟦46⟧-⟦47⟧分）:对岗位相关知识的掌握、运用非常熟练并能找到更好的方式去工作提高工作能力B（⟦48⟧-⟦49⟧分）:对岗位相关知识的掌握、运用较熟悉并能很好的完成工作C（⟦50⟧-⟦51⟧分）:对岗位相关知识的掌握、运用一般但能完成基本工作D（⟦52⟧-⟦53⟧分）:对岗位相关知识的掌握、运用不熟悉，工作会出现差错",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦2⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "上级及工作",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "创新能力",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "A（⟦54⟧分）:问题意识极较强，能够积极主动工作更有效，及时与上级沟通方案并落实B（⟦56⟧-⟦57⟧分）:问题意识极强，偶尔能提出问题与工作改进方案C（⟦58⟧-⟦59⟧分）:问题意识一般，很少提出问题与工作改进方案D（⟦60⟧分以下）:问题意识较差，不会主动思考问题与提出工作改进方案",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦55⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "上级",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "工作总结与计划能力",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "总分⟦61⟧分按规定按时提交工作总结及计划⟦62⟧.每次晚交扣⟦63⟧分，当月晚交达⟦64⟧次以上扣⟦65⟧分⟦66⟧.每次不交扣⟦67⟧分，当月不交达⟦68⟧次以上扣⟦69⟧分",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦55⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "工作总结与计划管理",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "服务意识与责任心",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "A（⟦70⟧分）:服务意识与责任感较强，常为本部门或跨部门奉献服务自身能及的事务B（⟦71⟧-⟦72⟧分）:服务意识与责任感强，偶尔为本部门或跨部门做力所能及的事务C（⟦73⟧-⟦74⟧分）:服务意识与责任感一般，很少做为本部门及跨部门奉献服务的事务D（⟦75⟧分以下）:服务意识与责任感表现较差，没有奉献精神",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦55⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "上级及同事",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "工作态度及主动积极性",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "积极面对分配工作任务，主动发现工作问题并解决A（⟦76⟧分）:除了很好地完成本职工作外，能积极主动去发现并完成任务之外的工作B（⟦77⟧-⟦78⟧分）:以积极的态度完成本职工作，能发现并提出工作中的问题点C（⟦79⟧-⟦80⟧分）:积极完成本职工作但不能发现工作中的问题点D（⟦81⟧分以下）:工作态度消极，不能发现工作中的问题",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦55⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "上级及同事",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "工作协调与沟通",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "与本部门或者跨部门同事协同工作，以及沟通协调能力A（⟦82⟧分）:能通过自身与本部门或跨部门的深入沟通协调，顺畅优质的推进并完成工作B（⟦83⟧-⟦84⟧分）:能提出意见和建议，并与本部门或跨部门共同解决问题，很好的完成工作C（⟦85⟧-⟦86⟧分）:与本部门或跨部门合作，承担一般性事务，协助团队完成工作D（⟦87⟧分以下）::与本部门或跨部门合作,经常产生矛盾冲突，并不能协调解决完成",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦55⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "上级及同事",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "自我发展（学习、创新、管理）",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "注重个人发展成长、学习，工作有创新建设性建议和自我调节、时间管理能力A（⟦88⟧分）:主动发现工作中的不足，积极主动学习成长，在工作创新建议、自我调节、时间管理上表现优秀B（⟦89⟧-⟦90⟧分）:需提醒工作中的不足，并通过努力学习成长，在工作创新建议、自我调节、时间管理上发现不全面C（⟦91⟧-⟦92⟧分）:需不断提醒工作中的不足，需较长时间改善，在工作创新建议、自我调节、时间管理上表现一般D（⟦94⟧分以下）:经过不断提醒工作中的不足，未有成长改善，在工作创新建议、自我调节、时间管理上无表现",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦55⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "上级",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "⟦95⟧%",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "-",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "",
+       "colspan": 5,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "分",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "因工作中某项事情、某段时间或某方面表现突出（如：提出合理建议和意见，经部门或公司采纳后，根据统计情况给予⟦96⟧分余下的加分）加分后的绩效总分不超过⟦97⟧分",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "note"
+      },
+      {
+       "content": "",
+       "colspan": 7,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "合评语",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "由主管写）",
+       "colspan": 9,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "declare"
+      },
+      {
+       "content": "考核者签名：日期",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "declare"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "declare"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 4,
+       "rowspan": 1,
+       "style": "declare"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "管回顾",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "表现良好的事迹/行为",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "待改善之处",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "input"
+      },
+      {
+       "content": "内容/方式",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "工意见",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "label"
+      },
+      {
+       "content": "",
+       "colspan": 3,
+       "rowspan": 1,
+       "style": "input"
+      }
+     ]
+    },
+    {
+     "cells": [
+      {
+       "content": "",
+       "colspan": 2,
+       "rowspan": 1,
+       "style": "declare"
+      },
+      {
+       "content": "主管签字/日期",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "declare"
+      },
+      {
+       "content": "",
+       "colspan": 1,
+       "rowspan": 1,
+       "style": "declare"
+      }
+     ]
+    }
+   ],
+   "src_tables": [
+    "tbl-001",
+    "tbl-002",
+    "tbl-003",
+    "tbl-004",
+    "tbl-005",
+    "tbl-006",
+    "tbl-007",
+    "tbl-008",
+    "tbl-009",
+    "tbl-010",
+    "tbl-011",
+    "tbl-012",
+    "tbl-013",
+    "tbl-014",
+    "tbl-015",
+    "tbl-016",
+    "tbl-017",
+    "tbl-018",
+    "tbl-019",
+    "tbl-020",
+    "tbl-021",
+    "tbl-022",
+    "tbl-023",
+    "tbl-024"
+   ]
+  }
+ ],
+ "notes": "将各考核指标行中因格内文字换行被解析器拆出的多行合并回单行单元格（rowspan 收敛为 1），消除跨行占位与后续行单元格的列冲突及越界；所有文字与占位符保持原样。"
+}

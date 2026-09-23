@@ -34,6 +34,7 @@ from app.schema.tblskeleton import (
     MaskPool,
     TSkeleton,
     coverage_missing,
+    normalize_skeleton,
     validate_skeleton,
 )
 
@@ -262,6 +263,7 @@ def run_architect(tree: DocTree, plan: DocPlan, client: LLMClient,
     system = pm.render("tblarch/system.md")
     errors: list[str] = []
     out: ArchitectOut | None = None
+    norm_report: list[str] = []  # normalize_skeleton 的 W 级痕迹（随产物落盘）
     for attempt in (1, 2, 3):
         if attempt == 1:
             messages = [
@@ -286,6 +288,13 @@ def run_architect(tree: DocTree, plan: DocPlan, client: LLMClient,
                                     extra_body=_THINKING_OFF)
         except Exception as e:  # noqa: BLE001 — LLM 连续不可用 → 回落旧链路
             raise FormBranchFallback(f"架构师 LLM 调用失败：{e}") from e
+        # 几何降维重排（A1）：LLM 对复杂合并网格的 span 数学不稳（越界/
+        # 空洞/重叠，retry 每轮犯不同错）——确定性修复几何，让 retry 只
+        # 面对语义错误（池覆盖/竖排序），错误清单更聚焦
+        for ti, s in enumerate(out.tables):
+            fixed, notes = normalize_skeleton(s, ti)
+            out.tables[ti] = fixed
+            norm_report.extend(notes)
         errors = _check(out.tables, pool, vert)
         if not errors:
             break
@@ -294,7 +303,7 @@ def run_architect(tree: DocTree, plan: DocPlan, client: LLMClient,
             f"架构师三轮未过校验（{len(errors)} 项）："
             + "；".join(errors[:5]))
 
-    report: list[str] = []
+    report: list[str] = list(norm_report)
     for ti, s in enumerate(out.tables):
         _rebuild_skeleton(s, pool, ti, report)
     leftover = [s.table_title or f"t{ti}" for ti, s in enumerate(out.tables)
