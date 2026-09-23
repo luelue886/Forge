@@ -81,6 +81,16 @@ td.empty { color: #98a2ae; text-align: center; }
 .st-GENERATING, .st-RENDERED, .st-QA, .st-REPAIRING { background: #e6f7ef; color: #0d7a4b; }
 .st-DONE { background: #d9f2e5; color: #0a6b40; }
 .st-FAILED { background: #fdeaea; color: #b03030; }
+.st-CANCELLED { background: #eee8f4; color: #6b4fa0; }
+
+button.cancel {
+  background: #fff;
+  color: #b03030;
+  border: 1px solid #d9a0a0;
+  padding: 4px 14px;
+  font-size: 13px;
+}
+button.cancel:disabled { background: #fafafa; color: #98a2ae; border-color: #e3e8ef; }
 
 pre {
   background: #2b313a;

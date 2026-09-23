@@ -159,10 +159,10 @@ def _cmd_run(args) -> int:
 
     print(f"job_id={job.job_id}")
     if args.genre:
-        while job.status.value not in ("PLANNED", "FAILED"):
+        while job.status.value not in ("PLANNED", "FAILED", "CANCELLED"):
             _time.sleep(0.5)
-        if job.status.value == "FAILED":
-            print(f"失败：{job.error}")
+        if job.status.value in ("FAILED", "CANCELLED"):
+            print(f"{job.status.value}：{job.error or job.detail}")
             return 1
         try:
             job = mgr.confirm(job.job_id, genre=args.genre)
@@ -179,13 +179,16 @@ def _cmd_run(args) -> int:
         return 0
 
     last = None
-    while job.status.value not in ("DONE", "FAILED"):
+    while job.status.value not in ("DONE", "FAILED", "CANCELLED"):
         _time.sleep(1)
         cur = (job.status.value, job.detail)
         if cur != last:
             print(f"[{cur[0]:<11}] {cur[1]}")
             last = cur
     d = job.to_dict()
+    if job.status.value == "CANCELLED":
+        print("任务已取消（已完成阶段的产物保留，可重跑续用）")
+        return 1
     if job.status.value == "DONE":
         if args.product == "doc":
             print(f"完成：{d['output_docx']}")
@@ -207,6 +210,19 @@ def _cmd_confirm(args) -> int:
         print(f"[fail] {e}")
         return 1
     print(f"已确认 {job.job_id}，流水线继续。")
+    return 0
+
+
+def _cmd_cancel(args) -> int:
+    from app.services.jobs import JobError, JobManager
+
+    try:
+        job = JobManager().cancel(args.job_id)
+    except JobError as e:
+        print(f"[fail] {e}")
+        return 1
+    print(f"已请求取消 {job.job_id}（当前 {job.status.value}，"
+          "管线将在下一个阶段边界停止）")
     return 0
 
 
@@ -272,6 +288,10 @@ def main(argv: list[str] | None = None) -> int:
     p_confirm.add_argument("--genre", choices=("letter", "report", "form"),
                            help="文档任务可同时改体裁")
     p_confirm.set_defaults(func=_cmd_confirm)
+
+    p_cancel = sub.add_parser("cancel", help="取消运行中/待确认的任务（协作式，不打断当前 LLM/COM 调用）")
+    p_cancel.add_argument("job_id")
+    p_cancel.set_defaults(func=_cmd_cancel)
 
     p_status = sub.add_parser("status", help="查看任务状态")
     p_status.add_argument("job_id", nargs="?")

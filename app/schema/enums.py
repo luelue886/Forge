@@ -41,6 +41,7 @@ class JobStatus(str, Enum):
     REPAIRING = "REPAIRING"
     DONE = "DONE"
     FAILED = "FAILED"
+    CANCELLED = "CANCELLED"
 
 
 class Severity(str, Enum):

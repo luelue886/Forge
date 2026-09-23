@@ -22,7 +22,7 @@ from pathlib import Path
 
 from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
-from app.pipeline.runner import _JobLike
+from app.pipeline.runner import _JobLike, _check_cancel
 from app.schema.docplan import DocPlan
 from app.schema.enums import Genre, JobStatus
 from app.schema.spotcheck import SpotCheckOut, SpotIssue
@@ -139,6 +139,7 @@ def run_spot_check_loop(job: _JobLike, plan: DocPlan, client: LLMClient,
     passed = False
     mode = "vision"
     for r in range(1, MAX_ROUNDS + 1):
+        _check_cancel(job)  # 轮间取消点（A2）
         pages = sample_pages(job.dir / "pages")  # 每轮重抽：重渲染后页数可能变
         if not pages:
             return True, 0, []  # 无渲染页（无 COM 环境）不构成失败
