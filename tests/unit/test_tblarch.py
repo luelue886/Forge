@@ -23,6 +23,7 @@ from app.schema.tblskeleton import (
     TSkeleton,
     TVisualTable,
     coverage_missing,
+    merge_photo_cells,
     normalize_skeleton,
     renormalize_widths,
     validate_skeleton,
@@ -316,6 +317,109 @@ def test_normalize_dropped_cell_surfaces_as_coverage_error():
     assert any("丢弃" in r for r in rep)
     errs = coverage_missing([fixed], pool)
     assert any("未进骨架" in e for e in errs)  # 内容损失如实上浮
+
+
+# ---- merge_photo_cells（F2）：照片格确定性纵向合并 ----
+
+def _photo_skeleton() -> TSkeleton:
+    # 干部履历表实录形态：照片标签格 rowspan=1，下方 3 行各有跨骑/落入
+    # 照片列区间的空书写格
+    return _sk("干部履历表", 8, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"),
+         ("正面免冠彩色照片(2寸)", 2, 1, "input"),
+         ("民族", 1, 1, "label"), ("", 1, 1, "input"),
+         ("籍贯", 1, 1, "label"), ("", 1, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 2, 1, "input"),
+         ("", 4, 1, "input"), ("出生日期", 1, 1, "label")],
+        [("性别", 1, 1, "label"), ("", 2, 1, "input"),
+         ("", 4, 1, "input"), ("政治面貌", 1, 1, "label")],
+        [("学历", 1, 1, "label"), ("", 2, 1, "input"),
+         ("", 4, 1, "note"), ("现职务", 1, 1, "label")],
+    ])
+
+
+def test_merge_photo_cells_realistic_shape():
+    s = _photo_skeleton()
+    merged, report = merge_photo_cells(s, 0)
+    assert validate_skeleton(merged) == []
+    # 照片格 1 → 4 行整格；跨骑空格按区间边界切分（2→1、4→3）
+    assert merged.rows[0].cells[2].rowspan == 4
+    assert merged.rows[1].cells[1].colspan == 1
+    assert merged.rows[1].cells[2].colspan == 3
+    # 标签文字保留；原骨架不被就地修改
+    assert merged.rows[0].cells[2].content == "正面免冠彩色照片(2寸)"
+    assert s.rows[0].cells[2].rowspan == 1
+    assert any("W-PHOTO-MERGE" in r and "1 → 4" in r for r in report)
+
+
+def test_merge_photo_cells_already_merged_noop():
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"), ("照片", 2, 4, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input")],
+        [("性别", 1, 1, "label"), ("", 1, 1, "input")],
+        [("学历", 1, 1, "label"), ("", 1, 1, "input")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert report == [] and merged is s
+
+
+def test_merge_photo_cells_stops_at_content_below():
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"), ("照片", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"),
+         ("工作单位", 2, 1, "label")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert report == [] and merged is s  # 下方非空 → 不合并
+
+
+def test_merge_photo_cells_stops_at_wrong_style_below():
+    # 覆盖区间的是 label 格（空内容）而非空 input/note → 不吸收
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"), ("照片", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "label")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert report == [] and merged is s
+
+
+def test_merge_photo_cells_masked_label_detected():
+    # 架构师循环内骨架是掩码态：标注数字已替换为 ⟦N⟧，判定不受影响
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"),
+         ("照片(⟦17⟧寸)", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "input")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert validate_skeleton(merged) == []
+    assert merged.rows[0].cells[2].rowspan == 2
+    assert any("W-PHOTO-MERGE" in r for r in report)
+
+
+def test_merge_photo_cells_invalid_skeleton_passthrough():
+    s = _sk("t", 2, [[("A", 3, 1, "input")]])  # 越界非法
+    merged, report = merge_photo_cells(s, 0)
+    assert merged is s and report == []
+
+
+def test_run_architect_photo_merge_wired(tmp_path):
+    # 接线验证：架构师输出未合并照片格 → run_architect 落盘前已合并
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=2, n_cols=4,
+                 header=["姓名", "照片", "", ""], rows=[["张三", "", "", ""]])
+    tree = _tree([t], prose=("人员表",))
+    sk = _sk("人员表", 4, [
+        [("姓名", 1, 1, "label"), ("张三", 1, 1, "input"), ("照片", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "input")],
+        [("性别", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "input")],
+    ])
+    client = _FakeClient([type("Out", (), {"tables": [sk], "notes": ""})()])
+    tables, _, report = run_architect(tree, _plan(), client,
+                                      PromptManager(), tmp_path)
+    assert len(client.calls) == 1  # 合法输出首轮即过（合并不触发 retry）
+    assert tables[0].rows[0].cells[2].rowspan == 3
+    assert any("W-PHOTO-MERGE" in r for r in report)
+    art = json.loads((tmp_path / "tblarch.json").read_text(encoding="utf-8"))
+    assert any("W-PHOTO-MERGE" in r for r in art["report"])
 
 
 # ---- A1 golden replay：真实失败响应 → normalize 后几何全绿 ----

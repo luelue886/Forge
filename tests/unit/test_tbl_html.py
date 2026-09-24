@@ -127,3 +127,19 @@ def test_build_form_html_skips_bad_table_index():
     html = build_form_html("t", [FormBlock(kind="table", table_index=5)],
                            [_skeleton()], [_visual()])
     assert "<table" not in html
+
+
+def test_build_form_html_photo_cell_centered():
+    # 照片格（含 照片/相片 的短标签）水平居中，普通 input 仍左对齐
+    s = TSkeleton(table_title="", total_cols=2, rows=[
+        TRow(cells=[TCell(content="姓名", style="label"),
+                    TCell(content="正面免冠彩色照片(2寸)", rowspan=3,
+                          style="input")]),
+        TRow(cells=[TCell(content="备注", style="label")]),
+        TRow(cells=[TCell(content="性别", style="label")]),
+    ])
+    html = build_form_html("t", [FormBlock(kind="table", table_index=0)],
+                           [s], [])
+    assert ('<td rowspan="3" align="center" '
+            'style="border:0.5pt solid #BFBFBF">'
+            '正面免冠彩色照片(2寸)</td>') in html

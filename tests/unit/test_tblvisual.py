@@ -8,6 +8,7 @@ from app.pipeline.tblvisual import (
     _col_weights,
     _fallback_visual,
     _table_stats,
+    enforce_photo_heights,
     enforce_photo_widths,
     run_visual,
 )
@@ -116,6 +117,8 @@ def test_photo_size_cm_patterns():
     long_note = ("照片须采用近期拍摄的正面免冠半身彩色照，尺寸为二寸，"
                  "背面注明姓名及出生年月")  # 长说明文本不算照片格
     assert photo_size_cm(long_note) is None
+    # 掩码态：架构师循环内标注数字已替换为 ⟦N⟧，判定不受影响（缺省 2寸）
+    assert photo_size_cm("正面免冠彩色照片(⟦17⟧寸)") == (3.5, 4.9)
 
 
 def test_is_photo_cell():
@@ -169,6 +172,39 @@ def test_enforce_photo_widths_feedback_clamp():
         TCell(content="照片", style="input")])])
     w = enforce_photo_widths([90, 10], s)
     assert w[1] >= round(3.5 / 14.64 * 100) and sum(w) == 100
+
+
+def _photo_span_skeleton() -> TSkeleton:
+    """照片格跨 4 行（rowspan=4，占住 col1-2），下方行只余 col0。"""
+    return TSkeleton(table_title="t", total_cols=3, rows=[
+        TRow(cells=[TCell(content="姓名", style="label"),
+                    TCell(content="照片", colspan=2, rowspan=4, style="input")]),
+    ] + [TRow(cells=[TCell(content="备注", style="label")])
+         for _ in range(3)])
+
+
+def test_enforce_photo_heights_clamps_span_sum():
+    s = _photo_span_skeleton()
+    h = enforce_photo_heights([20, 20, 20, 20], s)
+    assert h[:3] == [20, 20, 20]  # 差额只加到跨行末行
+    assert sum(h) >= round(4.9 * 28.35)
+
+
+def test_enforce_photo_heights_idempotent():
+    s = _photo_span_skeleton()
+    h1 = enforce_photo_heights([20, 20, 20, 20], s)
+    assert enforce_photo_heights(h1, s) == h1  # 最小值语义，二次钳制不动
+
+
+def test_run_visual_photo_height_clamped(tmp_path):
+    """LLM 行高不足照片标准高 → 输出前确定性钳制（F2）。"""
+    v = TVisualTable(table_index=0, col_widths=[30, 40, 30],
+                     row_heights=[20, 20, 20, 20])
+    client = _FakeClient([type("Out", (), {"tables": [v]})()])
+    visuals, _ = run_visual([_photo_span_skeleton()], _tree([]), client,
+                            PromptManager(), tmp_path)
+    assert visuals[0].row_heights[:3] == [20, 20, 20]
+    assert sum(visuals[0].row_heights) >= round(4.9 * 28.35)
 
 
 # ---- run_visual：LLM 编排 ----

@@ -33,7 +33,7 @@ from app.render.docstyle import (
     TITLE_SPACE_AFTER,
     WIDE_TABLE_COLS,
 )
-from app.schema.tblskeleton import TSkeleton, TVisualTable
+from app.schema.tblskeleton import TSkeleton, TVisualTable, is_photo_cell
 
 _VERTICAL_MIN_ROWS = 3
 _VERTICAL_MAX_CHARS = 10
@@ -72,7 +72,8 @@ def _cell_html(cell, content: str) -> str:
     if cell.style == "header":
         return (f'<th{attrs} bgcolor="#{TABLE_HEADER_FILL}" align="center" '
                 f'style="{border};font-weight:bold">{inner}</th>')
-    align = "center" if cell.style in ("label", "option") else "left"
+    align = "center" if cell.style in ("label", "option") \
+        or is_photo_cell(cell) else "left"
     return f'<td{attrs} align="{align}" style="{border}">{inner}</td>'
 
 

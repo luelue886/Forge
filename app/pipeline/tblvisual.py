@@ -3,8 +3,9 @@
 列宽由代码确定性计算（F1）：源表列宽比例优先（DocTable.col_widths 按
 src_tables 映射 + 列数匹配），无先验时按内容当量 + 空输入列占位当量
 （防书写区被挤没）；照片格跨列钳制标准证件照最小宽。LLM 只负责行高
-（书写行给足、表头紧凑）；抽检意见重跑轮锚定旧参数最小修改，事后
-照片钳制兜底。LLM 失败 → 确定性基准列宽（行高不指定）。
+（书写行给足、表头紧凑）；照片格跨行行高合计钳制标准证件照最小高（F2）。
+抽检意见重跑轮锚定旧参数最小修改，事后照片钳制兜底。LLM 失败 → 确定性
+基准列宽（行高不指定）。
 
 断点：artifacts/tblvisual.json 存在且逐表复检通过 → 跳过 LLM。
 """
@@ -20,6 +21,7 @@ from app.llm.prompts import PromptManager
 from app.schema.doctree import DocTree
 from app.schema.tblskeleton import (
     MIN_COL_PERCENT,
+    ROW_HEIGHT_RANGE,
     TSkeleton,
     TVisualTable,
     VisualOut,
@@ -126,6 +128,23 @@ def _photo_min_widths(widths: list[int], s: TSkeleton) -> list[int]:
 def enforce_photo_widths(widths: list[int], s: TSkeleton) -> list[int]:
     """照片最小宽钳制 + 归一（最小值语义，幂等，不与抽检意见震荡）。"""
     return renormalize_widths(_photo_min_widths(list(widths), s))
+
+
+def enforce_photo_heights(heights: list[int], s: TSkeleton) -> list[int]:
+    """照片格跨行行高合计 ≥ 标准证件照高：差额加到跨行末行（幂等钳制）。"""
+    h = list(heights)
+    anchors, _ = walk_grid(s)
+    for (r, c), cell in anchors.items():
+        size = photo_size_cm(cell.content)
+        if size is None:
+            continue
+        span = range(r, min(r + cell.rowspan, len(h)))
+        need = round(size[1] * 28.35)  # cm → pt
+        deficit = need - sum(h[i] for i in span)
+        if deficit > 0:
+            h[span.stop - 1] = min(ROW_HEIGHT_RANGE[1],
+                                   h[span.stop - 1] + deficit)
+    return h
 
 
 def _base_widths(s: TSkeleton, tree: DocTree) -> list[int]:
@@ -277,6 +296,16 @@ def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
         for ti, s in enumerate(skeletons):
             visuals.append(_fallback_visual(ti, s, tree))
             report.append(f"[tblvisual] W-VISUAL-FALLBACK t{ti}: {reason}（确定性兜底列宽）")
+
+    # 照片行高钳制（F2）：确定性后处理——首轮 / 意见重跑统一生效（断点
+    # 续读的旧产物已含钳制结果，幂等最小值语义不重复加高）
+    visuals = [
+        TVisualTable(
+            table_index=v.table_index, col_widths=v.col_widths,
+            row_heights=(enforce_photo_heights(v.row_heights,
+                                               skeletons[v.table_index])
+                         if v.row_heights is not None else None))
+        for v in visuals]
 
     art_dir.mkdir(parents=True, exist_ok=True)
     art_path.write_text(json.dumps(
