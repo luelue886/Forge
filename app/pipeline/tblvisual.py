@@ -1,11 +1,12 @@
 """视觉总监：骨架 → 列宽% + 行高 pt（form+PDF 分支第 3 步）。
 
 列宽由代码确定性计算（F1）：源表列宽比例优先（DocTable.col_widths 按
-src_tables 映射 + 列数匹配），无先验时按内容当量 + 空输入列占位当量
-（防书写区被挤没）；照片格跨列钳制标准证件照最小宽。LLM 只负责行高
-（书写行给足、表头紧凑）；照片格跨行行高合计钳制标准证件照最小高（F2）。
-抽检意见重跑轮锚定旧参数最小修改，事后照片钳制兜底。LLM 失败 → 确定性
-基准列宽（行高不指定）。
+src_tables 映射 + 列数匹配），先验经可用性审计——短标签列远宽于书写列
+的语义反转只搬反转对（3:1 封顶），单列垄断弃用走内容当量 + 空输入列
+占位当量（占位随行内标签长度缩放——长问长答，防书写区被挤没）；照片格
+跨列钳制标准证件照最小宽。LLM 只负责行高（书写行给足、表头紧凑）；照片
+格跨行行高合计钳制标准证件照最小高（F2）。抽检意见重跑轮锚定旧参数最小
+修改，事后照片钳制兜底。LLM 失败 → 确定性基准列宽（行高不指定）。
 
 断点：artifacts/tblvisual.json 存在且逐表复检通过 → 跳过 LLM。
 """
@@ -36,6 +37,7 @@ log = logging.getLogger(__name__)
 
 CONTENT_WIDTH_CM = 14.64  # A4 21.0 − 3.18×2 版心宽
 _INPUT_PLACEHOLDER_WEIGHT = 5.0  # 空输入列占位当量（约 5 字书写空间）
+_ANSWER_LABEL_RATIO = 0.8  # 占位随行内标签缩放：答案长度 ≈ 问题长度 × 0.8
 _LABEL_MAX_WEIGHT = 6.0  # 表单形态下标签列宽度需求封顶（标签可换行）
 
 
@@ -82,6 +84,71 @@ def _src_widths(s: TSkeleton, tree: DocTree) -> list[float] | None:
                 and len(t.col_widths) == s.total_cols:
             return t.col_widths
     return None
+
+
+def _content_weights(s: TSkeleton) -> list[float]:
+    """内容当量 + 表单形态修正：标签列封顶（可换行），空输入列保占位。
+
+    占位当量随行内标签长度缩放（长问长答）：问答带里 20 字问题的答案
+    书写区不该只有 5 字占位——按标签当量 ×0.8 抬升，书写区才能拿回主宽。
+    """
+    weights = _col_weights(s)
+    anchors, _ = walk_grid(s)
+    row_label: dict[int, float] = {}
+    col_label: dict[int, float] = {}
+    col_input: dict[int, float] = {}
+    for (r, c), cell in anchors.items():
+        if cell.content.strip() and cell.style in ("label", "header"):
+            w = text_weight(cell.content)
+            row_label[r] = max(row_label.get(r, 0.0), w)
+            col_label[c] = max(col_label.get(c, 0.0), w)
+        elif cell.style in ("input", "note") and not cell.content.strip():
+            col_input[c] = max(col_input.get(c, 0.0),
+                               _INPUT_PLACEHOLDER_WEIGHT,
+                               _ANSWER_LABEL_RATIO * row_label.get(r, 0.0))
+    if not col_input:
+        return weights
+    for c, need in col_input.items():
+        weights[c] = max(weights[c], need)
+    for c, w in col_label.items():
+        if c not in col_input:
+            weights[c] = min(weights[c], _LABEL_MAX_WEIGHT)
+    return weights
+
+
+def _monopoly(src: list[float]) -> bool:
+    """单列垄断：多列表某列 >90%（书写列 4% 连一个字都放不下）。"""
+    return len(src) >= 2 and max(src) > 0.90
+
+
+def _repair_prior(s: TSkeleton,
+                  src: list[float]) -> tuple[list[float], int]:
+    """短标签列宽度搬回书写列（3:1 封顶）。返回 (修复后先验, 修复对数)。
+
+    实录（干部履历表原生 docx）：姓名列 29% 配书写列 6%——tblGrid 是
+    label-inflated 死数据，照抄即复刻"字段宽度大于需填内容宽度"。只搬
+    超出 3 倍的部分（幅度天然自限，golden 样例偶发小幅失衡不受影响），
+    其余列照抄——真实版面（Word 转换重写 grid）本就无此反转，不动。
+    """
+    fixed = list(src)
+    anchors, _ = walk_grid(s)
+    pairs: set[tuple[int, int]] = set()
+    for (r, c), cell in anchors.items():
+        if not (cell.content.strip() and cell.style in ("label", "header")):
+            continue
+        if text_weight(cell.content) > _LABEL_MAX_WEIGHT:
+            continue
+        for b in (c - 1, c + 1):
+            nb = anchors.get((r, b))
+            if (nb is not None and 0 <= b < len(src)
+                    and nb.style in ("input", "note")
+                    and not nb.content.strip() and src[c] > 3 * src[b]):
+                pairs.add((c, b))
+    for a, b in sorted(pairs):
+        excess = src[a] - 3 * src[b]
+        fixed[a] -= excess
+        fixed[b] += excess
+    return fixed, len(pairs)
 
 
 def _clamp_min(widths: list[int]) -> list[int]:
@@ -148,20 +215,14 @@ def enforce_photo_heights(heights: list[int], s: TSkeleton) -> list[int]:
 
 
 def _base_widths(s: TSkeleton, tree: DocTree) -> list[int]:
-    """确定性列宽基准：源表比例优先，内容当量+占位兜底，照片最小宽钳制。"""
+    """确定性列宽基准：源表比例优先（短标签反转修复、垄断弃用），内容
+    当量+占位兜底，照片最小宽钳制。"""
     src = _src_widths(s, tree)
-    if src:
-        widths = [max(MIN_COL_PERCENT, round(w * 100)) for w in src]
+    if src is not None and not _monopoly(src):
+        fixed, _ = _repair_prior(s, src)
+        widths = [max(MIN_COL_PERCENT, round(w * 100)) for w in fixed]
     else:
-        weights = _col_weights(s)
-        anchors, _ = walk_grid(s)
-        input_cols = {c for (_r, c), cell in anchors.items()
-                      if cell.style in ("input", "note")
-                      and not cell.content.strip()}
-        if input_cols:  # 表单形态：空输入列保占位当量，标签列可换行封顶
-            for c in input_cols:
-                weights[c] = max(weights[c], _INPUT_PLACEHOLDER_WEIGHT)
-            weights = [min(x, _LABEL_MAX_WEIGHT) for x in weights]
+        weights = _content_weights(s)
         total = sum(weights) or 1.0
         widths = [max(MIN_COL_PERCENT, round(x / total * 100))
                   for x in weights]
@@ -275,8 +336,19 @@ def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
                 visuals.append(TVisualTable(
                     table_index=ti, col_widths=bases[ti],
                     row_heights=by_index[ti].row_heights))
-                if _src_widths(s, tree) is not None:
-                    report.append(f"[tblvisual] t{ti}: 列宽采用源表比例基准")
+                src = _src_widths(s, tree)
+                if src is not None:
+                    if _monopoly(src):
+                        report.append(f"[tblvisual] t{ti}: 源表列宽异常"
+                                      f"（单列垄断），改用内容当量基准")
+                    else:
+                        _, n = _repair_prior(s, src)
+                        if n:
+                            report.append(
+                                f"[tblvisual] t{ti}: 源表列宽短标签反转"
+                                f"修正 {n} 对（标签列宽搬回书写列）")
+                        else:
+                            report.append(f"[tblvisual] t{ti}: 列宽采用源表比例基准")
         else:
             # 意见重跑：LLM 锚定旧参数调整；照片最小宽钳制兜底（幂等）
             visuals = [

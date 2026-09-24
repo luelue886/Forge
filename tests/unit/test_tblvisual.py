@@ -174,6 +174,80 @@ def test_enforce_photo_widths_feedback_clamp():
     assert w[1] >= round(3.5 / 14.64 * 100) and sum(w) == 100
 
 
+# ---- 源列宽先验审计（F1 修正：语义反转修复 / 垄断弃用）----
+
+def _qa_band_skeleton(label: str = "何年何月何机关授予何种军警衔") -> TSkeleton:
+    return TSkeleton(table_title="t", total_cols=2, src_tables=["tbl-001"],
+                     rows=[TRow(cells=[
+                         TCell(content=label, style="label"),
+                         TCell(content="", style="input")])])
+
+
+def _prior_tree(widths: list[float]) -> DocTree:
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=1,
+                 n_cols=len(widths), header=["a"] * len(widths),
+                 rows=[["1"] * len(widths)], col_widths=widths)
+    return _tree([t])
+
+
+def test_base_widths_monopoly_prior_rejected():
+    # 原生 docx 实录：问答带 grid [96,4] 是死数据——书写列 4% 放不下一个字。
+    # 弃用先验走内容当量：长标签封顶 6、书写列按标签×0.8 占位 → 书写区拿回主宽
+    w = _base_widths(_qa_band_skeleton(), _prior_tree([0.96, 0.04]))
+    assert sum(w) == 100 and w[1] >= 60
+
+
+def _id_form_skeleton() -> TSkeleton:
+    """两行 姓名|书写|性别|书写 形态（修复对审计需逐行证据）。"""
+    mk = lambda: TRow(cells=[
+        TCell(content="姓名", style="label"),
+        TCell(content="", style="input"),
+        TCell(content="性别", style="label"),
+        TCell(content="", style="input")])
+    return TSkeleton(table_title="t", total_cols=4, src_tables=["tbl-001"],
+                     rows=[mk(), mk()])
+
+
+def test_base_widths_short_label_inversion_repaired():
+    # 原生 docx 实录：t0 短标签列（姓名 2 字）先验 29% 配书写列 6%——
+    # 只搬反转对（3:1 封顶，29-18=11 个点还给书写列），其余列照抄
+    w = _base_widths(_id_form_skeleton(), _prior_tree([0.29, 0.06, 0.11, 0.54]))
+    assert w == [18, 17, 11, 54]
+
+
+def test_base_widths_sane_prior_kept():
+    # 转换后 docx 实录（Word 重写的真实版面 grid）：无语义反转对 → 照抄
+    w = _base_widths(_id_form_skeleton(), _prior_tree([0.17, 0.158, 0.108, 0.564]))
+    assert w == [17, 16, 11, 56]
+
+
+def test_base_widths_long_label_wide_prior_kept():
+    # 长标签列（>6 当量）宽于书写列是真实版面需求（标签确实长）→ 不修
+    w = _base_widths(_qa_band_skeleton(), _prior_tree([0.243, 0.757]))
+    assert w == [24, 76]
+
+
+def test_run_visual_reports_prior_repairs(tmp_path):
+    # 首轮报告行：垄断弃用 / 反转修复须写明（W 级可观测）
+    bad = TVisualTable(table_index=0, col_widths=[96, 4], row_heights=[60])
+    client = _FakeClient([type("Out", (), {"tables": [bad]})()])
+    visuals, report = run_visual([_qa_band_skeleton("姓名")],
+                                 _prior_tree([0.96, 0.04]), client,
+                                 PromptManager(), tmp_path)
+    assert any("源表列宽异常" in line and "单列垄断" in line
+               for line in report)
+    assert visuals[0].col_widths[1] >= 60
+
+    client2 = _FakeClient([type("Out", (), {"tables": [
+        TVisualTable(table_index=0, col_widths=[29, 6, 11, 54],
+                     row_heights=[60, 60])]})()])
+    visuals2, report2 = run_visual([_id_form_skeleton()],
+                                   _prior_tree([0.29, 0.06, 0.11, 0.54]),
+                                   client2, PromptManager(), tmp_path / "j2")
+    assert any("短标签反转修正 1 对" in line for line in report2)
+    assert visuals2[0].col_widths == [18, 17, 11, 54]
+
+
 def _photo_span_skeleton() -> TSkeleton:
     """照片格跨 4 行（rowspan=4，占住 col1-2），下方行只余 col0。"""
     return TSkeleton(table_title="t", total_cols=3, rows=[
