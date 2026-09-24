@@ -294,6 +294,21 @@ def test_render_table_col_widths_ratio(tmp_path: Path):
     assert int(ws[0]) > int(ws[1]) > int(ws[2]) > 0
 
 
+def test_render_table_cells_vertically_centered(tmp_path: Path):
+    """F3：重建表格格垂直居中（字段值不再贴左上角）。"""
+    from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
+
+    doc = DocIR(meta=DocIRMeta(title="表", genre=Genre.FORM), blocks=[
+        DocTitleBlock(text="表"),
+        TableBlock(table_id="tbl-001", header=["甲", "乙"],
+                   rows=[["1", "2"]]),
+    ])
+    out = render_docir_to_docx(doc, tmp_path / "out.docx")
+    t = Document(str(out)).tables[0]
+    assert t.cell(0, 0).vertical_alignment == WD_CELL_VERTICAL_ALIGNMENT.CENTER
+    assert t.cell(1, 1).vertical_alignment == WD_CELL_VERTICAL_ALIGNMENT.CENTER
+
+
 # ---- C4: 图片/流程图复用 ----
 
 import base64

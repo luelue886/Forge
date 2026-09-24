@@ -10,7 +10,7 @@ import logging
 from pathlib import Path
 
 from docx import Document
-from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -185,6 +185,7 @@ def _render_table(doc: Document, t: TableBlock) -> None:
         if cell._tc in written:
             return
         written.add(cell._tc)
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         if fill and not merged:
             _shade(cell, fill)
         _add_run(cell.paragraphs[0], font, size, bold, text)

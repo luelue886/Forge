@@ -368,7 +368,11 @@ def convert_html_to_docx(html_path: Path, out_docx: Path) -> Path:
     """.html → .docx（Word HTML 导入，wdFormatXMLDocument=16）。
 
     HTML 须 utf-8-sig 写出（Word 嗅探 BOM 定编码）；@page/表格属性在
-    导入时映射为 docx 节属性。走 Word 专用 STA 队列。
+    导入时映射为 docx 节属性。表格格垂直居中（F3）：Word HTML 导入
+    常丢弃 CSS vertical-align——保存前 COM 后处理逐格设
+    VerticalAlignment=1（wdCellAlignVerticalCenter）双保险。按
+    Range.Cells 枚举——含纵向合并格的表按 Rows 迭代会抛 COM 异常。
+    走 Word 专用 STA 队列。
     """
 
     def _do(svc: ComService):
@@ -376,6 +380,9 @@ def convert_html_to_docx(html_path: Path, out_docx: Path) -> Path:
         doc = app.Documents.Open(str(Path(html_path).resolve()),
                                  False, True, False)
         try:
+            for tbl in doc.Tables:
+                for cell in tbl.Range.Cells:
+                    cell.VerticalAlignment = 1
             out = Path(out_docx)
             doc.SaveAs2(str(out.resolve()), FileFormat=16)
             return out

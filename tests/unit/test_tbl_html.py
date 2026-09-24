@@ -85,15 +85,21 @@ def test_build_form_html_golden():
             '<col width="30%"></colgroup>') in html
     # 行高：首行 28pt
     assert '<tr style="height:28pt">' in html
-    # 表头：底纹 + 加粗 + 居中 + 边框在格上
+    # 表头：底纹 + 加粗 + 居中 + 边框在格上 + 垂直居中（F3）
     assert ('<th bgcolor="#D9D9D9" align="center" '
-            'style="border:0.5pt solid #BFBFBF;font-weight:bold">字段</th>') in html
-    # label 居中 / input 左对齐
-    assert '<td align="center" style="border:0.5pt solid #BFBFBF">姓名</td>' in html
-    assert ('<td align="left" style="border:0.5pt solid #BFBFBF">'
+            'style="border:0.5pt solid #BFBFBF;font-weight:bold;'
+            'vertical-align:middle">字段</th>') in html
+    # label 居中 / input 左对齐；均垂直居中
+    assert ('<td align="center" '
+            'style="border:0.5pt solid #BFBFBF;vertical-align:middle">'
+            '姓名</td>') in html
+    assert ('<td align="left" '
+            'style="border:0.5pt solid #BFBFBF;vertical-align:middle">'
             '张三</td>') in html
     # 竖排标签：逐字 <br>；rowspan 属性
-    assert '<td rowspan="3" align="center" style="border:0.5pt solid #BFBFBF">出<br>勤<br>情<br>况</td>' in html
+    assert ('<td rowspan="3" align="center" '
+            'style="border:0.5pt solid #BFBFBF;vertical-align:middle">'
+            '出<br>勤<br>情<br>况</td>') in html
     # 图片：base64 内嵌 + 宽度
     assert ('<img src="data:image/png;base64,AAAA" '
             'style="width:5.0cm;">') in html
@@ -141,5 +147,5 @@ def test_build_form_html_photo_cell_centered():
     html = build_form_html("t", [FormBlock(kind="table", table_index=0)],
                            [s], [])
     assert ('<td rowspan="3" align="center" '
-            'style="border:0.5pt solid #BFBFBF">'
+            'style="border:0.5pt solid #BFBFBF;vertical-align:middle">'
             '正面免冠彩色照片(2寸)</td>') in html
