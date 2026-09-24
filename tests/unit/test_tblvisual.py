@@ -4,13 +4,22 @@ import json
 
 from app.llm.prompts import PromptManager
 from app.pipeline.tblvisual import (
+    _base_widths,
     _col_weights,
     _fallback_visual,
     _table_stats,
+    enforce_photo_widths,
     run_visual,
 )
 from app.schema.doctree import DocMeta, DocSection, DocTable, DocTree
-from app.schema.tblskeleton import TCell, TRow, TSkeleton, TVisualTable
+from app.schema.tblskeleton import (
+    TCell,
+    TRow,
+    TSkeleton,
+    TVisualTable,
+    is_photo_cell,
+    photo_size_cm,
+)
 
 
 class _FakeClient:
@@ -94,6 +103,74 @@ def test_fallback_visual_content_weighted_and_clamped():
     assert v.col_widths[1] > v.col_widths[0]  # 当量大 → 列宽大
 
 
+# ---- 照片格识别与尺寸（F1/F2 公共工具）----
+
+def test_photo_size_cm_patterns():
+    assert photo_size_cm("正面免冠彩色照片(2寸)") == (3.5, 4.9)
+    assert photo_size_cm("相片（二寸）") == (3.5, 4.9)
+    assert photo_size_cm("一寸照片") == (2.5, 3.5)
+    assert photo_size_cm("照片") == (3.5, 4.9)  # 缺省 2寸
+    assert photo_size_cm("小二寸照片") == (3.3, 4.8)
+    assert photo_size_cm("") is None
+    assert photo_size_cm("姓名") is None
+    long_note = ("照片须采用近期拍摄的正面免冠半身彩色照，尺寸为二寸，"
+                 "背面注明姓名及出生年月")  # 长说明文本不算照片格
+    assert photo_size_cm(long_note) is None
+
+
+def test_is_photo_cell():
+    assert is_photo_cell(TCell(content="照片", style="input"))
+    assert not is_photo_cell(TCell(content="曾用名", style="label"))
+
+
+# ---- 确定性列宽基准（F1）----
+
+def test_base_widths_prefers_source_proportions():
+    # 干部履历表实录：源比例 24/76，LLM 曾给成 96/4（完全颠倒）
+    s = TSkeleton(table_title="t", total_cols=2, src_tables=["tbl-001"],
+                  rows=[TRow(cells=[
+                      TCell(content="何年何月何机关授予何种军警衔",
+                            style="label"),
+                      TCell(content="", style="input")])])
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
+                 header=["a", "b"], rows=[["1", "2"]],
+                 col_widths=[0.243, 0.757])
+    assert _base_widths(s, _tree([t])) == [24, 76]
+
+
+def test_base_widths_content_placeholder_for_inputs():
+    # 无先验：长标签封顶 + 空输入列占位当量，防书写区被挤没
+    s = TSkeleton(table_title="t", total_cols=2, rows=[TRow(cells=[
+        TCell(content="何年何月何机关授予何种军警衔", style="label"),
+        TCell(content="", style="input")])])
+    w = _base_widths(s, _tree([]))
+    assert sum(w) == 100 and all(x >= 4 for x in w)
+    assert w[1] >= 30  # 书写区至少三成
+
+
+def test_base_widths_photo_min_width():
+    # 源先验照片列偏窄 → 钳到 ≥ 2寸宽（3.5cm ≈ 24% 版心）
+    s = TSkeleton(table_title="t", total_cols=2, src_tables=["tbl-001"],
+                  rows=[TRow(cells=[
+                      TCell(content="姓名", style="label"),
+                      TCell(content="正面免冠彩色照片(2寸)",
+                            style="input")])])
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
+                 header=["a", "b"], rows=[["1", "2"]],
+                 col_widths=[0.85, 0.15])
+    w = _base_widths(s, _tree([t]))
+    assert w[1] >= round(3.5 / 14.64 * 100) and sum(w) == 100
+
+
+def test_enforce_photo_widths_feedback_clamp():
+    # 抽检意见重跑后的列宽同样受照片最小宽钳制（幂等最小值）
+    s = TSkeleton(table_title="t", total_cols=2, rows=[TRow(cells=[
+        TCell(content="姓名", style="label"),
+        TCell(content="照片", style="input")])])
+    w = enforce_photo_widths([90, 10], s)
+    assert w[1] >= round(3.5 / 14.64 * 100) and sum(w) == 100
+
+
 # ---- run_visual：LLM 编排 ----
 
 def _llm_visual() -> TVisualTable:
@@ -107,11 +184,32 @@ def test_run_visual_llm_ok_and_renormalize(tmp_path):
     client = _FakeClient([out])
     visuals, report = run_visual([_skeleton()], tree, client,
                                  PromptManager(), tmp_path)
-    assert visuals[0].col_widths == [20, 50, 30]
+    # F1：首轮 LLM 列宽弃用，输出确定性基准；行高保留 LLM
+    assert visuals[0].col_widths == _base_widths(_skeleton(), tree)
     assert visuals[0].row_heights == [28, 24, 80]
     assert report == []
     art = json.loads((tmp_path / "tblvisual.json").read_text(encoding="utf-8"))
-    assert art["source"] == "llm" and art["schema"] == "tblvisual/1.0"
+    assert art["source"] == "llm-heights+base-widths" \
+        and art["schema"] == "tblvisual/1.0"
+
+
+def test_run_visual_first_pass_overrides_llm_widths(tmp_path):
+    """首轮 LLM 给烂列宽（96/4 反转实录）→ 输出仍为源比例基准。"""
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
+                 header=["a", "b"], rows=[["1", "2"]],
+                 col_widths=[0.243, 0.757])
+    tree = _tree([t])
+    s = TSkeleton(table_title="t", total_cols=2, src_tables=["tbl-001"],
+                  rows=[TRow(cells=[
+                      TCell(content="何年何月何机关授予何种军警衔",
+                            style="label"),
+                      TCell(content="", style="input")])])
+    bad = TVisualTable(table_index=0, col_widths=[96, 4], row_heights=[60])
+    client = _FakeClient([type("Out", (), {"tables": [bad]})()])
+    visuals, report = run_visual([s], tree, client, PromptManager(), tmp_path)
+    assert visuals[0].col_widths == [24, 76]
+    assert visuals[0].row_heights == [60]
+    assert any("源表比例基准" in w for w in report)
 
 
 def test_run_visual_llm_sum_off_renormalized(tmp_path):
@@ -131,7 +229,8 @@ def test_run_visual_retry_then_pass(tmp_path):
                                  PromptManager(), tmp_path)
     assert len(client.calls) == 2
     assert "列数" in client.calls[1][1][1]["content"]
-    assert visuals[0].col_widths == [20, 50, 30] and report == []
+    assert visuals[0].col_widths == _base_widths(_skeleton(), _tree([]))
+    assert visuals[0].row_heights == [28, 24, 80] and report == []
 
 
 def test_run_visual_fallback_after_two_fails(tmp_path):
@@ -179,7 +278,8 @@ def test_run_visual_artifact_invalid_redone(tmp_path):
     visuals, _ = run_visual([_skeleton()], _tree([]), client,
                             PromptManager(), tmp_path)
     assert len(client.calls) == 1
-    assert visuals[0].col_widths == [20, 50, 30]
+    assert visuals[0].col_widths == _base_widths(_skeleton(), _tree([]))
+    assert visuals[0].row_heights == [28, 24, 80]
 
 
 # ---- feedback 模式（抽检意见重跑）----
@@ -192,18 +292,20 @@ def _fb_visual() -> TVisualTable:
 def test_run_visual_feedback_anchored_and_overwrites(tmp_path):
     """feedback 绕过幂等门：有产物仍调 LLM；prompt 含意见 + 旧参数锚。"""
     tree = _tree([])
-    # 先跑一遍产出旧参数（正常路径）
-    run_visual([_skeleton()], tree,
-               _FakeClient([type("Out", (), {"tables": [_llm_visual()]})()]),
-               PromptManager(), tmp_path)
+    # 先跑一遍产出旧参数（首轮=确定性基准列宽 + LLM 行高）
+    first, _ = run_visual(
+        [_skeleton()], tree,
+        _FakeClient([type("Out", (), {"tables": [_llm_visual()]})()]),
+        PromptManager(), tmp_path)
+    old_w = first[0].col_widths
     client = _FakeClient([type("Out", (), {"tables": [_fb_visual()]})()])
     visuals, report = run_visual(
         [_skeleton()], tree, client, PromptManager(), tmp_path,
         feedback=["第3列过窄文字竖排（建议：加宽第3列）"])
     assert len(client.calls) == 1  # 幂等门被绕过
     user = client.calls[0][1][1]["content"]
-    assert "第3列过窄" in user and '"col_widths": [20, 50, 30]' in user
-    assert visuals[0].col_widths == [16, 50, 34]
+    assert "第3列过窄" in user and f'"col_widths": {old_w}' in user
+    assert visuals[0].col_widths == [16, 50, 34]  # 意见重跑 LLM 列宽生效
     assert report == []
     art = json.loads((tmp_path / "tblvisual.json").read_text(encoding="utf-8"))
     assert art["source"] == "llm-feedback"
@@ -212,9 +314,11 @@ def test_run_visual_feedback_anchored_and_overwrites(tmp_path):
 def test_run_visual_feedback_fail_keeps_old(tmp_path):
     """意见重跑失败 → 保留旧参数 + W 行（不走确定性兜底防震荡）。"""
     tree = _tree([])
-    run_visual([_skeleton()], tree,
-               _FakeClient([type("Out", (), {"tables": [_llm_visual()]})()]),
-               PromptManager(), tmp_path)
+    first, _ = run_visual(
+        [_skeleton()], tree,
+        _FakeClient([type("Out", (), {"tables": [_llm_visual()]})()]),
+        PromptManager(), tmp_path)
+    old_w = first[0].col_widths
 
     class _Boom:
         def structured(self, *a, **kw):
@@ -223,7 +327,7 @@ def test_run_visual_feedback_fail_keeps_old(tmp_path):
     visuals, report = run_visual(
         [_skeleton()], tree, _Boom(), PromptManager(), tmp_path,
         feedback=["意见"])
-    assert visuals[0].col_widths == [20, 50, 30]  # 旧参数
+    assert visuals[0].col_widths == old_w  # 旧参数
     assert any("W-VISUAL-FEEDBACK-FAIL" in w for w in report)
 
 

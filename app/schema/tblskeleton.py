@@ -26,6 +26,36 @@ ROW_HEIGHT_RANGE = (14, 400)
 
 PLACEHOLDER_RE = re.compile(r"⟦(\d+)⟧")
 
+PHOTO_SIZES: dict[str, tuple[float, float]] = {  # 证件照标准尺寸 cm（宽, 高）
+    "1寸": (2.5, 3.5),
+    "2寸": (3.5, 4.9),
+    "小2寸": (3.3, 4.8),
+}
+PHOTO_DEFAULT = "2寸"
+_PHOTO_TEXT_RE = re.compile(r"照片|相片")
+
+
+def photo_size_cm(text: str) -> tuple[float, float] | None:
+    """证件照格判定与标准尺寸：文本含 照片/相片 且是短标签（≤16 字）。
+
+    解析标注尺寸（一寸/1寸、二寸/2寸/两寸、小二寸/小2寸），无标注默认 2寸。
+    非照片格返回 None。
+    """
+    t = text.strip()
+    if not t or len(t) > 16 or not _PHOTO_TEXT_RE.search(t):
+        return None
+    if re.search(r"小[二2]寸", t):
+        return PHOTO_SIZES["小2寸"]
+    if re.search(r"[一1]寸", t):
+        return PHOTO_SIZES["1寸"]
+    if re.search(r"[二2两]寸", t):
+        return PHOTO_SIZES["2寸"]
+    return PHOTO_SIZES[PHOTO_DEFAULT]
+
+
+def is_photo_cell(cell: TCell) -> bool:
+    return photo_size_cm(cell.content) is not None
+
 
 class TCell(BaseModel):
     content: str = ""
