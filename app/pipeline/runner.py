@@ -10,7 +10,7 @@ from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
 from app.parse_dispatch import parse_source
 from app.pipeline.fill import fill_deterministic, fill_page
-from app.pipeline.plan import assemble_full_plan
+from app.pipeline.plan import assemble_full_plan, assign_template_slides
 from app.pipeline.understand import understand
 from app.render.capacity import capacity_issues
 from app.render.renderer import render_to_file
@@ -87,10 +87,13 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
         _check_cancel(job)
         tree = _load_json(art / "doctree.json", DocTree)
         docmap = _load_json(docmap_path, DocMap)
+        catalog = _catalog_of(job)
         job.set_status(JobStatus.UNDERSTOOD, "planning")
         job.save_state()
-        content = _plan_content(tree, docmap, client, pm)
-        plan = assemble_full_plan(tree, content)
+        content = _plan_content(tree, docmap, client, pm, catalog)
+        plan = assemble_full_plan(tree, content, catalog)
+        if catalog is not None:
+            assign_template_slides(plan, catalog)
         _save_json(plan_path, plan)
         job.save_state()
 
@@ -164,10 +167,21 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
     job.save_state()
 
 
-def _plan_content(tree: DocTree, docmap: DocMap, client: LLMClient, pm: PromptManager) -> SlidePlan:
+def _plan_content(tree: DocTree, docmap: DocMap, client: LLMClient, pm: PromptManager,
+                  catalog=None) -> SlidePlan:
     from app.pipeline.plan import plan_slides
 
-    return plan_slides(tree, docmap, client, pm)
+    return plan_slides(tree, docmap, client, pm, catalog)
+
+
+def _catalog_of(job: _JobLike):
+    """job 携带 template(stem) 时加载目录；旧任务/旧参数（仅 skin）→ None，plan 不指派模板页。"""
+    stem = getattr(job, "template", None)
+    if not stem:
+        return None
+    from app.render.tpl_catalog import load_catalog
+
+    return load_catalog(stem)
 
 
 def _skin_of(job: _JobLike) -> str:
