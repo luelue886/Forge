@@ -5,27 +5,22 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from app.schema.enums import IssueCode, SlideType
+from app.schema.slotfill import TableIR, ValidationIssue
 from app.schema.textlen import text_weight
 
 SCHEMA_VERSION = "slideir/1.0"
 
-
-class ValidationIssue(BaseModel):
-    rule: IssueCode
-    page_no: int
-    detail: str
+__all__ = [
+    "SCHEMA_VERSION", "ValidationIssue", "TableIR", "Metric", "Column",
+    "SlideIR", "DeckMeta", "Deck", "BLOCK_WHITELIST", "LIMITS",
+    "body_weight", "validate_slide", "validate_deck",
+]
 
 
 class Metric(BaseModel):
     label: str
     value: str  # 恒为源文档 verbatim
     unit: str | None = None
-
-
-class TableIR(BaseModel):
-    table_id: str  # 溯源锚点
-    header: list[str] = Field(default_factory=list)
-    rows: list[list[str]] = Field(default_factory=list)  # 全 verbatim
 
 
 class Column(BaseModel):

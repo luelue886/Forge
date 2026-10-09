@@ -1,9 +1,9 @@
 """程序化合成 5 页测试模板（单测零 COM / 零真 LLM / 零真模板）。
 
-页设计覆盖全部提取路径：
+页设计覆盖全部提取与构建路径：
   S1 cover——版式占位符（title/subtitle ph 继承字号链）
-  S2 toc——标题 + 正文占位符 5 条目
-  S3 content——独立大字号标题 + 图片 + GROUP（非恒等 chOff/chExt，2×(标签+描述)）
+  S2 toc——标题 + 正文占位符 5 条目（多段单槽）
+  S3 content——独立大字号标题 + 图片 + GROUP（非恒等 chOff/chExt，2×(标签+描述)+组内图片）+ notesSlide
   S4 content——3 个独立文本框，含纯数字 "02 / 14"（page_no）与超小样本（design）
   S5 closing——占位符标题 + 文本框
 """
@@ -20,6 +20,9 @@ from pptx.util import Inches, Pt
 
 A = "http://schemas.openxmlformats.org/drawingml/2006/main"
 P = "http://schemas.openxmlformats.org/presentationml/2006/main"
+R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+REL_PKG = "http://schemas.openxmlformats.org/package/2006/relationships"
+IMG_REL = f"{R}/image"
 
 # GROUP 几何：off=(1",2") ext=(6",3")，子空间 chOff=(100,200) chExt=(300,150)
 # 子元素 child 坐标 (cx,cy)：页面绝对 = (1"+(cx-100)*6/300, 2"+(cy-200)*3/150)
@@ -27,6 +30,9 @@ GRP_OFF_X, GRP_OFF_Y = 914400, 1828800
 GRP_EXT_CX, GRP_EXT_CY = 5486400, 2743200
 GRP_CHOFF_X, GRP_CHOFF_Y = 100, 200
 GRP_CHEXT_CX, GRP_CHEXT_CY = 300, 150
+
+# 组内图片的关系 id（构建测试断言"组删除后 rels 剪除"用）
+GROUP_PIC_RID = "rIdG1"
 
 
 def _sp_xml(name: str, x: int, y: int, cx: int, cy: int, text: str,
@@ -49,13 +55,29 @@ def _sp_xml(name: str, x: int, y: int, cx: int, cy: int, text: str,
 </p:sp>"""
 
 
+def _pic_xml(rid: str, x: int, y: int, cx: int, cy: int) -> str:
+    return f"""<p:pic xmlns:p="{P}" xmlns:a="{A}" xmlns:r="{R}">
+  <p:nvPicPr><p:cNvPr id="0" name="组内图片"/><p:cNvPicPr/><p:nvPr/></p:nvPicPr>
+  <p:blipFill><a:blip r:embed="{rid}"/><a:stretch><a:fillRect/></a:stretch></p:blipFill>
+  <p:spPr>
+    <a:xfrm><a:off x="{x}" y="{y}"/><a:ext cx="{cx}" cy="{cy}"/></a:xfrm>
+    <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+  </p:spPr>
+</p:pic>"""
+
+
 def _inject_group(path: Path, slide_xml_name: str) -> None:
-    """向指定页 spTree 注入带非恒等子坐标空间的 GROUP（python-pptx 无建组 API）。"""
+    """向指定页 spTree 注入带非恒等子坐标空间的 GROUP（python-pptx 无建组 API）。
+
+    组尾附一张图片（引用顶层图片同一 media），并为该页 rels 注册新 rId——
+    覆盖"整组删除时连带图片 + rels 剪除"的构建路径。
+    """
     label1 = _sp_xml("标签一", 100, 200, 140, 40, "团队协作", 16, bold=True)
     desc1 = _sp_xml("描述一", 100, 250, 140, 70, "跨部门协同推进项目落地", 12)
     label2 = _sp_xml("标签二", 260, 200, 140, 40, "数据驱动", 16, bold=True)
     desc2 = _sp_xml("描述二", 260, 250, 140, 70, "以指标复盘持续改进", 12)
-    group = f"""<p:grpSp xmlns:p="{P}" xmlns:a="{A}">
+    pic = _pic_xml(GROUP_PIC_RID, 330, 260, 50, 40)
+    group = f"""<p:grpSp xmlns:p="{P}" xmlns:a="{A}" xmlns:r="{R}">
   <p:nvGrpSpPr><p:cNvPr id="0" name="内容组"/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
   <p:grpSpPr>
     <a:xfrm>
@@ -65,10 +87,11 @@ def _inject_group(path: Path, slide_xml_name: str) -> None:
       <a:chExt cx="{GRP_CHEXT_CX}" cy="{GRP_CHEXT_CY}"/>
     </a:xfrm>
   </p:grpSpPr>
-  {label1}{desc1}{label2}{desc2}
+  {label1}{desc1}{label2}{desc2}{pic}
 </p:grpSp>"""
     group_el = etree.fromstring(group.encode())
 
+    rels_name = slide_xml_name.replace("slides/", "slides/_rels/") + ".rels"
     buf = io.BytesIO()
     with zipfile.ZipFile(path) as zin, zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zout:
         for item in zin.namelist():
@@ -77,6 +100,17 @@ def _inject_group(path: Path, slide_xml_name: str) -> None:
                 root = etree.fromstring(data)
                 sp_tree = root.find(f"{{{P}}}cSld/{{{P}}}spTree")
                 sp_tree.append(group_el)
+                data = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
+            elif item == rels_name:
+                root = etree.fromstring(data)
+                img_target = next(
+                    (rel.get("Target") for rel in root
+                     if (rel.get("Type") or "").endswith("/image")), None)
+                if img_target:
+                    rel = etree.SubElement(root, f"{{{REL_PKG}}}Relationship")
+                    rel.set("Id", GROUP_PIC_RID)
+                    rel.set("Type", IMG_REL)
+                    rel.set("Target", img_target)
                 data = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
             zout.writestr(item, data)
     path.write_bytes(buf.getvalue())
@@ -106,6 +140,7 @@ def build_synthetic_template(path: Path) -> Path:
     img.save(bio, format="PNG")
     bio.seek(0)
     s3.shapes.add_picture(bio, Inches(11.5), Inches(0.2), Inches(0.6), Inches(0.6))
+    s3.notes_slide.notes_text_frame.text = "模板原始备注"
 
     s4 = prs.slides.add_slide(prs.slide_layouts[6])  # Blank
     t1 = s4.shapes.add_textbox(Inches(0.5), Inches(1), Inches(4), Inches(1.2))
