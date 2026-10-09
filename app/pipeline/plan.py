@@ -223,20 +223,36 @@ def _assignable(slide_no: int, catalog: TemplateCatalog) -> bool:
     return s.role_hint == "content" or 3 <= s.fillable <= 15
 
 
+def _toc_hosts(catalog: TemplateCatalog) -> list[int]:
+    """可承载目录的模板页：有 title 槽且有 body 可填槽。
+    toc 池优先；池空/池内页不可用时扫非 cover/closing 的常规页（如 办公技巧
+    S2 是纯构图 table_host，无任何可填槽，盲选 S2 会让目录页 FillError）。"""
+    def ok(s: SlideInfo) -> bool:
+        return (any(x.role == "title" for x in s.slots)
+                and any(x.role == "body" and x.fillable for x in s.slots))
+
+    hinted = [s.slide_no for s in catalog.slides if s.role_hint == "toc" and ok(s)]
+    if hinted:
+        return hinted
+    return [s.slide_no for s in catalog.slides
+            if s.role_hint not in ("cover", "closing") and ok(s)]
+
+
 def assign_structural_slides(pages: list[SlidePlanItem], catalog: TemplateCatalog) -> None:
     """结构页/表格页确定性指派（就地）：
-    cover→S1；toc→toc 池否则 S2；closing→末页；section/table→各自池轮换否则内容池轮换。"""
+    cover→S1；toc→toc 池否则首个含 title+body 的常规页；closing→末页；
+    section/table→各自池轮换否则内容池轮换。"""
     n = catalog.n_slides
     sec_pool = [s.slide_no for s in catalog.slides if s.role_hint == "section"]
     tbl_pool = [s.slide_no for s in catalog.slides if s.role_hint == "table_host"]
-    toc_pool = [s.slide_no for s in catalog.slides if s.role_hint == "toc"]
+    toc_hosts = _toc_hosts(catalog)
     content = [s.slide_no for s in _content_pool(catalog)]
     si = ti = 0
     for p in pages:
         if p.slide_type is SlideType.COVER:
             p.template_slide = 1
         elif p.slide_type is SlideType.TOC:
-            p.template_slide = toc_pool[0] if toc_pool else min(2, n)
+            p.template_slide = toc_hosts[0] if toc_hosts else min(2, n)
         elif p.slide_type is SlideType.CLOSING:
             p.template_slide = n
         elif p.slide_type is SlideType.SECTION_HEADER:

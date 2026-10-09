@@ -13,7 +13,7 @@ from app.pipeline.plan import (
 from app.render.tpl_catalog import extract_catalog
 from app.schema.enums import SlideType
 from app.schema.plan import SlidePlan, SlidePlanItem
-from app.schema.tplcatalog import TemplateCatalog
+from app.schema.tplcatalog import SlideInfo, SlotInfo, TemplateCatalog
 from tests.mk_tpl import build_synthetic_template
 
 
@@ -54,7 +54,7 @@ class TestStructuralAssignment:
         plan = _plan(pages)
         assign_structural_slides(pages, catalog)
         assert pages[0].template_slide == 1  # cover → S1
-        assert pages[1].template_slide == 2  # toc 池空 → S2
+        assert pages[1].template_slide == 2  # toc 宿主：首个 title+body 可填页
         assert pages[7].template_slide == 5  # closing → 末页
         # section 池空 → 内容池轮换：首个→S2，次个→S3
         assert pages[2].template_slide == 2
@@ -119,6 +119,40 @@ class TestStructuralAssignment:
         assert tbl.template_slide == 4
         # 每页都有模板页号（构建前置条件）
         assert all(p.template_slide is not None for p in full.pages)
+
+
+class TestTocHosts:
+    """M6：toc 宿主选择——toc 池空时不得盲选 S2（真模板 S2 可能无任何可填槽）。"""
+
+    def test_synthetic_toc_picks_s2(self, catalog: TemplateCatalog):
+        from app.pipeline.plan import _toc_hosts
+
+        assert _toc_hosts(catalog)[0] == 2  # S2 有 title + 可填 body
+
+    def test_fallback_skips_unusable_s2(self):
+        def slot(sid: str, role: str, cap: float) -> SlotInfo:
+            return SlotInfo(slot_id=sid, path=[0], role=role, x=1.0, y=1.0,
+                            w=4.0, h=1.0, font_pt=18.0, sample="样本", capacity=cap)
+
+        def slide(no: int, slots: list[SlotInfo], hint: str = "") -> SlideInfo:
+            return SlideInfo(slide_no=no, layout="L", signature=f"S{no}", slots=slots,
+                             fillable=sum(1 for s in slots if s.fillable), role_hint=hint)
+
+        # 办公技巧实况：S2 是纯构图 table_host（全 design/page_no，无 title）
+        cat = TemplateCatalog(
+            stem="toc-fallback", display_name="目录回退", n_slides=5, slides=[
+                slide(1, [slot("0", "title", 20), slot("1", "body", 30)], "cover"),
+                slide(2, [slot("0", "design", 2), slot("1", "page_no", 2)]),
+                slide(3, [slot("0", "title", 10), slot("1", "body", 60)]),
+                slide(4, [slot("0", "title", 10)]),  # 无可填 body，不能承载目录
+                slide(5, [slot("0", "title", 10), slot("1", "body", 30)], "closing"),
+            ])
+        from app.pipeline.plan import _toc_hosts
+
+        assert _toc_hosts(cat) == [3]
+        pages = [SlidePlanItem(page_no=1, slide_type=SlideType.TOC, title="目录")]
+        assign_structural_slides(pages, cat)
+        assert pages[0].template_slide == 3
 
 
 class TestAssignValidation:

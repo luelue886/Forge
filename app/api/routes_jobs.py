@@ -66,6 +66,7 @@ async def job_page(request: Request, job_id: str):
 @router.post("/api/jobs")
 async def create_job(request: Request, file: UploadFile = File(...),
                      skin: str = Form("business_blue"),
+                     template: str = Form(""),
                      product: str = Form("ppt")):
     name = Path(file.filename or "").name
     suffix = Path(name).suffix.lower()
@@ -85,7 +86,8 @@ async def create_job(request: Request, file: UploadFile = File(...),
     try:
         job = await run_in_threadpool(
             lambda: _mgr(request).create(
-                staged, skin=skin, product=product, client=_llm(request),
+                staged, skin=skin, product=product, template=template,
+                client=_llm(request),
                 com_export=getattr(request.app.state, "com_export", True)))
     except ParseError as e:
         raise HTTPException(422, f"解析失败：{e}") from e
@@ -123,11 +125,24 @@ async def job_status(request: Request, job_id: str):
             d.update(await run_in_threadpool(_load_doc))
     else:
         def _load():
+            from app.render.tpl_catalog import load_catalog
             from app.schema.plan import SlidePlan
 
             plan = SlidePlan.model_validate_json(plan_path.read_text(encoding="utf-8"))
-            return [{"page_no": p.page_no, "type": p.slide_type.value, "title": p.title}
-                    for p in plan.pages]
+            catalog = None
+            if getattr(job, "template", ""):
+                try:
+                    catalog = load_catalog(job.template)
+                except (FileNotFoundError, IndexError):
+                    catalog = None
+            out = []
+            for p in plan.pages:
+                item = {"page_no": p.page_no, "type": p.slide_type.value,
+                        "title": p.title, "template_slide": p.template_slide}
+                if catalog is not None and p.template_slide:
+                    item["template_signature"] = catalog.slide(p.template_slide).signature
+                out.append(item)
+            return out
 
         plan_path = job.dir / "artifacts" / "plan.json"
         if plan_path.exists():

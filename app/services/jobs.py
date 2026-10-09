@@ -30,12 +30,14 @@ class JobCancelled(Exception):
 
 class Job:
     def __init__(self, job_id: str, root: Path, source_name: str, skin: str,
-                 auto_confirm: bool = False, product: str = "ppt"):
+                 auto_confirm: bool = False, product: str = "ppt",
+                 template: str = ""):
         self.job_id = job_id
         self.dir = root / job_id
         self.source_name = source_name
         self.skin = skin
         self.product = product
+        self.template = template
         self.auto_confirm = auto_confirm
         self.confirmed = auto_confirm
         self.status = JobStatus.PARSED
@@ -75,6 +77,7 @@ class Job:
                 "detail": self.detail,
                 "source_name": self.source_name,
                 "skin": self.skin,
+                "template": self.template,
                 "product": self.product,
                 "auto_confirm": self.auto_confirm,
                 "confirmed": self.confirmed,
@@ -95,6 +98,7 @@ class Job:
                 "detail": self.detail,
                 "source_name": self.source_name,
                 "skin": self.skin,
+                "template": self.template,
                 "product": self.product,
                 "error": self.error,
                 "created_at": self.created_at,
@@ -109,7 +113,7 @@ class Job:
         data = json.loads((job_dir / "state.json").read_text(encoding="utf-8"))
         job = cls(data["job_id"], job_dir.parent, data["source_name"],
                   data.get("skin", "business_blue"), data.get("auto_confirm", False),
-                  data.get("product", "ppt"))
+                  data.get("product", "ppt"), data.get("template", ""))
         job.status = JobStatus(data["status"])
         job.detail = data.get("detail", "")
         job.error = data.get("error")
@@ -175,14 +179,14 @@ class JobManager:
 
     def create(self, source: Path, skin: str = "business_blue",
                auto_confirm: bool = False, product: str = "ppt",
-               client=None, com_export: bool = True) -> Job:
+               template: str = "", client=None, com_export: bool = True) -> Job:
         if self.active() is not None:
             active = self.active()
             raise JobError(f"已有进行中的任务 {active.job_id}（{active.status.value}），"
                            f"请先完成或取消")
         source = Path(source)
         job_id = f"{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6]}"
-        job = Job(job_id, self.root, source.name, skin, auto_confirm, product)
+        job = Job(job_id, self.root, source.name, skin, auto_confirm, product, template)
         job.dir.mkdir(parents=True, exist_ok=True)
 
         upload = job.dir / "upload"
