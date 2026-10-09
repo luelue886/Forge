@@ -13,7 +13,7 @@ from app.pipeline.runner import run_pipeline_safe
 # ---- Job 原语 ----
 
 def test_cancel_event_primitives(tmp_path: Path):
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.check_cancel()  # 未取消：无操作
     job.request_cancel()
     with __import__("pytest").raises(JobCancelled):
@@ -24,7 +24,7 @@ def test_cancel_event_primitives(tmp_path: Path):
 
 def test_cancel_planned_job_status_cancelled(tmp_path: Path):
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.PLANNED
     mgr._jobs["j1"] = job
     out = mgr.cancel("j1")
@@ -34,14 +34,14 @@ def test_cancel_planned_job_status_cancelled(tmp_path: Path):
 
 def test_cancel_idempotent_and_terminal_rejected(tmp_path: Path):
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.GENERATING
     mgr._jobs["j1"] = job
     mgr.cancel("j1")
     again = mgr.cancel("j1")  # 已 CANCELLED：幂等返回
     assert again.status is JobStatus.CANCELLED
 
-    done = Job("j2", tmp_path, "s.docx", "business_blue", False, "doc")
+    done = Job("j2", tmp_path, "s.docx", "", False, "doc")
     done.status = JobStatus.DONE
     mgr._jobs["j2"] = done
     with __import__("pytest").raises(JobError, match="已结束"):
@@ -51,7 +51,7 @@ def test_cancel_idempotent_and_terminal_rejected(tmp_path: Path):
 def test_cancelled_not_in_active_and_excluded_from_resume(tmp_path: Path):
     # CANCELLED 不在 _ACTIVE：active() 找不到 → 新任务可创建
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.GENERATING
     mgr._jobs["j1"] = job
     mgr.cancel("j1")
@@ -129,7 +129,7 @@ def test_web_cancel_endpoint(tmp_path: Path):
 
     mgr = JobManager(root=tmp_path)
     fastapp.state.jobs = mgr
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.PLANNED
     mgr._jobs["j1"] = job
 
@@ -147,7 +147,7 @@ def test_web_cancel_terminal_409(tmp_path: Path):
 
     mgr = JobManager(root=tmp_path)
     fastapp.state.jobs = mgr
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.DONE
     mgr._jobs["j1"] = job
 
@@ -163,7 +163,7 @@ def test_cli_cancel_subcommand(tmp_path: Path, capsys, monkeypatch):
     import app.services.jobs as jobs_mod
 
     monkeypatch.setattr(jobs_mod, "DATA_DIR", tmp_path)
-    job = Job("j1", tmp_path / "jobs", "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path / "jobs", "s.docx", "", False, "doc")
     job.status = JobStatus.GENERATING
     job.save_state()
 

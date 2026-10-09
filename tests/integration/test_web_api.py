@@ -114,16 +114,20 @@ def test_web_upload_rejects_bad_suffix(web_app):
         assert r.status_code == 400
 
 
-def test_web_upload_rejects_unknown_skin(basic_docx, web_app):
-    """M7 将以 template 校验替换；当前 skin 校验仍在。"""
+def test_web_upload_rejects_unknown_template(basic_docx, web_app):
     from fastapi.testclient import TestClient
 
     with TestClient(web_app) as client:
         with open(basic_docx, "rb") as f:
             r = client.post("/api/jobs", files={"file": ("basic.docx", f)},
-                            data={"skin": "no_such_skin", "template": STEM})
+                            data={"template": "no_such_template"})
         assert r.status_code == 400
-        assert "no_such_skin" in r.json()["detail"]
+        assert "no_such_template" in r.json()["detail"]
+
+        with open(basic_docx, "rb") as f:  # PPT 任务缺模板同样 400
+            r = client.post("/api/jobs", files={"file": ("basic.docx", f)},
+                            data={"template": ""})
+        assert r.status_code == 400
 
 
 def test_web_unknown_job_404(web_app):

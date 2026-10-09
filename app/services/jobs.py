@@ -29,15 +29,14 @@ class JobCancelled(Exception):
 
 
 class Job:
-    def __init__(self, job_id: str, root: Path, source_name: str, skin: str,
-                 auto_confirm: bool = False, product: str = "ppt",
-                 template: str = ""):
+    def __init__(self, job_id: str, root: Path, source_name: str,
+                 template: str = "", auto_confirm: bool = False,
+                 product: str = "ppt"):
         self.job_id = job_id
         self.dir = root / job_id
         self.source_name = source_name
-        self.skin = skin
-        self.product = product
         self.template = template
+        self.product = product
         self.auto_confirm = auto_confirm
         self.confirmed = auto_confirm
         self.status = JobStatus.PARSED
@@ -76,7 +75,6 @@ class Job:
                 "status": self.status.value,
                 "detail": self.detail,
                 "source_name": self.source_name,
-                "skin": self.skin,
                 "template": self.template,
                 "product": self.product,
                 "auto_confirm": self.auto_confirm,
@@ -97,7 +95,6 @@ class Job:
                 "status": self.status.value,
                 "detail": self.detail,
                 "source_name": self.source_name,
-                "skin": self.skin,
                 "template": self.template,
                 "product": self.product,
                 "error": self.error,
@@ -111,9 +108,11 @@ class Job:
     @classmethod
     def load(cls, job_dir: Path) -> "Job":
         data = json.loads((job_dir / "state.json").read_text(encoding="utf-8"))
+        # 旧 state.json 兼容：无 template 键时回退 skin 值（旧 PPT 任务会在
+        # 真模板链上以清晰错误失败，仅保证列表/查询不崩）
         job = cls(data["job_id"], job_dir.parent, data["source_name"],
-                  data.get("skin", "business_blue"), data.get("auto_confirm", False),
-                  data.get("product", "ppt"), data.get("template", ""))
+                  data.get("template") or data.get("skin", ""),
+                  data.get("auto_confirm", False), data.get("product", "ppt"))
         job.status = JobStatus(data["status"])
         job.detail = data.get("detail", "")
         job.error = data.get("error")
@@ -177,16 +176,24 @@ class JobManager:
         fut = self._executor.submit(run_pipeline_safe, job, client, com_export)
         fut.add_done_callback(lambda _f: self._running.discard(job.job_id))
 
-    def create(self, source: Path, skin: str = "business_blue",
+    def create(self, source: Path, template: str = "",
                auto_confirm: bool = False, product: str = "ppt",
-               template: str = "", client=None, com_export: bool = True) -> Job:
+               client=None, com_export: bool = True) -> Job:
         if self.active() is not None:
             active = self.active()
             raise JobError(f"已有进行中的任务 {active.job_id}（{active.status.value}），"
                            f"请先完成或取消")
+        if product == "ppt":
+            from app.render.tpl_catalog import template_choices
+
+            choices = dict(template_choices())
+            if not template:
+                raise JobError("PPT 任务必须指定模板（template）")
+            if template not in choices:
+                raise JobError(f"未知模板：{template}（可用：{', '.join(choices)}）")
         source = Path(source)
         job_id = f"{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6]}"
-        job = Job(job_id, self.root, source.name, skin, auto_confirm, product, template)
+        job = Job(job_id, self.root, source.name, template, auto_confirm, product)
         job.dir.mkdir(parents=True, exist_ok=True)
 
         upload = job.dir / "upload"

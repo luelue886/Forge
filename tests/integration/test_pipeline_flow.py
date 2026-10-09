@@ -160,14 +160,14 @@ def test_cancel_frees_slot(basic_docx, fake_llm_factory, tmp_path):
     _wait(job2, {JobStatus.PLANNED})
 
 
-def test_missing_template_fails_clearly(basic_docx, fake_llm_factory, tmp_path):
-    """旧 skin 任务（无 template）在真模板链下给清晰错误，而非走 None 目录歧路。"""
-    from app.services.jobs import JobManager
+def test_missing_template_rejected_at_create(basic_docx, tmp_path):
+    """PPT 任务不带 template：创建即拒（不再进入管线后失败）。"""
+    from app.services.jobs import JobError, JobManager
 
-    client, _ = fake_llm_factory([SEC1, SEC2, PLAN_LLM])
     mgr = JobManager(root=tmp_path / "jobs")
-    job = mgr.create(basic_docx, auto_confirm=True, client=client, com_export=False)
-
-    _wait(job, {JobStatus.DONE, JobStatus.FAILED})
-    assert job.status is JobStatus.FAILED
-    assert "template" in (job.error or "")
+    with pytest.raises(JobError, match="必须指定模板"):
+        mgr.create(basic_docx, auto_confirm=True, com_export=False)
+    with pytest.raises(JobError, match="未知模板"):
+        mgr.create(basic_docx, template="no_such_template",
+                   auto_confirm=True, com_export=False)
+    assert mgr.active() is None  # 未占用执行槽

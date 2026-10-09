@@ -4,44 +4,43 @@ import argparse
 import sys
 from pathlib import Path
 
-from app.schema.enums import Severity
-from app.schema.slideir import Deck, validate_deck
-
 
 def _cmd_render(args) -> int:
     if args.docir:
         return _cmd_render_docir(args)
-    from app.render.capacity import capacity_issues
-    from app.render.renderer import render_to_file
-    from app.services.com_export import checklist, export_pngs
+    from app.render.template_build import build_deck
+    from app.render.tpl_catalog import load_catalog, template_pptx_path
+    from app.schema.slotfill import DeckBuild, validate_deck_build
+    from app.services.com_export import export_pngs, template_checklist
 
-    deck = Deck.model_validate_json(Path(args.deck).read_text(encoding="utf-8"))
+    if not args.template:
+        from app.render.tpl_catalog import template_choices
+
+        print("[fail] PPT 渲染必须 --template 指定模板"
+              f"（可用：{', '.join(s for s, _ in template_choices())}）")
+        return 1
+
+    deck = DeckBuild.model_validate_json(Path(args.deck).read_text(encoding="utf-8"))
+    catalog = load_catalog(args.template)
 
     blocking = 0
-
-    schema_issues = validate_deck(deck)
+    schema_issues = validate_deck_build(deck, catalog)
     for i in schema_issues:
         print(f"[schema] p{i.page_no} {i.rule.value}: {i.detail}")
     if schema_issues:
-        blocking += sum(1 for i in schema_issues)
+        blocking += len(schema_issues)
         if not args.force:
             print("schema 校验未通过（--force 可跳过查看渲染效果）")
             return 1
 
-    for q in capacity_issues(deck):
-        tag = "blocking" if q.severity is Severity.BLOCKING else "cosmetic"
-        print(f"[capacity/{tag}] p{q.page_no} {q.code.value}: {q.detail}")
-        if q.severity is Severity.BLOCKING:
-            blocking += 1
-
     out = Path(args.out)
-    render_to_file(deck, args.skin, out)
-    print(f"已渲染 {len(deck.slides)} 页 → {out}（皮肤 {args.skin}）")
+    build_deck(template_pptx_path(args.template), catalog, deck, out)
+    print(f"已构建 {len(deck.pages)} 页 → {out}（模板 {args.template}）")
 
     if args.pngs:
         pngs = export_pngs(out, Path(args.pngs))
         print(f"已导出 {len(pngs)} 张 PNG → {args.pngs}")
-        for q in checklist(deck, out):
+        for q in template_checklist(deck, catalog, out):
             print(f"[checklist/blocking] p{q.page_no} {q.code.value}: {q.detail}")
             blocking += 1
 
@@ -147,11 +146,17 @@ def _cmd_run(args) -> int:
         print("[fail] --genre 需配合 --auto-confirm；或改用："
               f"python -m app confirm <job_id> --genre {args.genre}")
         return 1
+    if args.product == "ppt" and not args.template:
+        from app.render.tpl_catalog import template_choices
+
+        print("[fail] PPT 任务必须 --template 指定模板"
+              f"（可用：{', '.join(s for s, _ in template_choices())}）")
+        return 1
 
     mgr = JobManager()
     try:
         # --genre 时不走 auto_confirm：等 PLANNED 落盘 docplan 后带体裁确认
-        job = mgr.create(source, skin=args.skin, product=args.product,
+        job = mgr.create(source, template=args.template, product=args.product,
                          auto_confirm=args.auto_confirm and not args.genre)
     except (ParseError, JobError) as e:
         print(f"[fail] {e}")
@@ -256,9 +261,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="app", description="Forge — 文档/PPT 仿写生成 Agent")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    p_render = sub.add_parser("render", help="SlideIR/DocIR JSON → pptx/docx（调试用）")
-    p_render.add_argument("deck", help="SlideIR deck 或 DocIR JSON 路径")
-    p_render.add_argument("--skin", default="business_blue")
+    p_render = sub.add_parser("render", help="DeckBuild/DocIR JSON → pptx/docx（调试用）")
+    p_render.add_argument("deck", help="DeckBuild 或 DocIR JSON 路径")
+    p_render.add_argument("--template", default="", help="PPT 模板 stem（pptx 渲染必填）")
     p_render.add_argument("--out", required=True, help="输出 pptx / docx 路径")
     p_render.add_argument("--pngs", metavar="DIR", help="同时 COM 导出 PNG 到该目录（pptx）")
     p_render.add_argument("--force", action="store_true", help="schema 校验失败仍继续渲染")
@@ -276,7 +281,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_run = sub.add_parser("run", help="源文档 → PPT / Word·PDF 文档全流程")
     p_run.add_argument("source")
-    p_run.add_argument("--skin", default="business_blue")
+    p_run.add_argument("--template", default="", help="PPT 模板 stem（PPT 任务必填）")
     p_run.add_argument("--product", choices=("ppt", "doc"), default="ppt")
     p_run.add_argument("--genre", choices=("letter", "report", "form"),
                        help="文档体裁（仅 --product doc，需 --auto-confirm）")

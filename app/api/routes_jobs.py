@@ -12,7 +12,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.config import DATA_DIR
 from app.parsing.base import ParseError
-from app.render.skins import skin_choices
+from app.render.tpl_catalog import template_choices
 from app.services.jobs import JobError
 
 router = APIRouter()
@@ -45,9 +45,9 @@ def _llm(request: Request):
 @router.get("/")
 async def index(request: Request):
     jobs = await run_in_threadpool(_mgr(request).list)
-    skins = await run_in_threadpool(skin_choices)
+    tpl_choices = await run_in_threadpool(template_choices)
     return templates.TemplateResponse(request, "index.html",
-                                      {"jobs": jobs[:12], "skins": skins})
+                                      {"jobs": jobs[:12], "templates": tpl_choices})
 
 
 @router.get("/jobs/{job_id}")
@@ -56,16 +56,15 @@ async def job_page(request: Request, job_id: str):
         await run_in_threadpool(_mgr(request).get, job_id)
     except JobError as e:
         raise HTTPException(404, str(e)) from e
-    skins = dict(await run_in_threadpool(skin_choices))
+    tpl_choices = dict(await run_in_threadpool(template_choices))
     return templates.TemplateResponse(request, "job.html",
-                                      {"job_id": job_id, "skins": skins})
+                                      {"job_id": job_id, "templates": tpl_choices})
 
 
 # ---- API ----
 
 @router.post("/api/jobs")
 async def create_job(request: Request, file: UploadFile = File(...),
-                     skin: str = Form("business_blue"),
                      template: str = Form(""),
                      product: str = Form("ppt")):
     name = Path(file.filename or "").name
@@ -76,8 +75,12 @@ async def create_job(request: Request, file: UploadFile = File(...),
     if suffix not in allowed:
         wanted = "docx / doc / pdf" if product == "doc" else "docx / pptx / ppt / pdf"
         raise HTTPException(400, f"仅支持 {wanted} 上传")
-    if skin not in dict(await run_in_threadpool(skin_choices)):
-        raise HTTPException(400, f"未知皮肤：{skin}")
+    if product == "ppt":
+        choices = dict(await run_in_threadpool(template_choices))
+        if not template:
+            raise HTTPException(400, "PPT 任务必须选择模板")
+        if template not in choices:
+            raise HTTPException(400, f"未知模板：{template}")
 
     stage = DATA_DIR / "uploads" / uuid.uuid4().hex
     stage.mkdir(parents=True, exist_ok=True)
@@ -86,7 +89,7 @@ async def create_job(request: Request, file: UploadFile = File(...),
     try:
         job = await run_in_threadpool(
             lambda: _mgr(request).create(
-                staged, skin=skin, product=product, template=template,
+                staged, template=template, product=product,
                 client=_llm(request),
                 com_export=getattr(request.app.state, "com_export", True)))
     except ParseError as e:

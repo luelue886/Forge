@@ -19,7 +19,7 @@
         <span class="detail" id="status-detail"></span>
         <button id="cancel-btn" class="cancel hidden">取消任务</button>
       </div>
-      <p class="sub" id="skin-line">皮肤：<span id="skin-text">…</span></p>
+      <p class="sub" id="template-line">模板：<span id="template-text">…</span></p>
       <div id="confirm-area" class="hidden">
         <h2>大纲确认</h2>
         <p class="sub">以下是拟生成的内容规划，确认后开始逐节仿写。</p>
@@ -32,7 +32,7 @@
           </select>
         </div>
         <table>
-          <thead><tr><th>序</th><th>类型</th><th>标题</th></tr></thead>
+          <thead><tr><th>序</th><th>类型</th><th>标题</th><th>模板页</th></tr></thead>
           <tbody id="outline-body"></tbody>
         </table>
         <button id="confirm-btn">确认大纲，开始生成</button>
@@ -55,6 +55,6 @@
   </main>
 
   <script src="/static/app.js"></script>
-  <script>initJobPage("{{ job_id }}", {{ skins|tojson }});</script>
+  <script>initJobPage("{{ job_id }}", {{ templates|tojson }});</script>
 </body>
 </html>
