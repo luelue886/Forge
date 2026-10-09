@@ -1,8 +1,7 @@
 """槽填充产物（PageFill/DeckBuild）与真模板构建（template_build）的输入契约。
 
-替代 slideir 的 PPT 线数据流：每页不再手绘文本框，而是对模板页的槽位
-（slot_id = shape 树索引路径）做填充/删除。TableIR 与 ValidationIssue 自
-slideir 迁入此处（slideir 将随旧渲染链移除，其 import 暂经 re-export 兼容）。
+PPT 线数据流：每页不再手绘文本框，而是对模板页的槽位
+（slot_id = shape 树索引路径）做填充/删除。TableIR 与 ValidationIssue 定义于此。
 """
 from __future__ import annotations
 

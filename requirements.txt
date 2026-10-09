@@ -13,6 +13,5 @@ json-repair
 tenacity
 Pillow
 pywin32
-pyyaml
 pytest
 httpx

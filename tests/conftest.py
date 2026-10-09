@@ -5,12 +5,6 @@ from pathlib import Path
 
 import pytest
 
-from app.config import get_settings
-from app.schema.slideir import Deck
-
-FIXTURES = Path(__file__).resolve().parent / "fixtures"
-FONT_PATH = Path(get_settings().font_path)
-
 
 class FakeCompletions:
     """按脚本回放的假 chat.completions。元素为 str（正常回复）或 Exception。"""
@@ -70,17 +64,3 @@ def fake_llm_factory(tmp_path_factory):
         return client, api.chat.completions
 
     return make
-
-
-def load_deck(name: str) -> Deck:
-    return Deck.model_validate_json((FIXTURES / name).read_text(encoding="utf-8"))
-
-
-@pytest.fixture(scope="session")
-def deck_all_types() -> Deck:
-    return load_deck("deck_all_types.json")
-
-
-@pytest.fixture(scope="session")
-def deck_overflow() -> Deck:
-    return load_deck("deck_overflow.json")

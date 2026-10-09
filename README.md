@@ -2,7 +2,7 @@
 
 根据源文档（Word / PDF / PPT）仿写生成新文档或 PPT：**客观事实（数字、日期、专名）与源文档
 verbatim 一致，其余措辞改写**。两条产品线共用同一任务框架：文档线（docx/PDF 源 → Word+PDF
-产物）与 PPT 线（→ pptx 产物，代码化模板皮肤）。
+产物）与 PPT 线（→ pptx 产物，真 .pptx 模板填充）。
 
 ## 设计立场：Pipeline，不是自由 Agent
 
@@ -39,7 +39,7 @@ LLM 触达不到的确定性能力，全部是编排器的"手"：
 |---|---|---|
 | LLM 适配 | `app/llm/client.py` | `chat()` / `structured(pydantic schema)` 结构化输出，stage 标签，全量调用落 `llm_calls.jsonl` 审计 |
 | 解析 | `app/parsing/` | docx（python-docx + XML）、PDF（pdfplumber，表格 bbox 聚类重建合并区/列宽）、pptx；扫描件拒收 |
-| 渲染 | `app/render/` | python-docx（体裁版式）、表格 XML deepcopy 搬运（docx 源排版保真）、form HTML（@page 公文版式）、python-pptx + 皮肤系统（`templates/skins/*.yaml`） |
+| 渲染 | `app/render/` | python-docx（体裁版式）、表格 XML deepcopy 搬运（docx 源排版保真）、form HTML（@page 公文版式）、真 .pptx 模板填充（`templates/pptx/`：按规划复制模板页 → XML 文本 run 替换 → 孤儿清理） |
 | COM 服务 | `app/services/com_export.py` | Word/PowerPoint 自动化：.doc→docx、HTML→docx、docx→PDF、pptx→PNG；STA 专用队列 + 超时击杀自恢复 |
 | QA | `app/qa/` | ngram 抄袭检测、数字溯源、逐单元校验器、视觉抽检（`spotcheck.py`） |
 | 提示词 | `prompts/` | Jinja2 模板（system.md + user.j2 + retry.j2），版本随代码 |
@@ -104,7 +104,7 @@ data/jobs/<job_id>/
    铁律不变式：抽检 LLM 读的是渲染成品（真实数字可见），但**输出只流向视觉参数
    （int 校验）与报告文本，永不回流文档内容**——排版修正不重掷内容骰子。
 
-门禁：**388 单测 + 6 COM 集成 + 13 集成 + 8 golden 端到端样例**（含真实复杂表格 PDF：竖排侧栏重组、
+门禁：**399 单测 + 9 COM 集成 + 14 集成 + 8 golden 端到端样例**（含真实复杂表格 PDF：竖排侧栏重组、
 跨页并表、值格虚构+电话照搬）。
 
 ## 快速开始
