@@ -4,7 +4,9 @@
 四号行距 1.5 首行缩进 2em、表格宋体五号（≥7 列降小五）。Word HTML
 导入的怪癖按属性兜底：边框打在 th/td 上（表级被丢弃）、表头底纹用
 bgcolor 属性、列宽用 col width 属性、行高 tr style 视为最小高度
-（atLeast 语义）。竖排标签格（跨 ≥3 行的短 label）逐字 <br> 竖排。
+（atLeast 语义）。竖排标签格（跨 ≥3 行的短 label）逐字 <br> 竖排；
+格子垂直居中（vertical-align:middle，COM 导出后另有 VerticalAlignment
+后处理双保险）。
 
 写出方须用 utf-8-sig（Word 嗅探 BOM），meta charset 双保险。
 """
@@ -33,7 +35,7 @@ from app.render.docstyle import (
     TITLE_SPACE_AFTER,
     WIDE_TABLE_COLS,
 )
-from app.schema.tblskeleton import TSkeleton, TVisualTable
+from app.schema.tblskeleton import TSkeleton, TVisualTable, is_photo_cell
 
 _VERTICAL_MIN_ROWS = 3
 _VERTICAL_MAX_CHARS = 10
@@ -71,9 +73,12 @@ def _cell_html(cell, content: str) -> str:
     border = f"border:0.5pt solid #{TABLE_BORDER_COLOR}"
     if cell.style == "header":
         return (f'<th{attrs} bgcolor="#{TABLE_HEADER_FILL}" align="center" '
-                f'style="{border};font-weight:bold">{inner}</th>')
-    align = "center" if cell.style in ("label", "option") else "left"
-    return f'<td{attrs} align="{align}" style="{border}">{inner}</td>'
+                f'style="{border};font-weight:bold;vertical-align:middle">'
+                f'{inner}</th>')
+    align = "center" if cell.style in ("label", "option") \
+        or is_photo_cell(cell) else "left"
+    return (f'<td{attrs} align="{align}" '
+            f'style="{border};vertical-align:middle">{inner}</td>')
 
 
 def _col_widths_for(s: TSkeleton, v: TVisualTable | None) -> list[int]:

@@ -150,6 +150,13 @@ def test_convert_html_to_docx(tmp_path):
     assert "人员登记表" in full and "基本情况" in full
     assert "13800001111" in full and "12" in full
     assert "⟦" not in full
+    # F3：垂直居中后处理——Word HTML 导入常丢 CSS vertical-align，
+    # COM 保存前逐格补 VerticalAlignment=1
+    from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
+    for t in d.tables:
+        for r in t.rows:
+            for c in r.cells:
+                assert c.vertical_alignment == WD_CELL_VERTICAL_ALIGNMENT.CENTER
 
     pdf = export_docx_pdf(docx, tmp_path / "form.pdf")
     import pymupdf

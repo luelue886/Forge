@@ -16,7 +16,7 @@ from pathlib import Path
 
 from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
-from app.pipeline.runner import _JobLike
+from app.pipeline.runner import _JobLike, _check_cancel
 from app.pipeline.tblarch import FormBranchFallback, run_architect
 from app.pipeline.tblcontent import MIN_CELL_WEIGHT, run_content
 from app.pipeline.tblvisual import CONTENT_WIDTH_CM, run_visual
@@ -361,11 +361,13 @@ def run_form_branch(job: _JobLike, client: LLMClient, pm: PromptManager,
     art.mkdir(parents=True, exist_ok=True)
 
     # ① 表格架构师（产物幂等；两轮败 → FormBranchFallback 由 doc_runner 捕获）
+    _check_cancel(job)
     job.set_status(JobStatus.GENERATING, "表格架构重建")
     job.save_state()
     skeletons, _pool, rep_arch = run_architect(tree, plan, client, pm, art)
 
     # ② 内容专家（骨架格 + 散文仿写）
+    _check_cancel(job)
     job.set_status(JobStatus.GENERATING, "表格内容仿写")
     job.save_state()
     table_rw, prose_rw, rep_content = run_content(
@@ -379,6 +381,7 @@ def run_form_branch(job: _JobLike, client: LLMClient, pm: PromptManager,
     items, frag_warn = _doc_order(tree, skeletons, prose_rw)
 
     # ⑤⑥ 渲染产出（抽检重渲染复用同一入口）
+    _check_cancel(job)
     n_pages = _render_form_outputs(job, plan, tree, items, skeletons,
                                    final_skeletons, visuals, com_export)
 

@@ -1,9 +1,12 @@
 """视觉总监：骨架 → 列宽% + 行高 pt（form+PDF 分支第 3 步）。
 
-LLM 看不到文档几何（PDF 碎片几何本身不可信），只看代码算好的逐列内容
-当量统计与版心宽——标签列窄而稳、内容列按当量、书写行行高给足。
-validate_visual 不过 → 1 次定向重试 → 仍败确定性兜底（源碎片列宽可用
-则用，否则内容当量加权；<4% 抬到 4% 从最宽列扣减，和恒 100）。
+列宽由代码确定性计算（F1）：源表列宽比例优先（DocTable.col_widths 按
+src_tables 映射 + 列数匹配），先验经可用性审计——短标签列远宽于书写列
+的语义反转只搬反转对（3:1 封顶），单列垄断弃用走内容当量 + 空输入列
+占位当量（占位随行内标签长度缩放——长问长答，防书写区被挤没）；照片格
+跨列钳制标准证件照最小宽。LLM 只负责行高（书写行给足、表头紧凑）；照片
+格跨行行高合计钳制标准证件照最小高（F2）。抽检意见重跑轮锚定旧参数最小
+修改，事后照片钳制兜底。LLM 失败 → 确定性基准列宽（行高不指定）。
 
 断点：artifacts/tblvisual.json 存在且逐表复检通过 → 跳过 LLM。
 """
@@ -19,9 +22,11 @@ from app.llm.prompts import PromptManager
 from app.schema.doctree import DocTree
 from app.schema.tblskeleton import (
     MIN_COL_PERCENT,
+    ROW_HEIGHT_RANGE,
     TSkeleton,
     TVisualTable,
     VisualOut,
+    photo_size_cm,
     renormalize_widths,
     validate_visual,
     walk_grid,
@@ -31,6 +36,9 @@ from app.schema.textlen import text_weight
 log = logging.getLogger(__name__)
 
 CONTENT_WIDTH_CM = 14.64  # A4 21.0 − 3.18×2 版心宽
+_INPUT_PLACEHOLDER_WEIGHT = 5.0  # 空输入列占位当量（约 5 字书写空间）
+_ANSWER_LABEL_RATIO = 0.8  # 占位随行内标签缩放：答案长度 ≈ 问题长度 × 0.8
+_LABEL_MAX_WEIGHT = 6.0  # 表单形态下标签列宽度需求封顶（标签可换行）
 
 
 def _col_weights(s: TSkeleton) -> list[float]:
@@ -52,13 +60,16 @@ def _writing_rows(s: TSkeleton) -> list[int]:
                    and not cell.content.strip() for cell in row.cells)]
 
 
-def _table_stats(ti: int, s: TSkeleton) -> str:
+def _table_stats(ti: int, s: TSkeleton,
+                 base: list[int] | None = None) -> str:
     weights = _col_weights(s)
     cols = ", ".join(f"c{i}={weights[i]:.0f}" for i in range(s.total_cols))
     styles = sorted({cell.style for row in s.rows for cell in row.cells
                      if cell.content.strip()})
     line = (f"表{ti}《{s.table_title or '无题'}》：{s.total_cols}列×"
             f"{len(s.rows)}行；列内容当量 {cols}；含样式 {styles}")
+    if base is not None:
+        line += f"；基准列宽 {base}"
     wr = _writing_rows(s)
     if wr:
         line += f"；书写行 {wr}（input/note 空行，行高给足）"
@@ -73,6 +84,71 @@ def _src_widths(s: TSkeleton, tree: DocTree) -> list[float] | None:
                 and len(t.col_widths) == s.total_cols:
             return t.col_widths
     return None
+
+
+def _content_weights(s: TSkeleton) -> list[float]:
+    """内容当量 + 表单形态修正：标签列封顶（可换行），空输入列保占位。
+
+    占位当量随行内标签长度缩放（长问长答）：问答带里 20 字问题的答案
+    书写区不该只有 5 字占位——按标签当量 ×0.8 抬升，书写区才能拿回主宽。
+    """
+    weights = _col_weights(s)
+    anchors, _ = walk_grid(s)
+    row_label: dict[int, float] = {}
+    col_label: dict[int, float] = {}
+    col_input: dict[int, float] = {}
+    for (r, c), cell in anchors.items():
+        if cell.content.strip() and cell.style in ("label", "header"):
+            w = text_weight(cell.content)
+            row_label[r] = max(row_label.get(r, 0.0), w)
+            col_label[c] = max(col_label.get(c, 0.0), w)
+        elif cell.style in ("input", "note") and not cell.content.strip():
+            col_input[c] = max(col_input.get(c, 0.0),
+                               _INPUT_PLACEHOLDER_WEIGHT,
+                               _ANSWER_LABEL_RATIO * row_label.get(r, 0.0))
+    if not col_input:
+        return weights
+    for c, need in col_input.items():
+        weights[c] = max(weights[c], need)
+    for c, w in col_label.items():
+        if c not in col_input:
+            weights[c] = min(weights[c], _LABEL_MAX_WEIGHT)
+    return weights
+
+
+def _monopoly(src: list[float]) -> bool:
+    """单列垄断：多列表某列 >90%（书写列 4% 连一个字都放不下）。"""
+    return len(src) >= 2 and max(src) > 0.90
+
+
+def _repair_prior(s: TSkeleton,
+                  src: list[float]) -> tuple[list[float], int]:
+    """短标签列宽度搬回书写列（3:1 封顶）。返回 (修复后先验, 修复对数)。
+
+    实录（干部履历表原生 docx）：姓名列 29% 配书写列 6%——tblGrid 是
+    label-inflated 死数据，照抄即复刻"字段宽度大于需填内容宽度"。只搬
+    超出 3 倍的部分（幅度天然自限，golden 样例偶发小幅失衡不受影响），
+    其余列照抄——真实版面（Word 转换重写 grid）本就无此反转，不动。
+    """
+    fixed = list(src)
+    anchors, _ = walk_grid(s)
+    pairs: set[tuple[int, int]] = set()
+    for (r, c), cell in anchors.items():
+        if not (cell.content.strip() and cell.style in ("label", "header")):
+            continue
+        if text_weight(cell.content) > _LABEL_MAX_WEIGHT:
+            continue
+        for b in (c - 1, c + 1):
+            nb = anchors.get((r, b))
+            if (nb is not None and 0 <= b < len(src)
+                    and nb.style in ("input", "note")
+                    and not nb.content.strip() and src[c] > 3 * src[b]):
+                pairs.add((c, b))
+    for a, b in sorted(pairs):
+        excess = src[a] - 3 * src[b]
+        fixed[a] -= excess
+        fixed[b] += excess
+    return fixed, len(pairs)
 
 
 def _clamp_min(widths: list[int]) -> list[int]:
@@ -92,17 +168,69 @@ def _clamp_min(widths: list[int]) -> list[int]:
     return w
 
 
-def _fallback_visual(ti: int, s: TSkeleton, tree: DocTree) -> TVisualTable:
+def _photo_min_widths(widths: list[int], s: TSkeleton) -> list[int]:
+    """照片格跨列合计 ≥ 标准证件照宽：差额加到末跨列，从最宽非跨列扣减。"""
+    w = list(widths)
+    anchors, _ = walk_grid(s)
+    for (r, c), cell in anchors.items():
+        size = photo_size_cm(cell.content)
+        if size is None:
+            continue
+        span = range(c, min(c + cell.colspan, s.total_cols))
+        need = round(size[0] / CONTENT_WIDTH_CM * 100)
+        deficit = need - sum(w[i] for i in span)
+        if deficit <= 0:
+            continue
+        w[span.stop - 1] += deficit
+        donors = [i for i in range(s.total_cols) if i not in span]
+        for i in sorted(donors, key=lambda k: -w[k]):
+            if deficit <= 0:
+                break
+            take = min(deficit, w[i] - MIN_COL_PERCENT)
+            w[i] -= take
+            deficit -= take
+    return w
+
+
+def enforce_photo_widths(widths: list[int], s: TSkeleton) -> list[int]:
+    """照片最小宽钳制 + 归一（最小值语义，幂等，不与抽检意见震荡）。"""
+    return renormalize_widths(_photo_min_widths(list(widths), s))
+
+
+def enforce_photo_heights(heights: list[int], s: TSkeleton) -> list[int]:
+    """照片格跨行行高合计 ≥ 标准证件照高：差额加到跨行末行（幂等钳制）。"""
+    h = list(heights)
+    anchors, _ = walk_grid(s)
+    for (r, c), cell in anchors.items():
+        size = photo_size_cm(cell.content)
+        if size is None:
+            continue
+        span = range(r, min(r + cell.rowspan, len(h)))
+        need = round(size[1] * 28.35)  # cm → pt
+        deficit = need - sum(h[i] for i in span)
+        if deficit > 0:
+            h[span.stop - 1] = min(ROW_HEIGHT_RANGE[1],
+                                   h[span.stop - 1] + deficit)
+    return h
+
+
+def _base_widths(s: TSkeleton, tree: DocTree) -> list[int]:
+    """确定性列宽基准：源表比例优先（短标签反转修复、垄断弃用），内容
+    当量+占位兜底，照片最小宽钳制。"""
     src = _src_widths(s, tree)
-    if src:
-        widths = renormalize_widths(
-            [max(MIN_COL_PERCENT, round(w * 100)) for w in src])
+    if src is not None and not _monopoly(src):
+        fixed, _ = _repair_prior(s, src)
+        widths = [max(MIN_COL_PERCENT, round(w * 100)) for w in fixed]
     else:
-        weights = _col_weights(s)
+        weights = _content_weights(s)
         total = sum(weights) or 1.0
-        widths = renormalize_widths(
-            [max(MIN_COL_PERCENT, round(w / total * 100)) for w in weights])
-    return TVisualTable(table_index=ti, col_widths=_clamp_min(widths))
+        widths = [max(MIN_COL_PERCENT, round(x / total * 100))
+                  for x in weights]
+    return enforce_photo_widths(_clamp_min(widths), s)
+
+
+def _fallback_visual(ti: int, s: TSkeleton, tree: DocTree) -> TVisualTable:
+    return TVisualTable(table_index=ti, col_widths=_base_widths(s, tree))
 
 
 def _check_visual(out: VisualOut, skeletons: list[TSkeleton]) -> list[str]:
@@ -164,8 +292,10 @@ def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
 
     visuals: list[TVisualTable] = []
     report: list[str] = []
-    source = "llm-feedback" if feedback is not None else "llm"
-    stats = [_table_stats(ti, s) for ti, s in enumerate(skeletons)]
+    bases = [_base_widths(s, tree) for s in skeletons]
+    source = "llm-feedback" if feedback is not None else "llm-heights+base-widths"
+    stats = [_table_stats(ti, s, bases[ti] if feedback is None else None)
+             for ti, s in enumerate(skeletons)]
     system = pm.render("tblvisual/system.md")
     if feedback is not None:
         base_user = pm.render(
@@ -200,11 +330,35 @@ def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
             break
     if out is not None and not errors:
         by_index = {v.table_index: v for v in out.tables}
-        visuals = [
-            TVisualTable(
-                table_index=ti, col_widths=renormalize_widths(by_index[ti].col_widths),
-                row_heights=by_index[ti].row_heights)
-            for ti in range(len(skeletons))]
+        if feedback is None:
+            # F1: 首轮列宽一律确定性基准（源比例优先），LLM 输出的列宽弃用
+            for ti, s in enumerate(skeletons):
+                visuals.append(TVisualTable(
+                    table_index=ti, col_widths=bases[ti],
+                    row_heights=by_index[ti].row_heights))
+                src = _src_widths(s, tree)
+                if src is not None:
+                    if _monopoly(src):
+                        report.append(f"[tblvisual] t{ti}: 源表列宽异常"
+                                      f"（单列垄断），改用内容当量基准")
+                    else:
+                        _, n = _repair_prior(s, src)
+                        if n:
+                            report.append(
+                                f"[tblvisual] t{ti}: 源表列宽短标签反转"
+                                f"修正 {n} 对（标签列宽搬回书写列）")
+                        else:
+                            report.append(f"[tblvisual] t{ti}: 列宽采用源表比例基准")
+        else:
+            # 意见重跑：LLM 锚定旧参数调整；照片最小宽钳制兜底（幂等）
+            visuals = [
+                TVisualTable(
+                    table_index=ti,
+                    col_widths=enforce_photo_widths(
+                        renormalize_widths(by_index[ti].col_widths),
+                        skeletons[ti]),
+                    row_heights=by_index[ti].row_heights)
+                for ti in range(len(skeletons))]
     elif feedback is not None:
         reason = errors[0][:60] if errors else "未知"
         return old, [f"[tblvisual] W-VISUAL-FEEDBACK-FAIL 意见重跑未成功：{reason}（保留原参数）"]
@@ -214,6 +368,16 @@ def run_visual(skeletons: list[TSkeleton], tree: DocTree, client: LLMClient,
         for ti, s in enumerate(skeletons):
             visuals.append(_fallback_visual(ti, s, tree))
             report.append(f"[tblvisual] W-VISUAL-FALLBACK t{ti}: {reason}（确定性兜底列宽）")
+
+    # 照片行高钳制（F2）：确定性后处理——首轮 / 意见重跑统一生效（断点
+    # 续读的旧产物已含钳制结果，幂等最小值语义不重复加高）
+    visuals = [
+        TVisualTable(
+            table_index=v.table_index, col_widths=v.col_widths,
+            row_heights=(enforce_photo_heights(v.row_heights,
+                                               skeletons[v.table_index])
+                         if v.row_heights is not None else None))
+        for v in visuals]
 
     art_dir.mkdir(parents=True, exist_ok=True)
     art_path.write_text(json.dumps(

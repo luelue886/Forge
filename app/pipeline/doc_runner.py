@@ -11,7 +11,7 @@ from app.llm.prompts import PromptManager
 from app.pipeline.docfill import assemble_docir, fill_all_sections
 from app.pipeline.docplan import build_doc_plan
 from app.pipeline.genre import extract_letter_frame
-from app.pipeline.runner import _JobLike, _artifacts, _load_json, _save_json
+from app.pipeline.runner import _JobLike, _artifacts, _check_cancel, _load_json, _save_json
 from app.pipeline.tblvisual import CONTENT_WIDTH_CM
 from app.pipeline.tablefill import fill_all_tables
 from app.qa.docqa import qa_and_repair
@@ -143,6 +143,7 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
     # ---- docplan（确定性规划 + 体裁识别，文档线唯一 pre-fill LLM 点）----
     docplan_path = art / "docplan.json"
     if not docplan_path.exists():
+        _check_cancel(job)
         tree = _load_json(art / "doctree.json", DocTree)
         job.set_status(JobStatus.UNDERSTOOD, "体裁识别 + 规划")
         job.save_state()
@@ -158,6 +159,7 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
 
     # ---- form 表格 LLM 重建分支（不限源：docx/.doc/PDF 均走；架构师两轮败
     #      → FormBranchFallback 回落通用链路）----
+    _check_cancel(job)
     if plan.genre is Genre.FORM:
         tree = _load_json(art / "doctree.json", DocTree)
         if tree.tables:
@@ -174,12 +176,14 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
                 log.warning("form 分支回落既有链路：%s", e)
 
     # ---- fill（逐节落盘，可断点续跑）----
+    _check_cancel(job)
     tree = _load_json(art / "doctree.json", DocTree)
     total = len(plan.items)
     job.set_status(JobStatus.GENERATING, f"fill 0/{total}")
     job.save_state()
 
     def _progress(done: int, _total: int) -> None:
+        _check_cancel(job)  # 每节间隙取消点（已落盘节保留可续跑）
         job.set_status(JobStatus.GENERATING, f"fill {done}/{_total}")
         job.save_state()
 
@@ -187,16 +191,19 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
                                  on_progress=_progress)
 
     # ---- QA：数字溯源 + 10-gram，blocking 定向重 fill ≤2 轮 ----
+    _check_cancel(job)
     job.set_status(JobStatus.QA, "数字溯源 + 防抄袭检查")
     job.save_state()
     sections, qa_issues = qa_and_repair(plan, tree, sections, client, pm,
                                         job.dir / "sections")
 
     # ---- 表格内容仿写（长文本格 ⟦N⟧ 掩码，退格照搬兜底，断点落 artifacts/tables）----
+    _check_cancel(job)
     table_rewrites, tf_report = fill_all_tables(
         tree, client, pm, job.dir / "artifacts" / "tables")
 
     # ---- 组装 DocIR + 校验 ----
+    _check_cancel(job)
     frame = extract_letter_frame(tree) if plan.genre is Genre.LETTER else None
     doc = assemble_docir(plan, sections, tree, frame, table_rewrites=table_rewrites)
     blocking = [i for i in validate_docir(doc)
@@ -211,6 +218,7 @@ def run_doc_pipeline(job: _JobLike, client: LLMClient | None = None,
     lines.extend(tf_report)
 
     # ---- 渲染 docx → Word COM 转 PDF → 逐页预览 ----
+    _check_cancel(job)
     source = _render_source(job)
     if source is None:
         log.warning("渲染期源文件缺失，表格/图片按规范样式重建（排版保真降级）")

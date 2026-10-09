@@ -121,10 +121,10 @@ def test_cancel_frees_slot(basic_docx, fake_llm_factory, tmp_path):
     _wait(job, {JobStatus.PLANNED})
 
     mgr.cancel(job.job_id)
-    assert job.status is JobStatus.FAILED
-    assert job.error == "用户取消"
-    with pytest.raises(JobError):  # 已终态，不能重复取消
-        mgr.cancel(job.job_id)
+    assert job.status is JobStatus.CANCELLED
+    # A2：取消是幂等的（重复取消不报错）；错误字段不设置（取消非失败）
+    mgr.cancel(job.job_id)
+    assert job.error is None
 
     client2, _ = fake_llm_factory([SEC1, SEC2, PLAN_LLM])
     job2 = mgr.create(basic_docx, client=client2, com_export=False)

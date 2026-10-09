@@ -26,6 +26,38 @@ ROW_HEIGHT_RANGE = (14, 400)
 
 PLACEHOLDER_RE = re.compile(r"⟦(\d+)⟧")
 
+PHOTO_SIZES: dict[str, tuple[float, float]] = {  # 证件照标准尺寸 cm（宽, 高）
+    "1寸": (2.5, 3.5),
+    "2寸": (3.5, 4.9),
+    "小2寸": (3.3, 4.8),
+}
+PHOTO_DEFAULT = "2寸"
+_PHOTO_TEXT_RE = re.compile(r"照片|相片")
+
+
+def photo_size_cm(text: str) -> tuple[float, float] | None:
+    """证件照格判定与标准尺寸：文本含 照片/相片 且是短标签（≤16 字）。
+
+    解析标注尺寸（一寸/1寸、二寸/2寸/两寸、小二寸/小2寸），无标注默认 2寸。
+    非照片格返回 None。先剥 ⟦N⟧ 掩码——架构师循环内骨架是掩码态，标注
+    数字（如 2寸）已被替换，判定只看关键词与残留标注字（合并手术用缺省
+    尺寸；精确尺寸在回填后的 tblvisual 阶段解析）。
+    """
+    t = PLACEHOLDER_RE.sub("", text).strip()
+    if not t or len(t) > 16 or not _PHOTO_TEXT_RE.search(t):
+        return None
+    if re.search(r"小[二2]寸", t):
+        return PHOTO_SIZES["小2寸"]
+    if re.search(r"[一1]寸", t):
+        return PHOTO_SIZES["1寸"]
+    if re.search(r"[二2两]寸", t):
+        return PHOTO_SIZES["2寸"]
+    return PHOTO_SIZES[PHOTO_DEFAULT]
+
+
+def is_photo_cell(cell: TCell) -> bool:
+    return photo_size_cm(cell.content) is not None
+
 
 class TCell(BaseModel):
     content: str = ""
@@ -107,6 +139,164 @@ def walk_grid(s: TSkeleton) -> tuple[dict[tuple[int, int], TCell],
                     grid[(r + dr, c + dc)] = cell
             c += cell.colspan
     return anchors, grid
+
+
+def normalize_skeleton(s: TSkeleton, ti: int = 0) -> tuple[TSkeleton, list[str]]:
+    """几何非法骨架的确定性降维重排（A1）——修几何，不碰内容语义。
+
+    背景：LLM 架构师对复杂合并网格的 span 数学不稳（实测三类错：越界/
+    空洞/重叠，且 retry 每轮犯不同错互踢皮球）。合法骨架原样返回（合法
+    rowspan 保留，正常路径零影响）；非法时降维重排：
+
+    - rowspan 全部降 1——跨行视觉语义放弃（竖排完整性由 _vertical_joins
+      的字符串序检查保障，不依赖 rowspan；实测两次成功运行的最终骨架
+      也全部 rowspan=1，即此形态本就是正确输出的常见形态）；
+    - 逐行游标走位：越界格截断 colspan 至剩余宽度；走满后剩余格丢弃
+      （格内容是掩码占位符，丢失会被 coverage_missing 抓为语义错误
+      如实 retry——修几何不隐瞒内容损失）；行尾未满则末格扩宽补洞；
+      空行补整行 note 格。
+
+    返回 (修复骨架, W 报告行)；无法重排的（total_cols<1 / rows 空 /
+    规模超限等非几何错）原样传出。
+    """
+    errors = validate_skeleton(s)
+    if not errors:
+        return s, []
+    tag = f"[tblarch-normalize] t{ti}"
+    head = errors[0]
+    report = [f"{tag}: 几何自动重排（{head}"
+              + (f" 等 {len(errors)} 项" if len(errors) > 1 else "") + "）"]
+    if (s.total_cols < 1 or not s.rows
+            or any("超限" in e for e in errors)):  # 规模错重排救不了
+        return s, [f"{tag}: 无法自动重排（{head}）"]
+    new_rows: list[TRow] = []
+    for r, row in enumerate(s.rows):
+        cells: list[TCell] = []
+        c = 0
+        for cell in row.cells:
+            if c >= s.total_cols:
+                report.append(f"{tag} 第{r}行溢出格丢弃"
+                              f"（{cell.content[:12]}）")
+                continue
+            rowspan = 1
+            colspan = max(cell.colspan, 1)
+            if c + colspan > s.total_cols:
+                colspan = s.total_cols - c
+                report.append(f"{tag} 第{r}行格截断至剩余宽度 {colspan}")
+            cells.append(cell.model_copy(update={"rowspan": rowspan,
+                                                 "colspan": colspan}))
+            c += colspan
+        if not cells:
+            cells = [TCell(colspan=s.total_cols, style="note")]
+            report.append(f"{tag} 第{r}行无有效格，补整行 note 格")
+        elif c < s.total_cols:
+            cells[-1] = cells[-1].model_copy(
+                update={"colspan": cells[-1].colspan + s.total_cols - c})
+            report.append(f"{tag} 第{r}行末格扩宽补洞")
+        new_rows.append(TRow(cells=cells))
+    fixed = s.model_copy(update={"rows": new_rows})
+    post = validate_skeleton(fixed)
+    if post:  # 理论不可达（行行走位必满足三不变量）；防御性回退
+        return s, [f"{tag}: 自动重排失败，保留原骨架（{post[0]}）"]
+    return fixed, report
+
+
+def _photo_anchor_cells(s: TSkeleton) -> list[tuple[int, int, TCell]]:
+    """照片格锚点清单（行, 列, 格），按位置排序。"""
+    anchors, _ = walk_grid(s)
+    return sorted(((r, c, cell) for (r, c), cell in anchors.items()
+                   if photo_size_cm(cell.content) is not None))
+
+
+def _extend_photo(s: TSkeleton, r: int, c: int
+                  ) -> tuple[TSkeleton, int] | None:
+    """把 (r,c) 照片格向下吸收一行；不可吸收/致非法 → None。
+
+    吸收条件：下一行覆盖照片列区间的格全部是空 input/note 且 rowspan=1
+    （跨骑区间的空格按边界切分，整段落入的空格删除）。照片格与其他格
+    不重叠由骨架合法性先天保证，无需再查。
+    """
+    anchors, grid = walk_grid(s)
+    p = anchors.get((r, c))
+    if p is None or photo_size_cm(p.content) is None:
+        return None
+    k = p.colspan
+    r1 = r + p.rowspan
+    if r1 >= len(s.rows):
+        return None
+    row1 = s.rows[r1].cells
+    row1_ids = {id(X) for X in row1}
+    blocked = {cc for (rr, cc), X in grid.items()
+               if rr == r1 and id(X) not in row1_ids}
+    placed: list[tuple[int, TCell]] = []  # (起始列, 格)
+    cc = 0
+    for X in row1:
+        while cc in blocked:
+            cc += 1
+        placed.append((cc, X))
+        cc += X.colspan
+    covering = [X for cX, X in placed
+                if cX < c + k and cX + X.colspan > c]
+    if not covering:
+        return None
+    for X in covering:
+        if X.rowspan != 1 or X.style not in ("input", "note") \
+                or X.content.strip():
+            return None
+    new_cells: list[TCell] = []
+    for cX, X in placed:
+        lo, hi = cX, cX + X.colspan
+        if hi <= c or lo >= c + k:
+            new_cells.append(X)
+            continue
+        left, right = c - lo, hi - (c + k)
+        if left > 0:
+            new_cells.append(X.model_copy(update={"colspan": left}))
+        if right > 0:
+            new_cells.append(X.model_copy(update={"colspan": right}))
+    if not new_cells:
+        return None  # 整行被吞会产生空行，保守放弃
+    new_rows = [row.model_copy(deep=True) for row in s.rows]
+    pi = next(i for i, X in enumerate(s.rows[r].cells) if X is p)
+    new_rows[r].cells[pi] = new_rows[r].cells[pi].model_copy(
+        update={"rowspan": p.rowspan + 1})
+    new_rows[r1] = TRow(cells=new_cells)
+    fixed = s.model_copy(update={"rows": new_rows})
+    if validate_skeleton(fixed):
+        return None
+    return fixed, p.rowspan + 1
+
+
+def merge_photo_cells(s: TSkeleton, ti: int = 0) -> tuple[TSkeleton, list[str]]:
+    """照片格确定性纵向合并（F2）：照片标签格 + 下方空书写区 → 一个整格。
+
+    架构师常把源表证件照大格拆成「标签格 + 下方若干空格」，渲染后照片
+    区域被切碎、尺寸失控。逐照片格向下逐行吸收（每步 validate，非法即
+    停）；已合并的天然不动（下方区间无覆盖格）。返回 (骨架, W 报告行)。
+    只在合法骨架上手术（管线中 normalize 先行保证）。
+    """
+    if validate_skeleton(s):
+        return s, []
+    report: list[str] = []
+    result = s
+    for r, c, cell in _photo_anchor_cells(s):
+        cur = result
+        while True:
+            got = _extend_photo(cur, r, c)
+            if got is None:
+                break
+            cur = got[0]
+        if cur is not result:
+            report.append(f"[tblarch] W-PHOTO-MERGE t{ti}: 照片格"
+                          f"（第{r}行第{c}列）合并 {cell.rowspan}"
+                          f" → {_photo_rowspan(cur, r, c)} 行")
+            result = cur
+    return result, report
+
+
+def _photo_rowspan(s: TSkeleton, r: int, c: int) -> int:
+    anchors, _ = walk_grid(s)
+    return anchors[(r, c)].rowspan
 
 
 def validate_skeleton(s: TSkeleton) -> list[str]:

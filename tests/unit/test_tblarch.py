@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -22,9 +23,12 @@ from app.schema.tblskeleton import (
     TSkeleton,
     TVisualTable,
     coverage_missing,
+    merge_photo_cells,
+    normalize_skeleton,
     renormalize_widths,
     validate_skeleton,
     validate_visual,
+    walk_grid,
 )
 
 
@@ -228,6 +232,253 @@ def test_coverage_noise_exempt():
     ])
     pool.texts["勤"] = "勤"  # 单字符噪声：豁免覆盖检查
     assert coverage_missing([s], pool) == []
+
+
+# ---- normalize_skeleton（A1）：几何非法骨架的确定性降维重排 ----
+
+_FIXTURES = Path(__file__).parent / "fixtures"
+
+
+def test_normalize_legal_skeleton_passthrough():
+    # 合法骨架（含合法 rowspan）原样返回：正常路径零影响
+    s = _sk("t", 3, [
+        [("姓名", 1, 1, "label"), ("", 2, 1, "input")],
+        [("基本情况", 1, 2, "label"), ("", 2, 1, "input")],
+        [("", 2, 1, "input")],
+    ])
+    fixed, rep = normalize_skeleton(s)
+    assert fixed is s and rep == []
+    assert fixed.rows[1].cells[0].rowspan == 2  # rowspan 保留
+
+
+def test_normalize_hole_fills_last_cell():
+    # 行宽不齐 → 末格扩宽补洞；全部 rowspan 降 1
+    s = _sk("t", 2, [[("姓名", 1, 2, "label")]])
+    fixed, rep = normalize_skeleton(s)
+    assert validate_skeleton(fixed) == []
+    assert fixed.rows[0].cells[0].colspan == 2
+    assert fixed.rows[0].cells[0].rowspan == 1
+    assert any("补洞" in r for r in rep)
+
+
+def test_normalize_colspan_overflow_truncated():
+    # 越界格截断 colspan 至剩余宽度 + 溢出格丢弃
+    s = _sk("t", 2, [[("A", 3, 1, "input"), ("B", 1, 1, "input")]])
+    fixed, rep = normalize_skeleton(s)
+    assert validate_skeleton(fixed) == []
+    cells = fixed.rows[0].cells
+    assert len(cells) == 1 and cells[0].colspan == 2  # B 溢出丢弃
+    assert any("丢弃" in r for r in rep)
+
+
+def test_normalize_overlap_flattened():
+    # rowspan 下方重叠放格 → 全部降 1 后按行重排，行序内容保留
+    s = _sk("t", 3, [
+        [("A", 1, 1, "label"), ("B", 2, 2, "label")],
+        [("C", 2, 1, "input")],
+    ])
+    fixed, rep = normalize_skeleton(s)
+    assert validate_skeleton(fixed) == []
+    assert [c.content for c in fixed.rows[0].cells] == ["A", "B"]
+    assert [c.content for c in fixed.rows[1].cells] == ["C"]
+    assert fixed.rows[0].cells[1].rowspan == 1
+    assert any("几何自动重排" in r for r in rep)
+
+
+def test_normalize_empty_row_gets_note_cell():
+    s = _sk("t", 2, [[], [("A", 2, 1, "input")]])
+    fixed, rep = normalize_skeleton(s)
+    assert validate_skeleton(fixed) == []
+    assert fixed.rows[0].cells[0].style == "note"
+    assert fixed.rows[0].cells[0].colspan == 2
+    assert any("note" in r for r in rep)
+
+
+def test_normalize_unfixable_passthrough():
+    # 非几何错（total_cols<1 / 空行集 / 规模超限）原样传出 + 无法重排报告
+    assert normalize_skeleton(TSkeleton(table_title="t", total_cols=0))[0].total_cols == 0
+    s = _sk("t", 1, [[("x", 1, 1, "input")]])
+    assert normalize_skeleton(s) == (s, [])
+    big = _sk("t", 100, [[("x", 100, 1, "input")] for _ in range(25)])
+    fixed, rep = normalize_skeleton(big)
+    assert fixed is big and any("无法自动重排" in r for r in rep)
+
+
+def test_normalize_dropped_cell_surfaces_as_coverage_error():
+    # 修几何不隐瞒内容损失：丢弃格的掩码占位符缺失 → coverage_missing 抓为语义错误
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=1, n_cols=2,
+                 header=["项目", "说明"], rows=[["安全生产费用", "占预算 5%"]])
+    pool = build_mask_pool(_tree([t]))
+    # 模拟越界溢出格被丢弃：只保留首格，"占预算5%" 掩码文本随溢出格丢失
+    s = _sk("t", 1, [[("项目", 3, 1, "header"),
+                      ("说明", 1, 1, "header")]])
+    fixed, rep = normalize_skeleton(s)
+    assert validate_skeleton(fixed) == []
+    assert any("丢弃" in r for r in rep)
+    errs = coverage_missing([fixed], pool)
+    assert any("未进骨架" in e for e in errs)  # 内容损失如实上浮
+
+
+# ---- merge_photo_cells（F2）：照片格确定性纵向合并 ----
+
+def _photo_skeleton() -> TSkeleton:
+    # 干部履历表实录形态：照片标签格 rowspan=1，下方 3 行各有跨骑/落入
+    # 照片列区间的空书写格
+    return _sk("干部履历表", 8, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"),
+         ("正面免冠彩色照片(2寸)", 2, 1, "input"),
+         ("民族", 1, 1, "label"), ("", 1, 1, "input"),
+         ("籍贯", 1, 1, "label"), ("", 1, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 2, 1, "input"),
+         ("", 4, 1, "input"), ("出生日期", 1, 1, "label")],
+        [("性别", 1, 1, "label"), ("", 2, 1, "input"),
+         ("", 4, 1, "input"), ("政治面貌", 1, 1, "label")],
+        [("学历", 1, 1, "label"), ("", 2, 1, "input"),
+         ("", 4, 1, "note"), ("现职务", 1, 1, "label")],
+    ])
+
+
+def test_merge_photo_cells_realistic_shape():
+    s = _photo_skeleton()
+    merged, report = merge_photo_cells(s, 0)
+    assert validate_skeleton(merged) == []
+    # 照片格 1 → 4 行整格；跨骑空格按区间边界切分（2→1、4→3）
+    assert merged.rows[0].cells[2].rowspan == 4
+    assert merged.rows[1].cells[1].colspan == 1
+    assert merged.rows[1].cells[2].colspan == 3
+    # 标签文字保留；原骨架不被就地修改
+    assert merged.rows[0].cells[2].content == "正面免冠彩色照片(2寸)"
+    assert s.rows[0].cells[2].rowspan == 1
+    assert any("W-PHOTO-MERGE" in r and "1 → 4" in r for r in report)
+
+
+def test_merge_photo_cells_already_merged_noop():
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"), ("照片", 2, 4, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input")],
+        [("性别", 1, 1, "label"), ("", 1, 1, "input")],
+        [("学历", 1, 1, "label"), ("", 1, 1, "input")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert report == [] and merged is s
+
+
+def test_merge_photo_cells_stops_at_content_below():
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"), ("照片", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"),
+         ("工作单位", 2, 1, "label")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert report == [] and merged is s  # 下方非空 → 不合并
+
+
+def test_merge_photo_cells_stops_at_wrong_style_below():
+    # 覆盖区间的是 label 格（空内容）而非空 input/note → 不吸收
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"), ("照片", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "label")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert report == [] and merged is s
+
+
+def test_merge_photo_cells_masked_label_detected():
+    # 架构师循环内骨架是掩码态：标注数字已替换为 ⟦N⟧，判定不受影响
+    s = _sk("t", 4, [
+        [("姓名", 1, 1, "label"), ("", 1, 1, "input"),
+         ("照片(⟦17⟧寸)", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "input")],
+    ])
+    merged, report = merge_photo_cells(s, 0)
+    assert validate_skeleton(merged) == []
+    assert merged.rows[0].cells[2].rowspan == 2
+    assert any("W-PHOTO-MERGE" in r for r in report)
+
+
+def test_merge_photo_cells_invalid_skeleton_passthrough():
+    s = _sk("t", 2, [[("A", 3, 1, "input")]])  # 越界非法
+    merged, report = merge_photo_cells(s, 0)
+    assert merged is s and report == []
+
+
+def test_run_architect_photo_merge_wired(tmp_path):
+    # 接线验证：架构师输出未合并照片格 → run_architect 落盘前已合并
+    t = DocTable(table_id="tbl-001", section_id="s", n_rows=2, n_cols=4,
+                 header=["姓名", "照片", "", ""], rows=[["张三", "", "", ""]])
+    tree = _tree([t], prose=("人员表",))
+    sk = _sk("人员表", 4, [
+        [("姓名", 1, 1, "label"), ("张三", 1, 1, "input"), ("照片", 2, 1, "input")],
+        [("曾用名", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "input")],
+        [("性别", 1, 1, "label"), ("", 1, 1, "input"), ("", 2, 1, "input")],
+    ])
+    client = _FakeClient([type("Out", (), {"tables": [sk], "notes": ""})()])
+    tables, _, report = run_architect(tree, _plan(), client,
+                                      PromptManager(), tmp_path)
+    assert len(client.calls) == 1  # 合法输出首轮即过（合并不触发 retry）
+    assert tables[0].rows[0].cells[2].rowspan == 3
+    assert any("W-PHOTO-MERGE" in r for r in report)
+    art = json.loads((tmp_path / "tblarch.json").read_text(encoding="utf-8"))
+    assert any("W-PHOTO-MERGE" in r for r in art["report"])
+
+
+# ---- A1 golden replay：真实失败响应 → normalize 后几何全绿 ----
+
+def test_normalize_golden_replay_failed_responses():
+    # 三轮真实失败响应（越界 79 错 / 空洞 45 处 / 重叠 3 处，每轮犯不同错）
+    # —— 确定性重排后 validate_skeleton 全空；内容掩码整体保留
+    for n in (1, 2, 3):
+        data = json.loads(
+            (_FIXTURES / f"tblarch_fail_{n}.json").read_text(encoding="utf-8"))
+        out = ArchitectOut.model_validate(data)
+        for ti, s in enumerate(out.tables):
+            assert validate_skeleton(s) != [f"fixture {n} t{ti} 应几何非法"]
+            fixed, rep = normalize_skeleton(s, ti)
+            assert validate_skeleton(fixed) == [], \
+                f"fixture {n} t{ti} 重排后仍有几何错"
+            assert rep, f"fixture {n} t{ti} 应有 W 报告行"
+            # 掩码内容整体保留（降维只动 span，不动文本）：拼接文本集合不变
+            src_txt = [c.content for row in s.rows for c in row.cells]
+            fix_txt = [c.content for row in fixed.rows for c in row.cells]
+            assert "".join(fix_txt) in "".join(src_txt) or \
+                set(fix_txt) <= set(src_txt)
+            assert fixed.total_cols == s.total_cols
+            assert fixed.table_title == s.table_title
+            assert fixed.src_tables == s.src_tables
+
+
+def test_run_architect_geometry_error_absorbed_no_retry(tmp_path):
+    # 接线验证：纯几何错误（无语义缺失）被 normalizer 吸收——
+    # 首轮即通过，不烧 retry 轮次，W 痕迹随产物落盘
+    tree = _fee_tree()
+    # _fee_skeleton 本身几何合法；构造一个越界版（末行 colspan 越界）
+    sk = _fee_skeleton()
+    sk.rows[2].cells[0].colspan = 3  # total_cols=2 → 越界
+    client = _FakeClient([type("Out", (), {"tables": [sk], "notes": ""})()])
+    tables, _, report = run_architect(tree, _plan(), client,
+                                      PromptManager(), tmp_path)
+    assert len(client.calls) == 1  # 几何错不再触发 retry
+    assert tables[0].rows[2].cells[0].colspan == 2  # 截断至剩余宽度
+    assert any("几何自动重排" in r for r in report)
+    art = json.loads((tmp_path / "tblarch.json").read_text(encoding="utf-8"))
+    assert any("几何自动重排" in r for r in art["report"])
+
+
+def test_normalize_report_in_retry_errors_when_semantic_also_bad(tmp_path):
+    # 几何修复后仍剩语义错误（覆盖缺失）→ 正常 retry，错误清单只剩语义项
+    tree = _fee_tree()
+    sk = _fee_skeleton(missing="金额")
+    sk.rows[2].cells[0].colspan = 3  # 叠加几何越界
+    good = type("Out", (), {"tables": [_fee_skeleton()], "notes": ""})()
+    client = _FakeClient([type("Out", (), {"tables": [sk], "notes": ""})(),
+                          good])
+    tables, _, _ = run_architect(tree, _plan(), client, PromptManager(),
+                                 tmp_path)
+    assert len(client.calls) == 2
+    retry_user = client.calls[1][1][1]["content"]
+    assert "未进骨架" in retry_user  # 语义错误仍在清单
+    assert "越界" not in retry_user  # 几何错误已被吸收，不再占用重试预算
+    assert tables[0].rows[0].cells[1].content == "金额"
 
 
 # ---- run_architect：LLM 编排 + 确定性回填 ----

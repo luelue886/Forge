@@ -154,6 +154,15 @@ async def confirm_job(request: Request, job_id: str,
     return {"ok": True}
 
 
+@router.post("/api/jobs/{job_id}/cancel")
+async def cancel_job(request: Request, job_id: str):
+    try:
+        await run_in_threadpool(_mgr(request).cancel, job_id)
+    except JobError as e:
+        raise HTTPException(409, str(e)) from e
+    return {"ok": True, "status": "CANCELLED"}
+
+
 @router.get("/jobs/{job_id}/download")
 async def download(request: Request, job_id: str, format: str = "pptx"):
     try:

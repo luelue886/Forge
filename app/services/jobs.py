@@ -12,13 +12,20 @@ from app.parse_dispatch import parse_source
 from app.pipeline.runner import parse_and_save, run_pipeline_safe
 from app.schema.enums import Genre, JobStatus
 
-_TERMINAL = {JobStatus.DONE, JobStatus.FAILED}
+_TERMINAL = {JobStatus.DONE, JobStatus.FAILED, JobStatus.CANCELLED}
 _ACTIVE = {JobStatus.PARSED, JobStatus.UNDERSTOOD, JobStatus.GENERATING,
            JobStatus.RENDERED, JobStatus.QA, JobStatus.REPAIRING, JobStatus.PLANNED}
 
 
 class JobError(Exception):
     pass
+
+
+class JobCancelled(Exception):
+    """协作式取消：管线在阶段边界/长阶段间隙检查标志后抛出，状态定格 CANCELLED。
+
+    已完成的阶段产物保留在 artifacts/——重跑同源文件零成本复用。
+    """
 
 
 class Job:
@@ -37,6 +44,20 @@ class Job:
         self.created_at = time.strftime("%Y-%m-%dT%H:%M:%S")
         self.updated_at = self.created_at
         self._lock = threading.Lock()
+        self.cancel_event = threading.Event()
+
+    # ---- 协作式取消 ----
+
+    def request_cancel(self) -> None:
+        """置位取消标志。管线在检查点察觉后抛 JobCancelled（等当前 LLM/COM
+        调用跑完为止，绝不硬杀）。"""
+        self.cancel_event.set()
+
+    def check_cancel(self) -> None:
+        """检查点：已请求取消则抛 JobCancelled。管线各阶段边界 + 长阶段
+        间隙调用（docfill 每节 / PPT 逐页 / 抽检每轮）。"""
+        if self.cancel_event.is_set():
+            raise JobCancelled(f"用户取消（{self.status.value} 阶段）")
 
     # ---- 状态 ----
 
@@ -202,11 +223,19 @@ class JobManager:
                 json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
     def cancel(self, job_id: str) -> Job:
+        """协作式取消：置位标志 + 状态先行落盘 CANCELLED。
+
+        运行中的管线线程在下一个检查点察觉并退出（当前 LLM/COM 调用跑完
+        为止）；未在跑的（PLANNED 待确认 / 他进程驱动）直接定格。已在
+        CANCELLED 的幂等返回；其他终态拒绝。
+        """
         job = self.get(job_id)
+        if job.status is JobStatus.CANCELLED:
+            return job
         if job.status in _TERMINAL:
             raise JobError(f"任务已结束（{job.status.value}），无需取消")
-        job.error = "用户取消"
-        job.set_status(JobStatus.FAILED, "用户取消")
+        job.request_cancel()
+        job.set_status(JobStatus.CANCELLED, "用户取消")
         job.save_state()
         return job
 

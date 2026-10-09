@@ -86,3 +86,83 @@ def test_ngram_number_adjoining_prose_structure_still_hits():
     src = "市场推广投入 120 万元，渠道建设投入 95 万元，剩余用于培训。"
     gen = "市场推广环节投入 120 万元，渠道建设方面安排 95 万元，余款培训。"
     assert ngram_hits(gen, src) == ["投入N万元，渠道建设"]
+
+
+# ---- B3：客观事实窄豁免 ----
+
+def _exempt_tree():
+    from app.schema.doctree import DocMeta, DocSection, DocTable, DocTree
+
+    tmpl = "对岗位相关知识的掌握运用及解决实际问题的能力较强"  # 22 字模板话术
+    root = DocSection(section_id="sec-0000", level=0, title="绩效考核方案")
+    t1 = DocTable(table_id="tbl-001", section_id="s", n_rows=2, n_cols=2,
+                  header=["评价标准", "分值"],
+                  rows=[[tmpl, "10"], [tmpl, "8"]])
+    t2 = DocTable(table_id="tbl-002", section_id="s", n_rows=1, n_cols=2,
+                  header=["评价标准", "分值"],
+                  rows=[[tmpl, "9"]])
+    return DocTree(
+        meta=DocMeta(source_format="pdf", source_name="f.pdf",
+                     title="人事考核办法", n_chars=100),
+        sections=[root], tables=[t1, t2], full_text="人事考核办法 绩效考核方案")
+
+
+def test_exempt_from_tree_sources():
+    from app.qa.ngram import exempt_from_tree
+
+    ex = exempt_from_tree(_exempt_tree())
+    # 表头 + 章节题原样入豁免
+    assert "评价标准" in ex and "绩效考核方案" in ex
+    # 源内重复 ≥2 次的模板话术（t1 两行 + t2 一行 = 3 次）入豁免
+    tmpl = "对岗位相关知识的掌握运用及解决实际问题的能力较强"
+    assert tmpl in ex
+
+
+def test_exempt_from_tree_single_occurrence_not_exempt():
+    from app.qa.ngram import exempt_from_tree
+
+    ex = exempt_from_tree(_exempt_tree())
+    # 单次出现的普通格文本绝不豁免（那是仿写对象）
+    assert "10" not in ex and "8" not in ex and "9" not in ex
+
+
+def test_ngram_exempt_header_and_template_pass():
+    # 误伤回归：模板话术原样保留不再命中（曾致 W-CELL-FALLBACK 主力）
+    src = ("评价标准 对岗位相关知识的掌握运用及解决实际问题的能力较强 10 分 "
+           "评价标准 对岗位相关知识的掌握运用及解决实际问题的能力较强 8 分")
+    gen = "评级为对岗位相关知识的掌握运用及解决实际问题的能力较强档"
+    exempt = {"对岗位相关知识的掌握运用及解决实际问题的能力较强"}
+    assert ngram_hits(gen, src, exempt=exempt) == []
+
+
+def test_ngram_exempt_no_springboard():
+    # 豁免串不构成跳板：豁免串 + 前后各 3 字的拼接窗口仍命中
+    src = "鉴于评价标准条线完全一致故维持既有体系。"
+    gen = "鉴于评价标准条线完全一致故维持既有体系，照抄如上。"
+    tmpl = "评价标准"  # 4 字豁免串（短豁免串本不参与；此处测窗口跨豁免串场景）
+    # 先证豁免存在时窗口不被短串误豁免：豁免串 <10 字不产生任何 allowed 窗口
+    assert ngram_hits(gen, src, exempt={tmpl}) != []
+
+    # 长豁免串自身两侧的延伸照抄仍命中：
+    big = "对岗位相关知识的掌握运用及解决实际问题的能力较强"
+    src2 = "本项对岗位相关知识的掌握运用及解决实际问题的能力较强达标即可。"
+    gen2 = "本项对岗位相关知识的掌握运用及解决实际问题的能力较强达标即可。"
+    # 前 3 字（本项）+ 豁免串 + 后 2 字（达标）拼出的 ≥10 字窗不被豁免
+    hits = ngram_hits(gen2, src2, exempt={big})
+    assert any("本项" in h or "达标" in h for h in hits)
+
+
+def test_ngram_exempt_none_default_unchanged():
+    # 默认参数行为不变：不传 exempt 与旧语义一致
+    src = "该季度公司营业收入大幅增长且超出市场预期目标。"
+    gen = "概述：该季度公司营业收入大幅增长且超出市场预期目标，情况良好。"
+    assert len(ngram_hits(gen, src)) == 1
+    assert len(ngram_hits(gen, src, exempt=set())) == 1
+
+
+def test_ngram_exempt_prose_copy_still_hits():
+    # 纯散文 10 字照抄仍命中（豁免集不含该片段）
+    src = "该季度公司营业收入大幅增长且超出市场预期目标。"
+    gen = "概述：该季度公司营业收入大幅增长且超出市场预期目标，情况良好。"
+    exempt = {"评价标准", "对岗位相关知识的掌握运用及解决实际问题的能力较强"}
+    assert len(ngram_hits(gen, src, exempt=exempt)) == 1

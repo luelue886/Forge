@@ -24,7 +24,11 @@ log = logging.getLogger(__name__)
 
 
 class _JobLike:
-    """runner 只依赖这些接口，避免与 services.jobs 循环依赖。"""
+    """runner 只依赖这些接口，避免与 services.jobs 循环依赖。
+
+    check_cancel（协作式取消检查点）由 services.Job 提供；CLI 等轻量
+    驱动方不带该属性时跳过（getattr 防御，测试桩可省）。
+    """
     dir: Path
     status: JobStatus
     confirmed: bool
@@ -59,7 +63,10 @@ def toc_entries_of(plan: SlidePlan) -> list[str]:
 
 def run_pipeline(job: _JobLike, client: LLMClient | None = None,
                  com_export: bool = True) -> None:
-    """PARSED→…→DONE 全流程。每阶段先查产物，幂等可续跑。"""
+    """PARSED→…→DONE 全流程。每阶段先查产物，幂等可续跑。
+
+    各阶段边界 + fill 逐页间隙检查协作式取消标志（A2）。
+    """
     client = client or LLMClient(log_path=job.dir / "logs" / "llm_calls.jsonl")
     pm = PromptManager()
     art = _artifacts(job)
@@ -67,6 +74,7 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
     # ---- understand ----
     docmap_path = art / "docmap.json"
     if not docmap_path.exists():
+        _check_cancel(job)
         tree = _load_json(art / "doctree.json", DocTree)
         job.set_status(JobStatus.UNDERSTOOD, "docmap")
         job.save_state()
@@ -76,6 +84,7 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
     # ---- plan ----
     plan_path = art / "plan.json"
     if not plan_path.exists():
+        _check_cancel(job)
         tree = _load_json(art / "doctree.json", DocTree)
         docmap = _load_json(docmap_path, DocMap)
         job.set_status(JobStatus.UNDERSTOOD, "planning")
@@ -116,6 +125,7 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
                 ir = fut.result()
                 _save_json(pages_dir / f"page_{ir.page_no:02d}.ir.json", ir)
                 done += 1
+                _check_cancel(job)  # 逐页间隙取消点（已完成页保留可续跑）
                 job.set_status(JobStatus.GENERATING, f"fill {done}/{len(plan.pages)}")
                 job.save_state()
 
@@ -129,12 +139,14 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
     _save_json(art / "slideir.json", deck)
 
     # ---- render ----
+    _check_cancel(job)
     job.set_status(JobStatus.RENDERED, "render")
     job.save_state()
     pptx = art / "output.pptx"
     render_to_file(deck, _skin_of(job), pptx)
 
     # ---- QA（W2 范围：容量 + 渲染清单；数字溯源等 W4 接入）----
+    _check_cancel(job)
     job.set_status(JobStatus.QA, "export")
     job.save_state()
     report: list[str] = [f"[capacity] p{q.page_no} {q.code.value}: {q.detail}"
@@ -162,8 +174,17 @@ def _skin_of(job: _JobLike) -> str:
     return getattr(job, "skin", "business_blue")
 
 
+def _check_cancel(job: _JobLike) -> None:
+    """协作式取消检查点（A2）：job 带 check_cancel 则调用（CLI 桩可省）。"""
+    fn = getattr(job, "check_cancel", None)
+    if fn is not None:
+        fn()
+
+
 def run_pipeline_safe(job: _JobLike, client: LLMClient | None = None,
                       com_export: bool = True) -> None:
+    from app.services.jobs import JobCancelled
+
     try:
         if getattr(job, "product", "ppt") == "doc":
             from app.pipeline.doc_runner import run_doc_pipeline
@@ -171,6 +192,13 @@ def run_pipeline_safe(job: _JobLike, client: LLMClient | None = None,
             run_doc_pipeline(job, client, com_export)
         else:
             run_pipeline(job, client, com_export)
+    except JobCancelled:
+        # 协作式取消：cancel() 已把状态落盘 CANCELLED，这里只保证线程干净
+        # 退出。已完成阶段产物保留——重跑同源文件零成本复用。
+        log.info("job %s 已取消（%s）", job.dir.name,
+                 getattr(job, "status", "?").value)
+        job.set_status(JobStatus.CANCELLED, "用户取消")
+        job.save_state()
     except Exception as e:  # noqa: BLE001 — 任何阶段异常都落为 FAILED
         log.exception("job %s 失败", getattr(job, "dir", "?"))
         job.error = f"{type(e).__name__}: {e}"

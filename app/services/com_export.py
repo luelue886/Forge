@@ -233,6 +233,120 @@ def export_docx_pdf(docx_path: Path, out_pdf: Path | None = None) -> Path:
     return get_word_com_service().run(_do)
 
 
+# ---- Word：SmartArt 光栅化（B5）----
+
+_SMARTART_TYPE = 24  # MsoShapeType.msoSmartArt / WdInlineShapeType.wdInlineShapeSmartArt
+
+
+def _smartart_paras(doc) -> list:
+    """空文本顶层段落内的 SmartArt 所在段 Range，按文档序（与解析口径一致）。
+
+    Type=24 兼容浮动（Shapes）/内联（InlineShapes）两种形态；表格内与含文字
+    段落里的跳过——解析期不捕获它们，序号 zip 才能对齐。
+    """
+    found: list[tuple[int, object]] = []
+    for coll, inline in ((doc.Shapes, False), (doc.InlineShapes, True)):
+        try:
+            items = list(coll)
+        except Exception:  # noqa: BLE001 — 无形状集合的退化文档
+            continue
+        for shp in items:
+            try:
+                if shp.Type != _SMARTART_TYPE:
+                    continue
+                rng = shp.Range if inline else shp.Anchor
+                para = rng.Paragraphs(1)
+                if para.Range.Information(12):  # wdWithInTable
+                    continue
+                if para.Range.Text.strip("\r\x07 \t"):
+                    continue
+                found.append((para.Range.Start, para.Range))
+            except Exception:  # noqa: BLE001 — 单形状异常不拖垮整批
+                continue
+    return [rng for _, rng in sorted(found, key=lambda x: x[0])]
+
+
+def _crop_content_png(pdf_path: Path, out_png: Path, zoom: float = 3.0
+                      ) -> Path | None:
+    """单页 PDF → 内容 bbox（矢量路径 ∪ 文字）裁剪 PNG。"""
+    import pymupdf
+
+    with pymupdf.open(str(pdf_path)) as d:
+        page = d[0]
+        rect = None
+        for dr in page.get_drawings():
+            r = pymupdf.Rect(dr["rect"])
+            rect = r if rect is None else rect | r
+        for w in page.get_text("words"):
+            r = pymupdf.Rect(w[:4])
+            rect = r if rect is None else rect | r
+        if rect is None or rect.is_empty or rect.width <= 0 or rect.height <= 0:
+            return None
+        rect = (rect + (-2, -2, 2, 2)) & page.rect  # 2pt 边距
+        pix = page.get_pixmap(matrix=pymupdf.Matrix(zoom, zoom), clip=rect)
+        pix.save(str(out_png))
+    return out_png
+
+
+def rasterize_smartarts(docx_path: Path, out_dir: Path,
+                        indices: list[int]) -> dict[int, Path]:
+    """B5：SmartArt → {body_index: PNG}（内容光栅化复用，永不经 LLM）。
+
+    隔离法免算形状页面坐标（InlineShape 无 Left/Top，浮动形状坐标基准
+    随锚点变，直接算极易错）：逐形状在源文件副本上删掉其余正文——浮动
+    形状随锚点段落消失、目标形状留在唯一空段——导出 PDF 后按单页内容
+    bbox 裁剪。indices 为解析期捕获的 smartart body_index 升序列表，
+    与 COM 侧文档序 zip 对齐。
+    """
+    import shutil
+
+    docx_path = Path(docx_path)
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    indices = sorted(indices)
+    if not indices:
+        return {}
+
+    def _do(svc: ComService):
+        app = svc._ensure_app()
+        pdfs: list[Path] = []
+        try:
+            for k in range(len(indices)):
+                tmp = out_dir / f"_sa{k}.docx"
+                shutil.copy(docx_path, tmp)
+                doc = app.Documents.Open(str(tmp.resolve()),
+                                         False, False, False)
+                try:
+                    paras = _smartart_paras(doc)
+                    if k >= len(paras):
+                        break
+                    para = paras[k]
+                    # 后段先删（不移动 para 之前的偏移），再删前段
+                    doc.Range(para.End, doc.Content.End).Delete()
+                    doc.Range(0, para.Start).Delete()
+                    pdf = out_dir / f"_sa{k}.pdf"
+                    doc.SaveAs2(str(pdf.resolve()), FileFormat=17)
+                    pdfs.append(pdf)
+                finally:
+                    doc.Close(False)
+        finally:
+            for k in range(len(indices)):
+                (out_dir / f"_sa{k}.docx").unlink(missing_ok=True)
+        return pdfs
+
+    pdfs = get_word_com_service().run(
+        _do, timeout_s=max(120.0, get_settings().com_timeout_s))
+    out: dict[int, Path] = {}
+    for k, pdf in enumerate(pdfs):
+        png = out_dir / f"smartart_{indices[k]}.png"
+        try:
+            if _crop_content_png(pdf, png):
+                out[indices[k]] = png
+        finally:
+            pdf.unlink(missing_ok=True)
+    return out
+
+
 def convert_doc_to_docx(doc_path: Path, out_path: Path | None = None) -> Path:
     """.doc（Word 97-2003）→ .docx（wdFormatXMLDocument=16）；out_path 缺省写到源文件旁。"""
 
@@ -254,7 +368,11 @@ def convert_html_to_docx(html_path: Path, out_docx: Path) -> Path:
     """.html → .docx（Word HTML 导入，wdFormatXMLDocument=16）。
 
     HTML 须 utf-8-sig 写出（Word 嗅探 BOM 定编码）；@page/表格属性在
-    导入时映射为 docx 节属性。走 Word 专用 STA 队列。
+    导入时映射为 docx 节属性。表格格垂直居中（F3）：Word HTML 导入
+    常丢弃 CSS vertical-align——保存前 COM 后处理逐格设
+    VerticalAlignment=1（wdCellAlignVerticalCenter）双保险。按
+    Range.Cells 枚举——含纵向合并格的表按 Rows 迭代会抛 COM 异常。
+    走 Word 专用 STA 队列。
     """
 
     def _do(svc: ComService):
@@ -262,6 +380,9 @@ def convert_html_to_docx(html_path: Path, out_docx: Path) -> Path:
         doc = app.Documents.Open(str(Path(html_path).resolve()),
                                  False, True, False)
         try:
+            for tbl in doc.Tables:
+                for cell in tbl.Range.Cells:
+                    cell.VerticalAlignment = 1
             out = Path(out_docx)
             doc.SaveAs2(str(out.resolve()), FileFormat=16)
             return out

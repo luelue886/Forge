@@ -5,7 +5,7 @@ const TYPE_NAMES = {
   two_column: "双栏页", table: "表格页", key_metrics: "指标页", closing: "结束页",
   prelude: "前言", h1: "一级节", h2: "二级节",
 };
-const TERMINAL = new Set(["DONE", "FAILED"]);
+const TERMINAL = new Set(["DONE", "FAILED", "CANCELLED"]);
 
 function $(id) { return document.getElementById(id); }
 
@@ -90,6 +90,15 @@ async function pollJob(jobId, skinNames = {}) {
   $("error-area").classList.toggle("hidden", d.status !== "FAILED");
   if (d.status === "FAILED") $("error-text").textContent = d.error || "未知错误";
 
+  // 取消按钮：非终态可取消；已请求/已终态隐藏
+  const cancelBtn = $("cancel-btn");
+  if (cancelBtn) {
+    cancelBtn.classList.toggle("hidden", TERMINAL.has(d.status));
+    cancelBtn.disabled = d.status === "CANCELLED" || cancelBtn.dataset.sent === "1";
+    if (d.status === "CANCELLED")
+      $("status-detail").textContent = "任务已取消（已完成阶段的产物保留，可重跑续用）";
+  }
+
   $("done-area").classList.toggle("hidden", d.status !== "DONE");
   if (d.status === "DONE") {
     const enc = encodeURIComponent(jobId);
@@ -112,6 +121,26 @@ async function pollJob(jobId, skinNames = {}) {
 
 function initJobPage(jobId, skinNames = {}) {
   pollJob(jobId, skinNames);
+  const cancelBtn = $("cancel-btn");
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", async () => {
+      cancelBtn.disabled = true;
+      cancelBtn.dataset.sent = "1";
+      cancelBtn.textContent = "取消中…（等待当前步骤完成）";
+      try {
+        const res = await fetch(`/api/jobs/${encodeURIComponent(jobId)}/cancel`,
+                                { method: "POST" });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+      } catch (e) {
+        cancelBtn.textContent = `取消失败：${e.message}`;
+        cancelBtn.disabled = false;
+        cancelBtn.dataset.sent = "0";
+        return;
+      }
+      pollJob(jobId, skinNames);
+    });
+  }
   $("confirm-btn").addEventListener("click", async () => {
     $("confirm-btn").disabled = true;
     $("confirm-msg").textContent = "已提交确认…";

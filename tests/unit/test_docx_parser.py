@@ -217,7 +217,8 @@ def test_parse_inline_image(tmp_path):
     assert tree.full_text == "一、总体情况\n流程如下："
 
 
-def test_parse_smartart_skipped(tmp_path):
+def test_parse_smartart_in_image_paragraph_captured(tmp_path):
+    # B5：普通尺寸图片段落上加装 dgm:relIds（SmartArt 化）→ 仍捕获，smartart=True
     from lxml import etree
 
     src = _doc_with_image(tmp_path / "smart.docx")
@@ -229,8 +230,9 @@ def test_parse_smartart_skipped(tmp_path):
     doc.save(str(src))
 
     tree = parse_docx(src)
-    assert tree.images == []
-    assert any("SmartArt" in w for w in tree.meta.parse_warnings)
+    assert len(tree.images) == 1
+    assert tree.images[0].smartart is True
+    assert not any("SmartArt" in w for w in tree.meta.parse_warnings)
 
 
 def test_parse_two_drawings_in_one_paragraph(tmp_path):
@@ -360,3 +362,70 @@ def test_parse_vml_portrait_skipped(tmp_path):
     tree = parse_docx(p)
     assert tree.images == []
     assert any("证件照" in w for w in tree.meta.parse_warnings)
+
+
+# ---- B5：SmartArt 解析捕获 ----
+
+def _doc_with_smartart(path) -> Path:
+    from docx.oxml import parse_xml
+
+    doc = Document()
+    doc.add_heading("实施流程说明", 0)
+    doc.add_paragraph("项目整体实施流程见下图，各环节按序推进。")
+    p = doc.add_paragraph()
+    ns = (
+        'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+        'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
+        'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
+        'xmlns:dgm="http://schemas.openxmlformats.org/drawingml/2006/diagram" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"'
+    )
+    p._p.append(parse_xml(
+        f'<w:drawing {ns}><wp:inline><wp:extent cx="3600000" cy="2700000"/>'
+        f'<a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/'
+        f'drawingml/2006/diagram">'
+        f'<dgm:relIds r:dm="rId10" r:lo="rId11" r:qs="rId12" r:cs="rId13"/>'
+        f'</a:graphicData></a:graphic></wp:inline></w:drawing>'))
+    doc.add_paragraph("以上流程自 2026 年 1 月起执行。")
+    doc.save(str(path))
+    return path
+
+
+def test_parse_smartart_captured(tmp_path):
+    from docx.oxml.ns import qn
+
+    src = _doc_with_smartart(tmp_path / "sa.docx")
+    tree = parse_docx(src)
+    assert len(tree.images) == 1
+    img = tree.images[0]
+    assert img.smartart is True
+    assert img.cx_emu == 3600000 and img.cy_emu == 2700000
+    children = list(Document(str(src)).element.body.iterchildren())
+    assert children[img.body_index].find(".//" + qn("w:drawing")) is not None
+    assert any(b.kind == "image" for b in tree.sections[0].blocks)
+    # 旧"SmartArt 已跳过"告辞不再出现
+    assert not any("SmartArt" in w for w in tree.meta.parse_warnings)
+
+
+def test_parse_smartart_icon_size_skipped(tmp_path):
+    from docx.oxml import parse_xml
+
+    doc = Document()
+    doc.add_paragraph("流程图示说明文字若干，确保文档可解析。")
+    p = doc.add_paragraph()
+    ns = (
+        'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+        'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
+        'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
+        'xmlns:dgm="http://schemas.openxmlformats.org/drawingml/2006/diagram" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"'
+    )
+    p._p.append(parse_xml(
+        f'<w:drawing {ns}><wp:inline><wp:extent cx="180000" cy="180000"/>'
+        f'<a:graphic><a:graphicData uri="x">'
+        f'<dgm:relIds r:dm="r" r:lo="r" r:qs="r" r:cs="r"/>'
+        f'</a:graphicData></a:graphic></wp:inline></w:drawing>'))
+    doc.save(str(tmp_path / "tiny.docx"))
+    tree = parse_docx(tmp_path / "tiny.docx")
+    assert tree.images == []
+    assert any("SmartArt 尺寸过小" in w for w in tree.meta.parse_warnings)

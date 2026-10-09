@@ -110,7 +110,7 @@ def _check_spotcheck(art: Path, errors: list[str]) -> None:
 
 def run_sample(src: Path) -> tuple[bool, list[str]]:
     from app.config import DATA_DIR
-    from app.qa.ngram import ngram_hits
+    from app.qa.ngram import exempt_from_tree, ngram_hits
     from app.qa.numbers import check_numbers
     from app.schema.doctree import DocTree
 
@@ -136,6 +136,8 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
 
     tree = DocTree.model_validate_json(
         (art / "doctree.json").read_text(encoding="utf-8"))
+    # B3 同口径豁免：表头/标题/源内重复模板话术不判抄袭（与管线 cell_passes 一致）
+    exempt = exempt_from_tree(tree)
 
     # form（不限源）→ 表格 LLM 重建分支（与 doc_runner 分发镜像；无 docir.json）
     plan_raw = json.loads((art / "docplan.json").read_text(encoding="utf-8"))
@@ -151,7 +153,7 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
             continue
         for tok, ctx in check_numbers(b["text"], tree.full_text):
             errors.append(f"[E-NUM-UNTRACED] {tok}: {ctx}")
-        for g in ngram_hits(b["text"], tree.full_text):
+        for g in ngram_hits(b["text"], tree.full_text, exempt=exempt):
             errors.append(f"[E-PLAGIARISM] 与源文连续雷同：{g}")
 
     # 3) 表格内容分类断言：header 逐字；改写格（断点产物 cells）零雷同 + 数字
@@ -189,7 +191,7 @@ def run_sample(src: Path) -> tuple[bool, list[str]]:
                     for tok, ctx in check_numbers(got, tree.full_text):
                         errors.append(
                             f"[E-NUM-UNTRACED] {tid} {key} {tok}: {ctx}")
-                    for g in ngram_hits(got, tree.full_text):
+                    for g in ngram_hits(got, tree.full_text, exempt=exempt):
                         errors.append(
                             f"[E-PLAGIARISM] {tid} {key} 与源文连续雷同：{g}")
                 elif got != want:
@@ -279,9 +281,9 @@ def run_form_sample(src: Path, job_dir: Path, art: Path, tree) -> tuple[bool, li
 
     from docx import Document
 
-    from app.pipeline.tblarch import build_mask_pool
-    from app.qa.ngram import ngram_hits
+    from app.qa.ngram import exempt_from_tree, ngram_hits
     from app.qa.numbers import check_numbers
+    from app.pipeline.tblarch import build_mask_pool
     from app.schema.tblskeleton import (
         TSkeleton,
         coverage_missing,
@@ -290,6 +292,7 @@ def run_form_sample(src: Path, job_dir: Path, art: Path, tree) -> tuple[bool, li
     )
 
     errors: list[str] = []
+    exempt = exempt_from_tree(tree)  # B3 同口径豁免（与管线 cell_passes 一致）
 
     # ① QA 报告无 E- 级残留（分支产物仅 W 级可接受）
     qa = (art / "qa_report.txt").read_text(encoding="utf-8")
@@ -321,7 +324,7 @@ def run_form_sample(src: Path, job_dir: Path, art: Path, tree) -> tuple[bool, li
     for k, text in sorted(cells.items()):
         for tok, ctx in check_numbers(text, tree.full_text):
             errors.append(f"[E-NUM-UNTRACED] {k} {tok}: {ctx}")
-        for g in ngram_hits(text, tree.full_text):
+        for g in ngram_hits(text, tree.full_text, exempt=exempt):
             errors.append(f"[E-PLAGIARISM] {k} 与源文连续雷同：{g}")
 
     # ④ 产物齐套：html(BOM)/docx/pdf/PNG==页数；无 ⟦⟧ 残留

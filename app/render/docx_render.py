@@ -10,7 +10,7 @@ import logging
 from pathlib import Path
 
 from docx import Document
-from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT, WD_TABLE_ALIGNMENT
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -185,6 +185,7 @@ def _render_table(doc: Document, t: TableBlock) -> None:
         if cell._tc in written:
             return
         written.add(cell._tc)
+        cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
         if fill and not merged:
             _shade(cell, fill)
         _add_run(cell.paragraphs[0], font, size, bold, text)
@@ -239,6 +240,24 @@ def _insert_pdf_image(doc: Document, source: Path, b: ImageBlock) -> bool:
     return True
 
 
+def _insert_png_image(doc: Document, png: Path, b: ImageBlock) -> bool:
+    """B5：光栅化 SmartArt PNG 按源显示尺寸插入；超版心宽等比缩放。"""
+    width = Emu(b.cx_emu) if b.cx_emu else None
+    height = Emu(b.cy_emu) if b.cy_emu else None
+    content_w = Emu(int(st.PAGE_WIDTH - st.MARGIN_LEFT - st.MARGIN_RIGHT))
+    if width is not None and width > content_w:
+        if height is not None:
+            height = Emu(int(height * content_w / width))
+        width = content_w
+    try:
+        doc.add_picture(str(png), width=width, height=height)
+    except Exception as e:  # noqa: BLE001 — 插入失败降级跳图
+        log.warning("SmartArt %s PNG 插入失败：%s", b.image_id, e)
+        return False
+    doc.paragraphs[-1].alignment = WD_ALIGN_PARAGRAPH.CENTER
+    return True
+
+
 def render_docir_to_docx(doc: DocIR, out: Path, source: Path | None = None) -> Path:
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -249,6 +268,21 @@ def render_docir_to_docx(doc: DocIR, out: Path, source: Path | None = None) -> P
     if source is not None and Path(source).suffix.lower() == ".docx" \
             and Path(source).exists():
         src_doc = docx_copy.open_source(Path(source))
+
+    # B5：SmartArt COM 光栅化（一次性；失败降级跳过不阻断）
+    smartart_pngs: dict[int, Path] = {}
+    if src_doc is not None:
+        sa_idx = sorted({b.body_index for b in doc.blocks
+                         if isinstance(b, ImageBlock) and b.smartart
+                         and b.body_index is not None})
+        if sa_idx:
+            try:
+                from app.services.com_export import rasterize_smartarts
+
+                smartart_pngs = rasterize_smartarts(
+                    Path(source), out.parent / "_smartart", sa_idx)
+            except Exception as e:  # noqa: BLE001 — 光栅化失败降级为跳过
+                log.warning("SmartArt 光栅化失败，跳过 %d 个：%s", len(sa_idx), e)
 
     for b in doc.blocks:
         if isinstance(b, DocTitleBlock):
@@ -292,7 +326,14 @@ def render_docir_to_docx(doc: DocIR, out: Path, source: Path | None = None) -> P
             if src_doc is None or not _copy_source_table(src_doc, d, b):
                 _render_table(d, b)
         elif isinstance(b, ImageBlock):
-            if src_doc is not None and b.body_index is not None:
+            if b.smartart:
+                png = smartart_pngs.get(b.body_index) \
+                    if b.body_index is not None else None
+                if png is not None and _insert_png_image(d, png, b):
+                    pass
+                else:
+                    log.warning("SmartArt %s：光栅化产物缺失，跳过", b.image_id)
+            elif src_doc is not None and b.body_index is not None:
                 if not docx_copy.copy_image_paragraph(src_doc, d, b.body_index):
                     log.warning("图片 %s：源段落缺失，跳过", b.image_id)
             elif source is not None and Path(source).suffix.lower() == ".pdf":
