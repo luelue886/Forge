@@ -21,7 +21,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "INDUSTRY BRIEFING · 2026.05",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "2.0",
@@ -36,7 +36,7 @@
           "h": 1.2,
           "font_pt": 54.0,
           "sample": "2026 全球 AI 资本格局",
-          "capacity": 10.2
+          "capacity": 10.5
         },
         {
           "slot_id": "2.1",
@@ -51,7 +51,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "Capital, Compute, and the Closed Loop",
-          "capacity": 17.849999999999998
+          "capacity": 18.5
         },
         {
           "slot_id": "3.1",
@@ -66,7 +66,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "作者 · PPT Master 行业洞察 / Author · PPT Mast",
-          "capacity": 1.0
+          "capacity": 23.0
         },
         {
           "slot_id": "3.2",
@@ -81,7 +81,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "数据截至 / Data as of 2026-05-15",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "3.3",
@@ -96,7 +96,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "VOL. 01 · NO. 05",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.4",
@@ -111,7 +111,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "$297B · 81% · 4 deals",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "4.0",
@@ -126,7 +126,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Crunchbase · Bloomberg · CNBC ·",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.1",
@@ -141,17 +141,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "01 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 17.8,
+      "fillable_cap": 18.5,
       "role_hint": "cover"
     },
     {
       "slide_no": 2,
       "layout": "Title Slide",
-      "signature": "S2 布局=Title Slide [desc≤12 | desc≤20]",
+      "signature": "S2 布局=Title Slide [desc≤12 | desc≤21]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -166,7 +166,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PROLOGUE · 02",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "1.2",
@@ -181,7 +181,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "编辑导语 / Editor's Note",
-          "capacity": 11.9
+          "capacity": 12.0
         },
         {
           "slot_id": "2.0",
@@ -211,7 +211,7 @@
           "h": 0.5,
           "font_pt": 22.5,
           "sample": "三组数字，足以定义 2026 年的 AI 资本格局。",
-          "capacity": 20.4
+          "capacity": 21.0
         },
         {
           "slot_id": "4.0",
@@ -241,7 +241,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "单季全球 VC 总额 · AI 占 81%",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "5.0",
@@ -271,7 +271,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "四笔交易合计 · 占全季 VC 65%",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "6.0",
@@ -301,7 +301,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Capex 与 AI 收入增速差距 · 已超 2001 电信泡沫",
-          "capacity": 1.0
+          "capacity": 22.5
         },
         {
           "slot_id": "7.0",
@@ -316,7 +316,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "这一期，我们用 18 张数据图，回答一个问题：",
-          "capacity": 1.0
+          "capacity": 21.0
         },
         {
           "slot_id": "7.1",
@@ -331,7 +331,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "当全球风险资本以前所未有的集中度涌入 AI，这究竟是基建周期的开端，还是泡沫膨胀",
-          "capacity": 1.0
+          "capacity": 38.5
         },
         {
           "slot_id": "7.2",
@@ -346,7 +346,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "不要急着下结论。我们先把六个维度的数字铺开。",
-          "capacity": 1.0
+          "capacity": 22.0
         },
         {
           "slot_id": "8.1",
@@ -361,7 +361,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "— Editorial Desk, 2026-05-16",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "9.1",
@@ -376,7 +376,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Capital, Compute, and the Closed Loop · ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "9.2",
@@ -391,17 +391,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "02 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 20.4,
+      "fillable_cap": 21.0,
       "role_hint": "table_host"
     },
     {
       "slide_no": 3,
       "layout": "Title Slide",
-      "signature": "S3 布局=Title Slide [title≤8 | label≤8 | desc≤10 | desc≤10 | desc≤13 | desc≤14 | desc≤11]",
+      "signature": "S3 布局=Title Slide [title≤8 | label≤8 | desc≤11 | desc≤10 | desc≤13 | desc≤14 | desc≤12]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -416,7 +416,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "CONTENTS · 03",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "1.2",
@@ -446,7 +446,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Six parts · Eighteen data charts · 2026 ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0.0",
@@ -478,7 +478,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "全景 · Landscape",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "2.0.2",
@@ -494,7 +494,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Q1 风投 · Hyperscaler $725B Capex",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "2.0.3",
@@ -510,7 +510,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P04 — P05",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.1.0",
@@ -542,7 +542,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "三巨头 · The Big Three",
-          "capacity": 10.2
+          "capacity": 11.0
         },
         {
           "slot_id": "2.1.2",
@@ -558,7 +558,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "OpenAI · Anthropic · xAI",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "2.1.3",
@@ -574,7 +574,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P06 — P09",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.2.0",
@@ -590,7 +590,7 @@
           "h": 0.8,
           "font_pt": 36.0,
           "sample": "III",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.2.1",
@@ -606,7 +606,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "中国阵营 · China Camp",
-          "capacity": 10.2
+          "capacity": 10.5
         },
         {
           "slot_id": "2.2.2",
@@ -622,7 +622,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "DeepSeek $50B 领跑 · 中美双轨",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "2.2.3",
@@ -638,7 +638,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P10 — P11",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "3.0.0",
@@ -670,7 +670,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "二线梯队 · The Second Tier",
-          "capacity": 12.75
+          "capacity": 13.0
         },
         {
           "slot_id": "3.0.2",
@@ -686,7 +686,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "SSI · Perplexity · Mistral · Cohere",
-          "capacity": 1.0
+          "capacity": 17.5
         },
         {
           "slot_id": "3.0.3",
@@ -702,7 +702,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P12",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.1.0",
@@ -750,7 +750,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Nvidia 闭环 · Stargate $500B",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "3.1.3",
@@ -766,7 +766,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P13 — P16",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "3.2.0",
@@ -798,7 +798,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "泡沫与判断 · The Bubble",
-          "capacity": 11.049999999999999
+          "capacity": 11.5
         },
         {
           "slot_id": "3.2.2",
@@ -814,7 +814,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Capex/Revenue 鸿沟 · 六大判断",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "3.2.3",
@@ -830,7 +830,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P17 — P20",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "4.1",
@@ -845,7 +845,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "阅读建议 / Reading note",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "4.2",
@@ -860,7 +860,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "每章约 3-5 分钟 · 推荐顺序阅读 · 数据均附 §VIII 来源列表",
-          "capacity": 1.0
+          "capacity": 28.0
         },
         {
           "slot_id": "5.0",
@@ -875,7 +875,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Capital, Compute, and the Closed Loop · ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "5.1",
@@ -890,7 +890,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "03 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 7,
@@ -900,7 +900,7 @@
     {
       "slide_no": 4,
       "layout": "Title Slide",
-      "signature": "S4 布局=Title Slide [desc≤20 | label≤4 | label≤4]",
+      "signature": "S4 布局=Title Slide [desc≤22 | label≤5 | label≤5]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -915,7 +915,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART I · LANDSCAPE · 04",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "1.2",
@@ -930,7 +930,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "2026 Q1 全球风投：$297B 创纪录，AI 拿走 81%",
-          "capacity": 20.4
+          "capacity": 21.5
         },
         {
           "slot_id": "1.3",
@@ -945,7 +945,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Global VC Q1 2026 — four mega-deals carr",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.3",
@@ -960,7 +960,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "单季 VC 总额 / Q1 VC",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "2.4",
@@ -990,7 +990,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "单季历史最高 · Single-quarter record",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "2.6",
@@ -1005,7 +1005,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "来源: Crunchbase",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.3",
@@ -1020,7 +1020,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "AI 占全季 VC / AI share",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "3.4",
@@ -1035,7 +1035,7 @@
           "h": 1.2,
           "font_pt": 54.0,
           "sample": "81%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.5",
@@ -1050,7 +1050,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "约 $242B 流入 AI 行业",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "3.6",
@@ -1065,7 +1065,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "来源: Crunchbase / PitchBook",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "4.3",
@@ -1080,7 +1080,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Top 4 笔大单 / Top 4 deals",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "4.4",
@@ -1110,7 +1110,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "OpenAI · Anthropic · xAI · Waymo",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "4.6",
@@ -1125,7 +1125,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "来源: PitchBook Q1 2026 Report",
-          "capacity": 1.0
+          "capacity": 15.0
         },
         {
           "slot_id": "5.3",
@@ -1140,7 +1140,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "集中度 / Concentration",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "5.4",
@@ -1170,7 +1170,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Top 4 占全季全球 VC 比例",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "5.6",
@@ -1185,7 +1185,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "钱不是更多，是更集中",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "6.1",
@@ -1200,7 +1200,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "EDITORIAL NOTE",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "6.3",
@@ -1215,7 +1215,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "钱没变多，",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "6.4",
@@ -1230,7 +1230,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "是更集中。",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "6.5",
@@ -1245,7 +1245,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "\"While more money than ever is being",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "6.6",
@@ -1260,7 +1260,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "invested in the private markets, that's",
-          "capacity": 1.0
+          "capacity": 19.5
         },
         {
           "slot_id": "6.7",
@@ -1275,7 +1275,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "thanks to larger checks, not more",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "6.8",
@@ -1290,7 +1290,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "of them — capital concentrated into a",
-          "capacity": 1.0
+          "capacity": 18.5
         },
         {
           "slot_id": "6.9",
@@ -1305,7 +1305,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "select few companies and a single",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "6.10",
@@ -1320,7 +1320,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "industry.\"",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "6.11",
@@ -1335,7 +1335,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "— Crunchbase, Q1 2026 venture report",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "6.12.1",
@@ -1351,7 +1351,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "三大模型公司单季合计",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "6.12.2",
@@ -1367,7 +1367,7 @@
           "h": 0.533,
           "font_pt": 24.0,
           "sample": "$172B",
-          "capacity": 1.7
+          "capacity": 2.5
         },
         {
           "slot_id": "7.1",
@@ -1382,7 +1382,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Crunchbase · PitchBook Q1 2026 ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "7.2",
@@ -1397,17 +1397,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "04 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 3,
-      "fillable_cap": 20.4,
+      "fillable_cap": 21.5,
       "role_hint": "content"
     },
     {
       "slide_no": 5,
       "layout": "Title Slide",
-      "signature": "S5 布局=Title Slide [desc≤23 | label≤8]",
+      "signature": "S5 布局=Title Slide [desc≤23 | label≤9]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -1422,7 +1422,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART I · LANDSCAPE · 05",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "1.2",
@@ -1452,7 +1452,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Microsoft · Alphabet · Amazon · Meta — c",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.5",
@@ -1467,7 +1467,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$200B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.6",
@@ -1482,7 +1482,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$150B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.7",
@@ -1497,7 +1497,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$100B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.8",
@@ -1512,7 +1512,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$50B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.9",
@@ -1559,7 +1559,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "行业最高",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.13.1",
@@ -1575,7 +1575,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "$190B",
-          "capacity": 1.7
+          "capacity": 2.5
         },
         {
           "slot_id": "2.13.3",
@@ -1591,7 +1591,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "含 $25B 存储芯片",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.14.1",
@@ -1607,7 +1607,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "$190B",
-          "capacity": 1.7
+          "capacity": 2.5
         },
         {
           "slot_id": "2.14.3",
@@ -1623,7 +1623,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "指引上调 $5B",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "2.15.1",
@@ -1639,7 +1639,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "$145B+",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "2.15.3",
@@ -1655,7 +1655,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "电力土地紧张",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "3.1",
@@ -1670,7 +1670,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "KEY OBSERVATION",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "3.2",
@@ -1700,7 +1700,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "2026 合计 Capex · 同比 +77%",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "3.5",
@@ -1715,7 +1715,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "资源约束已转向电力",
-          "capacity": 8.5
+          "capacity": 9.0
         },
         {
           "slot_id": "3.6",
@@ -1730,7 +1730,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "60%+ 资本流向电力基础设",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "3.7",
@@ -1745,7 +1745,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "施、冷却、土建——而不是",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.8",
@@ -1760,7 +1760,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "芯片本身。",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "3.9",
@@ -1775,7 +1775,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "下一道护城河不是算力，",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.10",
@@ -1790,7 +1790,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "是 GW 级供电。",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.11",
@@ -1805,7 +1805,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "— Tom's Hardware / Statista, 2026 outloo",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.1",
@@ -1820,7 +1820,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Tom's Hardware · Statista · Nex",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.2",
@@ -1835,7 +1835,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "05 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
@@ -1845,7 +1845,7 @@
     {
       "slide_no": 6,
       "layout": "Title Slide",
-      "signature": "S6 布局=Title Slide [desc≤18 | desc≤27]",
+      "signature": "S6 布局=Title Slide [desc≤18 | desc≤29]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -1860,7 +1860,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART II · THE BIG THREE · 06",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -1875,7 +1875,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "三巨头估值跃迁：从年初到 Q2 的 双倍线",
-          "capacity": 17.849999999999998
+          "capacity": 18.5
         },
         {
           "slot_id": "1.3",
@@ -1890,7 +1890,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "OpenAI · Anthropic · xAI — six-month val",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0.8",
@@ -1922,7 +1922,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$200B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.10",
@@ -1938,7 +1938,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$400B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.11",
@@ -1954,7 +1954,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$600B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.12",
@@ -1970,7 +1970,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$800B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.13",
@@ -1986,7 +1986,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$1.0T",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.14",
@@ -2002,7 +2002,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$1.2T",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.1.1",
@@ -2018,7 +2018,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "Year-Start 2026",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.1.3",
@@ -2034,7 +2034,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "Latest (May 2026)",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "2.2.0",
@@ -2050,7 +2050,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "OpenAI",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.2.1",
@@ -2066,7 +2066,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "consumer + IPO",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "2.2.5",
@@ -2082,7 +2082,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$300B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.2.6",
@@ -2098,7 +2098,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "$852B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.2.7",
@@ -2114,7 +2114,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "+184%",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.3.0",
@@ -2130,7 +2130,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "Anthropic",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.3.1",
@@ -2146,7 +2146,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "enterprise",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "2.3.7",
@@ -2162,7 +2162,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$61.5B",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.3.8",
@@ -2178,7 +2178,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "$380B (G)",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.3.9",
@@ -2194,7 +2194,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "→ $900B (在谈)",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "2.3.10",
@@ -2210,7 +2210,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "+518% (locked) / +1364% (in-talks)",
-          "capacity": 1.0
+          "capacity": 17.0
         },
         {
           "slot_id": "2.4.0",
@@ -2226,7 +2226,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "xAI",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.4.1",
@@ -2242,7 +2242,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "SpaceX merger",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.4.7",
@@ -2258,7 +2258,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$50B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.4.8",
@@ -2274,7 +2274,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "$230B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.4.9",
@@ -2290,7 +2290,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "→ $1.25T (合并)",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.4.10",
@@ -2306,7 +2306,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "+360% (Jan E) / +2400% (post-merger)",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "3.1",
@@ -2321,7 +2321,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "EDITORIAL TAKE",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.2",
@@ -2336,7 +2336,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "六个月里，三家公司的合计估值从 $411B 跃至 $1.46T——3.6 倍。",
-          "capacity": 27.2
+          "capacity": 29.0
         },
         {
           "slot_id": "4.0",
@@ -2351,7 +2351,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: CNBC · Bloomberg · TechCrunch ·",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.1",
@@ -2366,17 +2366,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "06 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 27.2,
+      "fillable_cap": 29.0,
       "role_hint": "table_host"
     },
     {
       "slide_no": 7,
       "layout": "Title Slide",
-      "signature": "S7 布局=Title Slide [desc≤15]",
+      "signature": "S7 布局=Title Slide [desc≤16]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -2391,7 +2391,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART II · THE BIG THREE · 07",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -2406,7 +2406,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "估值兑现度：气泡大小 = 投资人数",
-          "capacity": 15.299999999999999
+          "capacity": 15.5
         },
         {
           "slot_id": "1.3",
@@ -2421,7 +2421,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Valuation × ARR × investor count — who i",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0.10",
@@ -2437,7 +2437,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$1000B",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.0.11",
@@ -2453,7 +2453,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$750B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.12",
@@ -2469,7 +2469,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$500B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.13",
@@ -2485,7 +2485,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$250B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.0.14",
@@ -2533,7 +2533,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$10B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.17",
@@ -2549,7 +2549,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$20B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.18",
@@ -2565,7 +2565,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$30B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.19",
@@ -2581,7 +2581,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$40B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.20",
@@ -2597,7 +2597,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "VALUATION ($B) →",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.0.21",
@@ -2613,7 +2613,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "ANNUALIZED REVENUE (ARR, $B) →",
-          "capacity": 1.0
+          "capacity": 15.0
         },
         {
           "slot_id": "2.1.2",
@@ -2629,7 +2629,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "xAI",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.1.3",
@@ -2645,7 +2645,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "$5B / $230B · 8+ investors",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "2.2.2",
@@ -2661,7 +2661,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Anthropic",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.2.3",
@@ -2677,7 +2677,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "$30B / $380B · 5 investors",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "2.2.6",
@@ -2693,7 +2693,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "→ $900B (in talks)",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "2.3.2",
@@ -2709,7 +2709,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "OpenAI",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.3.3",
@@ -2725,7 +2725,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "$24B / $852B · 7+ investors",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "2.4.1",
@@ -2741,7 +2741,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "implied \"fair valuation\" trend",
-          "capacity": 1.0
+          "capacity": 15.0
         },
         {
           "slot_id": "3.2",
@@ -2756,7 +2756,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "所有气泡都站在\"公允线\"上方——估值跑得比收入快；其中 xAI 偏离最远（ARR",
-          "capacity": 1.0
+          "capacity": 34.0
         },
         {
           "slot_id": "4.0",
@@ -2771,7 +2771,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Bloomberg · TechCrunch · Anthro",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.1",
@@ -2786,17 +2786,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "07 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 15.3,
+      "fillable_cap": 15.5,
       "role_hint": "table_host"
     },
     {
       "slide_no": 8,
       "layout": "Title Slide",
-      "signature": "S8 布局=Title Slide [desc≤13]",
+      "signature": "S8 布局=Title Slide [desc≤14]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -2811,7 +2811,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART II · THE BIG THREE · 08",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -2826,7 +2826,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "OpenAI $122B 这笔钱，从哪来",
-          "capacity": 12.75
+          "capacity": 13.5
         },
         {
           "slot_id": "1.3",
@@ -2841,7 +2841,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Composition of OpenAI's March 2026 mega-",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.5",
@@ -2856,7 +2856,7 @@
           "h": 0.6,
           "font_pt": 27.0,
           "sample": "$122B",
-          "capacity": 1.7
+          "capacity": 2.5
         },
         {
           "slot_id": "2.6",
@@ -2871,7 +2871,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "TOTAL ROUND",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "2.7",
@@ -2886,7 +2886,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "@ $852B post-money",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.1",
@@ -2901,7 +2901,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "INVESTOR BREAKDOWN",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.2.2",
@@ -2917,7 +2917,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "Amazon",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "3.2.3",
@@ -2933,7 +2933,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "$50B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.2.4",
@@ -2949,7 +2949,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "41% · AWS 算力承诺",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.3.2",
@@ -2965,7 +2965,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "Nvidia",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "3.3.3",
@@ -2981,7 +2981,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "$30B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.3.4",
@@ -2997,7 +2997,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "25% · 10GW 系统部署",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "3.4.1",
@@ -3013,7 +3013,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "SoftBank",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.4.2",
@@ -3029,7 +3029,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "$30B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.4.3",
@@ -3045,7 +3045,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "25% · Stargate 联合主体",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "3.5.2",
@@ -3061,7 +3061,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "MSFT + a16z + 其他",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.5.3",
@@ -3077,7 +3077,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "$12B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.5.4",
@@ -3093,7 +3093,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "9% · 包含 T. Rowe Price 等",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "3.6.0",
@@ -3109,7 +3109,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "OBSERVATION",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "3.6.1",
@@ -3125,7 +3125,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "三大投资人合计 91%——同时是 OpenAI 的 最大客户",
-          "capacity": 1.0
+          "capacity": 22.5
         },
         {
           "slot_id": "4.1",
@@ -3140,7 +3140,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: OpenAI press 2026-03-31 · Bloom",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.2",
@@ -3155,11 +3155,11 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "08 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 12.8,
+      "fillable_cap": 13.5,
       "role_hint": "table_host"
     },
     {
@@ -3180,7 +3180,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART II · THE BIG THREE · 09",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -3210,7 +3210,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "OpenAI is the consumer machine. Anthropi",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.3",
@@ -3225,7 +3225,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "OpenAI",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "2.4",
@@ -3240,7 +3240,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "消费驱动 · IPO 临门",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.6",
@@ -3270,7 +3270,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Valuation @ 2026-03",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.8",
@@ -3300,7 +3300,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "ARR · $2B/月",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "2.10",
@@ -3315,7 +3315,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 9 亿 周活",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "2.11",
@@ -3330,7 +3330,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 企业收入占比 40%+",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.12",
@@ -3345,7 +3345,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• Q4 IPO 目标 $1T",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "2.14",
@@ -3360,7 +3360,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"The consumer giant turning enterprise.\"",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "3.3",
@@ -3375,7 +3375,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "Anthropic",
-          "capacity": 4.25
+          "capacity": 4.5
         },
         {
           "slot_id": "3.4",
@@ -3390,7 +3390,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "企业驱动 · 估值反超",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "3.6",
@@ -3420,7 +3420,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Series G · 在谈 $900B",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "3.8",
@@ -3450,7 +3450,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "ARR · 历史最快爬升",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.10",
@@ -3465,7 +3465,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 25 → 26 年初：$9B → $30B",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "3.11",
@@ -3480,7 +3480,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• Google 累计承诺 $40B",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.12",
@@ -3495,7 +3495,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 在谈估值已超 OpenAI",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "3.14",
@@ -3510,7 +3510,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"The enterprise stack ascending.\"",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "4.2",
@@ -3525,7 +3525,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "xAI",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "4.3",
@@ -3540,7 +3540,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "+ SpaceX",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.4",
@@ -3555,7 +3555,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "合并叙事 · 协同效应",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "4.6",
@@ -3570,7 +3570,7 @@
           "h": 0.8,
           "font_pt": 36.0,
           "sample": "$1.25T",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "4.7",
@@ -3585,7 +3585,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "合并实体估值 (xAI: $230B)",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "4.8",
@@ -3600,7 +3600,7 @@
           "h": 0.4,
           "font_pt": 18.0,
           "sample": "~$5B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "4.9",
@@ -3615,7 +3615,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "ARR 估算 (X / Grok)",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "4.10",
@@ -3630,7 +3630,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• Jan 2026: $15B → 超募 $20B",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "4.11",
@@ -3645,7 +3645,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• Tesla 投资 $2B",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "4.12",
@@ -3660,7 +3660,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• Feb 与 SpaceX 合并 IPO 铺路",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "4.14",
@@ -3675,7 +3675,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Musk's vertically-integrated bet.\"",
-          "capacity": 1.0
+          "capacity": 17.5
         },
         {
           "slot_id": "5.1",
@@ -3690,7 +3690,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "三家估值合计 $2.48T — 超过同期苹果市值的 2/3。",
-          "capacity": 1.0
+          "capacity": 23.0
         },
         {
           "slot_id": "6.0",
@@ -3705,7 +3705,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: company press releases · Bloomb",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "6.1",
@@ -3720,7 +3720,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "09 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
@@ -3745,7 +3745,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART III · CHINA CAMP · 10",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "1.2",
@@ -3760,7 +3760,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "中国 AI 五雄：DeepSeek 领跑，估值阶梯分明",
-          "capacity": 20.4
+          "capacity": 20.5
         },
         {
           "slot_id": "1.3",
@@ -3775,7 +3775,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "China's AI five — privately valued vs. p",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0.7",
@@ -3807,7 +3807,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$15B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.9",
@@ -3823,7 +3823,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$30B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.10",
@@ -3839,7 +3839,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$45B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.11",
@@ -3855,7 +3855,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$60B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.0.12",
@@ -3871,7 +3871,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$75B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.1.0",
@@ -3887,7 +3887,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "DeepSeek",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.1.1",
@@ -3903,7 +3903,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "national fund-led",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "2.1.3",
@@ -3919,7 +3919,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "$50B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "2.2.0",
@@ -3935,7 +3935,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Zhipu AI 智谱",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.2.1",
@@ -3951,7 +3951,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "HK listed · market cap",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.2.3",
@@ -3967,7 +3967,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "$56.1B",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "2.3.0",
@@ -3983,7 +3983,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "MiniMax",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "2.3.1",
@@ -3999,7 +3999,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "HK listed · market cap",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.3.3",
@@ -4015,7 +4015,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "$37.2B",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "2.4.0",
@@ -4031,7 +4031,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Moonshot (Kimi)",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.4.1",
@@ -4047,7 +4047,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Series D · 美团领投",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.4.3",
@@ -4063,7 +4063,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "$20B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "2.5.0",
@@ -4079,7 +4079,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "StepFun 阶跃",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "2.5.1",
@@ -4095,7 +4095,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "in talks · ~$2.5B raise",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "2.5.3",
@@ -4111,7 +4111,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "~$8B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "2.6.1",
@@ -4127,7 +4127,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "国家大基金领投",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "2.6.3",
@@ -4143,7 +4143,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "港股上市",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.6.5",
@@ -4159,7 +4159,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "私募",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.6.7",
@@ -4175,7 +4175,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "在谈",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "3.1",
@@ -4190,7 +4190,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "DATA NOTE",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "3.2",
@@ -4205,7 +4205,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "港股市值 vs 私募估值",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "3.3",
@@ -4220,7 +4220,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "不直接可比，仅供量级参考",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "4.0",
@@ -4235,7 +4235,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: BigGo Finance · TechCrunch · Ku",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.1",
@@ -4250,17 +4250,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "10 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 20.4,
+      "fillable_cap": 20.5,
       "role_hint": "table_host"
     },
     {
       "slide_no": 11,
       "layout": "Title Slide",
-      "signature": "S11 布局=Title Slide [desc≤15 | label≤5 | label≤4 | label≤7 | label≤3 | label≤3 | label≤4 | label≤8 | label≤5]",
+      "signature": "S11 布局=Title Slide [desc≤16 | label≤6 | label≤4 | label≤8 | label≤4 | label≤4 | label≤5 | label≤10 | label≤6]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -4275,7 +4275,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART III · CHINA CAMP · 11",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "1.2",
@@ -4290,7 +4290,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "中美 AI 资本：两条路径，两种节奏",
-          "capacity": 15.299999999999999
+          "capacity": 16.0
         },
         {
           "slot_id": "1.3",
@@ -4305,7 +4305,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Two markets, two playbooks — the structu",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.1",
@@ -4320,7 +4320,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "DIMENSION",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.2",
@@ -4335,7 +4335,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "UNITED STATES",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.3",
@@ -4350,7 +4350,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "CHINA",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.5.0",
@@ -4366,7 +4366,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "单轮规模",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.5.1",
@@ -4382,7 +4382,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Single-round scale",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "2.5.2",
@@ -4398,7 +4398,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "$30B – $122B",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "2.5.3",
@@ -4414,7 +4414,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "OpenAI $122B 史上最大",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "2.5.4",
@@ -4430,7 +4430,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "$2B – $4B",
-          "capacity": 4.25
+          "capacity": 4.5
         },
         {
           "slot_id": "2.5.5",
@@ -4446,7 +4446,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Moonshot $2B 单轮最大",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "2.6.0",
@@ -4462,7 +4462,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "IPO 节奏",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.6.1",
@@ -4478,7 +4478,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "IPO timing",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "2.6.2",
@@ -4494,7 +4494,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "推迟 · 私募延后",
-          "capacity": 6.8
+          "capacity": 7.5
         },
         {
           "slot_id": "2.6.3",
@@ -4510,7 +4510,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Q4 2026 目标 $1T",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.6.4",
@@ -4526,7 +4526,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "Q1 已落港",
-          "capacity": 3.4
+          "capacity": 4.5
         },
         {
           "slot_id": "2.6.5",
@@ -4542,7 +4542,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Zhipu / MiniMax 2026-01",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "2.7.0",
@@ -4558,7 +4558,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "政府角色",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.7.1",
@@ -4574,7 +4574,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Government role",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.7.2",
@@ -4590,7 +4590,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "市场驱动",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "2.7.3",
@@ -4606,7 +4606,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "私营 capex · 监管框架",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "2.7.4",
@@ -4622,7 +4622,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "大基金领投",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "2.7.5",
@@ -4638,7 +4638,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "DeepSeek 首次国家大基金",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "2.8.0",
@@ -4654,7 +4654,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "估值峰值",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.8.1",
@@ -4670,7 +4670,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Peak valuation",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "2.8.2",
@@ -4702,7 +4702,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "OpenAI · 私募",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.8.4",
@@ -4718,7 +4718,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "$56B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "2.8.5",
@@ -4734,7 +4734,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Zhipu · 港股市值",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.9.0",
@@ -4750,7 +4750,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "退出路径",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.9.1",
@@ -4766,7 +4766,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Exit path",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.9.2",
@@ -4782,7 +4782,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "超大私募 → 推迟 IPO",
-          "capacity": 8.5
+          "capacity": 9.5
         },
         {
           "slot_id": "2.9.3",
@@ -4798,7 +4798,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Anthropic Series G $30B",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "2.9.4",
@@ -4814,7 +4814,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "二级市场优先",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "2.9.5",
@@ -4830,7 +4830,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "港交所是出口",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "3.0",
@@ -4845,7 +4845,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Crunchbase · HKEX 招股书 · BigGo F",
-          "capacity": 1.0
+          "capacity": 21.5
         },
         {
           "slot_id": "3.1",
@@ -4860,17 +4860,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "11 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 9,
-      "fillable_cap": 15.3,
+      "fillable_cap": 16.0,
       "role_hint": "content"
     },
     {
       "slide_no": 12,
       "layout": "Title Slide",
-      "signature": "S12 布局=Title Slide [desc≤14 | label≤4 | label≤4 | label≤5]",
+      "signature": "S12 布局=Title Slide [desc≤14 | label≤5 | label≤5 | label≤6]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -4885,7 +4885,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART IV · THE SECOND TIER · 12",
-          "capacity": 1.0
+          "capacity": 15.0
         },
         {
           "slot_id": "1.2",
@@ -4900,7 +4900,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "二线梯队：$10B–$50B 的精英层",
-          "capacity": 13.6
+          "capacity": 14.0
         },
         {
           "slot_id": "1.3",
@@ -4915,7 +4915,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Four companies in the next league — each",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.2",
@@ -4930,7 +4930,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "SAFE SUPERINTELLIGENCE",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.3",
@@ -4945,7 +4945,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "SSI",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.5",
@@ -4960,7 +4960,7 @@
           "h": 0.933,
           "font_pt": 42.0,
           "sample": "$32B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "2.6",
@@ -4975,7 +4975,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "最新估值 / Latest valuation",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "2.8",
@@ -4990,7 +4990,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Ilya Sutskever 创立",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.9",
@@ -5005,7 +5005,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$5B → $32B",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "2.10",
@@ -5020,7 +5020,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "半年 6 倍跳涨",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.11",
@@ -5035,7 +5035,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Single product:",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.12",
@@ -5050,7 +5050,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "a safe superintelligence.\"",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "2.15",
@@ -5065,7 +5065,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$2B raised · Alphabet/Nvidia in",
-          "capacity": 1.0
+          "capacity": 15.5
         },
         {
           "slot_id": "3.2",
@@ -5080,7 +5080,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "SEARCH CHALLENGER",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "3.3",
@@ -5095,7 +5095,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "Perplexity",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "3.5",
@@ -5110,7 +5110,7 @@
           "h": 0.933,
           "font_pt": 42.0,
           "sample": "$21B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.6",
@@ -5125,7 +5125,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "最新估值 / Latest valuation",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "3.8",
@@ -5140,7 +5140,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "月活 4500 万",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "3.9",
@@ -5155,7 +5155,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Series E-6 完成",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "3.10",
@@ -5170,7 +5170,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "直挑 Google 搜索",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.11",
@@ -5185,7 +5185,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Answer engine,",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "3.12",
@@ -5200,7 +5200,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "not search engine.\"",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "3.15",
@@ -5215,7 +5215,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$200M @ $21B · 18 months to here",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "4.2",
@@ -5230,7 +5230,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "SOVEREIGN EU AI",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "4.3",
@@ -5245,7 +5245,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "Mistral AI",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "4.5",
@@ -5260,7 +5260,7 @@
           "h": 0.933,
           "font_pt": 42.0,
           "sample": "$13.7B",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "4.6",
@@ -5275,7 +5275,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "最新估值 / Latest valuation",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "4.8",
@@ -5290,7 +5290,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$830M 债务融资",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "4.9",
@@ -5305,7 +5305,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "巴黎数据中心",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "4.10",
@@ -5320,7 +5320,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "13,800 张 Nvidia GPU",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "4.11",
@@ -5335,7 +5335,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Europe's open-source",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "4.12",
@@ -5350,7 +5350,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "sovereign answer.\"",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "4.15",
@@ -5365,7 +5365,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Debt-funded · own data-center bet",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "5.2",
@@ -5380,7 +5380,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "TRANSATLANTIC MERGER",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "5.3",
@@ -5395,7 +5395,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "Cohere +",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "5.4",
@@ -5410,7 +5410,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "Aleph Alpha",
-          "capacity": 5.1
+          "capacity": 5.5
         },
         {
           "slot_id": "5.6",
@@ -5425,7 +5425,7 @@
           "h": 0.933,
           "font_pt": 42.0,
           "sample": "$20B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "5.7",
@@ -5440,7 +5440,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "合并实体估值",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "5.9",
@@ -5455,7 +5455,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$7B + $3B (Aleph)",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "5.10",
@@ -5470,7 +5470,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "→ $20B 合并溢价",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "5.11",
@@ -5485,7 +5485,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "ARR $240M",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "5.12",
@@ -5500,7 +5500,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Cross-Atlantic sovereign",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "5.13",
@@ -5515,7 +5515,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "enterprise stack.\"",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "5.16",
@@ -5530,7 +5530,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Schwarz Group leads · 2026 deal",
-          "capacity": 1.0
+          "capacity": 15.5
         },
         {
           "slot_id": "6.1",
@@ -5545,7 +5545,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "四家公司合计估值 $86.7B——仅占同期 OpenAI 估值的 10%。",
-          "capacity": 1.0
+          "capacity": 26.5
         },
         {
           "slot_id": "7.0",
@@ -5560,7 +5560,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: TechCrunch · CNBC · Tracxn · Te",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "7.1",
@@ -5575,17 +5575,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "12 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 4,
-      "fillable_cap": 13.6,
+      "fillable_cap": 14.0,
       "role_hint": "content"
     },
     {
       "slide_no": 13,
       "layout": "Title Slide",
-      "signature": "S13 布局=Title Slide [label≤8 | label≤9]",
+      "signature": "S13 布局=Title Slide [label≤8 | label≤10]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -5600,7 +5600,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART V · INFRASTRUCTURE · 13",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "2.0",
@@ -5630,7 +5630,7 @@
           "h": 1.067,
           "font_pt": 48.0,
           "sample": "闭环",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.1",
@@ -5645,7 +5645,7 @@
           "h": 0.533,
           "font_pt": 24.0,
           "sample": "/ The Closed Loop",
-          "capacity": 7.6499999999999995
+          "capacity": 8.5
         },
         {
           "slot_id": "3.2",
@@ -5660,7 +5660,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "当芯片商同时是大股东",
-          "capacity": 9.35
+          "capacity": 10.0
         },
         {
           "slot_id": "4.0",
@@ -5675,7 +5675,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Nvidia 2026 至今股权投资 $40B+",
-          "capacity": 1.0
+          "capacity": 15.0
         },
         {
           "slot_id": "4.1",
@@ -5690,7 +5690,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "OpenAI $30B · xAI · Anthropic · Mistral ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.2",
@@ -5705,7 +5705,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "同时它的 85% 收入 来自 6 个客户",
-          "capacity": 1.0
+          "capacity": 15.5
         },
         {
           "slot_id": "5.1",
@@ -5720,7 +5720,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Capital, Compute, and the Closed Loop · ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "5.2",
@@ -5735,17 +5735,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "13 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 9.3,
+      "fillable_cap": 10.0,
       "role_hint": "table_host"
     },
     {
       "slide_no": 14,
       "layout": "Title Slide",
-      "signature": "S14 布局=Title Slide [desc≤13]",
+      "signature": "S14 布局=Title Slide [desc≤14]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -5760,7 +5760,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART V · INFRASTRUCTURE · 14",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -5775,7 +5775,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "钱怎么转：Nvidia 的圆形投资",
-          "capacity": 12.75
+          "capacity": 13.5
         },
         {
           "slot_id": "1.3",
@@ -5790,7 +5790,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "$40B equity out → AI labs → multi-year c",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0",
@@ -5805,7 +5805,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "SOURCE",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.1",
@@ -5820,7 +5820,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "RECIPIENT",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.2",
@@ -5835,7 +5835,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "RETURN FLOW",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "3.2",
@@ -5850,7 +5850,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "Nvidia",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "3.3",
@@ -5880,7 +5880,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "equity invested",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "3.5",
@@ -5895,7 +5895,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "YTD 2026",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "6.2",
@@ -5910,7 +5910,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "OpenAI",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "6.3",
@@ -5925,7 +5925,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "$30B",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "6.5",
@@ -5940,7 +5940,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "xAI",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "6.6",
@@ -5955,7 +5955,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "~$3B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "6.8",
@@ -5970,7 +5970,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "Anthropic",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "6.9",
@@ -5985,7 +5985,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "~$2B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "6.11",
@@ -6000,7 +6000,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "Mistral",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "6.12",
@@ -6015,7 +6015,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "~$1B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "6.14",
@@ -6030,7 +6030,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "CoreWeave + 其他",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "6.15",
@@ -6045,7 +6045,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "~$4B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "7.1",
@@ -6060,7 +6060,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "芯片采购",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "7.2",
@@ -6075,7 +6075,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "multi-year compute",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "7.3",
@@ -6090,7 +6090,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "commitments",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "7.4",
@@ -6105,7 +6105,7 @@
           "h": 0.6,
           "font_pt": 27.0,
           "sample": "$100B+",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "7.5",
@@ -6120,7 +6120,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "implied return",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "7.7",
@@ -6135,7 +6135,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "10GW (OpenAI)",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "7.8",
@@ -6150,7 +6150,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "+ multi-cluster GPU",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "7.9",
@@ -6165,7 +6165,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "deployment",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "8.1",
@@ -6180,7 +6180,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "WEDBUSH",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "8.2",
@@ -6195,7 +6195,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "\"It fits squarely into the circular inve",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "9.0",
@@ -6210,7 +6210,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: CNBC · The Decoder · NVIDIA new",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "9.1",
@@ -6225,17 +6225,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "14 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 12.8,
+      "fillable_cap": 13.5,
       "role_hint": "table_host"
     },
     {
       "slide_no": 15,
       "layout": "Title Slide",
-      "signature": "S15 布局=Title Slide [desc≤19 | label≤5]",
+      "signature": "S15 布局=Title Slide [desc≤20 | label≤6]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -6250,7 +6250,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART V · INFRASTRUCTURE · 15",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -6265,7 +6265,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "单点风险：Nvidia 收入 85% 来自 6 个客户",
-          "capacity": 18.7
+          "capacity": 19.5
         },
         {
           "slot_id": "1.3",
@@ -6280,7 +6280,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Pareto view — when six customers carry t",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.6",
@@ -6295,7 +6295,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "100%",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.7",
@@ -6310,7 +6310,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "75%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.8",
@@ -6325,7 +6325,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "50%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.9",
@@ -6340,7 +6340,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "25%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.10",
@@ -6371,7 +6371,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "18%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.11.3",
@@ -6387,7 +6387,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "MSFT",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.12.1",
@@ -6403,7 +6403,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "16%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.12.3",
@@ -6419,7 +6419,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Meta",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.13.1",
@@ -6435,7 +6435,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "15%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.13.3",
@@ -6451,7 +6451,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Google",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.14.1",
@@ -6467,7 +6467,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "11%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.14.3",
@@ -6483,7 +6483,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Amazon",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.15.1",
@@ -6499,7 +6499,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "13%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.15.3",
@@ -6515,7 +6515,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "OpenAI",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.16.1",
@@ -6531,7 +6531,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "12%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.16.2",
@@ -6547,7 +6547,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "CoreWeave",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.16.3",
@@ -6563,7 +6563,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "+ Oracle",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.17.7",
@@ -6579,7 +6579,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "18%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.17.8",
@@ -6595,7 +6595,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "34%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.17.9",
@@ -6611,7 +6611,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "49%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.17.10",
@@ -6627,7 +6627,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "60%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.17.11",
@@ -6643,7 +6643,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "73%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.17.12",
@@ -6659,7 +6659,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "85%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.1",
@@ -6674,7 +6674,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "CONCENTRATION RISK",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.2",
@@ -6704,7 +6704,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Nvidia 收入来自 6 个客户",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "3.5",
@@ -6719,7 +6719,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "前 4 名 = 60%",
-          "capacity": 5.1
+          "capacity": 6.5
         },
         {
           "slot_id": "3.6",
@@ -6734,7 +6734,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "MSFT + Meta + Google + Amazon",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "3.8",
@@ -6749,7 +6749,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "任一家 hyperscaler 砍 capex",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "3.9",
@@ -6764,7 +6764,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "→ 级联打击 Nvidia 财报",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.10",
@@ -6779,7 +6779,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "→ 全 AI 供应链承压",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.12",
@@ -6794,7 +6794,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Binary risk — by design.\"",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "4.1",
@@ -6809,7 +6809,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Nvidia 10-Q · Seeking Alpha · K",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.2",
@@ -6824,17 +6824,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "15 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 18.7,
+      "fillable_cap": 19.5,
       "role_hint": "table_host"
     },
     {
       "slide_no": 16,
       "layout": "Title Slide",
-      "signature": "S16 布局=Title Slide [desc≤15]",
+      "signature": "S16 布局=Title Slide [desc≤16]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -6849,7 +6849,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART V · INFRASTRUCTURE · 16",
-          "capacity": 1.0
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -6864,7 +6864,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "Stargate：$500B · 10GW · 7 站点",
-          "capacity": 15.299999999999999
+          "capacity": 15.5
         },
         {
           "slot_id": "1.3",
@@ -6879,7 +6879,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "OpenAI + Oracle + SoftBank · the largest",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0.5",
@@ -6895,7 +6895,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "STARGATE",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.0.6",
@@ -6927,7 +6927,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "10 GW · 4 YEARS",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.2.1",
@@ -6943,7 +6943,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Abilene, TX",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "2.2.2",
@@ -6959,7 +6959,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "FLAGSHIP · ONLINE",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "2.2.3",
@@ -6975,7 +6975,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "~1 GW by mid-2026",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "2.3.1",
@@ -6991,7 +6991,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Shackelford TX",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "2.3.2",
@@ -7007,7 +7007,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Planned · Oracle",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.4.1",
@@ -7023,7 +7023,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Doña Ana NM",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "2.4.2",
@@ -7039,7 +7039,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Planned · Oracle",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.5.1",
@@ -7055,7 +7055,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Saline MI",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.5.2",
@@ -7071,7 +7071,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "1 GW · $7B · 2026 build",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "2.6.1",
@@ -7087,7 +7087,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Midwest (TBD)",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.6.2",
@@ -7103,7 +7103,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Site undisclosed",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "2.7.1",
@@ -7119,7 +7119,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Lordstown OH",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "2.7.2",
@@ -7135,7 +7135,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "SoftBank · ~0.75 GW",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.8.1",
@@ -7151,7 +7151,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Milam TX",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.8.2",
@@ -7167,7 +7167,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "SoftBank · ~0.75 GW",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "3.1",
@@ -7182,7 +7182,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "CURRENT PROGRESS",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.2.0",
@@ -7198,7 +7198,7 @@
           "h": 0.667,
           "font_pt": 30.0,
           "sample": "7 GW",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.2.1",
@@ -7214,7 +7214,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "已规划容量 · planned capacity",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "3.3.0",
@@ -7246,7 +7246,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "未来 3 年投入 · 3-yr commit",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "3.4.0",
@@ -7278,7 +7278,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Abilene 机架已交付",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.5",
@@ -7293,7 +7293,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PARTNERS",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.8",
@@ -7308,7 +7308,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "SoftBank",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.9",
@@ -7323,7 +7323,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "\"Up and running\"",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.10",
@@ -7338,7 +7338,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "— Sam Altman on Abilene",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "4.1",
@@ -7353,7 +7353,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: OpenAI press 2026-09/2026-02 · ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.2",
@@ -7368,17 +7368,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "16 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 15.3,
+      "fillable_cap": 15.5,
       "role_hint": "table_host"
     },
     {
       "slide_no": 17,
       "layout": "Title Slide",
-      "signature": "S17 布局=Title Slide [label≤9 | desc≤10]",
+      "signature": "S17 布局=Title Slide [desc≤10 | desc≤11]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -7393,7 +7393,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART VI · THE BUBBLE · 17",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "2.0",
@@ -7408,7 +7408,7 @@
           "h": 3.0,
           "font_pt": 135.0,
           "sample": "VI.",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.0",
@@ -7423,7 +7423,7 @@
           "h": 1.067,
           "font_pt": 48.0,
           "sample": "泡沫",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.1",
@@ -7431,14 +7431,14 @@
             3,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 2.05,
           "y": 4.092,
           "w": 4.092,
           "h": 0.533,
           "font_pt": 24.0,
           "sample": "/ The Bubble Question",
-          "capacity": 9.35
+          "capacity": 10.5
         },
         {
           "slot_id": "3.2",
@@ -7453,7 +7453,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "资本与商业现实的剪刀差",
-          "capacity": 10.2
+          "capacity": 11.0
         },
         {
           "slot_id": "4.0",
@@ -7468,7 +7468,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Hyperscaler capex $400B · 企业 AI 收入仅 $100",
-          "capacity": 1.0
+          "capacity": 22.5
         },
         {
           "slot_id": "4.1",
@@ -7483,7 +7483,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "增速差距 46 个百分点 · 2001 电信泡沫期为 32%",
-          "capacity": 1.0
+          "capacity": 22.0
         },
         {
           "slot_id": "4.2",
@@ -7498,7 +7498,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "MIT 研究：95% 生成式 AI 试点未产生商业价值",
-          "capacity": 1.0
+          "capacity": 21.0
         },
         {
           "slot_id": "5.1",
@@ -7513,7 +7513,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Capital, Compute, and the Closed Loop · ",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "5.2",
@@ -7528,17 +7528,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "17 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 10.2,
+      "fillable_cap": 11.0,
       "role_hint": "table_host"
     },
     {
       "slide_no": 18,
       "layout": "Title Slide",
-      "signature": "S18 布局=Title Slide [desc≤20]",
+      "signature": "S18 布局=Title Slide [desc≤21]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -7553,7 +7553,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART VI · THE BUBBLE · 18",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "1.2",
@@ -7568,7 +7568,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "资本与营收的鸿沟：$725B 投入 vs $100B 营收",
-          "capacity": 20.4
+          "capacity": 21.0
         },
         {
           "slot_id": "1.3",
@@ -7583,7 +7583,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Hyperscaler capex (LHS, $B) vs Global En",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.7",
@@ -7598,7 +7598,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$800B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.8",
@@ -7613,7 +7613,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$600B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.9",
@@ -7628,7 +7628,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$400B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.10",
@@ -7643,7 +7643,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$200B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.11",
@@ -7673,7 +7673,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$160B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.13",
@@ -7688,7 +7688,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$120B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.14",
@@ -7703,7 +7703,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$80B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.15",
@@ -7718,7 +7718,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "$40B",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.16",
@@ -7748,7 +7748,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2020",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.18",
@@ -7763,7 +7763,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2021",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.19",
@@ -7778,7 +7778,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2022",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.20",
@@ -7793,7 +7793,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2023",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.21",
@@ -7808,7 +7808,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2024",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.22",
@@ -7823,7 +7823,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2025",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.23",
@@ -7838,7 +7838,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "2026",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "2.41",
@@ -7853,7 +7853,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "$725B",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "2.42",
@@ -7868,7 +7868,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "~$100B",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.43.3",
@@ -7884,7 +7884,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "ROI",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "2.43.4",
@@ -7900,7 +7900,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "GAP",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.2",
@@ -7915,7 +7915,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Hyperscaler Capex (左轴 LHS, $B)",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "3.5",
@@ -7930,7 +7930,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Enterprise AI Revenue (右轴 RHS, $B)",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "3.6",
@@ -7945,7 +7945,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "差距 +46pt",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "3.7",
@@ -7960,7 +7960,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "vs 2001 电信泡沫期 +32pt",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "4.1",
@@ -7975,7 +7975,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: Goldman Sachs · Allianz Economi",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.2",
@@ -7990,17 +7990,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "18 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 20.4,
+      "fillable_cap": 21.0,
       "role_hint": "table_host"
     },
     {
       "slide_no": 19,
       "layout": "Title Slide",
-      "signature": "S19 布局=Title Slide [label≤8 | label≤9 | label≤7 | label≤7 | label≤8]",
+      "signature": "S19 布局=Title Slide [label≤9 | label≤10 | label≤8 | label≤7 | label≤8]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -8015,7 +8015,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PART VI · THE BUBBLE · 19",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "1.2",
@@ -8030,7 +8030,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "四大风险，互相放大",
-          "capacity": 8.5
+          "capacity": 9.0
         },
         {
           "slot_id": "1.3",
@@ -8045,7 +8045,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "The four risk vectors that compound each",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "3.2",
@@ -8060,7 +8060,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "RISK 01",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "3.4",
@@ -8075,7 +8075,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "Capex / Revenue 鸿沟",
-          "capacity": 9.35
+          "capacity": 10.0
         },
         {
           "slot_id": "3.5",
@@ -8090,7 +8090,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Capex outruns commercial revenue",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "3.6",
@@ -8105,7 +8105,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 增速差 +46pt",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.7",
@@ -8120,7 +8120,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 2001 电信泡沫期为 32pt",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "3.8",
@@ -8135,7 +8135,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 差距已超 2001 泡沫",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "4.2",
@@ -8150,7 +8150,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "RISK 02",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "4.4",
@@ -8165,7 +8165,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "企业 ROI 难落地",
-          "capacity": 6.8
+          "capacity": 7.5
         },
         {
           "slot_id": "4.5",
@@ -8180,7 +8180,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Enterprise ROI lags badly behind capex",
-          "capacity": 1.0
+          "capacity": 19.0
         },
         {
           "slot_id": "4.6",
@@ -8195,7 +8195,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• MIT: 95% AI 试点未产生商业价值",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "4.7",
@@ -8210,7 +8210,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 仅 5% 企业 EBIT 受 AI 显著影响",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "4.8",
@@ -8225,7 +8225,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 投资在赌\"未来兑现\"",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "5.2",
@@ -8240,7 +8240,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "RISK 03",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "5.4",
@@ -8255,7 +8255,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "客户集中度风险",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "5.5",
@@ -8270,7 +8270,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Six customers carry the whole supply cha",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "5.6",
@@ -8285,7 +8285,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• Nvidia 收入 85% 来自 6 家",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "5.7",
@@ -8300,7 +8300,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 前 4 名占近 60%",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "5.8",
@@ -8315,7 +8315,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 任一砍 capex → 级联冲击",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "6.2",
@@ -8330,7 +8330,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "RISK 04",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "6.4",
@@ -8345,7 +8345,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "融资结构转向负债",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "6.5",
@@ -8360,7 +8360,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "From operating cash flow to debt",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "6.6",
@@ -8375,7 +8375,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 现金流融资 → 举债融资",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "6.7",
@@ -8390,7 +8390,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 自由现金流开始转负",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "6.8",
@@ -8405,7 +8405,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "• 兑现时间表的耐心被压缩",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "7.1",
@@ -8435,7 +8435,7 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "Sources: MIT GenAI Pilot Study · Allianz",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "8.2",
@@ -8450,17 +8450,17 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "19 / 20",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 5,
-      "fillable_cap": 9.3,
+      "fillable_cap": 10.0,
       "role_hint": "content"
     },
     {
       "slide_no": 20,
       "layout": "Title Slide",
-      "signature": "S20 布局=Title Slide [title≤12 | desc≤11 | label≤9 | desc≤14 | label≤8 | desc≤12 | desc≤10 | desc≤17 | desc≤14]",
+      "signature": "S20 布局=Title Slide [title≤12 | desc≤12 | label≤10 | desc≤14 | label≤9 | desc≤12 | desc≤10 | desc≤18 | desc≤15]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -8475,7 +8475,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "CLOSING · 20",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "1.2",
@@ -8490,7 +8490,7 @@
           "h": 0.733,
           "font_pt": 33.0,
           "sample": "六大判断 / Six Takeaways",
-          "capacity": 11.9
+          "capacity": 12.0
         },
         {
           "slot_id": "1.3",
@@ -8505,7 +8505,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "Closing notes on 2026's global AI capita",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.0",
@@ -8535,7 +8535,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "资本集中度是 2026 主旋律",
-          "capacity": 11.049999999999999
+          "capacity": 12.0
         },
         {
           "slot_id": "2.2",
@@ -8550,7 +8550,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "单季 65% 的全球 VC 进入 4 家公司——\"钱没变多，是更集中\"",
-          "capacity": 1.0
+          "capacity": 27.0
         },
         {
           "slot_id": "3.0",
@@ -8580,7 +8580,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "算力是 2026 的硬通货",
-          "capacity": 9.35
+          "capacity": 10.0
         },
         {
           "slot_id": "3.2",
@@ -8595,7 +8595,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Nvidia 既是基建供应商又是大股东，形成全行业闭环结构",
-          "capacity": 1.0
+          "capacity": 25.5
         },
         {
           "slot_id": "4.0",
@@ -8625,7 +8625,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "下一道护城河是电力，不是芯片",
-          "capacity": 13.6
+          "capacity": 14.0
         },
         {
           "slot_id": "4.2",
@@ -8640,7 +8640,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "$725B Capex 中 60%+ 流向电力 / 冷却 / 土建——资源约束已",
-          "capacity": 1.0
+          "capacity": 27.0
         },
         {
           "slot_id": "5.0",
@@ -8670,7 +8670,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "中美双轨结构已成型",
-          "capacity": 8.5
+          "capacity": 9.0
         },
         {
           "slot_id": "5.2",
@@ -8685,7 +8685,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "美国推迟 IPO 喂超大私募，中国二级市场全面打开，路径差异不再可逆",
-          "capacity": 1.0
+          "capacity": 31.5
         },
         {
           "slot_id": "6.0",
@@ -8715,7 +8715,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "真实 ROI 滞后但巨头未止血",
-          "capacity": 11.9
+          "capacity": 12.5
         },
         {
           "slot_id": "6.2",
@@ -8730,7 +8730,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "95% 试点失败 vs $725B capex 继续上调——这是赌\"未来兑现\"",
-          "capacity": 1.0
+          "capacity": 27.0
         },
         {
           "slot_id": "7.0",
@@ -8760,7 +8760,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "Anthropic 反超 OpenAI",
-          "capacity": 10.2
+          "capacity": 10.5
         },
         {
           "slot_id": "7.2",
@@ -8775,7 +8775,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "在谈估值 $900B vs $852B；ARR 增速 Anthropic 已超越",
-          "capacity": 1.0
+          "capacity": 25.0
         },
         {
           "slot_id": "8.2",
@@ -8790,7 +8790,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "EDITORIAL CLOSE",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "8.3",
@@ -8805,7 +8805,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "\"This is not yet the bubble bursting.",
-          "capacity": 17.0
+          "capacity": 18.5
         },
         {
           "slot_id": "8.4",
@@ -8820,7 +8820,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "It is the bubble compounding.\"",
-          "capacity": 13.6
+          "capacity": 15.0
         },
         {
           "slot_id": "9.1",
@@ -8835,7 +8835,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PRIMARY SOURCES",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "9.2",
@@ -8850,7 +8850,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Crunchbase · PitchBook · CNBC · Bloomber",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "9.3",
@@ -8865,7 +8865,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "Goldman Sachs · Allianz · Statista · MIT",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "9.4",
@@ -8880,11 +8880,11 @@
           "h": 0.167,
           "font_pt": 7.5,
           "sample": "20 / 20 · End of briefing",
-          "capacity": 1.0
+          "capacity": 12.5
         }
       ],
       "fillable": 9,
-      "fillable_cap": 17.0,
+      "fillable_cap": 18.5,
       "role_hint": "closing"
     }
   ]

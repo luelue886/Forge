@@ -6,7 +6,7 @@
     {
       "slide_no": 1,
       "layout": "标题幻灯片",
-      "signature": "S1 布局=标题幻灯片 [title≤6 | label≤4]",
+      "signature": "S1 布局=标题幻灯片 [title≤8 | label≤5]",
       "slots": [
         {
           "slot_id": "2",
@@ -20,7 +20,7 @@
           "h": 1.313,
           "font_pt": 72.0,
           "sample": "儿童成长教育课件",
-          "capacity": 5.95
+          "capacity": 8.0
         },
         {
           "slot_id": "7",
@@ -34,11 +34,11 @@
           "h": 0.505,
           "font_pt": 24.0,
           "sample": "一年级一班",
-          "capacity": 4.25
+          "capacity": 5.0
         }
       ],
       "fillable": 2,
-      "fillable_cap": 6.0,
+      "fillable_cap": 8.0,
       "role_hint": "cover"
     },
     {
@@ -58,7 +58,7 @@
           "h": 1.313,
           "font_pt": 72.0,
           "sample": "目录",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "4.0",
@@ -243,7 +243,7 @@
     {
       "slide_no": 6,
       "layout": "空白",
-      "signature": "S6 布局=空白 [title≤4 | label≤3 | body≤46 | label≤3 | body≤46 | label≤3 | body≤46]",
+      "signature": "S6 布局=空白 [title≤4 | label≤4 | body≤46 | label≤4 | body≤46 | label≤4 | body≤46]",
       "slots": [
         {
           "slot_id": "2.0",
@@ -273,7 +273,7 @@
           "h": 0.505,
           "font_pt": 24.0,
           "sample": "输入标题",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "3.2",
@@ -303,7 +303,7 @@
           "h": 0.505,
           "font_pt": 24.0,
           "sample": "输入标题",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.2",
@@ -333,7 +333,7 @@
           "h": 0.505,
           "font_pt": 24.0,
           "sample": "输入标题",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "5.2",
@@ -358,7 +358,7 @@
     {
       "slide_no": 7,
       "layout": "空白",
-      "signature": "S7 布局=空白 [desc≤26 | desc≤26 | desc≤26 | desc≤26 | title≤4]",
+      "signature": "S7 布局=空白 [desc≤30 | desc≤30 | desc≤30 | desc≤30 | title≤4]",
       "slots": [
         {
           "slot_id": "2.1",
@@ -388,7 +388,7 @@
           "h": 0.828,
           "font_pt": 12.0,
           "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
-          "capacity": 25.5
+          "capacity": 30.0
         },
         {
           "slot_id": "3.1",
@@ -418,7 +418,7 @@
           "h": 0.828,
           "font_pt": 12.0,
           "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
-          "capacity": 25.5
+          "capacity": 30.0
         },
         {
           "slot_id": "4.1",
@@ -448,7 +448,7 @@
           "h": 0.828,
           "font_pt": 12.0,
           "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
-          "capacity": 25.5
+          "capacity": 30.0
         },
         {
           "slot_id": "5.1",
@@ -478,7 +478,7 @@
           "h": 0.828,
           "font_pt": 12.0,
           "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
-          "capacity": 25.5
+          "capacity": 30.0
         },
         {
           "slot_id": "9.0",
@@ -497,7 +497,7 @@
         }
       ],
       "fillable": 5,
-      "fillable_cap": 25.5,
+      "fillable_cap": 30.0,
       "role_hint": "content"
     },
     {
@@ -853,7 +853,7 @@
     {
       "slide_no": 13,
       "layout": "空白",
-      "signature": "S13 布局=空白 [title≤4 | desc≤12 | label≤4 | desc≤12 | label≤4 | desc≤12 | label≤4 | desc≤12 | label≤4 | desc≤12 | …]",
+      "signature": "S13 布局=空白 [title≤4 | desc≤14 | label≤4 | desc≤14 | label≤4 | desc≤14 | label≤4 | desc≤14 | label≤4 | desc≤14 | …]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -883,7 +883,7 @@
           "h": 0.454,
           "font_pt": 14.0,
           "sample": "它是提高人口素质的重要环节。",
-          "capacity": 11.9
+          "capacity": 14.0
         },
         {
           "slot_id": "4.1",
@@ -913,7 +913,7 @@
           "h": 0.454,
           "font_pt": 14.0,
           "sample": "它是提高人口素质的重要环节。",
-          "capacity": 11.9
+          "capacity": 14.0
         },
         {
           "slot_id": "5.1",
@@ -943,7 +943,7 @@
           "h": 0.454,
           "font_pt": 14.0,
           "sample": "它是提高人口素质的重要环节。",
-          "capacity": 11.9
+          "capacity": 14.0
         },
         {
           "slot_id": "6.1",
@@ -973,7 +973,7 @@
           "h": 0.454,
           "font_pt": 14.0,
           "sample": "它是提高人口素质的重要环节。",
-          "capacity": 11.9
+          "capacity": 14.0
         },
         {
           "slot_id": "7.1",
@@ -1003,7 +1003,7 @@
           "h": 0.454,
           "font_pt": 14.0,
           "sample": "它是提高人口素质的重要环节。",
-          "capacity": 11.9
+          "capacity": 14.0
         },
         {
           "slot_id": "8.1",
@@ -1022,7 +1022,7 @@
         }
       ],
       "fillable": 11,
-      "fillable_cap": 11.9,
+      "fillable_cap": 14.0,
       "role_hint": "content"
     },
     {
@@ -1127,7 +1127,7 @@
           "h": 0.64,
           "font_pt": 32.0,
           "sample": "点击输入标题",
-          "capacity": 5.95
+          "capacity": 6.0
         }
       ],
       "fillable": 3,
@@ -1730,7 +1730,7 @@
           "h": 0.337,
           "font_pt": 20.0,
           "sample": "输入标题",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.1",
@@ -1761,7 +1761,7 @@
           "h": 0.337,
           "font_pt": 20.0,
           "sample": "输入标题",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "4.1",
@@ -1792,7 +1792,7 @@
           "h": 0.337,
           "font_pt": 20.0,
           "sample": "输入标题",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "5.1",
@@ -1872,7 +1872,7 @@
     {
       "slide_no": 24,
       "layout": "标题幻灯片",
-      "signature": "S24 布局=标题幻灯片 [title≤3]",
+      "signature": "S24 布局=标题幻灯片 [title≤5]",
       "slots": [
         {
           "slot_id": "2",
@@ -1886,11 +1886,11 @@
           "h": 1.313,
           "font_pt": 72.0,
           "sample": "感谢观看！",
-          "capacity": 3.4
+          "capacity": 5.0
         }
       ],
       "fillable": 1,
-      "fillable_cap": 3.4,
+      "fillable_cap": 5.0,
       "role_hint": "closing"
     }
   ]

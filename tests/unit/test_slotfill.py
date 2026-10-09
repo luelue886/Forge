@@ -67,6 +67,20 @@ def _bad_out(title_only: dict) -> str:
     }, ensure_ascii=False)
 
 
+def _num_out(ids: dict) -> str:
+    """坏输出：描述槽带未溯源数字 1200（源文数字集无 1200，且 >99 不豁免）。"""
+    out = json.loads(_good_out(ids))
+    out["slots"][ids["grp"][1]] = "设备规模突破 1200 万台"
+    return json.dumps(out, ensure_ascii=False)
+
+
+def _plag_out(ids: dict) -> str:
+    """坏输出：描述槽 verbatim 抄源文（数字 12 可溯源，隔离出抄袭违规）。"""
+    out = json.loads(_good_out(ids))
+    out["slots"][ids["grp"][1]] = "本项目覆盖 12 个园区，接入设备"
+    return json.dumps(out, ensure_ascii=False)
+
+
 class TestDeterministic:
     """结构页/表格页零 LLM（函数签名不收 client）。"""
 
@@ -195,6 +209,31 @@ class TestLLMPath:
         src = tree.resolve(["blk-0001"])
         assert fill.note == src  # 源文前 300 当量（此处全量）
         assert fill.slot_values[ids["title"]] == "覆盖规模与设备接入要点"
+
+    def test_retry_untraced_number_then_good(self, catalog: TemplateCatalog, tree,
+                                             fake_llm_factory):
+        # 铁律复检：槽文本数字须源文可溯源，1200 不在源文数字集 → 定向重试
+        ids = _s3_ids(catalog)
+        client, fake = fake_llm_factory([_num_out(ids), _good_out(ids)])
+        item = _item(4, SlideType.TEXT_POINTS, "覆盖规模", refs=["blk-0001"])
+        fill = slotfill_page(item, tree, catalog.slide(3), client)
+        assert len(fake.calls) == 2
+        assert "E-NUM-UNTRACED" in fake.calls[1]["messages"][1]["content"]
+        # 第二轮修正后好填充全量生效
+        assert fill.slot_values[ids["grp"][1]] == "十二个园区全面接入"
+
+    def test_degrade_after_plagiarism(self, catalog: TemplateCatalog, tree,
+                                      fake_llm_factory):
+        # 铁律复检：槽文本与源文 ≥10-gram 雷同，两轮均未改写 → 降级
+        ids = _s3_ids(catalog)
+        client, fake = fake_llm_factory([_plag_out(ids), _plag_out(ids)])
+        item = _item(4, SlideType.TEXT_POINTS, "覆盖规模与设备接入要点", refs=["blk-0001"])
+        fill = slotfill_page(item, tree, catalog.slide(3), client)
+        assert len(fake.calls) == 2
+        assert "E-PLAGIARISM" in fake.calls[1]["messages"][1]["content"]
+        assert list(fill.slot_values) == [ids["title"]]
+        assert fill.slot_deletes == ids["grp"]
+        assert fill.note == tree.resolve(["blk-0001"])
 
     def test_no_fillable_slot_raises(self, catalog: TemplateCatalog, tree,
                                      fake_llm_factory):

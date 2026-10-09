@@ -2,7 +2,10 @@
 
 工艺约束（pptx skill 编辑路径）：
 - 永不重排 p:presentation 子元素，只增删 sldIdLst 条目与对应 rels；
-- 复制页 rels 剔除 notesSlide 关系（共享 notesSlide 非法，后处理用 python-pptx 另建）；
+- 复制页剔除 notesSlide / tags 关系、页级 p:custDataLst 与 p:timing
+  （tag 部件被多页共享非法，PowerPoint 拒开文件；演示文稿级 custDataLst
+  单引用，保留。timing 的 spid 指向被删形状同样拒开——删形状的页无法
+  逐个核对动画引用，整树剥离换取无动画但必开的产物）；
 - 文本替换保留供体段落 pPr 与首 run rPr，格式/几何 100% 继承模板；
 - 槽寻址与目录共用 shape_children 枚举，重走槽集不符即报错（寻址漂移防护）。
 """
@@ -154,6 +157,8 @@ def _copy_slide_rels(work: Path, src_part: str, dst_name: str) -> None:
     for rel in list(root.findall(f"{{{_REL_NS}}}Relationship")):
         if (rel.get("Type") or "").endswith("/notesSlide"):
             root.remove(rel)  # 共享 notesSlide 非法；后处理用 python-pptx 另建合法备注
+        elif (rel.get("Type") or "").endswith("/tags"):
+            root.remove(rel)  # 复制页共享 tag 部件非法（PowerPoint 拒开文件）
     dst = work / "ppt" / "slides" / "_rels" / f"{dst_name}.rels"
     dst.write_bytes(_serialize(root))
 
@@ -182,6 +187,11 @@ def _apply_page(work: Path, catalog: TemplateCatalog, page: PageFill, part: str)
         raise BuildError(f"p{page.page_no} 槽同时被填充与删除：{sorted(overlap)}")
     slide_path = work / part
     tree = _parse(slide_path.read_bytes())
+    for el in tree.findall(f".//{_P}custDataLst"):
+        el.getparent().remove(el)  # 多页复制共享同一 tag 部件非法（PowerPoint 拒开文件）
+    timing = tree.find(f"{_P}timing")
+    if timing is not None:
+        tree.remove(timing)  # 动画 spid 指向被删形状 → PowerPoint 拒开；整树剥离
     sp_tree = tree.find(f"{_P}cSld/{_P}spTree")
     if sp_tree is None:
         raise BuildError(f"{part}: 无 spTree")

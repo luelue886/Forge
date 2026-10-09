@@ -3,7 +3,7 @@
 页设计覆盖全部提取与构建路径：
   S1 cover——版式占位符（title/subtitle ph 继承字号链）
   S2 toc——标题 + 正文占位符 5 条目（多段单槽）
-  S3 content——独立大字号标题 + 图片 + GROUP（非恒等 chOff/chExt，2×(标签+描述)+组内图片）+ notesSlide
+  S3 content——独立大字号标题 + 图片 + GROUP（非恒等 chOff/chExt，2×(标签+描述)+组内图片）+ notesSlide + 页级 tags
   S4 content——3 个独立文本框，含纯数字 "02 / 14"（page_no）与超小样本（design）
   S5 closing——占位符标题 + 文本框
 """
@@ -33,6 +33,13 @@ GRP_CHEXT_CX, GRP_CHEXT_CY = 300, 150
 
 # 组内图片的关系 id（构建测试断言"组删除后 rels 剪除"用）
 GROUP_PIC_RID = "rIdG1"
+
+# 页级 tags 部件引用（复刻真模板 Aspose/OfficePlus 元数据）：构建测试断言
+# "复制页共享 tag 部件非法（PowerPoint 拒开文件）"剥离路径用
+TAG_RID = "rIdT1"
+TAG_PART = "ppt/tags/tag1.xml"
+TAG_CT = "application/vnd.openxmlformats-officedocument.presentationml.tags+xml"
+CT_PKG = "http://schemas.openxmlformats.org/package/2006/content-types"
 
 
 def _sp_xml(name: str, x: int, y: int, cx: int, cy: int, text: str,
@@ -116,6 +123,92 @@ def _inject_group(path: Path, slide_xml_name: str) -> None:
     path.write_bytes(buf.getvalue())
 
 
+def _inject_tags(path: Path, slide_xml_name: str) -> None:
+    """向指定页注入页级 tags 部件引用（复刻真模板 Aspose/OfficePlus 元数据）。
+
+    四件套：tag 部件本体 + [Content_Types] Override + 页 rels 关系 +
+    cSld 下的 p:custDataLst——多页复制后若共享同一 tag 部件，
+    PowerPoint 将拒绝打开文件（构建层必须剥离）。
+    """
+    tag_xml = (
+        f'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<p:tagLst xmlns:p="{P}"><p:tag name="forge-test" val="1"/></p:tagLst>'
+    ).encode()
+    cust = etree.fromstring(
+        f'<p:custDataLst xmlns:p="{P}" xmlns:r="{R}">'
+        f'<p:tags r:id="{TAG_RID}"/></p:custDataLst>'.encode())
+
+    rels_name = slide_xml_name.replace("slides/", "slides/_rels/") + ".rels"
+    ct_name = "[Content_Types].xml"
+    buf = io.BytesIO()
+    with zipfile.ZipFile(path) as zin, zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.namelist():
+            data = zin.read(item)
+            if item == slide_xml_name:
+                root = etree.fromstring(data)
+                csld = root.find(f"{{{P}}}cSld")
+                ext = csld.find(f"{{{P}}}extLst")
+                if ext is not None:
+                    ext.addprevious(cust)  # 规范顺序：spTree 后、extLst 前
+                else:
+                    csld.append(cust)
+                data = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
+            elif item == rels_name:
+                root = etree.fromstring(data)
+                rel = etree.SubElement(root, f"{{{REL_PKG}}}Relationship")
+                rel.set("Id", TAG_RID)
+                rel.set("Type", f"{R}/tags")
+                rel.set("Target", "../tags/tag1.xml")
+                data = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
+            elif item == ct_name:
+                root = etree.fromstring(data)
+                ov = etree.SubElement(root, f"{{{CT_PKG}}}Override")
+                ov.set("PartName", f"/{TAG_PART}")
+                ov.set("ContentType", TAG_CT)
+                data = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
+            zout.writestr(item, data)
+        zout.writestr(TAG_PART, tag_xml)
+    path.write_bytes(buf.getvalue())
+
+
+def _inject_timing(path: Path, slide_xml_name: str) -> None:
+    """向指定页注入 p:timing 动画树（spTgt spid 指向组内标签形状）。
+
+    复刻真模板实况：删形状（槽删除/组塌缩）后 timing 的 spid 悬空，
+    PowerPoint 拒开文件——构建层必须整树剥离，构建测试的回归防线。
+    """
+    timing = etree.fromstring(f"""<p:timing xmlns:p="{P}" xmlns:a="{A}">
+  <p:tnLst>
+    <p:par><p:cTn id="1" dur="indefinite" restart="never" nodeType="tmRoot"><p:childTnLst>
+      <p:seq concurrent="1" nextAc="seek"><p:cTn id="2" dur="indefinite" nodeType="mainSeq"><p:childTnLst>
+        <p:par><p:cTn id="3" fill="hold"><p:stCondLst><p:cond delay="indefinite"/></p:stCondLst><p:childTnLst>
+          <p:par><p:cTn id="4" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>
+            <p:par><p:cTn id="5" presetID="10" presetClass="entr" presetSubtype="0" fill="hold" grpId="0" nodeType="clickEffect"><p:stCondLst><p:cond delay="0"/></p:stCondLst><p:childTnLst>
+              <p:set><p:cBhvr>
+                <p:cTn id="6" dur="1" fill="hold"><p:stCondLst><p:cond delay="0"/></p:stCondLst></p:cTn>
+                <p:tgtEl><p:spTgt spid="0"/></p:tgtEl>
+                <p:attrNameLst><p:attrName>style.visibility</p:attrName></p:attrNameLst>
+              </p:cBhvr><p:to><p:strVal val="visible"/></p:to></p:set>
+            </p:childTnLst></p:cTn></p:par>
+          </p:childTnLst></p:cTn></p:par>
+        </p:childTnLst></p:cTn></p:par>
+      </p:childTnLst></p:cTn></p:seq>
+    </p:childTnLst></p:cTn></p:par>
+  </p:tnLst>
+</p:timing>""".encode())
+
+    buf = io.BytesIO()
+    with zipfile.ZipFile(path) as zin, zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zout:
+        for item in zin.namelist():
+            data = zin.read(item)
+            if item == slide_xml_name:
+                root = etree.fromstring(data)
+                root.append(timing)  # 规范顺序：cSld/clrMapOvr/transition 之后
+                data = etree.tostring(root, xml_declaration=True, encoding="UTF-8", standalone=True)
+            zout.writestr(item, data)
+    path.write_bytes(buf.getvalue())
+
+
 def build_synthetic_template(path: Path) -> Path:
     prs = Presentation()
 
@@ -160,4 +253,6 @@ def build_synthetic_template(path: Path) -> Path:
     prs.save(path)
     # python-pptx 页序与文件名一致（默认模板顺序写入）
     _inject_group(path, "ppt/slides/slide3.xml")
+    _inject_tags(path, "ppt/slides/slide3.xml")
+    _inject_timing(path, "ppt/slides/slide3.xml")
     return path

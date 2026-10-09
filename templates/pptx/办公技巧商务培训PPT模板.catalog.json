@@ -106,7 +106,7 @@
           "h": 0.269,
           "font_pt": 16.0,
           "sample": "文化与价值观",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.0.0.2",
@@ -123,7 +123,7 @@
           "h": 0.221,
           "font_pt": 12.0,
           "sample": "公司文化与日常工作",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "0.0.1.0",
@@ -157,7 +157,7 @@
           "h": 0.269,
           "font_pt": 16.0,
           "sample": "技巧概念重要性",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "0.0.1.2",
@@ -174,7 +174,7 @@
           "h": 0.221,
           "font_pt": 12.0,
           "sample": "基础办公技巧的重要性",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "0.0.2.0",
@@ -208,7 +208,7 @@
           "h": 0.269,
           "font_pt": 16.0,
           "sample": "基础技巧解析",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.0.2.2",
@@ -225,7 +225,7 @@
           "h": 0.221,
           "font_pt": 12.0,
           "sample": "提升工作效率的基础技巧",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "0.0.3.0",
@@ -259,7 +259,7 @@
           "h": 0.269,
           "font_pt": 16.0,
           "sample": "技巧提升效率",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.0.3.2",
@@ -276,7 +276,7 @@
           "h": 0.221,
           "font_pt": 12.0,
           "sample": "提升工作效率的办公技巧",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "0.0.4.0",
@@ -310,7 +310,7 @@
           "h": 0.269,
           "font_pt": 16.0,
           "sample": "培训与参与",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "0.0.4.2",
@@ -327,7 +327,7 @@
           "h": 0.221,
           "font_pt": 12.0,
           "sample": "积极参与培训提升自我",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "0.1.0",
@@ -343,7 +343,7 @@
           "h": 0.909,
           "font_pt": 48.0,
           "sample": "Agenda",
-          "capacity": 2.55
+          "capacity": 3.0
         }
       ],
       "fillable": 0,
@@ -391,7 +391,7 @@
     {
       "slide_no": 4,
       "layout": "Title Only",
-      "signature": "S4 布局=Title Only [desc≤11 | desc≤33 | desc≤11 | desc≤22 | desc≤11 | desc≤33 | desc≤41 | desc≤22 | title≤120]",
+      "signature": "S4 布局=Title Only [desc≤11 | desc≤34 | desc≤11 | desc≤22 | desc≤11 | desc≤33 | desc≤41 | desc≤26 | title≤120]",
       "slots": [
         {
           "slot_id": "0.1.1.0.0",
@@ -427,7 +427,7 @@
           "h": 0.807,
           "font_pt": 12.0,
           "sample": "公司价值观是公司对行为和决策的指导原则，塑造了公司的工作环境和氛围。",
-          "capacity": 33.15
+          "capacity": 34.0
         },
         {
           "slot_id": "0.1.1.1",
@@ -580,7 +580,7 @@
           "h": 0.322,
           "font_pt": 12.0,
           "sample": "公司文化是组织的核心，代表了公司的核心价值观和信仰。",
-          "capacity": 22.099999999999998
+          "capacity": 26.0
         },
         {
           "slot_id": "1",
@@ -604,7 +604,7 @@
     {
       "slide_no": 5,
       "layout": "Title Only",
-      "signature": "S5 布局=Title Only [desc≤19 | desc≤38 | desc≤24 | label≤9 | desc≤36 | label≤9 | desc≤36 | label≤9 | title≤120]",
+      "signature": "S5 布局=Title Only [desc≤19 | desc≤38 | desc≤27 | label≤9 | desc≤36 | label≤9 | desc≤36 | label≤9 | title≤120]",
       "slots": [
         {
           "slot_id": "0.0",
@@ -652,7 +652,7 @@
           "h": 0.565,
           "font_pt": 12.0,
           "sample": "明确公司所追求的核心价值，为员工提供明确的指导和目标。",
-          "capacity": 23.8
+          "capacity": 27.0
         },
         {
           "slot_id": "0.2.1.2.1",
@@ -766,7 +766,7 @@
     {
       "slide_no": 6,
       "layout": "Title Only",
-      "signature": "S6 布局=Title Only [desc≤16 | desc≤21 | desc≤16 | desc≤21 | desc≤16 | desc≤42 | desc≤14 | desc≤28 | title≤120]",
+      "signature": "S6 布局=Title Only [desc≤16 | desc≤21 | desc≤16 | desc≤22 | desc≤16 | desc≤42 | desc≤14 | desc≤28 | title≤120]",
       "slots": [
         {
           "slot_id": "0.3",
@@ -826,7 +826,7 @@
           "h": 0.322,
           "font_pt": 12.0,
           "sample": "在日常工作中秉持公司文化价值观，不断提升自身",
-          "capacity": 21.25
+          "capacity": 22.0
         },
         {
           "slot_id": "0.8",
@@ -910,7 +910,7 @@
     {
       "slide_no": 7,
       "layout": "Title Only",
-      "signature": "S7 布局=Title Only [desc≤14 | label≤7 | desc≤28 | label≤7 | desc≤28 | label≤7 | desc≤28 | label≤7 | desc≤37 | label≤7 | …]",
+      "signature": "S7 布局=Title Only [desc≤14 | label≤7 | desc≤28 | label≤7 | desc≤28 | label≤7 | desc≤29 | label≤7 | desc≤37 | label≤7 | …]",
       "slots": [
         {
           "slot_id": "0.0",
@@ -1027,7 +1027,7 @@
           "h": 0.807,
           "font_pt": 12.0,
           "sample": "公司的核心价值观通常是创新、客户至上、合作、诚信、责任等。",
-          "capacity": 28.05
+          "capacity": 29.0
         },
         {
           "slot_id": "0.4.2.0",
@@ -1044,7 +1044,7 @@
           "h": 0.37,
           "font_pt": 16.0,
           "sample": "员工参与价值观",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "0.4.2.1",
@@ -1095,7 +1095,7 @@
           "h": 0.807,
           "font_pt": 12.0,
           "sample": "将价值观落实到工作中，需要在日常工作中不断提醒自己并加以实践。",
-          "capacity": 28.05
+          "capacity": 31.0
         },
         {
           "slot_id": "0.6",
@@ -1110,7 +1110,7 @@
           "h": 0.322,
           "font_pt": 12.0,
           "sample": "了解公司的价值观，将其融入日常工作中，能提高员工的绩效和工作效率。",
-          "capacity": 28.05
+          "capacity": 33.0
         },
         {
           "slot_id": "1",
@@ -1134,7 +1134,7 @@
     {
       "slide_no": 8,
       "layout": "Title Only",
-      "signature": "S8 布局=Title Only [desc≤19 | desc≤37 | desc≤14 | desc≤10 | desc≤14 | desc≤10 | title≤120]",
+      "signature": "S8 布局=Title Only [desc≤19 | desc≤37 | desc≤15 | desc≤10 | desc≤14 | desc≤10 | title≤120]",
       "slots": [
         {
           "slot_id": "0.2",
@@ -1181,7 +1181,7 @@
           "h": 0.322,
           "font_pt": 12.0,
           "sample": "员工激励：提升工作积极性的策略",
-          "capacity": 14.45
+          "capacity": 15.0
         },
         {
           "slot_id": "0.4.1.1",
@@ -1321,7 +1321,7 @@
     {
       "slide_no": 10,
       "layout": "Title Only",
-      "signature": "S10 布局=Title Only [desc≤17 | body≤69 | desc≤17 | desc≤23 | desc≤17 | body≤69 | desc≤23 | desc≤14 | title≤120]",
+      "signature": "S10 布局=Title Only [desc≤17 | body≤69 | desc≤17 | desc≤27 | desc≤17 | body≤69 | desc≤23 | desc≤14 | title≤120]",
       "slots": [
         {
           "slot_id": "0.1.1",
@@ -1401,7 +1401,7 @@
           "h": 0.46,
           "font_pt": 12.0,
           "sample": "掌握办公技巧可以提高工作准确性和质量，减少错误和疏忽。",
-          "capacity": 22.95
+          "capacity": 27.0
         },
         {
           "slot_id": "0.2.3",
@@ -1583,7 +1583,7 @@
           "h": 0.303,
           "font_pt": 16.0,
           "sample": "办公技巧必要性",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "4.1.0",
@@ -1615,7 +1615,7 @@
           "h": 0.303,
           "font_pt": 16.0,
           "sample": "高效工作关键",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "5.1.0",
@@ -1647,7 +1647,7 @@
           "h": 0.303,
           "font_pt": 16.0,
           "sample": "技巧影响工作质量",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "6",
@@ -1860,7 +1860,7 @@
     {
       "slide_no": 13,
       "layout": "Title Only",
-      "signature": "S13 布局=Title Only [label≤8 | desc≤31 | desc≤19 | desc≤18 | label≤8 | desc≤31 | title≤120]",
+      "signature": "S13 布局=Title Only [label≤8 | desc≤31 | desc≤19 | desc≤19 | label≤8 | desc≤31 | title≤120]",
       "slots": [
         {
           "slot_id": "0.0.2.0",
@@ -1924,7 +1924,7 @@
           "h": 4.547,
           "font_pt": 12.0,
           "sample": "通过不断提升技巧，达到更高的工作效率。",
-          "capacity": 17.849999999999998
+          "capacity": 19.0
         },
         {
           "slot_id": "0.3.2.0",
@@ -2207,7 +2207,7 @@
     {
       "slide_no": 16,
       "layout": "Title Only",
-      "signature": "S16 布局=Title Only [body≤105 | desc≤13 | label≤5 | body≤48 | label≤5 | body≤48 | label≤5 | body≤48 | title≤120]",
+      "signature": "S16 布局=Title Only [body≤105 | desc≤13 | label≤8 | body≤48 | label≤6 | body≤48 | label≤6 | body≤48 | title≤120]",
       "slots": [
         {
           "slot_id": "0.0.0.0",
@@ -2258,7 +2258,7 @@
           "h": 0.575,
           "font_pt": 16.0,
           "sample": "有意义的文件命名",
-          "capacity": 5.1
+          "capacity": 8.0
         },
         {
           "slot_id": "0.1.0.1",
@@ -2308,7 +2308,7 @@
           "h": 0.575,
           "font_pt": 16.0,
           "sample": "建立文件结构",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "0.2.0.1",
@@ -2358,7 +2358,7 @@
           "h": 0.575,
           "font_pt": 16.0,
           "sample": "文件整理归档",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "0.3.0.1",
@@ -2415,7 +2415,7 @@
     {
       "slide_no": 17,
       "layout": "Title Only",
-      "signature": "S17 布局=Title Only [label≤7 | label≤9 | label≤7 | label≤9 | label≤7 | label≤9 | label≤7 | label≤9 | desc≤30 | body≤60 | …]",
+      "signature": "S17 布局=Title Only [label≤7 | desc≤13 | label≤7 | desc≤14 | label≤7 | desc≤15 | label≤7 | desc≤14 | desc≤30 | body≤60 | …]",
       "slots": [
         {
           "slot_id": "0.0.1.0",
@@ -2442,14 +2442,14 @@
             1,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 4.101,
           "y": 4.858,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "及时回复邮件，提高工作效率",
-          "capacity": 9.35
+          "capacity": 13.0
         },
         {
           "slot_id": "0.1.1.0",
@@ -2476,14 +2476,14 @@
             1,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 0.953,
           "y": 4.858,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "将邮件分门别类，减少查找时间",
-          "capacity": 9.35
+          "capacity": 14.0
         },
         {
           "slot_id": "0.2.1.0",
@@ -2510,14 +2510,14 @@
             1,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 10.397,
           "y": 4.858,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "邮件内容清晰明了，避免产生歧义",
-          "capacity": 9.35
+          "capacity": 15.0
         },
         {
           "slot_id": "0.3.1.0",
@@ -2544,14 +2544,14 @@
             1,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 7.249,
           "y": 4.858,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "言简意赅地表达，减少沟通成本",
-          "capacity": 9.35
+          "capacity": 14.0
         },
         {
           "slot_id": "0.4",
@@ -2621,7 +2621,7 @@
           "h": 1.111,
           "font_pt": 60.0,
           "sample": "02.",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "0.0.1",
@@ -2669,7 +2669,7 @@
           "h": 1.111,
           "font_pt": 60.0,
           "sample": "01.",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "0.1.1",
@@ -2747,7 +2747,7 @@
           "h": 1.111,
           "font_pt": 60.0,
           "sample": "03.",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "0.5.1",
@@ -2803,7 +2803,7 @@
     {
       "slide_no": 19,
       "layout": "Title Only",
-      "signature": "S19 布局=Title Only [label≤7 | label≤9 | label≤7 | label≤9 | label≤7 | label≤9 | desc≤30 | body≤60 | title≤120]",
+      "signature": "S19 布局=Title Only [label≤7 | desc≤19 | label≤8 | desc≤21 | label≤7 | desc≤21 | desc≤30 | body≤60 | title≤120]",
       "slots": [
         {
           "slot_id": "0.0.1",
@@ -2819,7 +2819,7 @@
           "h": 0.373,
           "font_pt": 16.0,
           "sample": "避免多任务并行",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "0.0.2",
@@ -2828,14 +2828,14 @@
             0,
             2
           ],
-          "role": "label",
+          "role": "desc",
           "x": 5.68,
           "y": 4.858,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "专注于一项任务，提高工作效率和准确性。",
-          "capacity": 9.35
+          "capacity": 19.0
         },
         {
           "slot_id": "0.1.1.0",
@@ -2852,7 +2852,7 @@
           "h": 0.373,
           "font_pt": 16.0,
           "sample": "制定优先任务清单",
-          "capacity": 6.8
+          "capacity": 8.0
         },
         {
           "slot_id": "0.1.1.1",
@@ -2862,14 +2862,14 @@
             1,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 1.555,
           "y": 4.909,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "根据重要性和紧急性，安排工作任务的优先级。",
-          "capacity": 9.35
+          "capacity": 21.0
         },
         {
           "slot_id": "0.2.1.0",
@@ -2896,14 +2896,14 @@
             1,
             1
           ],
-          "role": "label",
+          "role": "desc",
           "x": 9.805,
           "y": 4.875,
           "w": 1.969,
           "h": 0.44,
           "font_pt": 12.0,
           "sample": "使用适当的工具和技术来提高工作效率和质量。",
-          "capacity": 9.35
+          "capacity": 21.0
         },
         {
           "slot_id": "0.3",
@@ -3171,7 +3171,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "文件管理方法",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.2.2",
@@ -3219,7 +3219,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "有效使用邮件",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.3.2",
@@ -3267,7 +3267,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "时间管理的重要性",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "0.4.2",
@@ -3315,7 +3315,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "成功案例分享",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.5.2",
@@ -3355,7 +3355,7 @@
     {
       "slide_no": 23,
       "layout": "Title Only",
-      "signature": "S23 布局=Title Only [desc≤23 | desc≤22 | label≤3 | desc≤18 | label≤3 | desc≤18 | label≤3 | desc≤18 | label≤3 | desc≤18 | …]",
+      "signature": "S23 布局=Title Only [desc≤23 | desc≤23 | label≤4 | desc≤18 | label≤4 | desc≤18 | label≤4 | desc≤18 | label≤4 | desc≤18 | …]",
       "slots": [
         {
           "slot_id": "0.0",
@@ -3385,7 +3385,7 @@
           "h": 0.565,
           "font_pt": 12.0,
           "sample": "通过掌握保质保量的技能，提高工作效率和准确性。",
-          "capacity": 22.099999999999998
+          "capacity": 23.0
         },
         {
           "slot_id": "0.2.0",
@@ -3401,7 +3401,7 @@
           "h": 0.37,
           "font_pt": 16.0,
           "sample": "有效沟通",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "0.2.2",
@@ -3417,7 +3417,7 @@
           "h": 0.322,
           "font_pt": 12.0,
           "sample": "改善沟通技巧，避免信息误解和重复工作",
-          "capacity": 17.849999999999998
+          "capacity": 18.0
         },
         {
           "slot_id": "0.3.0",
@@ -3433,7 +3433,7 @@
           "h": 0.37,
           "font_pt": 16.0,
           "sample": "任务管理",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "0.3.2",
@@ -3465,7 +3465,7 @@
           "h": 0.37,
           "font_pt": 16.0,
           "sample": "优化会议",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "0.4.2",
@@ -3497,7 +3497,7 @@
           "h": 0.37,
           "font_pt": 16.0,
           "sample": "团队合作",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "0.5.2",
@@ -3569,7 +3569,7 @@
           "h": 0.457,
           "font_pt": 24.0,
           "sample": "优化工作流程",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.2.1.0",
@@ -3695,7 +3695,7 @@
     {
       "slide_no": 25,
       "layout": "Title Only",
-      "signature": "S25 布局=Title Only [desc≤34 | desc≤21 | desc≤15 | desc≤15 | desc≤15 | title≤120]",
+      "signature": "S25 布局=Title Only [desc≤34 | desc≤21 | desc≤15 | desc≤18 | desc≤15 | title≤120]",
       "slots": [
         {
           "slot_id": "0.0",
@@ -3740,7 +3740,7 @@
           "h": 0.303,
           "font_pt": 16.0,
           "sample": "公司培训课程",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.7",
@@ -3770,7 +3770,7 @@
           "h": 0.303,
           "font_pt": 16.0,
           "sample": "阅读专业书籍",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.9",
@@ -3785,7 +3785,7 @@
           "h": 0.322,
           "font_pt": 12.0,
           "sample": "了解新的工作方法和技巧，提高工作效率",
-          "capacity": 15.299999999999999
+          "capacity": 18.0
         },
         {
           "slot_id": "0.10",
@@ -3800,7 +3800,7 @@
           "h": 0.303,
           "font_pt": 16.0,
           "sample": "学习新软件功能",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "0.11",
@@ -3839,7 +3839,7 @@
     {
       "slide_no": 26,
       "layout": "Title Only",
-      "signature": "S26 布局=Title Only [desc≤13 | desc≤28 | desc≤31 | desc≤11 | desc≤31 | desc≤11 | body≤46 | desc≤11 | title≤120]",
+      "signature": "S26 布局=Title Only [desc≤13 | desc≤28 | desc≤31 | desc≤11 | desc≤33 | desc≤11 | body≤46 | desc≤11 | title≤120]",
       "slots": [
         {
           "slot_id": "0.2",
@@ -3916,7 +3916,7 @@
           "h": 0.565,
           "font_pt": 12.0,
           "sample": "学习并遵循公司规定的标准流程，确保工作按照规范进行，减少错误和遗漏",
-          "capacity": 30.599999999999998
+          "capacity": 33.0
         },
         {
           "slot_id": "0.8",
@@ -4023,7 +4023,7 @@
     {
       "slide_no": 28,
       "layout": "Title Only",
-      "signature": "S28 布局=Title Only [desc≤30 | body≤60 | label≤6 | body≤84 | label≤6 | body≤84 | label≤6 | body≤84 | title≤120]",
+      "signature": "S28 布局=Title Only [desc≤30 | body≤60 | label≤6 | body≤84 | label≤6 | body≤84 | label≤8 | body≤84 | title≤120]",
       "slots": [
         {
           "slot_id": "0.0",
@@ -4069,7 +4069,7 @@
           "h": 0.507,
           "font_pt": 16.0,
           "sample": "办公技巧培训",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "0.2.2",
@@ -4101,7 +4101,7 @@
           "h": 0.507,
           "font_pt": 16.0,
           "sample": "文件管理培训",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "0.3.2",
@@ -4133,7 +4133,7 @@
           "h": 0.507,
           "font_pt": 16.0,
           "sample": "电子邮件使用培训",
-          "capacity": 5.95
+          "capacity": 8.0
         },
         {
           "slot_id": "0.4.2",
@@ -4323,7 +4323,7 @@
     {
       "slide_no": 30,
       "layout": "Title Only",
-      "signature": "S30 布局=Title Only [desc≤36 | desc≤36 | desc≤24 | desc≤36 | desc≤22 | desc≤37 | title≤120]",
+      "signature": "S30 布局=Title Only [desc≤36 | desc≤36 | desc≤26 | desc≤36 | desc≤22 | desc≤37 | title≤120]",
       "slots": [
         {
           "slot_id": "0.3.0",
@@ -4355,7 +4355,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "参加行业会议",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.4.1",
@@ -4387,7 +4387,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "参加公开课程",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.5.1",
@@ -4403,7 +4403,7 @@
           "h": 0.565,
           "font_pt": 12.0,
           "sample": "利用公司提供的各种培训机会，提高专业技能和职业素养。",
-          "capacity": 23.8
+          "capacity": 26.0
         },
         {
           "slot_id": "0.5.2",
@@ -4419,7 +4419,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "参加公司培训",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "0.6.1",
@@ -4451,7 +4451,7 @@
           "h": 0.337,
           "font_pt": 16.0,
           "sample": "自主学习",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "0.7",
@@ -4655,7 +4655,7 @@
     {
       "slide_no": 32,
       "layout": "Title Only",
-      "signature": "S32 布局=Title Only [label≤6 | label≤8 | label≤6 | label≤8 | label≤6 | label≤8 | desc≤24 | desc≤20 | title≤120]",
+      "signature": "S32 布局=Title Only [label≤6 | desc≤11 | label≤6 | desc≤16 | label≤6 | desc≤13 | desc≤24 | desc≤20 | title≤120]",
       "slots": [
         {
           "slot_id": "0.1.0.0.1",
@@ -4684,14 +4684,14 @@
             0,
             2
           ],
-          "role": "label",
+          "role": "desc",
           "x": 1.624,
           "y": 4.0,
           "w": 1.833,
           "h": 0.373,
           "font_pt": 12.0,
           "sample": "概述演示文稿的重点内容",
-          "capacity": 8.5
+          "capacity": 11.0
         },
         {
           "slot_id": "0.1.0.2.1",
@@ -4709,7 +4709,7 @@
           "h": 0.373,
           "font_pt": 16.0,
           "sample": "制定个人计划",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "0.1.0.2.2",
@@ -4720,14 +4720,14 @@
             2,
             2
           ],
-          "role": "label",
+          "role": "desc",
           "x": 6.124,
           "y": 5.027,
           "w": 1.833,
           "h": 0.373,
           "font_pt": 12.0,
           "sample": "为自己设定目标，提升个人工作效率",
-          "capacity": 8.5
+          "capacity": 16.0
         },
         {
           "slot_id": "0.1.0.3.1",
@@ -4745,7 +4745,7 @@
           "h": 0.373,
           "font_pt": 16.0,
           "sample": "参与公司培训",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "0.1.0.3.2",
@@ -4756,14 +4756,14 @@
             3,
             2
           ],
-          "role": "label",
+          "role": "desc",
           "x": 10.623,
           "y": 4.0,
           "w": 1.833,
           "h": 0.373,
           "font_pt": 12.0,
           "sample": "积极参与公司提供的培训活动",
-          "capacity": 8.5
+          "capacity": 13.0
         },
         {
           "slot_id": "0.1.1.0",

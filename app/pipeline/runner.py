@@ -118,6 +118,10 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
     todo = [p for p in plan.pages
             if not (pages_dir / f"page_{p.page_no:02d}.fill.json").exists()]
     if todo:
+        # key_facts = 铁律 verbatim 的事实跨度：槽文本 ngram 比对前剥离
+        # （两律相撞不算抄袭，对齐 e2e_ppt 复检语义）
+        docmap = _load_json(docmap_path, DocMap)
+        facts = {f.text for sm in docmap.section_maps for f in sm.key_facts}
         workers = max(1, get_settings().fill_workers)
         with ThreadPoolExecutor(max_workers=workers, thread_name_prefix="fill") as ex:
             futs = {}
@@ -128,7 +132,8 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
                     futs[ex.submit(slotfill_deterministic, item, tree, cat_slide,
                                    toc_entries, doc_title)] = item
                 else:
-                    futs[ex.submit(slotfill_page, item, tree, cat_slide, client, pm)] = item
+                    futs[ex.submit(slotfill_page, item, tree, cat_slide,
+                                   client, pm, facts)] = item
             done = len(plan.pages) - len(todo)
             for fut in as_completed(futs):
                 fill = fut.result()

@@ -17,7 +17,9 @@ def create_app(jobs_root: Path | None = None, llm_client_factory=None,
     async def lifespan(app: FastAPI):
         from app.services.jobs import JobManager
 
-        app.state.jobs = JobManager(root=jobs_root)
+        # serve 是长驻进程，才允许接管陈旧中断任务（CLI 短命进程接管必崩，
+        # 见 jobs.JobManager._scan_existing）
+        app.state.jobs = JobManager(root=jobs_root, resume_stale=True)
         app.state.llm_client_factory = llm_client_factory
         app.state.com_export = com_export
         yield

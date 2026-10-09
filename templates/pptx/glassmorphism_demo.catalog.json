@@ -6,7 +6,7 @@
     {
       "slide_no": 1,
       "layout": "Title Slide",
-      "signature": "S1 布局=Title Slide [label≤7 | desc≤16]",
+      "signature": "S1 布局=Title Slide [label≤8 | desc≤18]",
       "slots": [
         {
           "slot_id": "1.3",
@@ -21,7 +21,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "TECH TALK · 2026",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.0",
@@ -36,7 +36,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "AI AGENT · ENGINEERING IN PRODUCTION",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "3.1",
@@ -51,7 +51,7 @@
           "h": 1.333,
           "font_pt": 60.0,
           "sample": "AI Agent 工程化",
-          "capacity": 6.8
+          "capacity": 7.5
         },
         {
           "slot_id": "3.2",
@@ -66,7 +66,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "从 Demo 到生产 — 需要的不只是大模型",
-          "capacity": 16.15
+          "capacity": 17.5
         },
         {
           "slot_id": "4.0",
@@ -81,7 +81,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "2026 · 技术分享系列",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "4.1",
@@ -96,17 +96,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "01 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
-      "fillable_cap": 16.1,
+      "fillable_cap": 17.5,
       "role_hint": "cover"
     },
     {
       "slide_no": 2,
       "layout": "Title Slide",
-      "signature": "S2 布局=Title Slide [title≤8 | label≤5 | desc≤17]",
+      "signature": "S2 布局=Title Slide [title≤8 | label≤6 | desc≤18]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -121,7 +121,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "FROM DEMO TO PRODUCTION",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "2.0",
@@ -151,7 +151,7 @@
           "h": 1.133,
           "font_pt": 51.0,
           "sample": "止步于 Demo",
-          "capacity": 5.1
+          "capacity": 5.5
         },
         {
           "slot_id": "3.0",
@@ -166,7 +166,7 @@
           "h": 0.4,
           "font_pt": 18.0,
           "sample": "真正进入生产，需要跨越四道工程化门槛",
-          "capacity": 17.0
+          "capacity": 18.0
         },
         {
           "slot_id": "4.0.2",
@@ -182,7 +182,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "架构",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "4.1.2",
@@ -198,7 +198,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "上下文",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "4.2.2",
@@ -214,7 +214,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "评估",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "4.3.2",
@@ -230,7 +230,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "可观测",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "5.0",
@@ -245,7 +245,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "AI Agent 工程化",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "5.1",
@@ -260,17 +260,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "02 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 3,
-      "fillable_cap": 17.0,
+      "fillable_cap": 18.0,
       "role_hint": "content"
     },
     {
       "slide_no": 3,
       "layout": "Title Slide",
-      "signature": "S3 布局=Title Slide [title≤14 | label≤4 | label≤8 | label≤5 | label≤6 | label≤8 | label≤8 | label≤4 | label≤5 | label≤5 | …]",
+      "signature": "S3 布局=Title Slide [title≤14 | label≤5 | label≤8 | label≤6 | label≤6 | label≤9 | label≤8 | label≤5 | label≤6 | label≤6 | …]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -285,7 +285,7 @@
           "h": 0.567,
           "font_pt": 25.5,
           "sample": "三道阻碍 Agent 落地的现实门槛",
-          "capacity": 14.45
+          "capacity": 14.5
         },
         {
           "slot_id": "1.2",
@@ -300,7 +300,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "PERFORMANCE · COST · QUALITY — THREE BAR",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.5",
@@ -315,7 +315,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "PERFORMANCE",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "2.6",
@@ -330,7 +330,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "性能不稳定",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "2.8",
@@ -345,7 +345,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "多步推理累积误差",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "2.9",
@@ -360,7 +360,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "每一步 LLM 调用都有 5-10% 抖动，",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "2.10",
@@ -375,7 +375,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "叠加后总成功率断崖式下滑。",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "2.11",
@@ -390,7 +390,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "P95 延迟失控",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "2.12",
@@ -405,7 +405,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "链式调用让 P50 看似可控,",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "2.13",
@@ -420,7 +420,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "P95 / P99 翻 5-10 倍。",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.15",
@@ -435,7 +435,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P95 / P50 RATIO",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.16",
@@ -450,7 +450,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "5-10×",
-          "capacity": 1.7
+          "capacity": 2.5
         },
         {
           "slot_id": "3.5",
@@ -465,7 +465,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "COST",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "3.6",
@@ -480,7 +480,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "成本不可预测",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "3.8",
@@ -495,7 +495,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "Token 漂移 5-50 倍",
-          "capacity": 8.5
+          "capacity": 9.0
         },
         {
           "slot_id": "3.9",
@@ -510,7 +510,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "同一任务,不同上下文长度、",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "3.10",
@@ -525,7 +525,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "检索条数、循环深度,价格分布极宽。",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "3.11",
@@ -540,7 +540,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "长尾任务吞掉预算",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "3.12",
@@ -555,7 +555,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "5% 的疑难任务,",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.13",
@@ -570,7 +570,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "常常消耗 50% 以上的 token。",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "3.15",
@@ -585,7 +585,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "COST DRIFT RANGE",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "3.16",
@@ -615,7 +615,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "QUALITY",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "4.6",
@@ -630,7 +630,7 @@
           "h": 0.433,
           "font_pt": 19.5,
           "sample": "质量难闭环",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "4.8",
@@ -645,7 +645,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "失败原因模糊",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "4.9",
@@ -660,7 +660,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "是模型、提示词、工具,还是数据问题?",
-          "capacity": 1.0
+          "capacity": 17.0
         },
         {
           "slot_id": "4.10",
@@ -675,7 +675,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "没有可观测层很难定位。",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.11",
@@ -690,7 +690,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "回归测试缺失",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "4.12",
@@ -705,7 +705,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "改一个 prompt,就要担心",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.13",
@@ -720,7 +720,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "十个老 case 是否回退。",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.15",
@@ -735,7 +735,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "DEBUG CYCLE COST",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "4.16",
@@ -750,7 +750,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "3-7 天",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "5.0",
@@ -765,7 +765,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "现状 · 三大门槛",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "5.1",
@@ -780,17 +780,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "03 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 10,
-      "fillable_cap": 14.4,
+      "fillable_cap": 14.5,
       "role_hint": "content"
     },
     {
       "slide_no": 4,
       "layout": "Title Slide",
-      "signature": "S4 布局=Title Slide [title≤8 | label≤3 | label≤4 | label≤7 | label≤5 | label≤8 | label≤4 | label≤3 | label≤3 | label≤3 | …]",
+      "signature": "S4 布局=Title Slide [title≤8 | label≤4 | label≤5 | label≤7 | label≤6 | label≤8 | label≤5 | label≤4 | label≤4 | label≤4 | …]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -805,7 +805,7 @@
           "h": 0.567,
           "font_pt": 25.5,
           "sample": "Agent 的四层骨架",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "1.2",
@@ -820,7 +820,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "PERCEPTION · REASONING · ACTION · MEMORY",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.2",
@@ -835,7 +835,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "L1 · PERCEPTION",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "2.3",
@@ -850,7 +850,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "感知层",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "2.4.2",
@@ -866,7 +866,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "输入解析",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "2.4.3",
@@ -882,7 +882,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "用户意图分类、槽位抽取",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.4.4",
@@ -898,7 +898,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "语言识别、敏感词过滤",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "2.5.2",
@@ -914,7 +914,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "多模态融合",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "2.5.3",
@@ -930,7 +930,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "文本 · 图像 · 表格 · 音频",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "2.5.4",
@@ -946,7 +946,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "统一为可推理的结构化输入",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "2.6.2",
@@ -962,7 +962,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "上下文窗口管理",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "2.6.3",
@@ -978,7 +978,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "动态截断、关键信息前置",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.6.4",
@@ -994,7 +994,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "应对长 prompt 退化",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.2",
@@ -1009,7 +1009,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "L2 · REASONING",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.3",
@@ -1024,7 +1024,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "推理层",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "3.4.2",
@@ -1040,7 +1040,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "Plan / ReAct",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "3.4.3",
@@ -1056,7 +1056,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "先拆解,再推理 → 行动",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "3.4.4",
@@ -1072,7 +1072,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "观察结果再决定下一步",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "3.5.2",
@@ -1104,7 +1104,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "多路径展开 · 评估剪枝",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "3.5.4",
@@ -1120,7 +1120,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "适合搜索 · 规划 · 推理任务",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "3.6.2",
@@ -1136,7 +1136,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "Reflection",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "3.6.3",
@@ -1152,7 +1152,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "自检 · 自纠 · 自我评分",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.6.4",
@@ -1168,7 +1168,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "配合终止条件防止无限循环",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "4.2",
@@ -1183,7 +1183,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "L3 · ACTION",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "4.3",
@@ -1198,7 +1198,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "行动层",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "4.4.2",
@@ -1214,7 +1214,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "工具调用",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.4.3",
@@ -1230,7 +1230,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "JSON schema 参数生成",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "4.4.4",
@@ -1246,7 +1246,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "超时 · 重试 · 鉴权治理",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.5.2",
@@ -1262,7 +1262,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "函数执行",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.5.3",
@@ -1278,7 +1278,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "沙盒 / 子进程 / WASM",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "4.5.4",
@@ -1294,7 +1294,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "代码生成必走隔离环境",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "4.6.2",
@@ -1310,7 +1310,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "API 编排",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.6.3",
@@ -1326,7 +1326,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "幂等 · 顺序 · 事务边界",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.6.4",
@@ -1342,7 +1342,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "幂等 key 防重复执行",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "5.2",
@@ -1357,7 +1357,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "L4 · MEMORY",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "5.3",
@@ -1372,7 +1372,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "记忆层",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "5.4.2",
@@ -1388,7 +1388,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "短期上下文",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "5.4.3",
@@ -1404,7 +1404,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "当前对话 / 当前任务窗口",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "5.4.4",
@@ -1420,7 +1420,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "滚动摘要防溢出",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "5.5.2",
@@ -1436,7 +1436,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "长期向量库",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "5.5.3",
@@ -1452,7 +1452,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "用户偏好 / 历史知识 / FAQ",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "5.5.4",
@@ -1468,7 +1468,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "语义 + 元数据双索引",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "5.6.2",
@@ -1484,7 +1484,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "任务级缓存",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "5.6.3",
@@ -1500,7 +1500,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "中间检索 / 工具调用结果",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "5.6.4",
@@ -1516,7 +1516,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "避免重复计算 · 降本利器",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "6.0",
@@ -1531,7 +1531,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Agent 四层骨架",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "6.1",
@@ -1546,17 +1546,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "04 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 13,
-      "fillable_cap": 7.6,
+      "fillable_cap": 8.0,
       "role_hint": "content"
     },
     {
       "slide_no": 5,
       "layout": "Title Slide",
-      "signature": "S5 布局=Title Slide [title≤20 | label≤5]",
+      "signature": "S5 布局=Title Slide [title≤20 | label≤6]",
       "slots": [
         {
           "slot_id": "1.0",
@@ -1571,7 +1571,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "CHOOSING THE RIGHT PATTERN",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "1.1",
@@ -1601,7 +1601,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "三种主流模式按\"路径确定性\"递增 — 灵活性越高,工程化代价越大",
-          "capacity": 1.0
+          "capacity": 29.0
         },
         {
           "slot_id": "2.4",
@@ -1616,7 +1616,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "PATTERN A",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.5",
@@ -1646,7 +1646,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "DETERMINISTIC",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "2.8.1",
@@ -1662,7 +1662,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "路径固定",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.8.2",
@@ -1678,7 +1678,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "DAG 编排,LLM 只填空",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "2.8.4",
@@ -1694,7 +1694,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "可预测",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.8.5",
@@ -1710,7 +1710,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "每一步成本、延迟可量化",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "2.8.7",
@@ -1726,7 +1726,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "易调试",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "2.8.8",
@@ -1742,7 +1742,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "问题定位精确到节点",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "2.10",
@@ -1757,7 +1757,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "适合确定性任务",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.4",
@@ -1772,7 +1772,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "MOST COMMON",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "3.6",
@@ -1787,7 +1787,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "PATTERN B",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "3.7",
@@ -1817,7 +1817,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "EXPLORATORY",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "3.10.1",
@@ -1833,7 +1833,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "路径动态",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.10.2",
@@ -1849,7 +1849,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "运行时按情境自选下一步",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.10.4",
@@ -1865,7 +1865,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "LLM 决策",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.10.5",
@@ -1881,7 +1881,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "用模型判断 → 工具/继续/终止",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "3.10.7",
@@ -1897,7 +1897,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "工具调用",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.10.8",
@@ -1913,7 +1913,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "检索 · 计算 · 业务 API",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "3.12",
@@ -1928,7 +1928,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "适合半结构化探索",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "4.4",
@@ -1943,7 +1943,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "PATTERN C",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "4.5",
@@ -1958,7 +1958,7 @@
           "h": 0.467,
           "font_pt": 21.0,
           "sample": "Multi-Agent",
-          "capacity": 5.1
+          "capacity": 5.5
         },
         {
           "slot_id": "4.6",
@@ -1973,7 +1973,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "COLLABORATIVE",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "4.8.1",
@@ -1989,7 +1989,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "多角色协作",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "4.8.2",
@@ -2005,7 +2005,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "Planner · Critic · Worker",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "4.8.4",
@@ -2021,7 +2021,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "任务分发",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "4.8.5",
@@ -2037,7 +2037,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "并发 / 串联 / 投票仲裁",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.8.7",
@@ -2053,7 +2053,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "上下文共享",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "4.8.8",
@@ -2069,7 +2069,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "共享黑板 / 消息总线",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "4.10",
@@ -2084,7 +2084,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "适合复杂长程任务",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "5.0",
@@ -2099,7 +2099,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "三种模式 · 路径确定性递减",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "5.1",
@@ -2114,7 +2114,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "05 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 2,
@@ -2124,7 +2124,7 @@
     {
       "slide_no": 6,
       "layout": "Title Slide",
-      "signature": "S6 布局=Title Slide [title≤13 | label≤3 | label≤3 | label≤3 | label≤3 | label≤3 | label≤3]",
+      "signature": "S6 布局=Title Slide [title≤13 | label≤4 | label≤4 | label≤4 | label≤4 | label≤4 | label≤4]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -2139,7 +2139,7 @@
           "h": 0.567,
           "font_pt": 25.5,
           "sample": "让工具调用从\"能跑\"到\"稳跑\"",
-          "capacity": 12.75
+          "capacity": 13.0
         },
         {
           "slot_id": "1.2",
@@ -2154,7 +2154,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "TOOL ORCHESTRATION · A SIX-STEP DISCIPLI",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "3.1",
@@ -2184,7 +2184,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "解析任务",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "3.7",
@@ -2199,7 +2199,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "拆解用户意图",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "3.8",
@@ -2214,7 +2214,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "明确目标和约束",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.9",
@@ -2229,7 +2229,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "输出:",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "3.10",
@@ -2244,7 +2244,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "subtasks[]",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "3.12",
@@ -2259,7 +2259,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "PLAN",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "4.1",
@@ -2289,7 +2289,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "选择工具",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.7",
@@ -2304,7 +2304,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "schema 匹配",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "4.8",
@@ -2319,7 +2319,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "描述向量检索",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "4.9",
@@ -2334,7 +2334,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "输出:",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "4.10",
@@ -2349,7 +2349,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "tool + args",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "4.12",
@@ -2364,7 +2364,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "SELECT",
-          "capacity": 1.0
+          "capacity": 3.0
         },
         {
           "slot_id": "5.1",
@@ -2394,7 +2394,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "调用执行",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "5.7",
@@ -2409,7 +2409,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "超时控制",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "5.8",
@@ -2424,7 +2424,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "幂等 key",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "5.9",
@@ -2439,7 +2439,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "输出:",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "5.10",
@@ -2454,7 +2454,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "raw_result",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "5.12",
@@ -2469,7 +2469,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "EXECUTE",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "6.1",
@@ -2499,7 +2499,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "验证返回",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "6.7",
@@ -2514,7 +2514,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "JSON schema",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "6.8",
@@ -2529,7 +2529,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "业务规则",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "6.9",
@@ -2544,7 +2544,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "输出:",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "6.10",
@@ -2559,7 +2559,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "valid / fail",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "6.12",
@@ -2574,7 +2574,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "VALIDATE",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "7.1",
@@ -2604,7 +2604,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "重试回退",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "7.7",
@@ -2619,7 +2619,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "指数退避",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "7.8",
@@ -2634,7 +2634,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "降级路径",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "7.9",
@@ -2649,7 +2649,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "输出:",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "7.10",
@@ -2664,7 +2664,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "retry / fallback",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "7.12",
@@ -2679,7 +2679,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "RECOVER",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "8.1",
@@ -2709,7 +2709,7 @@
           "h": 0.3,
           "font_pt": 13.5,
           "sample": "结果汇总",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "8.7",
@@ -2724,7 +2724,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "多轮聚合",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "8.8",
@@ -2739,7 +2739,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "引用与可解释化",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "8.9",
@@ -2754,7 +2754,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "输出:",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "8.10",
@@ -2769,7 +2769,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "final answer",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "8.12",
@@ -2784,7 +2784,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "DELIVER",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "9.0",
@@ -2799,7 +2799,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "每步都可观测 · 每步都有回退",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "9.1",
@@ -2814,17 +2814,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "06 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 7,
-      "fillable_cap": 12.8,
+      "fillable_cap": 13.0,
       "role_hint": "content"
     },
     {
       "slide_no": 7,
       "layout": "Title Slide",
-      "signature": "S7 布局=Title Slide [title≤15 | label≤3 | label≤3]",
+      "signature": "S7 布局=Title Slide [title≤15 | label≤4 | label≤4]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -2854,7 +2854,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "CONTEXT ENGINEERING · 1 CORE + 6 CAPABIL",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "4.4",
@@ -2869,7 +2869,7 @@
           "h": 0.267,
           "font_pt": 12.0,
           "sample": "CONTEXT",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "4.5",
@@ -2884,7 +2884,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "ENGINEERING",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "5.5",
@@ -2899,7 +2899,7 @@
           "h": 0.283,
           "font_pt": 12.75,
           "sample": "检索",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "5.6",
@@ -2914,7 +2914,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "RAG · 向量召回 · BM25 混排",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "6.5",
@@ -2929,7 +2929,7 @@
           "h": 0.283,
           "font_pt": 12.75,
           "sample": "重排",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "6.6",
@@ -2944,7 +2944,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "Reranker · Top-K 精筛",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "7.5",
@@ -2959,7 +2959,7 @@
           "h": 0.283,
           "font_pt": 12.75,
           "sample": "截断",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "7.6",
@@ -2974,7 +2974,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "Token 预算 · 关键信息优先",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "8.5",
@@ -2989,7 +2989,7 @@
           "h": 0.283,
           "font_pt": 12.75,
           "sample": "记忆",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "8.6",
@@ -3004,7 +3004,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "长 / 短期 · 会话状态",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "9.5",
@@ -3019,7 +3019,7 @@
           "h": 0.283,
           "font_pt": 12.75,
           "sample": "工具说明",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "9.6",
@@ -3034,7 +3034,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "Tool schema · 示例描述",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "10.5",
@@ -3049,7 +3049,7 @@
           "h": 0.283,
           "font_pt": 12.75,
           "sample": "系统提示",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "10.6",
@@ -3064,7 +3064,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "Persona · 输出格式 · 安全",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "11.0",
@@ -3079,7 +3079,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "上下文工程 · 让 LLM 知道\"该看什么\"",
-          "capacity": 1.0
+          "capacity": 17.0
         },
         {
           "slot_id": "11.1",
@@ -3094,7 +3094,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "07 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 3,
@@ -3104,7 +3104,7 @@
     {
       "slide_no": 8,
       "layout": "Title Slide",
-      "signature": "S8 布局=Title Slide [title≤13 | label≤4 | label≤7 | label≤5 | label≤8]",
+      "signature": "S8 布局=Title Slide [title≤13 | label≤5 | label≤7 | label≤6 | label≤8]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -3134,7 +3134,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "KPI DASHBOARD · WEEKLY ROLLUP",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "1.5",
@@ -3149,7 +3149,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "LIVE · W12",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "2.5",
@@ -3164,7 +3164,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "ACCURACY",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.6",
@@ -3179,7 +3179,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "任务成功率",
-          "capacity": 4.25
+          "capacity": 5.0
         },
         {
           "slot_id": "2.7",
@@ -3194,7 +3194,7 @@
           "h": 1.467,
           "font_pt": 66.0,
           "sample": "92.4",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "2.8",
@@ -3224,7 +3224,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "+3.2 pp",
-          "capacity": 3.4
+          "capacity": 3.5
         },
         {
           "slot_id": "2.11",
@@ -3239,7 +3239,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "vs. 上周",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "2.13",
@@ -3254,7 +3254,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "12 周累计提升 21.4 pp · 接近内部 SLO 95% 阈值",
-          "capacity": 1.0
+          "capacity": 22.5
         },
         {
           "slot_id": "3.5",
@@ -3269,7 +3269,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "LATENCY",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "3.6",
@@ -3284,7 +3284,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "P95 端到端延迟",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "3.7",
@@ -3329,7 +3329,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "−18%",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "3.11",
@@ -3344,7 +3344,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "vs. 上周",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.13",
@@ -3359,7 +3359,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "引入并发工具调用 + 结果缓存后,P95 从 11.2s 收敛至 4.8s",
-          "capacity": 1.0
+          "capacity": 27.0
         },
         {
           "slot_id": "4.5",
@@ -3374,7 +3374,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "COST",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "4.6",
@@ -3389,7 +3389,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "单次任务成本",
-          "capacity": 5.1
+          "capacity": 6.0
         },
         {
           "slot_id": "4.7",
@@ -3419,7 +3419,7 @@
           "h": 1.467,
           "font_pt": 66.0,
           "sample": "0.42",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "4.10",
@@ -3434,7 +3434,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "−22%",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "4.11",
@@ -3449,7 +3449,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "vs. 上周",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "4.13",
@@ -3464,7 +3464,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "关键来源:模型分级路由 + 检索结果缓存复用",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "5.5",
@@ -3479,7 +3479,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "RELIABILITY",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "5.6",
@@ -3494,7 +3494,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "30 天 SLO 达成率",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "5.7",
@@ -3509,7 +3509,7 @@
           "h": 1.467,
           "font_pt": 66.0,
           "sample": "99.7",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "5.8",
@@ -3539,7 +3539,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "+0.4 pp",
-          "capacity": 3.4
+          "capacity": 3.5
         },
         {
           "slot_id": "5.11",
@@ -3554,7 +3554,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "vs. 30 日前",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "5.13",
@@ -3569,7 +3569,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "熔断 + 降级链路 + 多模型 fallback 兜住了三次上游事故",
-          "capacity": 1.0
+          "capacity": 26.0
         },
         {
           "slot_id": "6.0",
@@ -3584,7 +3584,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "KPI 仪表板 · 上线前必装的四块表",
-          "capacity": 1.0
+          "capacity": 15.5
         },
         {
           "slot_id": "6.1",
@@ -3599,7 +3599,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "08 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 5,
@@ -3609,7 +3609,7 @@
     {
       "slide_no": 9,
       "layout": "Title Slide",
-      "signature": "S9 布局=Title Slide [title≤17]",
+      "signature": "S9 布局=Title Slide [title≤18]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -3624,7 +3624,7 @@
           "h": 0.567,
           "font_pt": 25.5,
           "sample": "持续优化的真实曲线 — 准确率 ↑ 成本 ↓",
-          "capacity": 17.0
+          "capacity": 18.0
         },
         {
           "slot_id": "1.2",
@@ -3639,7 +3639,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "UPLINE TO PRODUCTION · 12-WEEK TREND",
-          "capacity": 1.0
+          "capacity": 18.0
         },
         {
           "slot_id": "3.7",
@@ -3654,7 +3654,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "60%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.8",
@@ -3669,7 +3669,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "70%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.9",
@@ -3684,7 +3684,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "80%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.10",
@@ -3699,7 +3699,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "90%",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.11",
@@ -3714,7 +3714,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "100%",
-          "capacity": 1.0
+          "capacity": 2.0
         },
         {
           "slot_id": "3.12",
@@ -3744,7 +3744,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "¥0.35",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "3.14",
@@ -3759,7 +3759,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "¥0.70",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "3.15",
@@ -3774,7 +3774,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "¥1.05",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "3.16",
@@ -3789,7 +3789,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "¥1.40",
-          "capacity": 1.0
+          "capacity": 2.5
         },
         {
           "slot_id": "3.17",
@@ -3939,7 +3939,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "W10",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.27",
@@ -3954,7 +3954,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "W11",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.28",
@@ -3969,7 +3969,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "W12",
-          "capacity": 1.0
+          "capacity": 1.5
         },
         {
           "slot_id": "3.38.1",
@@ -3985,7 +3985,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "W4 · 引入 reranker",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.39.1",
@@ -4001,7 +4001,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "W8 · 引入 fallback",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.40.1",
@@ -4017,7 +4017,7 @@
           "h": 0.2,
           "font_pt": 9.0,
           "sample": "W11 · 引入缓存",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "4.3",
@@ -4032,7 +4032,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "任务成功率(左轴)",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "4.7",
@@ -4047,7 +4047,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "单次成本(右轴)",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "4.9",
@@ -4062,7 +4062,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "▲ 准确率 71% → 92.4% · 成本 ¥1.20 → ¥0.42",
-          "capacity": 1.0
+          "capacity": 20.5
         },
         {
           "slot_id": "5.0",
@@ -4077,7 +4077,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "12 周指标趋势 · 来源:内部 Agent 平台监控",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "5.1",
@@ -4092,17 +4092,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "09 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 1,
-      "fillable_cap": 17.0,
+      "fillable_cap": 18.0,
       "role_hint": "table_host"
     },
     {
       "slide_no": 10,
       "layout": "Title Slide",
-      "signature": "S10 布局=Title Slide [title≤14 | label≤3 | label≤3]",
+      "signature": "S10 布局=Title Slide [title≤14 | label≤4 | label≤4]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -4132,7 +4132,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "FAILURE MODES · FREQUENCY × DETECTION DI",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "2.1",
@@ -4147,7 +4147,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "SHALLOW · 表面易识",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "2.3",
@@ -4162,7 +4162,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "DEEP · 隐蔽难定位",
-          "capacity": 1.0
+          "capacity": 8.5
         },
         {
           "slot_id": "2.5",
@@ -4177,7 +4177,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "HIGH · 高频",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "2.7",
@@ -4192,7 +4192,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "LOW · 低频",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "3.5",
@@ -4207,7 +4207,7 @@
           "h": 0.317,
           "font_pt": 14.25,
           "sample": "工具错误",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "3.7",
@@ -4222,7 +4222,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "VALIDATE EARLY",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "3.8.1",
@@ -4238,7 +4238,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "JSON schema 不匹配",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "3.8.2",
@@ -4254,7 +4254,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "字段缺失 / 类型错位 / enum 写飞",
-          "capacity": 1.0
+          "capacity": 15.5
         },
         {
           "slot_id": "3.8.4",
@@ -4270,7 +4270,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "参数幻觉",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "3.8.5",
@@ -4286,7 +4286,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "不存在的参数 / 值越界 / 单位混用",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "3.8.7",
@@ -4302,7 +4302,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "超时无回退",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "4.5",
@@ -4317,7 +4317,7 @@
           "h": 0.317,
           "font_pt": 14.25,
           "sample": "成本失控",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "4.7",
@@ -4332,7 +4332,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "METER · CAP",
-          "capacity": 1.0
+          "capacity": 5.5
         },
         {
           "slot_id": "4.8.1",
@@ -4348,7 +4348,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "Token 漂移",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "4.8.2",
@@ -4364,7 +4364,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "长尾 prompt 把单次成本拉爆",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "4.8.4",
@@ -4380,7 +4380,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "重复检索",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "4.8.5",
@@ -4396,7 +4396,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "相同问句反复打向量库 · 无缓存",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "4.8.7",
@@ -4412,7 +4412,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "链路过长 · 套娃调用",
-          "capacity": 1.0
+          "capacity": 9.5
         },
         {
           "slot_id": "5.5",
@@ -4427,7 +4427,7 @@
           "h": 0.317,
           "font_pt": 14.25,
           "sample": "死循环",
-          "capacity": 2.55
+          "capacity": 3.0
         },
         {
           "slot_id": "5.7",
@@ -4442,7 +4442,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "HARD STOP",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "5.8.1",
@@ -4458,7 +4458,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "反思链路无终止",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "5.8.2",
@@ -4474,7 +4474,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "\"我再想想\" 无限循环 · 缺停机条件",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "5.8.4",
@@ -4490,7 +4490,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "Plan 反复修改",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "5.8.5",
@@ -4506,7 +4506,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "每步都重新拆解 · 上下文越塞越多",
-          "capacity": 1.0
+          "capacity": 15.5
         },
         {
           "slot_id": "5.8.7",
@@ -4522,7 +4522,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "工具调用环 · A 调 B 调 A",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "6.5",
@@ -4537,7 +4537,7 @@
           "h": 0.317,
           "font_pt": 14.25,
           "sample": "幻觉",
-          "capacity": 1.7
+          "capacity": 2.0
         },
         {
           "slot_id": "6.7",
@@ -4552,7 +4552,7 @@
           "h": 0.183,
           "font_pt": 8.25,
           "sample": "GROUND IT",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "6.8.1",
@@ -4568,7 +4568,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "编造工具",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "6.8.2",
@@ -4584,7 +4584,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "调用不存在的工具名 / API endpoint",
-          "capacity": 1.0
+          "capacity": 16.5
         },
         {
           "slot_id": "6.8.4",
@@ -4600,7 +4600,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "编造结果",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "6.8.5",
@@ -4616,7 +4616,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "未调真实接口就给出\"数据\"",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "6.8.7",
@@ -4632,7 +4632,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "假装成功 · \"已为您发送\"",
-          "capacity": 1.0
+          "capacity": 11.5
         },
         {
           "slot_id": "7.0",
@@ -4647,7 +4647,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "失败模式四象限 · 分类决定预案",
-          "capacity": 1.0
+          "capacity": 14.5
         },
         {
           "slot_id": "7.1",
@@ -4662,7 +4662,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "10 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 3,
@@ -4672,7 +4672,7 @@
     {
       "slide_no": 11,
       "layout": "Title Slide",
-      "signature": "S11 布局=Title Slide [title≤13 | label≤8 | label≤8 | label≤8 | label≤8 | label≤7]",
+      "signature": "S11 布局=Title Slide [title≤14 | label≤10 | label≤8 | label≤10 | label≤8 | label≤7]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -4687,7 +4687,7 @@
           "h": 0.567,
           "font_pt": 25.5,
           "sample": "从原型到生产 — 12 周分四阶段",
-          "capacity": 12.75
+          "capacity": 14.0
         },
         {
           "slot_id": "1.2",
@@ -4702,7 +4702,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "ROADMAP · PROTOTYPE → ENGINEERING → SCAL",
-          "capacity": 1.0
+          "capacity": 20.0
         },
         {
           "slot_id": "3.0",
@@ -4717,7 +4717,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "W1 — W3",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "3.8",
@@ -4732,7 +4732,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "STAGE 01 · PROTOTYPE",
-          "capacity": 1.0
+          "capacity": 10.0
         },
         {
           "slot_id": "3.9",
@@ -4747,7 +4747,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "原型 — 单一任务跑通",
-          "capacity": 8.5
+          "capacity": 9.5
         },
         {
           "slot_id": "3.10",
@@ -4762,7 +4762,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "最小工具集 · prompt 初稿 · 5-10 个金标准 case 验证",
-          "capacity": 1.0
+          "capacity": 25.0
         },
         {
           "slot_id": "4.0",
@@ -4777,7 +4777,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "W4 — W7",
-          "capacity": 1.0
+          "capacity": 3.5
         },
         {
           "slot_id": "4.8",
@@ -4792,7 +4792,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "STAGE 02 · ENGINEERING",
-          "capacity": 1.0
+          "capacity": 11.0
         },
         {
           "slot_id": "4.9",
@@ -4807,7 +4807,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "工程化 — 评估闭环",
-          "capacity": 7.6499999999999995
+          "capacity": 8.5
         },
         {
           "slot_id": "4.10",
@@ -4822,7 +4822,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "评估集 100+ · 自动回归 · 重试与降级机制全覆盖",
-          "capacity": 1.0
+          "capacity": 22.5
         },
         {
           "slot_id": "5.0",
@@ -4837,7 +4837,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "W8 — W10",
-          "capacity": 1.0
+          "capacity": 4.0
         },
         {
           "slot_id": "5.8",
@@ -4852,7 +4852,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "STAGE 03 · SCALE",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "5.9",
@@ -4867,7 +4867,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "规模化 — 性能与成本",
-          "capacity": 8.5
+          "capacity": 9.5
         },
         {
           "slot_id": "5.10",
@@ -4882,7 +4882,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "结果缓存 · 限流熔断 · 多租户隔离 · 模型分级路由",
-          "capacity": 1.0
+          "capacity": 23.5
         },
         {
           "slot_id": "6.0",
@@ -4897,7 +4897,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "W11 — W12",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "6.8",
@@ -4912,7 +4912,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "STAGE 04 · PRODUCTION",
-          "capacity": 1.0
+          "capacity": 10.5
         },
         {
           "slot_id": "6.9",
@@ -4927,7 +4927,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "生产 — 灰度与 SLO",
-          "capacity": 7.6499999999999995
+          "capacity": 8.5
         },
         {
           "slot_id": "6.10",
@@ -4942,7 +4942,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "1% → 10% → 全量灰度 · SLO 监控 · 持续优化飞轮",
-          "capacity": 1.0
+          "capacity": 22.5
         },
         {
           "slot_id": "7.2",
@@ -4957,7 +4957,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "SUCCESS CRITERIA",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "7.3",
@@ -4972,7 +4972,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "每阶段过线标准",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "7.5.1",
@@ -5004,7 +5004,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "原型 → 工程化",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "7.5.3",
@@ -5020,7 +5020,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "金标准 case 通过率 ≥ 80%",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "7.6.1",
@@ -5052,7 +5052,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "工程化 → 规模化",
-          "capacity": 1.0
+          "capacity": 7.5
         },
         {
           "slot_id": "7.6.3",
@@ -5068,7 +5068,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "评估集 ≥ 100 · 自动回归绿灯",
-          "capacity": 1.0
+          "capacity": 13.5
         },
         {
           "slot_id": "7.7.1",
@@ -5100,7 +5100,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "规模化 → 生产",
-          "capacity": 1.0
+          "capacity": 6.5
         },
         {
           "slot_id": "7.7.3",
@@ -5116,7 +5116,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "P95 < 5s · 单次成本 < ¥0.5",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "7.8.1",
@@ -5148,7 +5148,7 @@
           "h": 0.25,
           "font_pt": 11.25,
           "sample": "生产持续运营",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "7.8.3",
@@ -5164,7 +5164,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "30 天 SLO ≥ 99.5% · 成本月度下降",
-          "capacity": 1.0
+          "capacity": 16.0
         },
         {
           "slot_id": "7.10",
@@ -5179,7 +5179,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "⚡ 不达标不晋级 — 每个阶段",
-          "capacity": 1.0
+          "capacity": 12.5
         },
         {
           "slot_id": "7.11",
@@ -5194,7 +5194,7 @@
           "h": 0.233,
           "font_pt": 10.5,
           "sample": "必须有\"通关\"硬指标",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "7.12",
@@ -5209,7 +5209,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "否则只是\"进度\"假象",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "8.0",
@@ -5224,7 +5224,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "路线图 · 12 周可执行计划",
-          "capacity": 1.0
+          "capacity": 12.0
         },
         {
           "slot_id": "8.1",
@@ -5239,17 +5239,17 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "11 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 6,
-      "fillable_cap": 12.8,
+      "fillable_cap": 14.0,
       "role_hint": "content"
     },
     {
       "slide_no": 12,
       "layout": "Title Slide",
-      "signature": "S12 布局=Title Slide [title≤6 | label≤6 | desc≤17 | label≤8 | label≤3]",
+      "signature": "S12 布局=Title Slide [title≤6 | label≤6 | desc≤18 | label≤8 | label≤4]",
       "slots": [
         {
           "slot_id": "1.1",
@@ -5264,7 +5264,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "YOUR TURN",
-          "capacity": 1.0
+          "capacity": 4.5
         },
         {
           "slot_id": "2.0",
@@ -5279,7 +5279,7 @@
           "h": 1.2,
           "font_pt": 54.0,
           "sample": "下一个 Agent",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "2.1",
@@ -5294,7 +5294,7 @@
           "h": 1.2,
           "font_pt": 54.0,
           "sample": "从工程化开始",
-          "capacity": 5.95
+          "capacity": 6.0
         },
         {
           "slot_id": "3.0",
@@ -5309,7 +5309,7 @@
           "h": 0.367,
           "font_pt": 16.5,
           "sample": "不是\"加个 LLM\",是把 LLM 真正装进系统",
-          "capacity": 17.0
+          "capacity": 18.0
         },
         {
           "slot_id": "4.0.2",
@@ -5325,7 +5325,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "开始 Agent 工程化",
-          "capacity": 7.6499999999999995
+          "capacity": 8.5
         },
         {
           "slot_id": "4.1.2",
@@ -5341,7 +5341,7 @@
           "h": 0.333,
           "font_pt": 15.0,
           "sample": "寻求合作",
-          "capacity": 3.4
+          "capacity": 4.0
         },
         {
           "slot_id": "5.0",
@@ -5356,7 +5356,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "架构 · 上下文 · 评估 · 可观测 — 四件事一起做,才叫工程化",
-          "capacity": 1.0
+          "capacity": 27.5
         },
         {
           "slot_id": "6.0",
@@ -5371,7 +5371,7 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "AI Agent 工程化 · 谢谢观看",
-          "capacity": 1.0
+          "capacity": 13.0
         },
         {
           "slot_id": "6.1",
@@ -5386,11 +5386,11 @@
           "h": 0.217,
           "font_pt": 9.75,
           "sample": "12 / 12",
-          "capacity": 1.0
+          "capacity": 3.5
         }
       ],
       "fillable": 5,
-      "fillable_cap": 17.0,
+      "fillable_cap": 18.0,
       "role_hint": "closing"
     }
   ]

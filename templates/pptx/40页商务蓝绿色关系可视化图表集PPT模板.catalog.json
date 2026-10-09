@@ -6,7 +6,7 @@
     {
       "slide_no": 1,
       "layout": "标题幻灯片",
-      "signature": "S1 布局=标题幻灯片 [title≤8 | body≤75 | body≤14]",
+      "signature": "S1 布局=标题幻灯片 [title≤16 | body≤75 | body≤14]",
       "slots": [
         {
           "slot_id": "0",
@@ -20,7 +20,7 @@
           "h": 2.632,
           "font_pt": 72.0,
           "sample": "商务蓝绿色关系可视化图表集PPT模板",
-          "capacity": 8.5
+          "capacity": 16.5
         },
         {
           "slot_id": "1",
@@ -58,7 +58,7 @@
     {
       "slide_no": 2,
       "layout": "目录",
-      "signature": "S2 布局=目录 [title≤7 | label≤5 | label≤5 | label≤5 | label≤5 | label≤5]",
+      "signature": "S2 布局=目录 [title≤7 | label≤7 | label≤7 | label≤7 | label≤7 | label≤5]",
       "slots": [
         {
           "slot_id": "0",
@@ -100,7 +100,7 @@
           "h": 0.684,
           "font_pt": 24.0,
           "sample": "模板的设计特点",
-          "capacity": 5.1
+          "capacity": 7.0
         },
         {
           "slot_id": "3",
@@ -128,7 +128,7 @@
           "h": 0.684,
           "font_pt": 24.0,
           "sample": "模板的适用场景",
-          "capacity": 5.1
+          "capacity": 7.0
         },
         {
           "slot_id": "5",
@@ -156,7 +156,7 @@
           "h": 0.684,
           "font_pt": 24.0,
           "sample": "模板的图表类型",
-          "capacity": 5.1
+          "capacity": 7.0
         },
         {
           "slot_id": "7",
@@ -184,7 +184,7 @@
           "h": 0.684,
           "font_pt": 24.0,
           "sample": "模板的使用方法",
-          "capacity": 5.1
+          "capacity": 7.0
         },
         {
           "slot_id": "9",
@@ -216,7 +216,7 @@
         }
       ],
       "fillable": 6,
-      "fillable_cap": 6.8,
+      "fillable_cap": 7.0,
       "role_hint": "toc"
     },
     {
@@ -344,7 +344,7 @@
           "h": 0.505,
           "font_pt": 20.0,
           "sample": "色彩对比与层次感",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "8",
@@ -424,7 +424,7 @@
           "h": 0.382,
           "font_pt": 20.0,
           "sample": "清晰的视觉层次",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "6",
@@ -452,7 +452,7 @@
           "h": 0.382,
           "font_pt": 20.0,
           "sample": "模块化设计",
-          "capacity": 1.0
+          "capacity": 5.0
         }
       ],
       "fillable": 3,
@@ -490,7 +490,7 @@
           "h": 0.583,
           "font_pt": 24.0,
           "sample": "专业性与可读性",
-          "capacity": 6.8
+          "capacity": 7.0
         },
         {
           "slot_id": "8",
@@ -570,7 +570,7 @@
     {
       "slide_no": 7,
       "layout": "仅标题",
-      "signature": "S7 布局=仅标题 [title≤78 | body≤60 | body≤60 | body≤60 | body≤60 | label≤8 | label≤8 | label≤8 | label≤8]",
+      "signature": "S7 布局=仅标题 [title≤78 | body≤60 | body≤60 | body≤60 | body≤60 | label≤9 | label≤8 | label≤8 | label≤8]",
       "slots": [
         {
           "slot_id": "0",
@@ -710,7 +710,7 @@
           "h": 0.485,
           "font_pt": 16.0,
           "sample": "简洁明了的视觉效果",
-          "capacity": 7.6499999999999995
+          "capacity": 9.0
         },
         {
           "slot_id": "18",
@@ -724,7 +724,7 @@
           "h": 0.485,
           "font_pt": 16.0,
           "sample": "专业商务色彩搭配",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "19",
@@ -856,7 +856,7 @@
           "h": 0.404,
           "font_pt": 22.0,
           "sample": "市场分析报告",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "5",
@@ -898,7 +898,7 @@
           "h": 0.404,
           "font_pt": 22.0,
           "sample": "财务状况报告",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "8",
@@ -964,7 +964,7 @@
           "h": 0.348,
           "font_pt": 18.0,
           "sample": "模块化设计",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "5",
@@ -992,7 +992,7 @@
           "h": 0.348,
           "font_pt": 18.0,
           "sample": "层次分明的布局",
-          "capacity": 1.0
+          "capacity": 7.0
         }
       ],
       "fillable": 3,
@@ -1044,7 +1044,7 @@
           "h": 0.403,
           "font_pt": 22.0,
           "sample": "市场分析报告",
-          "capacity": 1.0
+          "capacity": 6.0
         },
         {
           "slot_id": "5",
@@ -1072,7 +1072,7 @@
           "h": 0.403,
           "font_pt": 22.0,
           "sample": "财务状况报告",
-          "capacity": 1.0
+          "capacity": 6.0
         }
       ],
       "fillable": 3,
@@ -2012,7 +2012,7 @@
           "h": 0.404,
           "font_pt": 22.0,
           "sample": "模块化设计",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "5",
@@ -2054,7 +2054,7 @@
           "h": 0.404,
           "font_pt": 22.0,
           "sample": "清晰的视觉层次",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "8",
@@ -2172,7 +2172,7 @@
           "h": 0.382,
           "font_pt": 20.0,
           "sample": "专业性字体",
-          "capacity": 1.0
+          "capacity": 5.0
         },
         {
           "slot_id": "5",
@@ -2200,7 +2200,7 @@
           "h": 0.382,
           "font_pt": 20.0,
           "sample": "字体大小与排版",
-          "capacity": 1.0
+          "capacity": 7.0
         },
         {
           "slot_id": "7",
@@ -2228,7 +2228,7 @@
           "h": 0.382,
           "font_pt": 20.0,
           "sample": "颜色搭配",
-          "capacity": 1.0
+          "capacity": 4.0
         }
       ],
       "fillable": 4,
@@ -2308,7 +2308,7 @@
           "h": 0.505,
           "font_pt": 20.0,
           "sample": "色彩对比与层次感",
-          "capacity": 7.6499999999999995
+          "capacity": 8.0
         },
         {
           "slot_id": "8",
@@ -2388,7 +2388,7 @@
           "h": 0.346,
           "font_pt": 18.0,
           "sample": "简洁明了的视觉效果",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "11",
@@ -2416,7 +2416,7 @@
           "h": 0.346,
           "font_pt": 18.0,
           "sample": "数据可视化创新设计",
-          "capacity": 1.0
+          "capacity": 9.0
         },
         {
           "slot_id": "13",
@@ -2444,7 +2444,7 @@
           "h": 0.346,
           "font_pt": 18.0,
           "sample": "专业商务色彩搭配",
-          "capacity": 1.0
+          "capacity": 8.0
         },
         {
           "slot_id": "15",
@@ -2472,7 +2472,7 @@
           "h": 0.346,
           "font_pt": 18.0,
           "sample": "适应多种数据展示需求",
-          "capacity": 1.0
+          "capacity": 10.0
         }
       ],
       "fillable": 5,

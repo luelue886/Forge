@@ -61,8 +61,30 @@ PARSED → UNDERSTOOD → PLANNED（人工确认大纲，可改体裁）→ GENE
 | docx 源（letter / report 体裁） | 表格 XML 原样搬运保排版，散文掩码仿写 |
 | PDF 源 + letter/report | 通用链路：tablefill 掩码表格仿写 + docfill 散文仿写 |
 
-确认页改体裁是用户的**逃生门**：单文件效果不佳时可强制换链路。PPT 线独立走
-docmap → plan → 确认 → 逐页 fill → 渲染 → COM 截图。
+确认页改体裁是用户的**逃生门**：单文件效果不佳时可强制换链路。
+
+### PPT 线：真 .pptx 模板填充
+
+建任务时从 `templates/pptx/` 库（9 套用户模板，中文课件 + 英文设计成品）选模板，
+渲染层 100% 继承模板的版式/字体/配色/装饰——不再自绘文本框：
+
+```
+docmap → plan（每页指派 template_slide：LLM 提案 + 确定性校验 + 轮换兜底）→ 确认
+→ 逐页 slotfill（槽位填充：LLM 提案 → 容量/覆盖校验 → 1 轮定向重试 → 降级）
+→ 构建（unzip 模板 → 按规划复制模板页 → XML 文本 run 替换 → 删原页 → BFS 清孤儿 → zip）
+→ python-pptx 后处理（讲者备注 + TABLE 页原生表格）→ QA（遗留检查 + COM PNG）→ DONE
+```
+
+- **槽位目录**：每套模板预提取 `*.catalog.json`——逐页逐槽的 id/角色/几何/字号/样本/
+  容量（汉字当量，取几何公式与模板自身样本字重的较大者）。规划与填充都对着目录走，
+  构建期重走槽集防寻址漂移。
+- **结构页零 LLM**：封面/目录/节题/尾页/表格由确定性代码直接映射槽位；内容页 LLM
+  按槽容量提案，超容截断、未覆盖槽删除（组内文本槽全删则整组塌缩）。
+- **PowerPoint 兼容性硬约束**：复制页剥离 notesSlide/tags 关系、页级 `p:custDataLst`
+  与 `p:timing`（动画 spid 指向被删形状会让 PowerPoint 拒开文件）；孤儿部件 BFS 清理
+  同步维护 [Content_Types]。
+- **升级注记**：模板化改造前的在途旧 PPT 任务不可续跑——state 兼容不崩（列表可见），
+  resume 时报错提示重跑。
 
 ## Memory / State
 
@@ -72,10 +94,10 @@ docmap → plan → 确认 → 逐页 fill → 渲染 → COM 截图。
 data/jobs/<job_id>/
   upload/        源文件
   state.json     状态机（status/detail/error）
-  artifacts/     每阶段产物：docplan.json · doctree.json · tblarch.json ·
-                 tblcontent.json · tblvisual.json · spotcheck.json ·
-                 output.docx/.html/.pdf · qa_report.txt
-  pages/         PDF→PNG 逐页预览
+  artifacts/     每阶段产物：docplan.json · doctree.json · docmap.json · plan.json ·
+                 tblarch.json · tblcontent.json · tblvisual.json · spotcheck.json ·
+                 deckbuild.json · output.docx/.html/.pdf/.pptx · qa_report.txt
+  pages/         逐页断点产物与预览：page_NN.fill.json（PPT 槽位填充）· page_NN.png
   logs/          llm_calls.jsonl（全量调用审计，响应截断 20KB，可离线复检）
 ```
 
@@ -104,8 +126,9 @@ data/jobs/<job_id>/
    铁律不变式：抽检 LLM 读的是渲染成品（真实数字可见），但**输出只流向视觉参数
    （int 校验）与报告文本，永不回流文档内容**——排版修正不重掷内容骰子。
 
-门禁：**399 单测 + 9 COM 集成 + 14 集成 + 8 golden 端到端样例**（含真实复杂表格 PDF：竖排侧栏重组、
-跨页并表、值格虚构+电话照搬）。
+门禁：**417 单测 + 9 COM 集成 + 8 文档 golden + 3 PPT golden 端到端样例**（文档线含真实
+复杂表格 PDF：竖排侧栏重组、跨页并表、值格虚构+电话照搬；PPT 线横跨中文模板与英文成品，
+独立复检 DONE/零 E-/数字溯源/防抄袭/遗留/产物齐套）。
 
 ## 快速开始
 
@@ -123,6 +146,7 @@ CLI 全流程（等价于 Web）：
 
 ```bash
 .venv/Scripts/python.exe -m app run 源文档.pdf --product doc --genre form --auto-confirm
+.venv/Scripts/python.exe -m app run 源文档.docx --product ppt --template PPT模板 --auto-confirm
 .venv/Scripts/python.exe -m app status <job_id>
 .venv/Scripts/python.exe -m app confirm <job_id> --genre report   # PLANNED 确认 + 改体裁
 ```

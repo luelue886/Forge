@@ -137,13 +137,14 @@ class Job:
 class JobManager:
     """进程内单任务管理：全局仅 1 个非终态 job；1-worker 执行器串行跑流水线。"""
 
-    def __init__(self, root: Path | None = None):
+    def __init__(self, root: Path | None = None, resume_stale: bool = False):
         self.root = Path(root) if root else DATA_DIR / "jobs"
         self.root.mkdir(parents=True, exist_ok=True)
         self._jobs: dict[str, Job] = {}
         self._running: set[str] = set()  # 本进程执行器在跑的 job
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="job")
         self._lock = threading.Lock()
+        self._resume_stale = resume_stale
         self._scan_existing()
 
     # ---- 查询 ----
@@ -181,8 +182,10 @@ class JobManager:
                client=None, com_export: bool = True) -> Job:
         if self.active() is not None:
             active = self.active()
-            raise JobError(f"已有进行中的任务 {active.job_id}（{active.status.value}），"
-                           f"请先完成或取消")
+            raise JobError(
+                f"已有进行中的任务 {active.job_id}（{active.status.value}），请先完成或取消。"
+                f"若其进程已被强杀：python -m app cancel {active.job_id} 后重跑，"
+                f"或启动 serve（python -m app serve）自动续跑中断任务")
         if product == "ppt":
             from app.render.tpl_catalog import template_choices
 
@@ -273,6 +276,12 @@ class JobManager:
             self._jobs[job.job_id] = job
             if job.status in {JobStatus.UNDERSTOOD, JobStatus.GENERATING,
                               JobStatus.RENDERED, JobStatus.QA, JobStatus.REPAIRING}:
+                if not self._resume_stale:
+                    # 短命进程（CLI run/status/list）不接管：主线程随即退出触发
+                    # 解释器关闭，续跑线程在首个 executor.submit 即崩
+                    # （cannot schedule new futures after interpreter shutdown），
+                    # 还会把可能仍在别进程跑的任务误标 FAILED。续跑只归长驻 serve。
+                    continue
                 if now - state.stat().st_mtime < self._RESUME_STALE_S:
                     continue  # 可能仍由其他进程驱动，不接管
                 # 中断任务：用户此前已确认过（或 auto），续跑补缺失产物

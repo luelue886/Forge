@@ -17,7 +17,7 @@ from app.schema.slotfill import (
     BuildMeta, DeckBuild, PageFill, TableIR, validate_deck_build,
 )
 from app.schema.tplcatalog import TemplateCatalog
-from tests.mk_tpl import GROUP_PIC_RID, build_synthetic_template
+from tests.mk_tpl import GROUP_PIC_RID, TAG_RID, build_synthetic_template
 
 _SLIDE_PART = re.compile(r"^ppt/slides/slide\d+\.xml$")
 _SLIDE_RELS = re.compile(r"^ppt/slides/_rels/slide\d+\.xml\.rels$")
@@ -156,6 +156,70 @@ class TestBuildDeck:
             assert not any("notesSlides" in n for n in names)
             # notesMaster 是 presentation 关系，保留
             assert any("notesMaster" in n for n in names)
+
+    def test_tag_part_stripped_on_duplicate(self, synthetic_tpl: Path,
+                                            catalog: TemplateCatalog, tmp_path: Path):
+        """S3 带 tags 部件复制到 2 页：custDataLst / tags rels / tag 部件全剥离。
+
+        多页共享同一 tag 部件会让 PowerPoint 拒绝打开文件——真模板 e2e
+        的实弹根因，此处为回归防线。
+        """
+        title3 = _slot(catalog, 3, "title")
+        pages = [
+            PageFill(page_no=1, slide_type=SlideType.COVER, template_slide=1,
+                     title="测试", slot_values={_slot(catalog, 1, "title"): "测试"}),
+            PageFill(page_no=2, slide_type=SlideType.TWO_COLUMN, template_slide=3,
+                     title="内容甲", slot_values={title3: "内容甲"}),
+            PageFill(page_no=3, slide_type=SlideType.TWO_COLUMN, template_slide=3,
+                     title="内容乙", slot_values={title3: "内容乙"}),
+        ]
+        out = tmp_path / "deck.pptx"
+        build_deck(synthetic_tpl, catalog, _deck(pages), out)
+
+        with zipfile.ZipFile(out) as z:
+            names = z.namelist()
+            slide_parts = [n for n in names if _SLIDE_PART.match(n)]
+            assert len(slide_parts) == 3  # 3 复制页，原 5 页已删
+            for part in slide_parts:
+                blob = z.read(part)
+                assert b"custDataLst" not in blob, part
+                rels = z.read(part.replace("slides/", "slides/_rels/") + ".rels")
+                assert b"/tags" not in rels, part
+                assert TAG_RID.encode() not in rels, part
+            assert not any(n.startswith("ppt/tags/") for n in names)
+            ct = z.read("[Content_Types].xml")
+            assert b"/ppt/tags/tag1.xml" not in ct  # Override 随孤儿清理同步移除
+
+        prs = Presentation(str(out))  # 剥离后 python-pptx 正常打开
+        assert len(prs.slides) == 3
+
+    def test_timing_stripped_on_duplicate(self, synthetic_tpl: Path,
+                                           catalog: TemplateCatalog, tmp_path: Path):
+        """S3 带 p:timing（spTgt spid 指向组内形状）复制后整树剥离。
+
+        删形状（槽删除/组塌缩）会让 timing 的 spid 悬空，PowerPoint 拒开
+        文件——真模板 e2e 的实弹根因（bisect：坏页全带悬空 spid），回归防线。
+        """
+        with zipfile.ZipFile(synthetic_tpl) as z:
+            assert b"p:timing" in z.read("ppt/slides/slide3.xml")  # fixture 守卫
+
+        title3 = _slot(catalog, 3, "title")
+        grp = sorted(s.slot_id for s in catalog.slide(3).slots
+                     if s.slot_id.startswith("2."))
+        pages = [
+            PageFill(page_no=1, slide_type=SlideType.TEXT_POINTS, template_slide=3,
+                     title="x", slot_values={title3: "x"}, slot_deletes=grp),
+            PageFill(page_no=2, slide_type=SlideType.TEXT_POINTS, template_slide=3,
+                     title="y", slot_values={title3: "y"}),
+        ]
+        out = tmp_path / "deck.pptx"
+        build_deck(synthetic_tpl, catalog, _deck(pages), out)
+
+        with zipfile.ZipFile(out) as z:
+            for part in (n for n in z.namelist() if _SLIDE_PART.match(n)):
+                assert b"p:timing" not in z.read(part), part
+        prs = Presentation(str(out))
+        assert len(prs.slides) == 2
 
     def test_native_table(self, synthetic_tpl: Path, catalog: TemplateCatalog,
                           tmp_path: Path):

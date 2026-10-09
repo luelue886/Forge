@@ -237,8 +237,9 @@ def _mark_roles(slots: list[dict], slide_h_in: float) -> None:
             s["role"] = "title"
         elif s["ph_type"] or s["ph_idx"]:
             # 占位符是明确的填充意图，不走短样本 design 豁免；只按容量降级
-            s["role"] = "body" if s["capacity"] >= 3 else "design"
-        elif (not s["has_run"] or s["capacity"] < 3
+            # （raw_cap：design 判定不受样本字重 bump 影响）
+            s["role"] = "body" if s["raw_cap"] >= 3 else "design"
+        elif (not s["has_run"] or s["raw_cap"] < 3
               or (sample.strip() and (w <= 2 or (w <= 4 and not _HAS_CJK.search(sample))))):
             # 短样本豁免只放行纯装饰位（"·"/"PART 01"/"CONTENTS"），
             # 汉字标签（“团队协作”4 当量）仍是可填内容
@@ -350,13 +351,21 @@ def _extract_slide(z: zipfile.ZipFile, slide_part: str, slide_no: int,
             if font_pt is None:
                 font_pt = _DEFAULT_FONT_PT
             w_in, h_in = aw / _EMU_IN, ah / _EMU_IN
+            sample = text.replace("\n", " / ")[:_SAMPLE_MAX]
+            raw_cap = _capacity(w_in, h_in, font_pt)
             slots.append({
                 "slot_id": ".".join(map(str, p)),
                 "path": p,
                 "x": ax / _EMU_IN, "y": ay / _EMU_IN, "w": w_in, "h": h_in,
                 "font_pt": font_pt,
-                "sample": text.replace("\n", " / ")[:_SAMPLE_MAX],
-                "capacity": _capacity(w_in, h_in, font_pt),
+                "sample": sample,
+                # 填充预算取几何公式与模板自身样本字重的较大者——公式对
+                # 大字号标题框系统性低估（样本 8 当量 vs 公式 6），照抄公式
+                # 会把"感谢观看！"截成"谢谢观"。design 豁免仍看 raw_cap：
+                # 英文成品大量单行小框公式容量 1.0 但样本 10+ 字（文字溢出
+                # 框外是模板设计意图），按 bump 翻成可填槽会破坏豁免策略
+                "capacity": max(raw_cap, text_weight(sample)),
+                "raw_cap": raw_cap,
                 "ph_type": ph_type, "ph_idx": ph_idx, "has_run": has_run,
             })
 

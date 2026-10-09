@@ -431,13 +431,22 @@ def template_checklist(deck: DeckBuild, catalog: TemplateCatalog,
             add(IssueCode.E_EMPTY_PLACEHOLDER, page.page_no, "页面无任何文本")
         cat_slide = catalog.slide(page.template_slide)
         filled = set(page.slot_values)
+        deleted = set(page.slot_deletes)
+        # 在场合法文本：design/page_no 槽原样保留 + 已填槽的新文本。
+        # 未删槽的 sample 段若只是其中子串（如 "Helvetica" 命中 design 槽
+        # 保留文案"比 Helvetica 早 61 年问世"），不构成遗留证据。
+        legit = [s.sample for s in cat_slide.slots
+                 if s.role in ("design", "page_no")]
+        legit += list(page.slot_values.values())
         for s in cat_slide.slots:
-            if s.role in ("design", "page_no") or s.slot_id in filled:
+            if (s.role in ("design", "page_no") or s.slot_id in filled
+                    or s.slot_id in deleted):
                 continue
             # sample 是段落以 " / " 连接的前 40 字；逐段前缀匹配（≥3 当量，防短词误报）
             for piece in s.sample.split(" / "):
                 piece = piece.strip()
-                if text_weight(piece) >= 3 and piece in text:
+                if (text_weight(piece) >= 3 and piece in text
+                        and not any(piece in ls for ls in legit)):
                     add(IssueCode.E_LEFTOVER, page.page_no,
                         f"槽 {s.slot_id} 未填充未删除，模板原文「{piece[:20]}」遗留")
                     break

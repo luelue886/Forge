@@ -75,6 +75,37 @@ def test_leftover_detected(catalog, tpl_path, tmp_path):
     assert any("跨部门协同" in i.detail for i in leftovers)
 
 
+def test_deleted_slot_not_flagged(catalog, tpl_path, tmp_path):
+    """已删槽不查 + 填充值含其 sample 段不误报（swiss e2e 实弹：删掉的
+    "Helvetica" 命中 design 槽保留文案被误报 E_LEFTOVER）。"""
+    from app.services.com_export import template_checklist
+
+    ids = _s3_ids(catalog)
+    pages = [_page(1, 3, {ids["title"]: "团队协作推进"}, deletes=ids["grp"])]
+    pptx = _build_deck(tpl_path, catalog, tmp_path, pages)
+    issues = template_checklist(
+        DeckBuild(meta=BuildMeta(title="t", template=catalog.stem), pages=pages),
+        catalog, pptx)
+    assert not any(i.code is IssueCode.E_LEFTOVER for i in issues), \
+        [i.detail for i in issues]
+
+
+def test_legit_substring_not_flagged(catalog, tpl_path, tmp_path):
+    """未删槽的 sample 段若被已填文本合法包含，不算遗留；真遗留照报。"""
+    from app.services.com_export import template_checklist
+
+    ids = _s3_ids(catalog)
+    # title 填充值含 2.0 的 sample「团队协作」→ 2.0 免报；2.1~2.3 真遗留
+    pages = [_page(1, 3, {ids["title"]: "团队协作要点"})]
+    pptx = _build_deck(tpl_path, catalog, tmp_path, pages)
+    issues = template_checklist(
+        DeckBuild(meta=BuildMeta(title="t", template=catalog.stem), pages=pages),
+        catalog, pptx)
+    leftovers = [i for i in issues if i.code is IssueCode.E_LEFTOVER]
+    assert len(leftovers) == 3
+    assert not any("团队协作" in i.detail for i in leftovers)
+
+
 def test_empty_page_detected(catalog, tpl_path, tmp_path):
     """非 design 槽全部删除且无表格 → 页面无任何文本。"""
     from app.services.com_export import template_checklist
