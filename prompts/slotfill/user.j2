@@ -1,0 +1,20 @@
+## 页面规划
+页码：{{ page_no }}
+类型：{{ slide_type }}
+标题草稿：{{ title }}
+要点提示：{{ brief }}
+
+## 模板页 S{{ slide_no }} 槽位（版式：{{ layout or "（无版式名）" }}；未列出的槽是装饰/页码位，禁止触碰）
+{% for s in slots %}
+- {{ s.slot_id }} [{{ s.role }} 容量{{ s.capacity }} {{ s.font_pt }}pt @{{ s.box }}] 模板原文：{{ s.sample }}
+{% endfor %}
+
+## 原文素材（src_refs 已解析）
+{{ source_text }}
+{% if errors %}
+
+## 上一版被代码拒收的原因（必须全部修正）
+{{ errors }}
+{% endif %}
+
+请输出这一页的槽位填充 JSON（title / slots / deletes / note）。
