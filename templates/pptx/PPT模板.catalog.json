@@ -1,0 +1,1897 @@
+{
+  "stem": "PPT模板",
+  "display_name": "安全教育课件（24 页）",
+  "n_slides": 24,
+  "slides": [
+    {
+      "slide_no": 1,
+      "layout": "标题幻灯片",
+      "signature": "S1 布局=标题幻灯片 [title≤6 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "title",
+          "x": 3.233,
+          "y": 2.713,
+          "w": 7.219,
+          "h": 1.313,
+          "font_pt": 72.0,
+          "sample": "儿童成长教育课件",
+          "capacity": 5.95
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "label",
+          "x": 5.858,
+          "y": 4.049,
+          "w": 1.969,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "一年级一班",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 6.0,
+      "role_hint": "cover"
+    },
+    {
+      "slide_no": 2,
+      "layout": "标题和内容",
+      "signature": "S2 布局=标题和内容 [title≤7 | label≤7 | label≤7 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "design",
+          "x": 5.252,
+          "y": 0.798,
+          "w": 2.11,
+          "h": 1.313,
+          "font_pt": 72.0,
+          "sample": "目录",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "title",
+          "x": 3.968,
+          "y": 2.636,
+          "w": 3.75,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "label",
+          "x": 5.011,
+          "y": 3.639,
+          "w": 3.75,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "label",
+          "x": 6.153,
+          "y": 4.641,
+          "w": 3.75,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "7.0",
+          "path": [
+            7,
+            0
+          ],
+          "role": "label",
+          "x": 7.298,
+          "y": 5.643,
+          "w": 3.75,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 6.8
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 6.8,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 3,
+      "layout": "空白",
+      "signature": "S3 布局=空白 [body≤136 | title≤4]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "body",
+          "x": 3.682,
+          "y": 2.892,
+          "w": 7.399,
+          "h": 1.717,
+          "font_pt": 16.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。它是提高人口素质的重要",
+          "capacity": 136.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "title",
+          "x": 5.924,
+          "y": 1.823,
+          "w": 2.624,
+          "h": 0.707,
+          "font_pt": 36.0,
+          "sample": "儿童教育",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 136.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 4,
+      "layout": "空白",
+      "signature": "S4 布局=空白 [label≤6]",
+      "slots": [
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "label",
+          "x": 5.017,
+          "y": 3.43,
+          "w": 3.548,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 5.95
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 6.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 5,
+      "layout": "空白",
+      "signature": "S5 布局=空白 [title≤4 | body≤46 | desc≤31]",
+      "slots": [
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "body",
+          "x": 8.925,
+          "y": 2.493,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "desc",
+          "x": 3.505,
+          "y": 4.889,
+          "w": 3.675,
+          "h": 0.753,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 30.599999999999998
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 45.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 6,
+      "layout": "空白",
+      "signature": "S6 布局=空白 [title≤4 | label≤3 | body≤46 | label≤3 | body≤46 | label≤3 | body≤46]",
+      "slots": [
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 4.68,
+          "y": 2.463,
+          "w": 1.604,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "body",
+          "x": 3.801,
+          "y": 3.024,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "label",
+          "x": 7.163,
+          "y": 3.977,
+          "w": 1.604,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "body",
+          "x": 6.284,
+          "y": 4.538,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "label",
+          "x": 10.182,
+          "y": 4.641,
+          "w": 1.604,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "body",
+          "x": 9.303,
+          "y": 5.202,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 45.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 7,
+      "layout": "空白",
+      "signature": "S7 布局=空白 [desc≤26 | desc≤26 | desc≤26 | desc≤26 | title≤4]",
+      "slots": [
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "page_no",
+          "x": 3.954,
+          "y": 1.424,
+          "w": 0.953,
+          "h": 0.841,
+          "font_pt": 44.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "desc",
+          "x": 3.497,
+          "y": 2.475,
+          "w": 1.868,
+          "h": 0.828,
+          "font_pt": 12.0,
+          "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
+          "capacity": 25.5
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "page_no",
+          "x": 8.448,
+          "y": 1.315,
+          "w": 0.953,
+          "h": 0.841,
+          "font_pt": 44.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "desc",
+          "x": 7.991,
+          "y": 2.366,
+          "w": 1.868,
+          "h": 0.828,
+          "font_pt": 12.0,
+          "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
+          "capacity": 25.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "page_no",
+          "x": 6.309,
+          "y": 3.794,
+          "w": 0.953,
+          "h": 0.841,
+          "font_pt": 44.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "desc",
+          "x": 5.851,
+          "y": 4.845,
+          "w": 1.868,
+          "h": 0.828,
+          "font_pt": 12.0,
+          "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
+          "capacity": 25.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 11.149,
+          "y": 3.662,
+          "w": 0.953,
+          "h": 0.841,
+          "font_pt": 44.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "desc",
+          "x": 10.692,
+          "y": 4.713,
+          "w": 1.868,
+          "h": 0.828,
+          "font_pt": 12.0,
+          "sample": "用户可以在投影仪或者计算机上进行演示也可以将演示文稿打印出来",
+          "capacity": 25.5
+        },
+        {
+          "slot_id": "9.0",
+          "path": [
+            9,
+            0
+          ],
+          "role": "title",
+          "x": 0.64,
+          "y": 0.725,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 25.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 8,
+      "layout": "空白",
+      "signature": "S8 布局=空白 [title≤4 | body≤105 | body≤105 | body≤105 | body≤105]",
+      "slots": [
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "body",
+          "x": 4.416,
+          "y": 1.475,
+          "w": 8.131,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 104.55
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "body",
+          "x": 4.416,
+          "y": 2.734,
+          "w": 8.131,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 104.55
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "body",
+          "x": 4.416,
+          "y": 3.993,
+          "w": 8.131,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 104.55
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "body",
+          "x": 4.416,
+          "y": 5.252,
+          "w": 8.131,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 104.55
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 104.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 9,
+      "layout": "空白",
+      "signature": "S9 布局=空白 [title≤4 | body≤126]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "body",
+          "x": 2.765,
+          "y": 1.536,
+          "w": 7.438,
+          "h": 1.161,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 125.8
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 125.8,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 10,
+      "layout": "空白",
+      "signature": "S10 布局=空白 [title≤4 | body≤46 | body≤46 | body≤46 | body≤46]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "body",
+          "x": 8.599,
+          "y": 1.942,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "page_no",
+          "x": 7.837,
+          "y": 2.094,
+          "w": 0.542,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "body",
+          "x": 8.599,
+          "y": 4.252,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "page_no",
+          "x": 7.837,
+          "y": 4.403,
+          "w": 0.542,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "body",
+          "x": 4.001,
+          "y": 3.097,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "page_no",
+          "x": 3.239,
+          "y": 3.249,
+          "w": 0.542,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "body",
+          "x": 4.001,
+          "y": 5.407,
+          "w": 3.675,
+          "h": 0.808,
+          "font_pt": 14.0,
+          "sample": "儿童教育是指对儿童进行德育、智育、体育等方面的培养和训练。",
+          "capacity": 45.9
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 3.239,
+          "y": 5.558,
+          "w": 0.542,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "04",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 45.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 11,
+      "layout": "空白",
+      "signature": "S11 布局=空白 [label≤6]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "label",
+          "x": 5.017,
+          "y": 3.43,
+          "w": 3.548,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 5.95
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 6.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 12,
+      "layout": "空白",
+      "signature": "S12 布局=空白 [body≤101 | body≤101 | title≤4]",
+      "slots": [
+        {
+          "slot_id": "2.0.1",
+          "path": [
+            2,
+            0,
+            1
+          ],
+          "role": "body",
+          "x": 6.655,
+          "y": 3.584,
+          "w": 3.569,
+          "h": 1.868,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 101.14999999999999
+        },
+        {
+          "slot_id": "3.0.1",
+          "path": [
+            3,
+            0,
+            1
+          ],
+          "role": "body",
+          "x": 1.866,
+          "y": 2.031,
+          "w": 3.569,
+          "h": 1.868,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 101.14999999999999
+        },
+        {
+          "slot_id": "8.0",
+          "path": [
+            8,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 101.1,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 13,
+      "layout": "空白",
+      "signature": "S13 布局=空白 [title≤4 | desc≤12 | label≤4 | desc≤12 | label≤4 | desc≤12 | label≤4 | desc≤12 | label≤4 | desc≤12 | …]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "desc",
+          "x": 2.597,
+          "y": 3.315,
+          "w": 2.993,
+          "h": 0.454,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "label",
+          "x": 3.325,
+          "y": 2.884,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "desc",
+          "x": 3.762,
+          "y": 6.419,
+          "w": 2.993,
+          "h": 0.454,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "label",
+          "x": 4.49,
+          "y": 5.988,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "desc",
+          "x": 7.204,
+          "y": 4.85,
+          "w": 2.993,
+          "h": 0.454,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "label",
+          "x": 7.932,
+          "y": 4.42,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "7.0",
+          "path": [
+            7,
+            0
+          ],
+          "role": "desc",
+          "x": 5.382,
+          "y": 2.12,
+          "w": 2.993,
+          "h": 0.454,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "label",
+          "x": 6.111,
+          "y": 1.689,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "8.0",
+          "path": [
+            8,
+            0
+          ],
+          "role": "desc",
+          "x": 8.715,
+          "y": 2.718,
+          "w": 2.993,
+          "h": 0.454,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "label",
+          "x": 9.443,
+          "y": 2.288,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 11,
+      "fillable_cap": 11.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 14,
+      "layout": "空白",
+      "signature": "S14 布局=空白 [title≤4 | body≤95 | body≤95]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "body",
+          "x": 1.573,
+          "y": 4.323,
+          "w": 3.328,
+          "h": 1.868,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 95.2
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "body",
+          "x": 8.199,
+          "y": 2.107,
+          "w": 3.328,
+          "h": 1.868,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 95.2
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 95.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 15,
+      "layout": "空白",
+      "signature": "S15 布局=空白 [title≤4 | body≤105 | label≤6]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "body",
+          "x": 6.162,
+          "y": 2.917,
+          "w": 6.206,
+          "h": 1.161,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 105.39999999999999
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "label",
+          "x": 4.937,
+          "y": 5.664,
+          "w": 3.641,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "点击输入标题",
+          "capacity": 5.95
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 105.4,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 16,
+      "layout": "空白",
+      "signature": "S16 布局=空白 [label≤6]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "label",
+          "x": 5.017,
+          "y": 3.43,
+          "w": 3.548,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 5.95
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 6.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 17,
+      "layout": "空白",
+      "signature": "S17 布局=空白 [title≤4 | body≤83 | label≤4 | body≤83 | label≤4 | body≤83 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.1.0",
+          "path": [
+            3,
+            1,
+            0
+          ],
+          "role": "body",
+          "x": 3.358,
+          "y": 3.177,
+          "w": 2.993,
+          "h": 1.813,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 83.3
+        },
+        {
+          "slot_id": "3.1.1",
+          "path": [
+            3,
+            1,
+            1
+          ],
+          "role": "label",
+          "x": 4.086,
+          "y": 2.746,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "4.1.0",
+          "path": [
+            4,
+            1,
+            0
+          ],
+          "role": "body",
+          "x": 6.37,
+          "y": 4.682,
+          "w": 2.993,
+          "h": 1.813,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 83.3
+        },
+        {
+          "slot_id": "4.1.1",
+          "path": [
+            4,
+            1,
+            1
+          ],
+          "role": "label",
+          "x": 7.098,
+          "y": 4.251,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5.1.0",
+          "path": [
+            5,
+            1,
+            0
+          ],
+          "role": "body",
+          "x": 9.382,
+          "y": 2.869,
+          "w": 2.993,
+          "h": 1.813,
+          "font_pt": 14.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 83.3
+        },
+        {
+          "slot_id": "5.1.1",
+          "path": [
+            5,
+            1,
+            1
+          ],
+          "role": "label",
+          "x": 10.11,
+          "y": 2.438,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 83.3,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 18,
+      "layout": "空白",
+      "signature": "S18 布局=空白 [title≤4 | body≤66 | body≤66 | body≤66 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "body",
+          "x": 4.117,
+          "y": 3.37,
+          "w": 2.299,
+          "h": 1.313,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 66.3
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "body",
+          "x": 6.869,
+          "y": 3.37,
+          "w": 2.299,
+          "h": 1.313,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 66.3
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "body",
+          "x": 9.621,
+          "y": 3.37,
+          "w": 2.299,
+          "h": 1.313,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 66.3
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "label",
+          "x": 7.028,
+          "y": 5.188,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 66.3,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 19,
+      "layout": "空白",
+      "signature": "S19 布局=空白 [title≤4 | body≤65 | body≤65 | body≤65 | body≤65]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.0.1",
+          "path": [
+            3,
+            0,
+            1
+          ],
+          "role": "page_no",
+          "x": 2.685,
+          "y": 1.56,
+          "w": 0.942,
+          "h": 0.998,
+          "font_pt": 18.0,
+          "sample": "01",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "body",
+          "x": 3.847,
+          "y": 1.739,
+          "w": 6.552,
+          "h": 0.66,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "4.0.1",
+          "path": [
+            4,
+            0,
+            1
+          ],
+          "role": "page_no",
+          "x": 3.136,
+          "y": 2.847,
+          "w": 0.942,
+          "h": 0.998,
+          "font_pt": 18.0,
+          "sample": "01",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "body",
+          "x": 4.298,
+          "y": 3.026,
+          "w": 6.552,
+          "h": 0.66,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "5.0.1",
+          "path": [
+            5,
+            0,
+            1
+          ],
+          "role": "page_no",
+          "x": 3.607,
+          "y": 4.134,
+          "w": 0.942,
+          "h": 0.998,
+          "font_pt": 18.0,
+          "sample": "01",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "body",
+          "x": 4.768,
+          "y": 4.313,
+          "w": 6.552,
+          "h": 0.66,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "6.0.1",
+          "path": [
+            6,
+            0,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.041,
+          "y": 5.421,
+          "w": 0.942,
+          "h": 0.998,
+          "font_pt": 18.0,
+          "sample": "01",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "body",
+          "x": 5.203,
+          "y": 5.6,
+          "w": 6.552,
+          "h": 0.66,
+          "font_pt": 12.0,
+          "sample": "青春期到来以前的未成年人被称为儿童或少年，他们在思想、性格、智力、体魄等方面的可",
+          "capacity": 64.6
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 64.6,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 20,
+      "layout": "空白",
+      "signature": "S20 布局=空白 [label≤6]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "label",
+          "x": 5.017,
+          "y": 3.43,
+          "w": 3.548,
+          "h": 0.64,
+          "font_pt": 32.0,
+          "sample": "输入标题",
+          "capacity": 5.95
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 6.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 21,
+      "layout": "空白",
+      "signature": "S21 布局=空白 [title≤4 | body≤72 | label≤4 | body≤72 | label≤4 | body≤72 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "page_no",
+          "x": 6.363,
+          "y": 2.697,
+          "w": 0.34,
+          "h": 0.34,
+          "font_pt": 14.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "page_no",
+          "x": 6.363,
+          "y": 2.328,
+          "w": 0.34,
+          "h": 0.34,
+          "font_pt": 14.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "page_no",
+          "x": 6.363,
+          "y": 1.965,
+          "w": 0.34,
+          "h": 0.34,
+          "font_pt": 14.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "body",
+          "x": 1.664,
+          "y": 2.396,
+          "w": 2.993,
+          "h": 1.265,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 72.25
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "label",
+          "x": 3.34,
+          "y": 1.954,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "body",
+          "x": 1.673,
+          "y": 4.678,
+          "w": 2.993,
+          "h": 1.265,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 72.25
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "label",
+          "x": 3.349,
+          "y": 4.237,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "body",
+          "x": 8.688,
+          "y": 2.719,
+          "w": 2.993,
+          "h": 1.265,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 72.25
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "label",
+          "x": 8.663,
+          "y": 2.305,
+          "w": 1.537,
+          "h": 0.438,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 72.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 22,
+      "layout": "空白",
+      "signature": "S22 布局=空白 [title≤4 | body≤72 | body≤72 | body≤72]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "3.0.3",
+          "path": [
+            3,
+            0,
+            3
+          ],
+          "role": "design",
+          "x": 2.559,
+          "y": 2.447,
+          "w": 1.272,
+          "h": 0.337,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "body",
+          "x": 1.31,
+          "y": 3.417,
+          "w": 2.993,
+          "h": 1.265,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 72.25
+        },
+        {
+          "slot_id": "4.0.3",
+          "path": [
+            4,
+            0,
+            3
+          ],
+          "role": "design",
+          "x": 6.465,
+          "y": 3.595,
+          "w": 1.272,
+          "h": 0.337,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "body",
+          "x": 5.216,
+          "y": 4.565,
+          "w": 2.993,
+          "h": 1.265,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 72.25
+        },
+        {
+          "slot_id": "5.0.3",
+          "path": [
+            5,
+            0,
+            3
+          ],
+          "role": "design",
+          "x": 10.372,
+          "y": 1.593,
+          "w": 1.272,
+          "h": 0.337,
+          "font_pt": 20.0,
+          "sample": "输入标题",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "body",
+          "x": 9.123,
+          "y": 2.563,
+          "w": 2.993,
+          "h": 1.265,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 72.25
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 72.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 23,
+      "layout": "空白",
+      "signature": "S23 布局=空白 [title≤4 | body≤102 | body≤102]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.696,
+          "w": 2.052,
+          "h": 0.505,
+          "font_pt": 24.0,
+          "sample": "输入标题",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "body",
+          "x": 6.985,
+          "y": 3.586,
+          "w": 5.193,
+          "h": 1.01,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 102.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "body",
+          "x": 6.985,
+          "y": 2.273,
+          "w": 5.193,
+          "h": 1.01,
+          "font_pt": 12.0,
+          "sample": "它是提高人口素质的重要环节。青春期到来以前的未成年人被称为儿童或少年，他们在思想",
+          "capacity": 102.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 102.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 24,
+      "layout": "标题幻灯片",
+      "signature": "S24 布局=标题幻灯片 [title≤3]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "title",
+          "x": 5.217,
+          "y": 2.972,
+          "w": 5.033,
+          "h": 1.313,
+          "font_pt": 72.0,
+          "sample": "感谢观看！",
+          "capacity": 3.4
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 3.4,
+      "role_hint": "closing"
+    }
+  ]
+}

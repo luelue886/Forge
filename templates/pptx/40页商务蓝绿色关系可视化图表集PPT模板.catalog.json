@@ -1,0 +1,2521 @@
+{
+  "stem": "40页商务蓝绿色关系可视化图表集PPT模板",
+  "display_name": "商务蓝绿图表集（26 页）",
+  "n_slides": 26,
+  "slides": [
+    {
+      "slide_no": 1,
+      "layout": "标题幻灯片",
+      "signature": "S1 布局=标题幻灯片 [title≤8 | body≤75 | body≤14]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 1.091,
+          "y": 2.502,
+          "w": 5.686,
+          "h": 2.632,
+          "font_pt": 72.0,
+          "sample": "商务蓝绿色关系可视化图表集PPT模板",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 1.091,
+          "y": 5.247,
+          "w": 5.686,
+          "h": 1.361,
+          "font_pt": 18.0,
+          "sample": "单击此处添加副标题",
+          "capacity": 74.8
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "body",
+          "x": 1.091,
+          "y": 0.347,
+          "w": 5.686,
+          "h": 2.091,
+          "font_pt": 48.0,
+          "sample": "20XX",
+          "capacity": 13.6
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 74.8,
+      "role_hint": "cover"
+    },
+    {
+      "slide_no": 2,
+      "layout": "目录",
+      "signature": "S2 布局=目录 [title≤7 | label≤5 | label≤5 | label≤5 | label≤5 | label≤5]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.561,
+          "y": 1.943,
+          "w": 6.375,
+          "h": 1.109,
+          "font_pt": 56.0,
+          "sample": "CONTENTS",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "page_no",
+          "x": 0.397,
+          "y": 3.285,
+          "w": 0.917,
+          "h": 0.817,
+          "font_pt": 45.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "label",
+          "x": 1.447,
+          "y": 3.351,
+          "w": 2.418,
+          "h": 0.684,
+          "font_pt": 24.0,
+          "sample": "模板的设计特点",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "page_no",
+          "x": 4.032,
+          "y": 3.285,
+          "w": 0.917,
+          "h": 0.817,
+          "font_pt": 45.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "label",
+          "x": 5.083,
+          "y": 3.351,
+          "w": 2.418,
+          "h": 0.684,
+          "font_pt": 24.0,
+          "sample": "模板的适用场景",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 0.397,
+          "y": 4.364,
+          "w": 0.917,
+          "h": 0.817,
+          "font_pt": 45.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "label",
+          "x": 1.447,
+          "y": 4.431,
+          "w": 2.418,
+          "h": 0.684,
+          "font_pt": 24.0,
+          "sample": "模板的图表类型",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "page_no",
+          "x": 4.032,
+          "y": 4.364,
+          "w": 0.917,
+          "h": 0.817,
+          "font_pt": 45.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "label",
+          "x": 5.083,
+          "y": 4.431,
+          "w": 2.418,
+          "h": 0.684,
+          "font_pt": 24.0,
+          "sample": "模板的使用方法",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "page_no",
+          "x": 0.397,
+          "y": 5.444,
+          "w": 0.917,
+          "h": 0.817,
+          "font_pt": 45.0,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "label",
+          "x": 1.447,
+          "y": 5.51,
+          "w": 2.418,
+          "h": 0.684,
+          "font_pt": 24.0,
+          "sample": "模板的优势",
+          "capacity": 5.1
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 6.8,
+      "role_hint": "toc"
+    },
+    {
+      "slide_no": 3,
+      "layout": "节标题",
+      "signature": "S3 布局=节标题 [title≤11 | body≤85]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 7.301,
+          "y": 3.217,
+          "w": 5.83,
+          "h": 0.83,
+          "font_pt": 30.0,
+          "sample": "模板的设计特点",
+          "capacity": 11.049999999999999
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "章节副标题",
+          "capacity": 85.0
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "page_no",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "01",
+          "capacity": 85.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 85.0,
+      "role_hint": "section"
+    },
+    {
+      "slide_no": 4,
+      "layout": "仅标题",
+      "signature": "S4 布局=仅标题 [title≤78 | desc≤41 | label≤8 | desc≤41 | label≤8 | desc≤41 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "色彩搭配",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "desc",
+          "x": 1.36,
+          "y": 5.833,
+          "w": 2.802,
+          "h": 1.207,
+          "font_pt": 16.0,
+          "sample": "蓝绿色调的搭配给人以清新、专业的感觉，适合商务场合，易于阅读。",
+          "capacity": 40.8
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "label",
+          "x": 1.36,
+          "y": 5.286,
+          "w": 2.802,
+          "h": 0.505,
+          "font_pt": 20.0,
+          "sample": "和谐的蓝绿色调",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "desc",
+          "x": 5.272,
+          "y": 5.833,
+          "w": 2.802,
+          "h": 1.207,
+          "font_pt": 16.0,
+          "sample": "通过深浅不一的蓝绿色对比，增强图表的层次感，突出关键数据。",
+          "capacity": 40.8
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "label",
+          "x": 5.272,
+          "y": 5.286,
+          "w": 2.802,
+          "h": 0.505,
+          "font_pt": 20.0,
+          "sample": "色彩对比与层次感",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "desc",
+          "x": 9.184,
+          "y": 5.833,
+          "w": 2.802,
+          "h": 1.207,
+          "font_pt": 16.0,
+          "sample": "蓝绿色象征着信任与成长，使用在商务图表中，可传递积极的商业信息。",
+          "capacity": 40.8
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "label",
+          "x": 9.184,
+          "y": 5.286,
+          "w": 2.802,
+          "h": 0.505,
+          "font_pt": 20.0,
+          "sample": "色彩的象征意义",
+          "capacity": 7.6499999999999995
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 5,
+      "layout": "仅标题",
+      "signature": "S5 布局=仅标题 [title≤78 | body≤89 | body≤89]",
+      "slots": [
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "布局结构",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "body",
+          "x": 6.792,
+          "y": 5.704,
+          "w": 4.331,
+          "h": 1.333,
+          "font_pt": 14.0,
+          "sample": "通过颜色和形状的对比，模板强调了信息的层次感，使数据展示更为直观。",
+          "capacity": 89.25
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "design",
+          "x": 6.792,
+          "y": 5.201,
+          "w": 4.331,
+          "h": 0.382,
+          "font_pt": 20.0,
+          "sample": "清晰的视觉层次",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "body",
+          "x": 0.761,
+          "y": 5.704,
+          "w": 4.331,
+          "h": 1.333,
+          "font_pt": 14.0,
+          "sample": "模板采用模块化设计，便于用户根据需要自由组合和调整图表布局。",
+          "capacity": 89.25
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "design",
+          "x": 0.761,
+          "y": 5.201,
+          "w": 4.331,
+          "h": 0.382,
+          "font_pt": 20.0,
+          "sample": "模块化设计",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 89.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 6,
+      "layout": "仅标题",
+      "signature": "S6 布局=仅标题 [title≤78 | label≤7 | body≤71 | label≤7 | body≤71 | label≤7 | body≤71]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "字体选择",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "label",
+          "x": 1.151,
+          "y": 3.834,
+          "w": 2.91,
+          "h": 0.583,
+          "font_pt": 24.0,
+          "sample": "专业性与可读性",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "body",
+          "x": 1.151,
+          "y": 4.527,
+          "w": 2.911,
+          "h": 2.007,
+          "font_pt": 16.0,
+          "sample": "选择清晰易读的字体，确保信息传达的专业性和效率。",
+          "capacity": 71.39999999999999
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "label",
+          "x": 5.221,
+          "y": 3.834,
+          "w": 2.909,
+          "h": 0.583,
+          "font_pt": 24.0,
+          "sample": "颜色搭配",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "body",
+          "x": 5.22,
+          "y": 4.527,
+          "w": 2.911,
+          "h": 2.007,
+          "font_pt": 16.0,
+          "sample": "字体颜色与背景色形成对比，增强视觉效果，避免阅读疲劳。",
+          "capacity": 71.39999999999999
+        },
+        {
+          "slot_id": "11",
+          "path": [
+            11
+          ],
+          "role": "label",
+          "x": 9.291,
+          "y": 3.834,
+          "w": 2.907,
+          "h": 0.583,
+          "font_pt": 24.0,
+          "sample": "风格一致性",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "12",
+          "path": [
+            12
+          ],
+          "role": "body",
+          "x": 9.289,
+          "y": 4.527,
+          "w": 2.911,
+          "h": 2.007,
+          "font_pt": 16.0,
+          "sample": "整个模板中使用统一风格的字体，保持整体设计的协调性和专业感。",
+          "capacity": 71.39999999999999
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 7,
+      "layout": "仅标题",
+      "signature": "S7 布局=仅标题 [title≤78 | body≤60 | body≤60 | body≤60 | body≤60 | label≤8 | label≤8 | label≤8 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "图表风格",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "body",
+          "x": 1.052,
+          "y": 3.872,
+          "w": 2.182,
+          "h": 1.928,
+          "font_pt": 14.0,
+          "sample": "采用清晰的线条和颜色，确保信息传达直观易懂，避免视觉干扰。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "page_no",
+          "x": 1.052,
+          "y": 2.16,
+          "w": 0.76,
+          "h": 0.745,
+          "font_pt": 20.0,
+          "sample": "01",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "body",
+          "x": 4.079,
+          "y": 3.876,
+          "w": 2.182,
+          "h": 1.928,
+          "font_pt": 14.0,
+          "sample": "使用蓝绿色调，营造专业稳重的商务氛围，同时不失活力。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "page_no",
+          "x": 4.079,
+          "y": 2.16,
+          "w": 0.76,
+          "h": 0.745,
+          "font_pt": 20.0,
+          "sample": "02",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "body",
+          "x": 7.107,
+          "y": 3.872,
+          "w": 2.182,
+          "h": 1.928,
+          "font_pt": 14.0,
+          "sample": "集成动态图表和交互式元素，使数据展示更加生动，增强用户体验。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "page_no",
+          "x": 7.107,
+          "y": 2.16,
+          "w": 0.76,
+          "h": 0.745,
+          "font_pt": 20.0,
+          "sample": "03",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "11",
+          "path": [
+            11
+          ],
+          "role": "body",
+          "x": 10.134,
+          "y": 3.876,
+          "w": 2.182,
+          "h": 1.928,
+          "font_pt": 14.0,
+          "sample": "图表设计采用模块化，便于用户根据需要自由组合和调整，提高灵活性。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "12",
+          "path": [
+            12
+          ],
+          "role": "page_no",
+          "x": 10.134,
+          "y": 2.16,
+          "w": 0.76,
+          "h": 0.745,
+          "font_pt": 20.0,
+          "sample": "04",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "17",
+          "path": [
+            17
+          ],
+          "role": "label",
+          "x": 1.055,
+          "y": 3.065,
+          "w": 2.183,
+          "h": 0.485,
+          "font_pt": 16.0,
+          "sample": "简洁明了的视觉效果",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "18",
+          "path": [
+            18
+          ],
+          "role": "label",
+          "x": 4.086,
+          "y": 3.066,
+          "w": 2.183,
+          "h": 0.485,
+          "font_pt": 16.0,
+          "sample": "专业商务色彩搭配",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "19",
+          "path": [
+            19
+          ],
+          "role": "label",
+          "x": 7.107,
+          "y": 3.065,
+          "w": 2.183,
+          "h": 0.485,
+          "font_pt": 16.0,
+          "sample": "动态交互式元素",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "20",
+          "path": [
+            20
+          ],
+          "role": "label",
+          "x": 10.134,
+          "y": 3.066,
+          "w": 2.183,
+          "h": 0.485,
+          "font_pt": 16.0,
+          "sample": "模块化设计",
+          "capacity": 7.6499999999999995
+        }
+      ],
+      "fillable": 9,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 8,
+      "layout": "节标题",
+      "signature": "S8 布局=节标题 [title≤11 | body≤85]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 7.301,
+          "y": 3.217,
+          "w": 5.83,
+          "h": 0.83,
+          "font_pt": 30.0,
+          "sample": "模板的适用场景",
+          "capacity": 11.049999999999999
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "章节副标题",
+          "capacity": 85.0
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "page_no",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "02",
+          "capacity": 85.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 85.0,
+      "role_hint": "section"
+    },
+    {
+      "slide_no": 9,
+      "layout": "仅标题",
+      "signature": "S9 布局=仅标题 [title≤78 | body≤102 | body≤102]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "商务报告",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "body",
+          "x": 6.567,
+          "y": 2.393,
+          "w": 6.005,
+          "h": 1.065,
+          "font_pt": 14.0,
+          "sample": "利用图表展示市场趋势、竞争对手分析，帮助决策者快速把握市场动态。",
+          "capacity": 102.0
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "design",
+          "x": 6.567,
+          "y": 1.905,
+          "w": 6.005,
+          "h": 0.404,
+          "font_pt": 22.0,
+          "sample": "市场分析报告",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 5.987,
+          "y": 1.905,
+          "w": 0.522,
+          "h": 0.404,
+          "font_pt": 24.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "body",
+          "x": 6.567,
+          "y": 5.085,
+          "w": 6.005,
+          "h": 1.065,
+          "font_pt": 14.0,
+          "sample": "通过可视化数据呈现公司的财务健康状况，包括收入、支出和利润等关键指标。",
+          "capacity": 102.0
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "design",
+          "x": 6.567,
+          "y": 4.597,
+          "w": 6.005,
+          "h": 0.404,
+          "font_pt": 22.0,
+          "sample": "财务状况报告",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "page_no",
+          "x": 5.987,
+          "y": 4.597,
+          "w": 0.522,
+          "h": 0.404,
+          "font_pt": 24.0,
+          "sample": "02",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 102.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 10,
+      "layout": "仅标题",
+      "signature": "S10 布局=仅标题 [title≤78 | body≤95 | body≤95]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "数据分析",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "body",
+          "x": 1.298,
+          "y": 1.562,
+          "w": 5.666,
+          "h": 1.15,
+          "font_pt": 14.0,
+          "sample": "模板采用模块化设计，便于用户根据需求自由组合图表，实现信息的清晰展示。",
+          "capacity": 95.2
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "design",
+          "x": 2.419,
+          "y": 2.836,
+          "w": 3.424,
+          "h": 0.348,
+          "font_pt": 18.0,
+          "sample": "模块化设计",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "body",
+          "x": 6.37,
+          "y": 5.348,
+          "w": 5.665,
+          "h": 1.15,
+          "font_pt": 14.0,
+          "sample": "图表集中的信息层次分明，通过颜色和空间的合理分配，确保视觉上的舒适和信息的易读性",
+          "capacity": 95.2
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "design",
+          "x": 7.551,
+          "y": 4.936,
+          "w": 3.423,
+          "h": 0.348,
+          "font_pt": 18.0,
+          "sample": "层次分明的布局",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 95.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 11,
+      "layout": "仅标题",
+      "signature": "S11 布局=仅标题 [title≤78 | body≤76 | body≤76]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "项目展示",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "body",
+          "x": 2.117,
+          "y": 4.174,
+          "w": 3.177,
+          "h": 1.725,
+          "font_pt": 14.0,
+          "sample": "利用图表展示市场趋势、竞争对手分析，帮助决策者快速把握市场动态。",
+          "capacity": 76.5
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "design",
+          "x": 2.117,
+          "y": 3.665,
+          "w": 3.177,
+          "h": 0.403,
+          "font_pt": 22.0,
+          "sample": "市场分析报告",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "body",
+          "x": 7.693,
+          "y": 4.174,
+          "w": 3.177,
+          "h": 1.725,
+          "font_pt": 14.0,
+          "sample": "通过图表清晰呈现公司的财务健康状况，包括收入、支出和利润等关键指标。",
+          "capacity": 76.5
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "design",
+          "x": 7.693,
+          "y": 3.665,
+          "w": 3.177,
+          "h": 0.403,
+          "font_pt": 22.0,
+          "sample": "财务状况报告",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 12,
+      "layout": "节标题",
+      "signature": "S12 布局=节标题 [title≤11 | body≤85]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 7.301,
+          "y": 3.217,
+          "w": 5.83,
+          "h": 0.83,
+          "font_pt": 30.0,
+          "sample": "模板的图表类型",
+          "capacity": 11.049999999999999
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "章节副标题",
+          "capacity": 85.0
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "page_no",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "03",
+          "capacity": 85.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 85.0,
+      "role_hint": "section"
+    },
+    {
+      "slide_no": 13,
+      "layout": "仅标题",
+      "signature": "S13 布局=仅标题 [title≤71 | body≤60 | desc≤16 | body≤60 | desc≤16 | body≤60 | desc≤16]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "title",
+          "x": 1.207,
+          "y": 1.274,
+          "w": 5.457,
+          "h": 1.338,
+          "font_pt": 18.0,
+          "sample": "关系图",
+          "capacity": 71.39999999999999
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "body",
+          "x": 1.299,
+          "y": 3.603,
+          "w": 5.511,
+          "h": 0.52,
+          "font_pt": 11.0,
+          "sample": "选择清晰易读的字体，确保商务图表的专业感和信息的快速传达。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "desc",
+          "x": 1.299,
+          "y": 3.025,
+          "w": 5.507,
+          "h": 0.52,
+          "font_pt": 20.0,
+          "sample": "专业性与可读性",
+          "capacity": 16.15
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "body",
+          "x": 1.299,
+          "y": 4.731,
+          "w": 5.511,
+          "h": 0.52,
+          "font_pt": 11.0,
+          "sample": "字体颜色与图表背景色形成对比，增强视觉效果，避免阅读疲劳。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "desc",
+          "x": 1.299,
+          "y": 4.153,
+          "w": 5.507,
+          "h": 0.52,
+          "font_pt": 20.0,
+          "sample": "颜色搭配",
+          "capacity": 16.15
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "body",
+          "x": 1.299,
+          "y": 5.86,
+          "w": 5.511,
+          "h": 0.52,
+          "font_pt": 11.0,
+          "sample": "整个PPT模板中使用统一风格的字体，保持整体设计的协调性和专业性。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "desc",
+          "x": 1.299,
+          "y": 5.282,
+          "w": 5.507,
+          "h": 0.52,
+          "font_pt": 20.0,
+          "sample": "风格一致性",
+          "capacity": 16.15
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 71.4,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 14,
+      "layout": "仅标题",
+      "signature": "S14 布局=仅标题 [title≤78 | body≤89 | desc≤12 | body≤89 | desc≤12]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "流程图",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "body",
+          "x": 0.767,
+          "y": 5.062,
+          "w": 5.539,
+          "h": 1.799,
+          "font_pt": 18.0,
+          "sample": "模板采用模块化设计，便于用户根据需要自由组合和调整图表布局。",
+          "capacity": 89.25
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "desc",
+          "x": 0.767,
+          "y": 4.237,
+          "w": 4.949,
+          "h": 0.667,
+          "font_pt": 24.0,
+          "sample": "模块化设计",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 5.609,
+          "y": 4.237,
+          "w": 0.697,
+          "h": 0.667,
+          "font_pt": 24.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "body",
+          "x": 7.036,
+          "y": 5.062,
+          "w": 5.54,
+          "h": 1.799,
+          "font_pt": 18.0,
+          "sample": "图表集中的信息层次分明，确保观众能迅速抓住数据的关键点。",
+          "capacity": 89.25
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "desc",
+          "x": 7.036,
+          "y": 4.237,
+          "w": 4.951,
+          "h": 0.667,
+          "font_pt": 24.0,
+          "sample": "清晰的信息层次",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "page_no",
+          "x": 11.879,
+          "y": 4.237,
+          "w": 0.697,
+          "h": 0.667,
+          "font_pt": 24.0,
+          "sample": "02",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 89.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 15,
+      "layout": "仅标题",
+      "signature": "S15 布局=仅标题 [title≤80 | body≤66 | body≤66 | body≤66 | label≤8 | label≤8 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.665,
+          "y": 0.665,
+          "w": 11.996,
+          "h": 0.772,
+          "font_pt": 18.0,
+          "sample": "柱状图",
+          "capacity": 79.89999999999999
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 1.833,
+          "y": 4.415,
+          "w": 1.256,
+          "h": 0.52,
+          "font_pt": 27.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "body",
+          "x": 1.052,
+          "y": 5.471,
+          "w": 2.817,
+          "h": 1.599,
+          "font_pt": 14.0,
+          "sample": "蓝绿色调给人以平静和专业感，适合商务场合，易于阅读和视觉舒适。",
+          "capacity": 66.3
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "page_no",
+          "x": 6.063,
+          "y": 4.406,
+          "w": 1.256,
+          "h": 0.52,
+          "font_pt": 27.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "body",
+          "x": 5.283,
+          "y": 5.461,
+          "w": 2.817,
+          "h": 1.599,
+          "font_pt": 14.0,
+          "sample": "通过色彩明暗对比和饱和度调整，增强图表的层次感，突出关键数据。",
+          "capacity": 66.3
+        },
+        {
+          "slot_id": "11",
+          "path": [
+            11
+          ],
+          "role": "page_no",
+          "x": 10.293,
+          "y": 4.406,
+          "w": 1.256,
+          "h": 0.52,
+          "font_pt": 27.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "12",
+          "path": [
+            12
+          ],
+          "role": "body",
+          "x": 9.513,
+          "y": 5.461,
+          "w": 2.817,
+          "h": 1.599,
+          "font_pt": 14.0,
+          "sample": "蓝绿色系象征着信任和成长，适合表达商务合作和持续发展的主题。",
+          "capacity": 66.3
+        },
+        {
+          "slot_id": "13",
+          "path": [
+            13
+          ],
+          "role": "label",
+          "x": 1.052,
+          "y": 4.962,
+          "w": 2.819,
+          "h": 0.411,
+          "font_pt": 18.0,
+          "sample": "和谐的蓝绿色调",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "14",
+          "path": [
+            14
+          ],
+          "role": "label",
+          "x": 5.283,
+          "y": 4.962,
+          "w": 2.819,
+          "h": 0.411,
+          "font_pt": 18.0,
+          "sample": "色彩对比与层次感",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "15",
+          "path": [
+            15
+          ],
+          "role": "label",
+          "x": 9.513,
+          "y": 4.962,
+          "w": 2.819,
+          "h": 0.411,
+          "font_pt": 18.0,
+          "sample": "色彩的象征意义",
+          "capacity": 8.5
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 79.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 16,
+      "layout": "仅标题",
+      "signature": "S16 布局=仅标题 [title≤78 | body≤65 | body≤65 | desc≤20 | desc≤20]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.431,
+          "w": 11.811,
+          "h": 0.866,
+          "font_pt": 18.0,
+          "sample": "饼图",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "body",
+          "x": 1.72,
+          "y": 5.807,
+          "w": 4.084,
+          "h": 1.233,
+          "font_pt": 15.0,
+          "sample": "在年度总结会议上，使用可视化图表清晰展示公司业绩增长和财务状况。",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "body",
+          "x": 7.523,
+          "y": 5.807,
+          "w": 4.084,
+          "h": 1.233,
+          "font_pt": 15.0,
+          "sample": "通过蓝绿色关系图展示市场竞争态势，帮助决策者理解市场动态和趋势。",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "desc",
+          "x": 1.682,
+          "y": 4.422,
+          "w": 4.16,
+          "h": 1.053,
+          "font_pt": 24.0,
+          "sample": "年度业绩汇报",
+          "capacity": 20.4
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "desc",
+          "x": 7.484,
+          "y": 4.422,
+          "w": 4.16,
+          "h": 1.053,
+          "font_pt": 24.0,
+          "sample": "市场分析报告",
+          "capacity": 20.4
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 17,
+      "layout": "仅标题",
+      "signature": "S17 布局=仅标题 [title≤78 | body≤65 | desc≤10 | body≤65 | desc≤10]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "折线图",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "body",
+          "x": 2.573,
+          "y": 2.358,
+          "w": 4.391,
+          "h": 1.318,
+          "font_pt": 16.0,
+          "sample": "模板采用模块化设计，便于用户根据需求自由组合图表，提高信息展示的灵活性。",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "desc",
+          "x": 2.573,
+          "y": 1.516,
+          "w": 4.391,
+          "h": 0.761,
+          "font_pt": 24.0,
+          "sample": "模块化设计",
+          "capacity": 10.2
+        },
+        {
+          "slot_id": "12",
+          "path": [
+            12
+          ],
+          "role": "body",
+          "x": 6.363,
+          "y": 5.404,
+          "w": 4.391,
+          "h": 1.318,
+          "font_pt": 16.0,
+          "sample": "通过颜色和空间分布的巧妙运用，引导观众注意力，突出关键数据和信息。",
+          "capacity": 64.6
+        },
+        {
+          "slot_id": "13",
+          "path": [
+            13
+          ],
+          "role": "desc",
+          "x": 6.363,
+          "y": 4.562,
+          "w": 4.391,
+          "h": 0.761,
+          "font_pt": 24.0,
+          "sample": "层次分明的视觉引导",
+          "capacity": 10.2
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 18,
+      "layout": "节标题",
+      "signature": "S18 布局=节标题 [title≤11 | body≤85]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 7.301,
+          "y": 3.217,
+          "w": 5.83,
+          "h": 0.83,
+          "font_pt": 30.0,
+          "sample": "模板的使用方法",
+          "capacity": 11.049999999999999
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "章节副标题",
+          "capacity": 85.0
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "page_no",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "04",
+          "capacity": 85.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 85.0,
+      "role_hint": "section"
+    },
+    {
+      "slide_no": 19,
+      "layout": "仅标题",
+      "signature": "S19 布局=仅标题 [title≤78 | desc≤38 | label≤8 | desc≤38 | label≤8 | desc≤38 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "模板安装",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "desc",
+          "x": 0.761,
+          "y": 2.543,
+          "w": 3.595,
+          "h": 0.92,
+          "font_pt": 16.0,
+          "sample": "选择清晰易读的字体，确保商务图表的专业感和信息的快速传达。",
+          "capacity": 38.25
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "label",
+          "x": 0.761,
+          "y": 1.825,
+          "w": 3.595,
+          "h": 0.665,
+          "font_pt": 24.0,
+          "sample": "专业性与可读性",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "desc",
+          "x": 0.761,
+          "y": 5.059,
+          "w": 3.595,
+          "h": 0.92,
+          "font_pt": 16.0,
+          "sample": "整个PPT模板中使用统一风格的字体，保持设计的整体性和协调性。",
+          "capacity": 38.25
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "label",
+          "x": 0.761,
+          "y": 4.331,
+          "w": 3.595,
+          "h": 0.665,
+          "font_pt": 24.0,
+          "sample": "风格一致性",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "desc",
+          "x": 8.978,
+          "y": 3.773,
+          "w": 3.595,
+          "h": 0.92,
+          "font_pt": 16.0,
+          "sample": "字体颜色与图表背景色形成对比，增强视觉效果，避免阅读疲劳。",
+          "capacity": 38.25
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "label",
+          "x": 8.978,
+          "y": 3.043,
+          "w": 3.595,
+          "h": 0.665,
+          "font_pt": 24.0,
+          "sample": "颜色搭配",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "page_no",
+          "x": 4.722,
+          "y": 3.152,
+          "w": 0.554,
+          "h": 0.554,
+          "font_pt": 16.0,
+          "sample": "01",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "11",
+          "path": [
+            11
+          ],
+          "role": "page_no",
+          "x": 8.084,
+          "y": 4.371,
+          "w": 0.554,
+          "h": 0.554,
+          "font_pt": 16.0,
+          "sample": "02",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "12",
+          "path": [
+            12
+          ],
+          "role": "page_no",
+          "x": 4.722,
+          "y": 5.514,
+          "w": 0.554,
+          "h": 0.554,
+          "font_pt": 16.0,
+          "sample": "03",
+          "capacity": 1.7
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 20,
+      "layout": "仅标题",
+      "signature": "S20 布局=仅标题 [title≤78 | desc≤12 | desc≤12 | body≤61 | body≤61]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "图表替换",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "desc",
+          "x": 1.362,
+          "y": 3.186,
+          "w": 5.084,
+          "h": 0.804,
+          "font_pt": 24.0,
+          "sample": "年度业绩汇报",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "desc",
+          "x": 7.491,
+          "y": 3.186,
+          "w": 5.083,
+          "h": 0.804,
+          "font_pt": 24.0,
+          "sample": "市场分析报告",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "page_no",
+          "x": 3.214,
+          "y": 2.304,
+          "w": 0.778,
+          "h": 0.715,
+          "font_pt": 28.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "body",
+          "x": 1.362,
+          "y": 4.326,
+          "w": 4.772,
+          "h": 1.548,
+          "font_pt": 18.0,
+          "sample": "在年度总结会议上，使用蓝绿色关系图展示公司业绩，清晰呈现年度目标与实际完成情况。",
+          "capacity": 61.199999999999996
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "page_no",
+          "x": 9.343,
+          "y": 2.304,
+          "w": 0.778,
+          "h": 0.715,
+          "font_pt": 28.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "body",
+          "x": 7.491,
+          "y": 4.326,
+          "w": 4.772,
+          "h": 1.548,
+          "font_pt": 18.0,
+          "sample": "通过蓝绿色关系图分析市场竞争态势，直观展示不同产品或服务在市场中的表现和关联。",
+          "capacity": 61.199999999999996
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 21,
+      "layout": "仅标题",
+      "signature": "S21 布局=仅标题 [title≤78 | body≤102 | body≤102]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "数据更新",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "body",
+          "x": 6.567,
+          "y": 2.393,
+          "w": 6.005,
+          "h": 1.065,
+          "font_pt": 14.0,
+          "sample": "模板采用模块化设计，便于用户根据需要自由组合图表，提高信息展示的灵活性。",
+          "capacity": 102.0
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "design",
+          "x": 6.567,
+          "y": 1.905,
+          "w": 6.005,
+          "h": 0.404,
+          "font_pt": 22.0,
+          "sample": "模块化设计",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 5.987,
+          "y": 1.905,
+          "w": 0.522,
+          "h": 0.404,
+          "font_pt": 24.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "body",
+          "x": 6.567,
+          "y": 5.085,
+          "w": 6.005,
+          "h": 1.065,
+          "font_pt": 14.0,
+          "sample": "通过颜色、大小和位置的合理安排，确保信息层次分明，便于观众快速把握数据关系。",
+          "capacity": 102.0
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "design",
+          "x": 6.567,
+          "y": 4.597,
+          "w": 6.005,
+          "h": 0.404,
+          "font_pt": 22.0,
+          "sample": "清晰的视觉层次",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "page_no",
+          "x": 5.987,
+          "y": 4.597,
+          "w": 0.522,
+          "h": 0.404,
+          "font_pt": 24.0,
+          "sample": "02",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 102.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 22,
+      "layout": "节标题",
+      "signature": "S22 布局=节标题 [title≤11 | body≤85]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 7.301,
+          "y": 3.217,
+          "w": 5.83,
+          "h": 0.83,
+          "font_pt": 30.0,
+          "sample": "模板的优势",
+          "capacity": 11.049999999999999
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "章节副标题",
+          "capacity": 85.0
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "page_no",
+          "x": 7.301,
+          "y": 4.446,
+          "w": 5.83,
+          "h": 1.383,
+          "font_pt": 16.0,
+          "sample": "05",
+          "capacity": 85.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 85.0,
+      "role_hint": "section"
+    },
+    {
+      "slide_no": 23,
+      "layout": "仅标题",
+      "signature": "S23 布局=仅标题 [title≤70 | body≤60 | body≤60 | body≤60]",
+      "slots": [
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "title",
+          "x": 1.668,
+          "y": 3.695,
+          "w": 10.361,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "提高效率",
+          "capacity": 69.7
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "body",
+          "x": 1.67,
+          "y": 5.233,
+          "w": 2.896,
+          "h": 1.333,
+          "font_pt": 14.0,
+          "sample": "选择适合商务场合的无衬线字体，如Helvetica或Arial，以确保清晰易读。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "design",
+          "x": 1.67,
+          "y": 4.731,
+          "w": 2.896,
+          "h": 0.382,
+          "font_pt": 20.0,
+          "sample": "专业性字体",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "body",
+          "x": 9.135,
+          "y": 5.233,
+          "w": 2.896,
+          "h": 1.333,
+          "font_pt": 14.0,
+          "sample": "合理安排字体大小和行距，确保信息层次分明，便于观众快速捕捉重点。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "design",
+          "x": 9.135,
+          "y": 4.731,
+          "w": 2.896,
+          "h": 0.382,
+          "font_pt": 20.0,
+          "sample": "字体大小与排版",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "body",
+          "x": 5.403,
+          "y": 5.233,
+          "w": 2.896,
+          "h": 1.333,
+          "font_pt": 14.0,
+          "sample": "运用蓝绿色调的字体颜色，与图表集主题色相协调，增强视觉效果。",
+          "capacity": 59.5
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "design",
+          "x": 5.403,
+          "y": 4.731,
+          "w": 2.896,
+          "h": 0.382,
+          "font_pt": 20.0,
+          "sample": "颜色搭配",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 69.7,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 24,
+      "layout": "仅标题",
+      "signature": "S24 布局=仅标题 [title≤78 | desc≤41 | label≤8 | desc≤41 | label≤8 | desc≤41 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "易于编辑",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "2",
+          "path": [
+            2
+          ],
+          "role": "desc",
+          "x": 1.36,
+          "y": 5.833,
+          "w": 2.802,
+          "h": 1.207,
+          "font_pt": 16.0,
+          "sample": "蓝绿色调的搭配给人以清新、专业的感觉，适合商务场合，易于阅读。",
+          "capacity": 40.8
+        },
+        {
+          "slot_id": "3",
+          "path": [
+            3
+          ],
+          "role": "label",
+          "x": 1.36,
+          "y": 5.286,
+          "w": 2.802,
+          "h": 0.505,
+          "font_pt": 20.0,
+          "sample": "和谐的蓝绿色调",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "desc",
+          "x": 5.272,
+          "y": 5.833,
+          "w": 2.802,
+          "h": 1.207,
+          "font_pt": 16.0,
+          "sample": "通过色彩的明暗对比和饱和度调整，增强图表的视觉层次感，突出关键数据。",
+          "capacity": 40.8
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "label",
+          "x": 5.272,
+          "y": 5.286,
+          "w": 2.802,
+          "h": 0.505,
+          "font_pt": 20.0,
+          "sample": "色彩对比与层次感",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "desc",
+          "x": 9.184,
+          "y": 5.833,
+          "w": 2.802,
+          "h": 1.207,
+          "font_pt": 16.0,
+          "sample": "蓝绿色系传递出稳定与成长的寓意，有助于在商务沟通中建立积极的第一印象。",
+          "capacity": 40.8
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "label",
+          "x": 9.184,
+          "y": 5.286,
+          "w": 2.802,
+          "h": 0.505,
+          "font_pt": 20.0,
+          "sample": "色彩的情感寓意",
+          "capacity": 7.6499999999999995
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 25,
+      "layout": "仅标题",
+      "signature": "S25 布局=仅标题 [title≤78 | body≤75 | body≤75 | body≤75 | body≤75]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 0.761,
+          "y": 0.394,
+          "w": 11.811,
+          "h": 0.787,
+          "font_pt": 18.0,
+          "sample": "专业展示",
+          "capacity": 78.2
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "body",
+          "x": 0.982,
+          "y": 1.564,
+          "w": 3.842,
+          "h": 1.028,
+          "font_pt": 12.0,
+          "sample": "采用清晰的线条和颜色对比，确保信息传达直观易懂。",
+          "capacity": 74.8
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "design",
+          "x": 0.982,
+          "y": 2.834,
+          "w": 3.398,
+          "h": 0.346,
+          "font_pt": 18.0,
+          "sample": "简洁明了的视觉效果",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "11",
+          "path": [
+            11
+          ],
+          "role": "body",
+          "x": 6.0,
+          "y": 1.562,
+          "w": 3.842,
+          "h": 1.028,
+          "font_pt": 12.0,
+          "sample": "结合最新的数据可视化技术，使图表更加生动、互动性强。",
+          "capacity": 74.8
+        },
+        {
+          "slot_id": "12",
+          "path": [
+            12
+          ],
+          "role": "design",
+          "x": 6.0,
+          "y": 2.834,
+          "w": 3.398,
+          "h": 0.346,
+          "font_pt": 18.0,
+          "sample": "数据可视化创新设计",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "13",
+          "path": [
+            13
+          ],
+          "role": "body",
+          "x": 3.491,
+          "y": 5.47,
+          "w": 3.843,
+          "h": 1.028,
+          "font_pt": 12.0,
+          "sample": "运用蓝绿色调，营造专业稳重同时不失活力的商务氛围。",
+          "capacity": 74.8
+        },
+        {
+          "slot_id": "14",
+          "path": [
+            14
+          ],
+          "role": "design",
+          "x": 3.491,
+          "y": 4.927,
+          "w": 3.397,
+          "h": 0.346,
+          "font_pt": 18.0,
+          "sample": "专业商务色彩搭配",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "15",
+          "path": [
+            15
+          ],
+          "role": "body",
+          "x": 8.509,
+          "y": 5.47,
+          "w": 3.843,
+          "h": 1.028,
+          "font_pt": 12.0,
+          "sample": "设计多种图表类型，满足不同商务场景下的数据展示需求。",
+          "capacity": 74.8
+        },
+        {
+          "slot_id": "19",
+          "path": [
+            19
+          ],
+          "role": "design",
+          "x": 8.509,
+          "y": 4.927,
+          "w": 3.397,
+          "h": 0.346,
+          "font_pt": 18.0,
+          "sample": "适应多种数据展示需求",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 78.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 26,
+      "layout": "末尾幻灯片",
+      "signature": "S26 布局=末尾幻灯片 [title≤8 | body≤116]",
+      "slots": [
+        {
+          "slot_id": "0",
+          "path": [
+            0
+          ],
+          "role": "title",
+          "x": 2.243,
+          "y": 1.783,
+          "w": 8.848,
+          "h": 2.305,
+          "font_pt": 66.0,
+          "sample": "谢谢",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "body",
+          "x": 2.243,
+          "y": 4.211,
+          "w": 8.848,
+          "h": 1.344,
+          "font_pt": 18.0,
+          "sample": "Thank you",
+          "capacity": 115.6
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 115.6,
+      "role_hint": "closing"
+    }
+  ]
+}

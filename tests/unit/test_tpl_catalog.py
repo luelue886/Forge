@@ -93,6 +93,8 @@ class TestExtract:
         assert _role_hint("目录页", 3, 10, 5, 100.0) == "toc"
         assert _role_hint("Agenda", 3, 10, 5, 100.0) == "toc"
         assert _role_hint("节标题", 3, 10, 1, 10.0) == "section"
+        # 英文成品整副挂 Title Slide 版式：中间页不得因此判 cover
+        assert _role_hint("Title Slide", 3, 10, 5, 100.0) == "content"
 
     def test_signature_format(self, catalog: TemplateCatalog):
         sig = catalog.slide(3).signature

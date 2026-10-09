@@ -1,0 +1,4373 @@
+{
+  "stem": "sugar_rush_memphis",
+  "display_name": "甜品店孟菲斯风（英文）",
+  "n_slides": 14,
+  "slides": [
+    {
+      "slide_no": 1,
+      "layout": "Title Slide",
+      "signature": "S1 布局=Title Slide [desc≤13 | label≤8 | label≤9 | label≤5]",
+      "slots": [
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "desc",
+          "x": 0.971,
+          "y": 5.533,
+          "w": 4.514,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "2026 夏日音乐节 · 年度手册",
+          "capacity": 12.75
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "label",
+          "x": 0.956,
+          "y": 5.878,
+          "w": 4.842,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "让甜炸的夏天到来。",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "page_no",
+          "x": 1.353,
+          "y": 6.547,
+          "w": 1.169,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "7.18 — 7.24",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "label",
+          "x": 3.044,
+          "y": 6.539,
+          "w": 2.302,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "椰岛大草原 · CocoBay",
+          "capacity": 9.35
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 10.841,
+          "y": 6.618,
+          "w": 1.651,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "BOOK NOW →",
+          "capacity": 5.1
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 12.8,
+      "role_hint": "cover"
+    },
+    {
+      "slide_no": 2,
+      "layout": "Title Slide",
+      "signature": "S2 布局=Title Slide [desc≤19]",
+      "slots": [
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "design",
+          "x": 0.935,
+          "y": 0.67,
+          "w": 0.904,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "CH · 01",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 3.14,
+          "y": 1.427,
+          "w": 7.054,
+          "h": 3.0,
+          "font_pt": 135.0,
+          "sample": "WHAT.",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "desc",
+          "x": 3.292,
+          "y": 4.148,
+          "w": 6.75,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "当全世界都在变热，我们决定，让它变甜。",
+          "capacity": 18.7
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "design",
+          "x": 11.021,
+          "y": 7.168,
+          "w": 1.702,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "02 / 14 · SUGAR RUSH",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 18.7,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 3,
+      "layout": "Title Slide",
+      "signature": "S3 布局=Title Slide [title≤7 | desc≤14 | desc≤14 | desc≤23]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 4.568,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "BY THE NUMBERS",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 3.117,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "SUGAR RUSH 2026 · KEY FACTS",
+          "capacity": 13.6
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "design",
+          "x": 1.31,
+          "y": 2.045,
+          "w": 0.655,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "DAYS",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "page_no",
+          "x": 1.505,
+          "y": 2.302,
+          "w": 1.26,
+          "h": 2.333,
+          "font_pt": 105.0,
+          "sample": "7",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "design",
+          "x": 1.118,
+          "y": 3.869,
+          "w": 2.036,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "连续狂欢 / NON-STOP",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "design",
+          "x": 4.487,
+          "y": 2.045,
+          "w": 0.959,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "STAGES",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "page_no",
+          "x": 4.682,
+          "y": 2.302,
+          "w": 1.26,
+          "h": 2.333,
+          "font_pt": 105.0,
+          "sample": "5",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "design",
+          "x": 4.425,
+          "y": 3.869,
+          "w": 1.774,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "主题舞台 / THEMED",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 7.665,
+          "y": 2.045,
+          "w": 1.042,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "ARTISTS",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "page_no",
+          "x": 7.375,
+          "y": 2.302,
+          "w": 2.229,
+          "h": 2.333,
+          "font_pt": 105.0,
+          "sample": "80",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "design",
+          "x": 7.834,
+          "y": 3.869,
+          "w": 1.311,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "组艺人 / ACTS",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 10.842,
+          "y": 2.045,
+          "w": 0.655,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "FANS",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 10.285,
+          "y": 2.656,
+          "w": 2.284,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "50K",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 10.449,
+          "y": 3.869,
+          "w": 1.955,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "预期观众 / EXPECTED",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "desc",
+          "x": 1.008,
+          "y": 5.029,
+          "w": 5.923,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "≈ 12 HOURS OF MUSIC EVERY DAY",
+          "capacity": 14.45
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "desc",
+          "x": 1.021,
+          "y": 5.604,
+          "w": 5.765,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "从下午 4 点到次日凌晨 4 点，连续 12 个小时不间断",
+          "capacity": 22.95
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "design",
+          "x": 1.025,
+          "y": 6.108,
+          "w": 5.98,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "5 个舞台轮番接力 · 同时段最多 3 个演出 · 跨场地步行最远 600 米",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "page_no",
+          "x": 11.033,
+          "y": 5.439,
+          "w": 0.434,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "12",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "design",
+          "x": 11.034,
+          "y": 5.871,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "HOURS",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.0",
+          "path": [
+            7,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 3.746,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "数据基于 2026 排期预测 · Source: SUGAR RUSH 组委会",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.148,
+          "y": 7.168,
+          "w": 0.575,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "03 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 22.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 4,
+      "layout": "Title Slide",
+      "signature": "S4 布局=Title Slide [title≤9 | desc≤13 | label≤4 | label≤3 | label≤7 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 5.655,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "WHAT WE STAND FOR",
+          "capacity": 9.35
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 3.026,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "三大理念 · THREE PRINCIPLES",
+          "capacity": 12.75
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "page_no",
+          "x": 2.122,
+          "y": 1.927,
+          "w": 1.277,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "design",
+          "x": 2.403,
+          "y": 2.913,
+          "w": 0.714,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "FREE",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "label",
+          "x": 2.046,
+          "y": 4.493,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "不设鄙视链",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "design",
+          "x": 1.421,
+          "y": 5.223,
+          "w": 1.845,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "所有风格都是好风格",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.10",
+          "path": [
+            2,
+            10
+          ],
+          "role": "design",
+          "x": 1.421,
+          "y": 5.64,
+          "w": 1.845,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "摇滚乐迷可以爱嘻哈",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.12",
+          "path": [
+            2,
+            12
+          ],
+          "role": "design",
+          "x": 1.421,
+          "y": 6.056,
+          "w": 2.247,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "阵营自由切换，从不审判",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.14",
+          "path": [
+            2,
+            14
+          ],
+          "role": "design",
+          "x": 1.421,
+          "y": 6.473,
+          "w": 2.247,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "音乐之外的事情，先放下",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "page_no",
+          "x": 6.079,
+          "y": 1.927,
+          "w": 1.592,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "design",
+          "x": 6.601,
+          "y": 2.913,
+          "w": 0.548,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "FUN",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "label",
+          "x": 6.299,
+          "y": 4.493,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "玩到极致",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "design",
+          "x": 5.535,
+          "y": 5.223,
+          "w": 1.442,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "留下最甜的回忆",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "design",
+          "x": 5.535,
+          "y": 5.64,
+          "w": 2.076,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "10 件巨型互动艺术装置",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.12",
+          "path": [
+            3,
+            12
+          ],
+          "role": "design",
+          "x": 5.535,
+          "y": 6.056,
+          "w": 2.237,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "50+ 摊位市集与限定周边",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.14",
+          "path": [
+            3,
+            14
+          ],
+          "role": "design",
+          "x": 5.535,
+          "y": 6.473,
+          "w": 2.076,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "把孩子内心还给你 7 天",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "page_no",
+          "x": 10.194,
+          "y": 1.927,
+          "w": 1.592,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "label",
+          "x": 10.051,
+          "y": 2.948,
+          "w": 1.878,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "FOREVER YOUNG",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "label",
+          "x": 9.998,
+          "y": 4.493,
+          "w": 1.983,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "舞池里没有年纪",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "design",
+          "x": 9.65,
+          "y": 5.223,
+          "w": 1.955,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "18 岁也好，80 岁也罢",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "design",
+          "x": 9.65,
+          "y": 5.64,
+          "w": 1.643,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "银发族专属休息岛",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.12",
+          "path": [
+            4,
+            12
+          ],
+          "role": "design",
+          "x": 9.65,
+          "y": 6.056,
+          "w": 1.875,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "12 岁以下家庭票同价",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.14",
+          "path": [
+            4,
+            14
+          ],
+          "role": "design",
+          "x": 9.65,
+          "y": 6.473,
+          "w": 2.046,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "心跳的频率才是入场券",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 2.78,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "SUGAR RUSH 价值观 · 自 2018 年沿用至今",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.148,
+          "y": 7.168,
+          "w": 0.575,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "04 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 12.8,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 5,
+      "layout": "Title Slide",
+      "signature": "S5 布局=Title Slide [desc≤20 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "design",
+          "x": 0.935,
+          "y": 0.67,
+          "w": 0.973,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "CH · 02",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 3.536,
+          "y": 0.906,
+          "w": 6.262,
+          "h": 3.0,
+          "font_pt": 135.0,
+          "sample": "WHO.",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "desc",
+          "x": 3.345,
+          "y": 3.645,
+          "w": 6.644,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "80 组艺人 · 5 个风格阵营 · 1 张你忘不掉的脸",
+          "capacity": 20.4
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 1.027,
+          "y": 4.855,
+          "w": 0.848,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "ROCK · 25",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 1.029,
+          "y": 5.081,
+          "w": 0.734,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "摇滚 25 组",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 2.694,
+          "y": 4.855,
+          "w": 1.139,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "ELECTRO · 30",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 2.696,
+          "y": 5.081,
+          "w": 0.734,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "电子 30 组",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "design",
+          "x": 4.36,
+          "y": 4.855,
+          "w": 0.804,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "FOLK · 15",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "design",
+          "x": 4.362,
+          "y": 5.081,
+          "w": 0.697,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "民谣 15 组",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "design",
+          "x": 6.027,
+          "y": 4.855,
+          "w": 0.954,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "HIPHOP · 10",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "design",
+          "x": 6.029,
+          "y": 5.081,
+          "w": 0.697,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "嘻哈 10 组",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "label",
+          "x": 9.732,
+          "y": 4.889,
+          "w": 2.412,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "MEET THE LINEUP →",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "design",
+          "x": 11.021,
+          "y": 7.168,
+          "w": 1.702,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "05 / 14 · SUGAR RUSH",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 20.4,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 6,
+      "layout": "Title Slide",
+      "signature": "S6 布局=Title Slide [title≤7 | desc≤24 | label≤6 | label≤5 | label≤4 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 4.447,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "THE HEADLINERS",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 5.46,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "2026 四组头牌艺人 · BOOM, BOOM, BOOM, BOOM.",
+          "capacity": 23.8
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "page_no",
+          "x": 2.841,
+          "y": 5.097,
+          "w": 0.537,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "label",
+          "x": 0.806,
+          "y": 5.655,
+          "w": 2.082,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "CHERRY BOMB",
+          "capacity": 5.95
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "design",
+          "x": 0.821,
+          "y": 6.04,
+          "w": 1.165,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "ROCK · 摇滚主唱",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "design",
+          "x": 0.819,
+          "y": 6.386,
+          "w": 1.834,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "代表作: \"Pink Static\"",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "design",
+          "x": 0.82,
+          "y": 6.604,
+          "w": 1.94,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "3 张白金专辑 · 巡演 60 城",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "page_no",
+          "x": 5.886,
+          "y": 5.097,
+          "w": 0.669,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "label",
+          "x": 3.983,
+          "y": 5.655,
+          "w": 1.902,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "NEON CLOUD",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "design",
+          "x": 3.998,
+          "y": 6.04,
+          "w": 1.323,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "ELECTRO · 电子 DJ",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "design",
+          "x": 3.996,
+          "y": 6.386,
+          "w": 1.852,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "代表作: \"3AM Mirror\"",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "design",
+          "x": 3.997,
+          "y": 6.604,
+          "w": 2.406,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "柏林 Berghain 常驻 · DJ Mag 30",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "page_no",
+          "x": 9.063,
+          "y": 5.097,
+          "w": 0.669,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "label",
+          "x": 7.16,
+          "y": 5.655,
+          "w": 1.64,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "MINT FOLK",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 7.175,
+          "y": 6.04,
+          "w": 1.316,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "FOLK · 民谣吉他手",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "design",
+          "x": 7.173,
+          "y": 6.386,
+          "w": 1.852,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "代表作: \"Slow Lemon\"",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "design",
+          "x": 7.174,
+          "y": 6.604,
+          "w": 1.687,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Spotify 月听众 480 万",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "page_no",
+          "x": 11.823,
+          "y": 5.097,
+          "w": 0.669,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "label",
+          "x": 10.34,
+          "y": 5.673,
+          "w": 2.254,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "YELLOW HUSTLE",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "design",
+          "x": 10.352,
+          "y": 6.04,
+          "w": 1.534,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "HIPHOP · 嘻哈 rapper",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "design",
+          "x": 10.35,
+          "y": 6.386,
+          "w": 1.781,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "代表作: \"Sugar High\"",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "design",
+          "x": 10.351,
+          "y": 6.604,
+          "w": 2.185,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "XXL Freshman 2025 · 双白金",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.0",
+          "path": [
+            7,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 3.036,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "阵容截至 2026-04-30 · 实际演出以现场为准",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.148,
+          "y": 7.168,
+          "w": 0.575,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "06 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 23.8,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 7,
+      "layout": "Title Slide",
+      "signature": "S7 布局=Title Slide [title≤14 | desc≤14 | label≤5 | label≤7 | label≤5 | label≤6]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 8.492,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "FOUR FLAVORS, ONE FESTIVAL",
+          "capacity": 13.6
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 3.422,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "四大风格阵营 · TASTE YOUR OWN",
+          "capacity": 14.45
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "label",
+          "x": 1.242,
+          "y": 1.919,
+          "w": 2.013,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "ROCK · 摇滚",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "design",
+          "x": 5.46,
+          "y": 1.999,
+          "w": 0.747,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "25 组艺人",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 2.733,
+          "w": 2.277,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "关键词: 噪音 · 燃 · 释放",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.9",
+          "path": [
+            2,
+            9
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 3.108,
+          "w": 3.022,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "舞台: CHERRY STAGE · 容量 5000",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.11",
+          "path": [
+            2,
+            11
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 3.483,
+          "w": 2.801,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "主场日: Day 2 · 7.19 整夜不停",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.13",
+          "path": [
+            2,
+            13
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 3.858,
+          "w": 3.374,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "头牌: CHERRY BOMB + 24 组独立乐队",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "label",
+          "x": 7.492,
+          "y": 1.919,
+          "w": 2.594,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "ELECTRO · 电子",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "design",
+          "x": 11.45,
+          "y": 1.999,
+          "w": 0.747,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "30 组艺人",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 2.733,
+          "w": 2.479,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "关键词: 律动 · 深夜 · 迷幻",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 3.108,
+          "w": 2.68,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "舞台: NEON GRID · 容量 5000",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.11",
+          "path": [
+            3,
+            11
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 3.483,
+          "w": 2.79,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "主场日: Day 3 · 7.20 通宵 12h",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.13",
+          "path": [
+            3,
+            13
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 3.858,
+          "w": 3.143,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "头牌: NEON CLOUD + 29 组国际 DJ",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "label",
+          "x": 1.242,
+          "y": 4.627,
+          "w": 2.013,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "FOLK · 民谣",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "design",
+          "x": 5.48,
+          "y": 4.708,
+          "w": 0.706,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "15 组艺人",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 5.442,
+          "w": 2.277,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "关键词: 故事 · 慢 · 温度",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 5.817,
+          "w": 2.831,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "舞台: MINT GROVE · 容量 3000",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.11",
+          "path": [
+            4,
+            11
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 6.192,
+          "w": 2.801,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "主场日: Day 4 · 7.21 黄昏专场",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.13",
+          "path": [
+            4,
+            13
+          ],
+          "role": "design",
+          "x": 1.087,
+          "y": 6.567,
+          "w": 2.851,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "头牌: MINT FOLK + 14 组创作人",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "label",
+          "x": 7.492,
+          "y": 4.627,
+          "w": 2.312,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "HIPHOP · 嘻哈",
+          "capacity": 5.95
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 11.47,
+          "y": 4.708,
+          "w": 0.706,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "10 组艺人",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 5.442,
+          "w": 2.479,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "关键词: 街头 · 节拍 · 态度",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 5.817,
+          "w": 3.143,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "舞台: YELLOW BLOCK · 容量 7000",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.11",
+          "path": [
+            5,
+            11
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 6.192,
+          "w": 2.851,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "主场日: Day 5 · 7.22 午夜炸场",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.13",
+          "path": [
+            5,
+            13
+          ],
+          "role": "design",
+          "x": 7.338,
+          "y": 6.567,
+          "w": 3.404,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "头牌: YELLOW HUSTLE + 9 组 rapper",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 3.383,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "第五阵营 CROSSOVER · 见 Day 6 · 7.23 跨界之夜",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.148,
+          "y": 7.168,
+          "w": 0.575,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "07 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 14.4,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 8,
+      "layout": "Title Slide",
+      "signature": "S8 布局=Title Slide [desc≤15]",
+      "slots": [
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "design",
+          "x": 0.935,
+          "y": 0.67,
+          "w": 0.973,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "CH · 03",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 2.978,
+          "y": 0.875,
+          "w": 7.377,
+          "h": 2.667,
+          "font_pt": 120.0,
+          "sample": "WHERE.",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "desc",
+          "x": 4.162,
+          "y": 3.332,
+          "w": 5.009,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "椰岛大草原 · 一座为夏天造的城市",
+          "capacity": 15.299999999999999
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 1.256,
+          "y": 4.741,
+          "w": 1.068,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "VENUE · 场地",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 0.881,
+          "y": 5.022,
+          "w": 1.79,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "椰岛大草原 · CocoBay",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 3.913,
+          "y": 4.741,
+          "w": 0.971,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "AREA · 占地",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 3.538,
+          "y": 5.022,
+          "w": 1.913,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "120 公顷 · 5 大舞台环抱",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "design",
+          "x": 6.569,
+          "y": 4.741,
+          "w": 1.006,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "WHEN · 日期",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "design",
+          "x": 6.194,
+          "y": 5.022,
+          "w": 1.975,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "2026.7.18 — 7.24 · 7 天",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "design",
+          "x": 9.225,
+          "y": 4.741,
+          "w": 1.165,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "ACCESS · 交通",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "design",
+          "x": 8.85,
+          "y": 5.022,
+          "w": 2.001,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "机场 30 km · 高铁 15 min",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 11.441,
+          "y": 5.691,
+          "w": 1.118,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "7.18",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "page_no",
+          "x": 11.375,
+          "y": 6.191,
+          "w": 1.25,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "7.24",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "design",
+          "x": 11.021,
+          "y": 7.168,
+          "w": 1.702,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "08 / 14 · SUGAR RUSH",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 15.3,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 9,
+      "layout": "Title Slide",
+      "signature": "S9 布局=Title Slide [title≤10 | desc≤16]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 6.319,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "5 STAGES, ONE WORLD",
+          "capacity": 10.2
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 3.683,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "中央 SUGAR DOME · 四个分舞台辐射",
+          "capacity": 16.15
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 6.19,
+          "y": 4.249,
+          "w": 0.954,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "SUGAR",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 6.214,
+          "y": 4.561,
+          "w": 0.904,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "DOME",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "design",
+          "x": 6.133,
+          "y": 4.977,
+          "w": 1.066,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "主舞台 · 30000",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 1.527,
+          "y": 2.181,
+          "w": 1.945,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "CHERRY STAGE · 摇滚",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 1.633,
+          "y": 2.529,
+          "w": 1.174,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "5,000",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 1.653,
+          "y": 2.906,
+          "w": 1.36,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "观众容量 · 西北区",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "design",
+          "x": 1.654,
+          "y": 3.102,
+          "w": 1.527,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "Day 2 主场 · 全程户外",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "design",
+          "x": 10.032,
+          "y": 2.181,
+          "w": 1.603,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "NEON GRID · 电子",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "design",
+          "x": 9.967,
+          "y": 2.529,
+          "w": 1.174,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "5,000",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "design",
+          "x": 9.986,
+          "y": 2.906,
+          "w": 1.36,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "观众容量 · 东北区",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "design",
+          "x": 9.988,
+          "y": 3.102,
+          "w": 1.527,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "Day 3 主场 · 半室内棚",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "design",
+          "x": 1.623,
+          "y": 5.723,
+          "w": 1.754,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "MINT GROVE · 民谣",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "design",
+          "x": 1.633,
+          "y": 6.071,
+          "w": 1.174,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "3,000",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "design",
+          "x": 1.653,
+          "y": 6.447,
+          "w": 1.36,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "观众容量 · 西南区",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "design",
+          "x": 1.654,
+          "y": 6.644,
+          "w": 1.527,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "Day 4 主场 · 椰林环抱",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "design",
+          "x": 9.8,
+          "y": 5.723,
+          "w": 2.066,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "YELLOW BLOCK · 嘻哈",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "design",
+          "x": 9.967,
+          "y": 6.071,
+          "w": 1.174,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "7,000",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "design",
+          "x": 9.986,
+          "y": 6.447,
+          "w": 1.36,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "观众容量 · 东南区",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "design",
+          "x": 9.988,
+          "y": 6.644,
+          "w": 1.527,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "Day 5 主场 · 街区氛围",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.0",
+          "path": [
+            10,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 3.429,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "5 个舞台跨场地步行最远 600m · 30s shuttle 接驳",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.148,
+          "y": 7.168,
+          "w": 0.575,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "09 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 16.1,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 10,
+      "layout": "Title Slide",
+      "signature": "S10 布局=Title Slide [title≤9 | desc≤12 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 6.077,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "SEVEN DAYS OF SUGAR",
+          "capacity": 9.35
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 2.856,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "7.18 — 7.24 · 一周完整日程",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "1.5",
+          "path": [
+            1,
+            5
+          ],
+          "role": "design",
+          "x": 10.786,
+          "y": 0.793,
+          "w": 1.658,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "12 HR / DAY · 7 DAYS",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "page_no",
+          "x": 1.828,
+          "y": 3.275,
+          "w": 0.094,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "page_no",
+          "x": 1.702,
+          "y": 1.864,
+          "w": 0.346,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.18",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "design",
+          "x": 1.476,
+          "y": 2.212,
+          "w": 0.798,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "OPENING",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "design",
+          "x": 1.534,
+          "y": 2.468,
+          "w": 0.681,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "开幕之夜",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "design",
+          "x": 1.276,
+          "y": 2.694,
+          "w": 1.199,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CHERRY BOMB 开场",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "page_no",
+          "x": 3.261,
+          "y": 3.275,
+          "w": 0.144,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "2",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "page_no",
+          "x": 3.16,
+          "y": 4.697,
+          "w": 0.346,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.19",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "design",
+          "x": 2.879,
+          "y": 3.942,
+          "w": 0.909,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "ROCK DAY",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "design",
+          "x": 3.075,
+          "y": 4.197,
+          "w": 0.518,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "摇滚日",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "design",
+          "x": 2.637,
+          "y": 4.403,
+          "w": 1.393,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "25 组 · CHERRY STAGE",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "page_no",
+          "x": 4.72,
+          "y": 3.275,
+          "w": 0.144,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "3",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "page_no",
+          "x": 4.598,
+          "y": 1.864,
+          "w": 0.387,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.20",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "design",
+          "x": 4.367,
+          "y": 2.212,
+          "w": 0.848,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "ELECTRO",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "design",
+          "x": 4.451,
+          "y": 2.468,
+          "w": 0.681,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "电子之夜",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "design",
+          "x": 4.123,
+          "y": 2.694,
+          "w": 1.337,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "通宵 12h · NEON GRID",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 6.178,
+          "y": 3.275,
+          "w": 0.144,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "4",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "page_no",
+          "x": 6.077,
+          "y": 4.697,
+          "w": 0.346,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.21",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "design",
+          "x": 5.992,
+          "y": 3.942,
+          "w": 0.516,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "FOLK",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "design",
+          "x": 5.909,
+          "y": 4.197,
+          "w": 0.681,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "民谣午后",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "design",
+          "x": 5.637,
+          "y": 4.403,
+          "w": 1.227,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "15 组 · MINT GROVE",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "page_no",
+          "x": 7.636,
+          "y": 3.275,
+          "w": 0.144,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "5",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "page_no",
+          "x": 7.515,
+          "y": 1.864,
+          "w": 0.387,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.22",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "design",
+          "x": 7.365,
+          "y": 2.212,
+          "w": 0.687,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "HIPHOP",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "design",
+          "x": 7.368,
+          "y": 2.468,
+          "w": 0.681,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "嘻哈午夜",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.8",
+          "path": [
+            7,
+            8
+          ],
+          "role": "design",
+          "x": 6.988,
+          "y": 2.694,
+          "w": 1.441,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "10 组 · YELLOW BLOCK",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "page_no",
+          "x": 9.095,
+          "y": 3.275,
+          "w": 0.144,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "6",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "page_no",
+          "x": 8.973,
+          "y": 4.697,
+          "w": 0.387,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.23",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "design",
+          "x": 8.612,
+          "y": 3.942,
+          "w": 1.11,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "CROSSOVER",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.7",
+          "path": [
+            8,
+            7
+          ],
+          "role": "design",
+          "x": 8.826,
+          "y": 4.197,
+          "w": 0.681,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "跨界之夜",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.8",
+          "path": [
+            8,
+            8
+          ],
+          "role": "design",
+          "x": 8.751,
+          "y": 4.403,
+          "w": 0.832,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "4 大头牌同台",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.5",
+          "path": [
+            9,
+            5
+          ],
+          "role": "design",
+          "x": 10.14,
+          "y": 1.864,
+          "w": 1.074,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.24 · FINALE",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.6",
+          "path": [
+            9,
+            6
+          ],
+          "role": "design",
+          "x": 10.278,
+          "y": 2.212,
+          "w": 0.798,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "CLOSING",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.7",
+          "path": [
+            9,
+            7
+          ],
+          "role": "design",
+          "x": 10.255,
+          "y": 2.468,
+          "w": 0.845,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "闭幕大狂欢",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.8",
+          "path": [
+            9,
+            8
+          ],
+          "role": "design",
+          "x": 10.057,
+          "y": 2.694,
+          "w": 1.24,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "SUGAR DOME · 烟花",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.0",
+          "path": [
+            10,
+            0
+          ],
+          "role": "design",
+          "x": 1.727,
+          "y": 5.51,
+          "w": 0.297,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SAT",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "design",
+          "x": 3.185,
+          "y": 5.51,
+          "w": 0.297,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SUN",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.2",
+          "path": [
+            10,
+            2
+          ],
+          "role": "design",
+          "x": 4.611,
+          "y": 5.51,
+          "w": 0.362,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "MON",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.3",
+          "path": [
+            10,
+            3
+          ],
+          "role": "design",
+          "x": 6.102,
+          "y": 5.51,
+          "w": 0.297,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "TUE",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.4",
+          "path": [
+            10,
+            4
+          ],
+          "role": "design",
+          "x": 7.544,
+          "y": 5.51,
+          "w": 0.33,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "WED",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.5",
+          "path": [
+            10,
+            5
+          ],
+          "role": "design",
+          "x": 9.018,
+          "y": 5.51,
+          "w": 0.297,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "THU",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.6",
+          "path": [
+            10,
+            6
+          ],
+          "role": "design",
+          "x": 10.497,
+          "y": 5.51,
+          "w": 0.256,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "FRI",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "11.2",
+          "path": [
+            11,
+            2
+          ],
+          "role": "label",
+          "x": 1.335,
+          "y": 6.32,
+          "w": 1.668,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "DAILY SCHEDULE",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "11.3",
+          "path": [
+            11,
+            3
+          ],
+          "role": "design",
+          "x": 1.34,
+          "y": 6.626,
+          "w": 5.409,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "每天 16:00 入场 · 17:00 开演 · 次日 04:00 结束 · 5",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "11.5",
+          "path": [
+            11,
+            5
+          ],
+          "role": "design",
+          "x": 10.344,
+          "y": 6.473,
+          "w": 1.603,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "DOWNLOAD APP →",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "12.0",
+          "path": [
+            12,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 2.176,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "具体演出时间以 APP 内日程为准",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "12.1",
+          "path": [
+            12,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.192,
+          "y": 7.168,
+          "w": 0.531,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "10 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 11.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 11,
+      "layout": "Title Slide",
+      "signature": "S11 布局=Title Slide [desc≤14 | label≤5 | label≤5]",
+      "slots": [
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "design",
+          "x": 0.935,
+          "y": 0.67,
+          "w": 0.973,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "CH · 04",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 2.969,
+          "y": 1.25,
+          "w": 8.089,
+          "h": 3.333,
+          "font_pt": 150.0,
+          "sample": "VIBES.",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "desc",
+          "x": 4.433,
+          "y": 3.788,
+          "w": 4.155,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "音乐之外，还有 十种甜 的方式",
+          "capacity": 13.6
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 1.768,
+          "y": 5.618,
+          "w": 0.922,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "MARKET",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 1.789,
+          "y": 5.933,
+          "w": 1.632,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "50+ 摊位 · 限定周边",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "label",
+          "x": 5.94,
+          "y": 5.5,
+          "w": 1.438,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "ART INSTALL",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 5.936,
+          "y": 5.842,
+          "w": 1.913,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "10 件巨型装置 · AR 互动",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "label",
+          "x": 10.102,
+          "y": 5.605,
+          "w": 1.4,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "FOOD & FUN",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "design",
+          "x": 10.118,
+          "y": 5.932,
+          "w": 1.834,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "40+ 餐车 · 篝火 · 工坊",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "design",
+          "x": 11.109,
+          "y": 7.168,
+          "w": 1.614,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "11 / 14 · SUGAR RUSH",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 13.6,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 12,
+      "layout": "Title Slide",
+      "signature": "S12 布局=Title Slide [title≤8 | desc≤15 | label≤8 | desc≤10]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 5.202,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "BEYOND THE MUSIC",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 3.615,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "音乐之外的两大主线 · TWO TRACKS",
+          "capacity": 15.299999999999999
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "label",
+          "x": 1.356,
+          "y": 1.882,
+          "w": 1.996,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "MARKET · 周边市集",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "design",
+          "x": 1.188,
+          "y": 4.312,
+          "w": 1.37,
+          "h": 1.0,
+          "font_pt": 45.0,
+          "sample": "50+",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "design",
+          "x": 2.485,
+          "y": 4.689,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "独立摊位",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "design",
+          "x": 2.487,
+          "y": 4.894,
+          "w": 1.602,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "来自 12 个城市的设计师",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.11",
+          "path": [
+            2,
+            11
+          ],
+          "role": "design",
+          "x": 1.391,
+          "y": 5.44,
+          "w": 2.21,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "SUGAR RUSH 官方限定周边",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.13",
+          "path": [
+            2,
+            13
+          ],
+          "role": "design",
+          "x": 1.391,
+          "y": 5.805,
+          "w": 1.729,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "独立设计师手作集市",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.15",
+          "path": [
+            2,
+            15
+          ],
+          "role": "design",
+          "x": 1.391,
+          "y": 6.169,
+          "w": 1.588,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "本地小吃 40+ 餐车",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.17",
+          "path": [
+            2,
+            17
+          ],
+          "role": "design",
+          "x": 1.391,
+          "y": 6.534,
+          "w": 2.05,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "营业时间 16:00 — 02:00",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "desc",
+          "x": 7.398,
+          "y": 1.882,
+          "w": 2.46,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "ART INSTALL · 互动装置",
+          "capacity": 10.2
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "design",
+          "x": 11.226,
+          "y": 1.934,
+          "w": 0.985,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "MOST POPULAR",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "page_no",
+          "x": 7.021,
+          "y": 4.312,
+          "w": 0.766,
+          "h": 1.0,
+          "font_pt": 45.0,
+          "sample": "10",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "design",
+          "x": 7.902,
+          "y": 4.689,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "巨型装置",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "design",
+          "x": 7.904,
+          "y": 4.894,
+          "w": 1.232,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "每件都能拍照打卡",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.13",
+          "path": [
+            3,
+            13
+          ],
+          "role": "design",
+          "x": 7.432,
+          "y": 5.44,
+          "w": 1.946,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "10 件巨型几何充气雕塑",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.15",
+          "path": [
+            3,
+            15
+          ],
+          "role": "design",
+          "x": 7.432,
+          "y": 5.805,
+          "w": 2.022,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "AR 互动 · 扫码触发动画",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.17",
+          "path": [
+            3,
+            17
+          ],
+          "role": "design",
+          "x": 7.432,
+          "y": 6.169,
+          "w": 1.946,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "彩绘工坊 · 夜光涂鸦墙",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.19",
+          "path": [
+            3,
+            19
+          ],
+          "role": "design",
+          "x": 7.432,
+          "y": 6.534,
+          "w": 1.918,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "入夜后变身霓虹艺术园",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 2.614,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "市集与装置均含在通票内 · 无需额外票",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.192,
+          "y": 7.168,
+          "w": 0.531,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "12 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 15.3,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 13,
+      "layout": "Title Slide",
+      "signature": "S13 布局=Title Slide [title≤8 | label≤8 | label≤4 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.887,
+          "y": 0.565,
+          "w": 4.749,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "GET YOUR TICKET",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "label",
+          "x": 0.919,
+          "y": 1.143,
+          "w": 2.109,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "三档票务 · 立即开售",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "label",
+          "x": 1.565,
+          "y": 1.956,
+          "w": 2.079,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "EARLY BIRD",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "design",
+          "x": 2.079,
+          "y": 2.428,
+          "w": 1.051,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "限量 5000 张",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "design",
+          "x": 1.652,
+          "y": 2.767,
+          "w": 1.904,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "¥499",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "design",
+          "x": 1.963,
+          "y": 3.596,
+          "w": 1.305,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "SOLD OUT",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "design",
+          "x": 1.182,
+          "y": 4.346,
+          "w": 0.918,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 7 天通票",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.9",
+          "path": [
+            2,
+            9
+          ],
+          "role": "design",
+          "x": 1.182,
+          "y": 4.659,
+          "w": 1.135,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 入场不限场",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.10",
+          "path": [
+            2,
+            10
+          ],
+          "role": "design",
+          "x": 1.182,
+          "y": 4.971,
+          "w": 0.89,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "— VIP 专区",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.11",
+          "path": [
+            2,
+            11
+          ],
+          "role": "design",
+          "x": 1.182,
+          "y": 5.284,
+          "w": 0.946,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "— 艺人会面",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "design",
+          "x": 6.109,
+          "y": 1.51,
+          "w": 1.114,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "RECOMMENDED",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "design",
+          "x": 5.758,
+          "y": 1.827,
+          "w": 1.818,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "REGULAR",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "design",
+          "x": 5.935,
+          "y": 2.293,
+          "w": 1.464,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "日常档 · 主力推荐",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "design",
+          "x": 6.134,
+          "y": 2.593,
+          "w": 1.065,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "限量 30000 张",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "design",
+          "x": 5.417,
+          "y": 2.902,
+          "w": 2.499,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "¥799",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "design",
+          "x": 4.932,
+          "y": 4.294,
+          "w": 2.295,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 7 天通票 · 全部 5 个舞台",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "design",
+          "x": 4.932,
+          "y": 4.607,
+          "w": 1.493,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 含 1 杯指定饮品",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.11",
+          "path": [
+            3,
+            11
+          ],
+          "role": "design",
+          "x": 4.932,
+          "y": 4.919,
+          "w": 1.729,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 免费寄存 + 接驳车",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.12",
+          "path": [
+            3,
+            12
+          ],
+          "role": "design",
+          "x": 4.932,
+          "y": 5.232,
+          "w": 0.89,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "— VIP 专区",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.14",
+          "path": [
+            3,
+            14
+          ],
+          "role": "label",
+          "x": 6.036,
+          "y": 5.781,
+          "w": 1.262,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "BUY NOW →",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 9.911,
+          "y": 1.956,
+          "w": 1.636,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "VIP PASS",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 10.252,
+          "y": 2.428,
+          "w": 0.954,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "限量 500 张",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 9.656,
+          "y": 2.767,
+          "w": 2.146,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "¥1999",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "design",
+          "x": 9.307,
+          "y": 4.138,
+          "w": 1.295,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 7 天全程通票",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "design",
+          "x": 9.307,
+          "y": 4.451,
+          "w": 1.484,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ VIP 专区 + 包厢",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "design",
+          "x": 9.307,
+          "y": 4.763,
+          "w": 1.324,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 头牌艺人会面",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "design",
+          "x": 9.307,
+          "y": 5.076,
+          "w": 1.918,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "✓ 周边礼包 + 限定徽章",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.12",
+          "path": [
+            4,
+            12
+          ],
+          "role": "design",
+          "x": 10.079,
+          "y": 5.546,
+          "w": 1.301,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "CONTACT US →",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "design",
+          "x": 0.861,
+          "y": 6.322,
+          "w": 1.646,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SPONSORED BY · 鸣谢",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 3.277,
+          "y": 6.366,
+          "w": 0.971,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "COCOFRESH",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 4.944,
+          "y": 6.366,
+          "w": 0.601,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "NEONIX",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "design",
+          "x": 6.506,
+          "y": 6.366,
+          "w": 0.857,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "SUGAR LAB",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "design",
+          "x": 8.381,
+          "y": 6.366,
+          "w": 0.813,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "RIPPLE TV",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.11",
+          "path": [
+            5,
+            11
+          ],
+          "role": "design",
+          "x": 10.048,
+          "y": 6.366,
+          "w": 0.918,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "PINK MOON",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.13",
+          "path": [
+            5,
+            13
+          ],
+          "role": "design",
+          "x": 11.715,
+          "y": 6.366,
+          "w": 0.804,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "DAYBREAK",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.14",
+          "path": [
+            5,
+            14
+          ],
+          "role": "design",
+          "x": 0.864,
+          "y": 6.673,
+          "w": 3.309,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "官方饮品 · 灯光 · 周边制造 · 媒体 · 美妆 · 接驳出行",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 3.24,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "购票通道 · sugarrush.fest · 限购 4 张 / 实名",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.192,
+          "y": 7.168,
+          "w": 0.531,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "13 / 14",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 8.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 14,
+      "layout": "Title Slide",
+      "signature": "S14 布局=Title Slide [label≤8 | desc≤12]",
+      "slots": [
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "design",
+          "x": 1.392,
+          "y": 5.449,
+          "w": 1.544,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "SUGAR RUSH · 2026",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "page_no",
+          "x": 1.373,
+          "y": 5.633,
+          "w": 2.2,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "7.18 — 7.24",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "design",
+          "x": 10.141,
+          "y": 5.449,
+          "w": 1.385,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "GET YOUR TICKET",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "label",
+          "x": 9.448,
+          "y": 5.669,
+          "w": 2.77,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "sugarrush.fest",
+          "capacity": 7.6499999999999995
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "desc",
+          "x": 5.061,
+          "y": 6.542,
+          "w": 3.211,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "谢谢每一个 让夏天变甜 的人",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "design",
+          "x": 0.614,
+          "y": 7.194,
+          "w": 3.357,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "© SUGAR RUSH 2026 · Made with sugar in 椰",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "design",
+          "x": 11.646,
+          "y": 7.168,
+          "w": 1.077,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "14 / 14 · FIN.",
+          "capacity": 1.0
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 11.9,
+      "role_hint": "closing"
+    }
+  ]
+}

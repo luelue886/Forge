@@ -282,8 +282,8 @@ def _role_hint(layout: str, slide_no: int, n_slides: int, fillable: int,
         return "closing"
     L = (layout or "").strip()
     Ll = L.lower()
-    if "标题幻灯片" in L or L == "Title Slide":
-        return "cover"
+    # 注意：不做 "Title Slide"→cover 的版式关键词回退——英文成品整副挂在该版式上，
+    # 中间页由此被误判 cover；真正的封面/结尾由上面的位置规则决定。
     if "目录" in L or "agenda" in Ll:
         return "toc"
     if "节标题" in L or "section" in Ll:
