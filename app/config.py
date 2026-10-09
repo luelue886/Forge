@@ -26,6 +26,7 @@ class Settings(BaseSettings):
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 SKINS_DIR = ROOT / "templates" / "skins"
+PPTX_TEMPLATES_DIR = ROOT / "templates" / "pptx"
 PROMPTS_DIR = ROOT / "prompts"
 
 
