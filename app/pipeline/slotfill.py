@@ -1,9 +1,11 @@
 """槽填充：计划页 → PageFill（真模板页的槽位填充/删除指令）。
 
-结构页与表格页零 LLM 确定性生成（verbatim 天然合规）；内容页 LLM 提案 →
-槽级校验 + 铁律复检（数字溯源 / 10-gram 防抄袭，与 e2e_ppt 同语义）→
-1 轮定向重试 → 降级（title-only 页 + 源文 verbatim 备注）。
-三铁律不变：事实 verbatim、不发明、校验不过降级不阻断。
+表格页零 LLM 确定性生成（verbatim 天然合规）；其余页（内容页 + 封面/目录/
+章节/结尾结构页）LLM 提案 → 槽级校验 + 铁律复检（数字溯源 / 10-gram 防抄
+袭，与 e2e_ppt 同语义）→ 1 轮定向重试 → 降级。结构页降级走确定性兜底
+（天然合规），内容页降级为 title-only 页 + 源文 verbatim 备注；结构页 LLM
+硬异常也走确定性兜底，不杀 job。三铁律不变：事实 verbatim、不发明、
+校验不过降级不阻断。
 """
 from __future__ import annotations
 
@@ -21,6 +23,8 @@ from app.schema.textlen import text_weight
 from app.schema.tplcatalog import SlideInfo, SlotInfo
 
 CONTENT_TYPES = {SlideType.TEXT_POINTS, SlideType.TWO_COLUMN, SlideType.KEY_METRICS}
+STRUCTURAL_TYPES = {SlideType.COVER, SlideType.TOC, SlideType.SECTION_HEADER,
+                    SlideType.CLOSING}
 NOTE_WEIGHT_MAX = 300.0
 TABLE_MAX_ROWS = 5  # 含表头行
 TABLE_MAX_COLS = 6
@@ -74,20 +78,37 @@ def _truncate_weight(text: str, cap: float) -> str:
     return "".join(out)
 
 
-# ---------- 确定性填充（结构页 + 表格页，零 LLM） ----------
+# ---------- 页面分派 ----------
 
 def slotfill_page(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
                   client: LLMClient, pm: PromptManager | None = None,
-                  facts: set[str] | None = None) -> PageFill:
-    """单页规划 → PageFill。结构页/表格页零 LLM；内容页 LLM 提案 + 1 轮重试 + 降级。
+                  facts: set[str] | None = None,
+                  toc_entries: list[str] | None = None,
+                  doc_title: str = "") -> PageFill:
+    """单页规划 → PageFill。表格页零 LLM；其余页 LLM 提案 + 1 轮重试 + 降级。
+
+    结构页（封面/目录/章节/结尾）LLM 失败——两轮未过或硬异常——兜底
+    slotfill_deterministic（现成的副题/条目分配/文档题策略，天然合规）；
+    内容页降级为 title-only 页。最坏退回确定性结构页，不会比零 LLM 更差。
 
     facts：docmap key_facts 原文串集合——铁律 verbatim 的事实跨度，
     ngram 比对前剥离（两律相撞不算抄袭）。缺省 None = 空集（仅测试桩场景）。
+    toc_entries/doc_title：结构页兜底与 LLM 提示共用（目录条目 / 文档题）。
     """
-    if item.slide_type in CONTENT_TYPES:
-        return _fill_llm(item, tree, cat_slide, client, pm, facts)
-    return slotfill_deterministic(item, tree, cat_slide)
+    if item.slide_type is SlideType.TABLE:
+        return slotfill_deterministic(item, tree, cat_slide)
+    structural = item.slide_type in STRUCTURAL_TYPES
+    try:
+        return _fill_llm(item, tree, cat_slide, client, pm, facts,
+                         toc_entries=toc_entries, doc_title=doc_title)
+    except Exception:
+        if structural:
+            return slotfill_deterministic(item, tree, cat_slide,
+                                          toc_entries, doc_title)
+        raise
 
+
+# ---------- 确定性填充（结构页兜底路径 + 表格页主路径，零 LLM） ----------
 
 def slotfill_deterministic(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
                            toc_entries: list[str] | None = None,
@@ -193,7 +214,7 @@ def _fill_table(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
                  table=TableIR(table_id=t.table_id, header=header, rows=rows))
 
 
-# ---------- LLM 填充（内容页） ----------
+# ---------- LLM 填充（内容页 + 结构页） ----------
 
 def _slot_digest(cat_slide: SlideInfo) -> list[dict]:
     return [{
@@ -205,10 +226,13 @@ def _slot_digest(cat_slide: SlideInfo) -> list[dict]:
 
 def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
               client: LLMClient, pm: PromptManager | None,
-              facts: set[str] | None = None) -> PageFill:
+              facts: set[str] | None = None,
+              toc_entries: list[str] | None = None,
+              doc_title: str = "") -> PageFill:
     pm = pm or PromptManager()
     if not _fillable(cat_slide):
         raise FillError(f"p{item.page_no} 映射页 S{cat_slide.slide_no} 完全无可用槽")
+    structural = item.slide_type in STRUCTURAL_TYPES
     source_text = tree.resolve(item.src_refs) or tree.sections[0].title
 
     errors = ""
@@ -219,7 +243,10 @@ def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
             title=item.title, brief=item.brief,
             slide_no=cat_slide.slide_no, layout=cat_slide.layout,
             slots=_slot_digest(cat_slide),
-            source_text=source_text, errors=errors)
+            source_text=source_text, errors=errors,
+            doc_title=doc_title if item.slide_type in (SlideType.COVER,
+                                                       SlideType.CLOSING) else "",
+            toc_entries=(toc_entries or []) if item.slide_type is SlideType.TOC else [])
         messages = [
             {"role": "system", "content": pm.render("slotfill/system.md")},
             {"role": "user", "content": user},
@@ -229,19 +256,26 @@ def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
                         template_slide=cat_slide.slide_no, title=out.title,
                         slot_values=out.slots, slot_deletes=out.deletes,
                         note=out.note, src_refs=item.src_refs)
-        issues = validate_page_fill(fill, cat_slide) + _semantic_issues(fill, tree, facts)
+        issues = validate_page_fill(fill, cat_slide) + _semantic_issues(
+            fill, tree, facts, skip_ngram=structural)
         if not issues:
             return fill
         errors = "\n".join(f"- [{i.rule.value}] {i.detail}" for i in issues)
+    if structural:
+        # 结构页兜底：确定性策略天然合规，最坏退回零 LLM 行为
+        return slotfill_deterministic(item, tree, cat_slide, toc_entries, doc_title)
     return _degrade(item, cat_slide, source_text)
 
 
 def _semantic_issues(fill: PageFill, tree: DocTree,
-                     facts: set[str] | None) -> list[ValidationIssue]:
+                     facts: set[str] | None,
+                     skip_ngram: bool = False) -> list[ValidationIssue]:
     """铁律复检（与 e2e_ppt 同语义）：数字溯源 + 10-gram 防抄袭（事实跨度先剥离）。
 
-    只在 LLM 路径调用——结构页/表格页由确定性代码 verbatim 生成天然合规；
-    备注允许引用原文，跳过（对齐 e2e_ppt 复检范围）。
+    只在 LLM 路径调用——表格页由确定性代码 verbatim 生成天然合规；
+    备注允许引用原文，跳过（对齐 e2e_ppt 复检范围）。结构页跳过 ngram：
+    目录条目/文档题/章节题合法回源文标题，照内容页口径会误杀；数字溯源
+    不放宽——页码/条目里的数字仍须 verbatim。
     """
     facts = facts or set()
     exempt = exempt_from_tree(tree)
@@ -251,6 +285,8 @@ def _semantic_issues(fill: PageFill, tree: DocTree,
             issues.append(ValidationIssue(
                 rule=IssueCode.E_NUM_UNTRACED, page_no=fill.page_no,
                 detail=f"槽 {sid} 数字 {tok} 无法溯源（须原文 verbatim）：{ctx}"))
+        if skip_ngram:
+            continue
         for g in ngram_hits(strip_facts(text, facts), tree.full_text, exempt=exempt):
             issues.append(ValidationIssue(
                 rule=IssueCode.E_PLAGIARISM, page_no=fill.page_no,

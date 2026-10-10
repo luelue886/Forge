@@ -10,7 +10,7 @@ from app.llm.client import LLMClient
 from app.llm.prompts import PromptManager
 from app.parse_dispatch import parse_source
 from app.pipeline.plan import assemble_full_plan, assign_template_slides
-from app.pipeline.slotfill import slotfill_deterministic, slotfill_page
+from app.pipeline.slotfill import slotfill_page
 from app.pipeline.understand import understand
 from app.render.template_build import build_deck
 from app.render.tpl_catalog import TemplateCatalog, load_catalog, template_pptx_path
@@ -127,13 +127,8 @@ def run_pipeline(job: _JobLike, client: LLMClient | None = None,
             futs = {}
             for item in todo:
                 cat_slide = catalog.slide(item.template_slide)  # type: ignore[arg-type]
-                if item.slide_type in (SlideType.COVER, SlideType.TOC, SlideType.SECTION_HEADER,
-                                       SlideType.CLOSING, SlideType.TABLE):
-                    futs[ex.submit(slotfill_deterministic, item, tree, cat_slide,
-                                   toc_entries, doc_title)] = item
-                else:
-                    futs[ex.submit(slotfill_page, item, tree, cat_slide,
-                                   client, pm, facts)] = item
+                futs[ex.submit(slotfill_page, item, tree, cat_slide,
+                               client, pm, facts, toc_entries, doc_title)] = item
             done = len(plan.pages) - len(todo)
             for fut in as_completed(futs):
                 fill = fut.result()

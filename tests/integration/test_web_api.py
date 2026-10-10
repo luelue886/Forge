@@ -42,11 +42,12 @@ PLAN_LLM = json.dumps({
     ],
 }, ensure_ascii=False)
 
-# 必拒提案：每内容页 2 次调用（拒收→重试→降级），3 个内容页
+# 必拒提案：内容页 2 次调用（拒收→重试→降级）；结构页（cover/toc/2 章节头/
+# closing，N2 起 LLM 主路径）2 次调用（拒收→重试→确定性兜底）。3+5 页
 FILL_BAD = json.dumps({
     "title": "项目覆盖规模", "slots": {}, "deletes": [], "note": None,
 }, ensure_ascii=False)
-FILL_CALLS = 6
+FILL_CALLS = 16
 
 
 @pytest.fixture()

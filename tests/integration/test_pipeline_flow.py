@@ -1,7 +1,8 @@
-"""M6 PPT 全流程集成：真模板目录 → plan 指派 → slotfill（降级链）→ build_deck → QA。
+"""M6/N2 PPT 全流程集成：真模板目录 → plan 指派 → slotfill（降级链）→ build_deck → QA。
 
-fill 阶段用"必拒"脚本走满 校验→重试→降级 链（每内容页恰好 2 次 LLM 调用），
-降级页 = title-only + 源文备注，仍是合法产物——管线必须走完 DONE。
+fill 阶段用"必拒"脚本走满 校验→重试→降级/兜底 链：内容页每页恰好 2 次
+LLM 调用后降级（title-only + 源文备注）；结构页（N2 起 LLM 主路径）每页
+恰好 2 次调用后兜底确定性填充。两者都是合法产物——管线必须走完 DONE。
 """
 from __future__ import annotations
 
@@ -59,7 +60,9 @@ FILL_BAD = json.dumps({
 # cover + toc + 2 章节头 + 4 内容页 + 1 自动补的表格页 + closing
 EXPECTED_PAGES = 10
 CONTENT_PAGES = 4
-FILL_CALLS = CONTENT_PAGES * 2  # 每内容页恰好 2 次提案（拒收→重试→降级）
+STRUCTURAL_PAGES = 5  # cover + toc + 2 section + closing（表格页零 LLM）
+# 每页恰好 2 次提案（拒收→重试→内容页降级 / 结构页确定性兜底）
+FILL_CALLS = (CONTENT_PAGES + STRUCTURAL_PAGES) * 2
 
 
 def _wait(job, statuses, timeout=120.0):

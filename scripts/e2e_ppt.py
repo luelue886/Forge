@@ -4,8 +4,9 @@
   1) 状态 DONE，qa_report 无 E- 级残留
   2) 数字 100% 溯源（check_numbers）：所有页所有填充槽的文本
   3) 10-gram 防抄袭（ngram_hits）：仅内容页（TEXT_POINTS/TWO_COLUMN/
-     KEY_METRICS）的填充槽——结构页（封面/目录/节题/尾页/表格）由确定性
-     代码 verbatim 生成，不做改写义美；备注允许引用原文，跳过。
+     KEY_METRICS）的填充槽——结构页（封面/目录/节题/尾页）N2 起 LLM 生成，
+     标题/条目/文档题合法回源文标题，不做改写义美（与 slotfill 复检口径
+     一致）；表格页 verbatim 生成；备注允许引用原文，跳过。
      事实跨度（docmap key_facts，铁律 verbatim）比对前剥离——两律相撞
      不算抄袭，对齐文档线 check-before-restore 语义
   4) 遗留检查独立复跑（template_checklist）：零问题
