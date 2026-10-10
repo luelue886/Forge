@@ -9,6 +9,8 @@
      一致）；表格页 verbatim 生成；备注允许引用原文，跳过。
      事实跨度（docmap key_facts，铁律 verbatim）比对前剥离——两律相撞
      不算抄袭，对齐文档线 check-before-restore 语义
+  3.5) 模板样本回填（parrot_weight）：所有页所有填充槽 vs 映射模板页
+     全部槽样本，LCS 当量 ≥6 = 照抄模板示例文案（N 轮验收实弹盲区）
   4) 遗留检查独立复跑（template_checklist）：零问题
   5) 产物齐套：output.pptx、pages/page_NN.fill.json 全套、PNG 数 == 页数
   6) 样例横跨中文模板与英文成品模板
@@ -49,6 +51,7 @@ def run_sample(src: Path, stem: str) -> tuple[bool, list[str]]:
     from app.pipeline.slotfill import CONTENT_TYPES
     from app.qa.ngram import exempt_from_tree, ngram_hits, strip_facts
     from app.qa.numbers import check_numbers
+    from app.qa.parrot import PARROT_WEIGHT, parrot_weight
     from app.render.tpl_catalog import load_catalog
     from app.schema.doctree import DocTree
     from app.schema.slotfill import DeckBuild
@@ -92,12 +95,18 @@ def run_sample(src: Path, stem: str) -> tuple[bool, list[str]]:
     if bad:
         errors.append(f"QA 残留 E- {len(bad)} 项：" + "; ".join(bad[:5]))
 
-    # 2)+3) 逐页逐槽：数字溯源全覆盖；内容页 ngram 防抄袭
+    # 2)+3)+3.5) 逐页逐槽：数字溯源全覆盖；内容页 ngram 防抄袭；
+    #            全页模板样本回填检测（照抄模板示例文案）
     for page in deck.pages:
+        slide = catalog.slide(page.template_slide)
         for sid, text in sorted(page.slot_values.items()):
             label = f"p{page.page_no} {sid}"
             for tok, ctx in check_numbers(text, tree.full_text):
                 errors.append(f"[E-NUM-UNTRACED] {label} {tok}: {ctx}")
+            for s in slide.slots:
+                if s.sample.strip() and parrot_weight(text, s.sample) >= PARROT_WEIGHT:
+                    errors.append(f"[E-TEMPLATE-PARROT] {label} 照抄模板槽 "
+                                  f"{s.slot_id}：{s.sample[:30]}")
             if page.slide_type in CONTENT_TYPES:
                 for g in ngram_hits(strip_facts(text, facts), tree.full_text,
                                     exempt=exempt):

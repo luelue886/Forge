@@ -18,6 +18,7 @@ from app.llm.client import LLMClient, LLMError
 from app.llm.prompts import PromptManager
 from app.qa.ngram import exempt_from_tree, ngram_hits, strip_facts
 from app.qa.numbers import check_numbers
+from app.qa.parrot import PARROT_WEIGHT, parrot_weight
 from app.schema.doctree import DocTree
 from app.schema.enums import IssueCode, SlideType
 from app.schema.plan import SlidePlanItem
@@ -380,6 +381,14 @@ def validate_page_fill(fill: PageFill, cat_slide: SlideInfo) -> list[ValidationI
         if w > s.capacity:
             add(IssueCode.V_SLOT_CAP,
                 f"槽 {sid}（{s.role} 容量 {s.capacity:.0f}）文本 {w:.0f} 当量超容")
+        for t in cat_slide.slots:
+            if not t.sample.strip():
+                continue
+            pw = parrot_weight(text, t.sample)
+            if pw >= PARROT_WEIGHT:
+                add(IssueCode.V_SLOT_PARROT,
+                    f"槽 {sid} 照抄模板槽 {t.slot_id} 原文（{pw:.0f} 当量）："
+                    f"须改写为本页内容，不得沿用示例文案")
     missing = [s.slot_id for s in cat_slide.slots
                if s.role not in _UNTOUCHABLE and s.slot_id not in touched]
     if missing:

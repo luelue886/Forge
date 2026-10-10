@@ -76,6 +76,7 @@ class IssueCode(str, Enum):
     V_SLOT_TITLE = "V-SLOT-TITLE"
     V_NOTE_LEN = "V-NOTE-LEN"
     V_TEMPLATE_SLIDE = "V-TEMPLATE-SLIDE"
+    V_SLOT_PARROT = "V-SLOT-PARROT"
     E_LEFTOVER = "E-LEFTOVER"
     # 文档线（DocIR）
     V_DOC_TITLE_LEN = "V-DOC-TITLE-LEN"

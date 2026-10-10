@@ -522,3 +522,60 @@ class TestTransportResilience:
         assert len(fake.calls) == 18
         assert fill.slot_values[ids["title"]] == "智慧园区汇报"
         assert "副题文本" in fill.slot_values.values()
+
+
+class TestParrotGuard:
+    """N7：模板样本回填盲区——照抄示例文案拒收重试，短回声不误伤。"""
+
+    def test_parrot_own_and_cross_sample_rejected(self, catalog: TemplateCatalog):
+        ids = _s3_ids(catalog)
+        # title 填 2.1(desc) 的样本（跨槽抄）；2.1 填自己的样本（自抄）
+        f = PageFill(page_no=1, slide_type=SlideType.TEXT_POINTS, template_slide=3,
+                     title="t",
+                     slot_values={ids["title"]: "跨部门协同推进项目落地",
+                                  ids["grp"][1]: "跨部门协同推进项目落地",
+                                  ids["grp"][0]: "要点一", ids["grp"][2]: "要点二",
+                                  ids["grp"][3]: "要点三"},
+                     src_refs=[])
+        rules = [i.rule for i in validate_page_fill(f, catalog.slide(3))]
+        assert rules.count(IssueCode.V_SLOT_PARROT) == 2
+
+    def test_short_echo_not_flagged(self, catalog: TemplateCatalog):
+        """合法短回声（≤6 当量，如标签词、目录/谢谢观看）不算照抄。"""
+        ids = _s3_ids(catalog)
+        f = PageFill(page_no=1, slide_type=SlideType.TEXT_POINTS, template_slide=3,
+                     title="团队协作要点",
+                     slot_values={ids["title"]: "团队协作要点",
+                                  ids["grp"][0]: "团队协作",
+                                  ids["grp"][1]: "推进落地",
+                                  ids["grp"][2]: "数据驱动",
+                                  ids["grp"][3]: "持续改进"},
+                     src_refs=[])
+        assert validate_page_fill(f, catalog.slide(3)) == []
+
+    def test_parrot_rejected_then_good(self, catalog: TemplateCatalog, tree,
+                                       fake_llm_factory):
+        ids = _s3_ids(catalog)
+        bad = json.loads(_good_out(ids))
+        bad["slots"][ids["grp"][1]] = "跨部门协同推进项目落地"  # 照抄 2.1 样本
+        client, fake = fake_llm_factory([json.dumps(bad, ensure_ascii=False),
+                                         _good_out(ids)])
+        item = _item(4, SlideType.TEXT_POINTS, "覆盖规模", refs=["blk-0001"])
+        fill = slotfill_page(item, tree, catalog.slide(3), client)
+        assert len(fake.calls) == 2
+        assert "V-SLOT-PARROT" in fake.calls[1]["messages"][1]["content"]
+        assert fill.slot_values[ids["grp"][1]] == "十二个园区全面接入"
+
+    def test_structural_parrot_falls_back(self, catalog: TemplateCatalog, tree,
+                                          fake_llm_factory):
+        """结构页两轮都照抄模板样本 → 确定性兜底（计划题/副题，天然合规）。"""
+        ids = _s1_ids(catalog)
+        bad = json.dumps({"title": "年度培训主题",
+                          "slots": {ids["title"]: "年度培训主题",
+                                    ids["sub"]: "副标题示例文本"},
+                          "deletes": [], "note": None}, ensure_ascii=False)
+        client, fake = fake_llm_factory([bad, bad])
+        item = _item(1, SlideType.COVER, "智慧园区汇报", brief="副题文本")
+        fill = slotfill_page(item, tree, catalog.slide(1), client)
+        assert fill.slot_values[ids["title"]] == "智慧园区汇报"
+        assert "副题文本" in fill.slot_values.values()
