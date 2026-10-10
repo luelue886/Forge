@@ -48,15 +48,35 @@ def test_clean(catalog, tpl_path, tmp_path):
     from app.services.com_export import template_checklist
 
     ids = _s3_ids(catalog)
+    # N1 起 tagline 槽不再豁免：未填未删的模板原文会报 E_LEFTOVER，须显式删除
+    s4_taglines = [s.slot_id for s in catalog.slide(4).slots_of_role("tagline")]
     pages = [
         _page(1, 3, {ids["title"]: "覆盖规模", **{g: "要点" for g in ids["grp"]}}),
-        _page(2, 4, {"0": "独立正文"}),  # page_no/design 位不触碰属正常
+        _page(2, 4, {"0": "独立正文"}, deletes=s4_taglines),  # page_no/design 位不触碰属正常
     ]
     pptx = _build_deck(tpl_path, catalog, tmp_path, pages)
     issues = template_checklist(
         DeckBuild(meta=BuildMeta(title="t", template=catalog.stem), pages=pages),
         catalog, pptx)
     assert issues == [], [i.detail for i in issues]
+
+
+def test_tagline_leftover_detected(catalog, tpl_path, tmp_path):
+    """N1 盲区消除：tagline 槽的模板原文未填未删 → E_LEFTOVER（BLOCKING）。"""
+    from app.services.com_export import template_checklist
+
+    ids = _s3_ids(catalog)
+    pages = [
+        _page(1, 3, {ids["title"]: "覆盖规模", **{g: "要点" for g in ids["grp"]}}),
+        _page(2, 4, {"0": "独立正文"}),  # tagline 槽未触碰
+    ]
+    pptx = _build_deck(tpl_path, catalog, tmp_path, pages)
+    issues = template_checklist(
+        DeckBuild(meta=BuildMeta(title="t", template=catalog.stem), pages=pages),
+        catalog, pptx)
+    leftovers = [i for i in issues if i.code is IssueCode.E_LEFTOVER]
+    assert len(leftovers) == len(catalog.slide(4).slots_of_role("tagline"))
+    assert any("单季全球总额" in i.detail for i in leftovers)
 
 
 def test_leftover_detected(catalog, tpl_path, tmp_path):

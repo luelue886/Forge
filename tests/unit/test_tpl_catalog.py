@@ -74,6 +74,41 @@ class TestExtract:
         designs = s4.slots_of_role("design")
         assert any(d.sample == "·" for d in designs)
 
+    def test_tagline_cjk_and_latin(self, catalog: TemplateCatalog):
+        """N1：单行小高框（raw_cap<3）里的真实文案归 tagline——CJK ≥3 当量、
+        非 CJK ≥5 当量（≥10 拉丁字符滤掉纯装饰）。"""
+        s4 = catalog.slide(4)
+        taglines = {s.sample: s for s in s4.slots_of_role("tagline")}
+        assert "单季全球总额示例文案" in taglines  # CJK w=10 ≥3
+        assert "P03 · WHAT IS A ZINE" in taglines  # 拉丁 w≈7.5 ≥5
+        # "PART 01"（w=3 <5）仍是纯装饰 → design
+        assert not any(s.sample == "PART 01" and s.role == "tagline"
+                       for s in s4.slots)
+        assert any(s.sample == "PART 01" and s.role == "design"
+                   for s in s4.slots)
+
+    def test_tagline_excluded_from_fillable(self, catalog: TemplateCatalog):
+        """tagline 不占内容池预算：fillable 计数与 fillable 属性都排除。"""
+        s4 = catalog.slide(4)
+        taglines = s4.slots_of_role("tagline")
+        assert taglines and all(not t.fillable for t in taglines)
+        # S4 可填槽仍只有正文框一个（table_host 判定不变）
+        assert s4.fillable == 1
+        assert s4.role_hint == "table_host"
+
+    def test_tagline_not_in_signature(self, catalog: TemplateCatalog):
+        """规划器摘要跳过 tagline（不参与指派决策）。"""
+        s4 = catalog.slide(4)
+        sig_slots = [p for p in s4.signature.split(" | ")
+                     if p.startswith("tagline")]
+        assert sig_slots == []
+
+    def test_ph_small_cap_not_tagline(self, catalog: TemplateCatalog):
+        """ph 占位符分支在前：小容量 ph 槽降级 design，不受 tagline 影响。"""
+        s1 = catalog.slide(1)
+        for s in s1.slots:
+            assert s.role != "tagline"
+
     def test_picture_not_a_slot(self, catalog: TemplateCatalog):
         s3 = catalog.slide(3)
         assert not any(s.sample == "" and s.role == "design" for s in s3.slots

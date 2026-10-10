@@ -4,7 +4,9 @@
   S1 cover——版式占位符（title/subtitle ph 继承字号链）
   S2 toc——标题 + 正文占位符 5 条目（多段单槽）
   S3 content——独立大字号标题 + 图片 + GROUP（非恒等 chOff/chExt，2×(标签+描述)+组内图片）+ notesSlide + 页级 tags
-  S4 content——3 个独立文本框，含纯数字 "02 / 14"（page_no）与超小样本（design）
+  S4 content——6 个独立文本框：正文（body）、纯数字 "02 / 14"（page_no）、
+      超小样本 "·"（design）、单行小高框真实文案 ×3（CJK/非 CJK → tagline，
+      "PART 01" 字重不足 → design）
   S5 closing——占位符标题 + 文本框
 """
 from __future__ import annotations
@@ -245,6 +247,16 @@ def build_synthetic_template(path: Path) -> Path:
     t3 = s4.shapes.add_textbox(Inches(0.5), Inches(3), Inches(0.4), Inches(0.3))
     t3.text_frame.text = "·"
     t3.text_frame.paragraphs[0].runs[0].font.size = Pt(10)
+    # 单行小高框（0.3" 高 16pt → 公式容量 1.0）里的真实文案：tagline 判定样本
+    t4 = s4.shapes.add_textbox(Inches(6), Inches(2), Inches(3), Inches(0.3))
+    t4.text_frame.text = "单季全球总额示例文案"
+    t4.text_frame.paragraphs[0].runs[0].font.size = Pt(16)
+    t5 = s4.shapes.add_textbox(Inches(6), Inches(2.5), Inches(3), Inches(0.3))
+    t5.text_frame.text = "P03 · WHAT IS A ZINE"
+    t5.text_frame.paragraphs[0].runs[0].font.size = Pt(16)
+    t6 = s4.shapes.add_textbox(Inches(6), Inches(3.5), Inches(2), Inches(0.3))
+    t6.text_frame.text = "PART 01"
+    t6.text_frame.paragraphs[0].runs[0].font.size = Pt(16)
 
     s5 = prs.slides.add_slide(prs.slide_layouts[0])
     s5.shapes.title.text = "谢谢观看"

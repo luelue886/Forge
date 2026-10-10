@@ -1,4 +1,5 @@
-"""M5 槽填充：结构页零 LLM、内容页 LLM 提案→校验→重试→降级、槽级校验链。"""
+"""M5/N2 槽填充：结构页 LLM 主路径 + 确定性兜底、表格页零 LLM、
+内容页 LLM 提案→校验→重试→降级、槽级校验链。"""
 from __future__ import annotations
 
 import json
@@ -171,6 +172,177 @@ class TestDeterministic:
         item = _item(1, SlideType.COVER, "t")
         with pytest.raises(FillError, match="完全无可用槽"):
             slotfill_deterministic(item, None, empty)  # type: ignore[arg-type]
+
+
+def _s1_ids(catalog: TemplateCatalog) -> dict[str, str]:
+    """S1（cover）的槽位：title ph + subtitle ph。"""
+    s1 = catalog.slide(1)
+    out = {"title": next(s.slot_id for s in s1.slots if s.role == "title")}
+    rest = [s.slot_id for s in s1.slots
+            if s.role not in ("title", "design", "page_no")]
+    out["sub"] = rest[0]
+    return out
+
+
+def _s4_taglines(catalog: TemplateCatalog) -> list[str]:
+    return [s.slot_id for s in catalog.slide(4).slots_of_role("tagline")]
+
+
+class TestStructuralLLM:
+    """N2：结构页走 LLM 主路径，失败兜底确定性；表格页仍零 LLM。"""
+
+    def test_cover_via_llm(self, catalog: TemplateCatalog, tree, fake_llm_factory):
+        ids = _s1_ids(catalog)
+        out = json.dumps({
+            "title": "智慧园区汇报",
+            "slots": {ids["title"]: "智慧园区汇报", ids["sub"]: "平台建设全景"},
+            "deletes": [], "note": None,
+        }, ensure_ascii=False)
+        client, fake = fake_llm_factory([out])
+        item = _item(1, SlideType.COVER, "智慧园区汇报", brief="副题")
+        fill = slotfill_page(item, tree, catalog.slide(1), client,
+                             doc_title="智慧园区平台建设汇报")
+        assert len(fake.calls) == 1
+        assert fill.slot_values[ids["title"]] == "智慧园区汇报"
+        # doc_title 进 cover 提示
+        assert "智慧园区平台建设汇报" in fake.calls[0]["messages"][1]["content"]
+
+    def test_toc_via_llm_passes_entries(self, catalog: TemplateCatalog, tree,
+                                        fake_llm_factory):
+        s2 = catalog.slide(2)
+        title = next(s.slot_id for s in s2.slots if s.role == "title")
+        body = next(s.slot_id for s in s2.slots if s.role == "body")
+        out = json.dumps({
+            "title": "目录", "slots": {title: "目录", body: "一、概述\n二、指标"},
+            "deletes": [], "note": None,
+        }, ensure_ascii=False)
+        client, fake = fake_llm_factory([out])
+        item = _item(2, SlideType.TOC, "目录")
+        fill = slotfill_page(item, tree, s2, client,
+                             toc_entries=["一、概述", "二、指标"])
+        assert len(fake.calls) == 1
+        user = fake.calls[0]["messages"][1]["content"]
+        assert "目录条目" in user and "二、指标" in user
+        assert fill.slot_values[body] == "一、概述\n二、指标"
+
+    def test_structural_skips_ngram(self, catalog: TemplateCatalog, tree,
+                                    fake_llm_factory):
+        """结构页语义复检放宽：副题 verbatim 回源文（数字可溯源）不算抄袭。"""
+        ids = _s1_ids(catalog)
+        src = tree.resolve(["blk-0001"])  # "本项目覆盖 12 个园区，接入设备 8,600 台。"
+        out = json.dumps({
+            "title": "智慧园区汇报",
+            "slots": {ids["title"]: "智慧园区汇报", ids["sub"]: src},
+            "deletes": [], "note": None,
+        }, ensure_ascii=False)
+        client, fake = fake_llm_factory([out])
+        item = _item(1, SlideType.COVER, "智慧园区汇报")
+        fill = slotfill_page(item, tree, catalog.slide(1), client)
+        assert len(fake.calls) == 1  # 未因 ngram 拒收重试
+        assert fill.slot_values[ids["sub"]] == src
+
+    def test_structural_fallback_after_two_rejections(self, catalog, tree,
+                                                      fake_llm_factory):
+        """两轮校验未过 → 确定性兜底（title←计划题，次大槽←brief）。"""
+        ids = _s1_ids(catalog)
+        bad = json.dumps({"title": "t", "slots": {}, "deletes": [],
+                          "note": None}, ensure_ascii=False)
+        client, fake = fake_llm_factory([bad, bad])
+        item = _item(1, SlideType.COVER, "智慧园区汇报", brief="副题文本")
+        fill = slotfill_page(item, tree, catalog.slide(1), client)
+        assert len(fake.calls) == 2
+        assert fill.slot_values[ids["title"]] == "智慧园区汇报"
+        assert "副题文本" in fill.slot_values.values()
+
+    def test_structural_fallback_on_llm_error(self, catalog, tree,
+                                              fake_llm_factory):
+        """LLM 硬异常不再杀 job：结构页兜底确定性填充。"""
+        ids = _s1_ids(catalog)
+        client, fake = fake_llm_factory([RuntimeError("endpoint down")])
+        item = _item(1, SlideType.COVER, "智慧园区汇报", brief="副题文本")
+        fill = slotfill_page(item, tree, catalog.slide(1), client)
+        assert fill.slot_values[ids["title"]] == "智慧园区汇报"
+
+    def test_table_still_deterministic(self, catalog: TemplateCatalog, tree,
+                                       fake_llm_factory):
+        """表格页零 LLM：slotfill_page 不消耗任何调用，表内容 verbatim。"""
+        from app.schema.enums import TableStrategy
+        from app.schema.plan import TableRef
+
+        client, fake = fake_llm_factory([])
+        item = _item(4, SlideType.TABLE, "Q3 指标", refs=["tbl-001"])
+        item.table_ref = TableRef(table_id="tbl-001", strategy=TableStrategy.COPY)
+        fill = slotfill_page(item, tree, catalog.slide(4), client)
+        assert fake.calls == []
+        assert fill.table is not None
+        assert fill.table.rows == [["园区数", "10", "12"], ["设备数", "8000", "8600"]]
+
+    def test_tagline_visible_to_llm(self, catalog: TemplateCatalog, tree,
+                                    fake_llm_factory):
+        """N1：tagline 槽进 LLM digest 与覆盖义务——必填或必删。"""
+        from app.pipeline.slotfill import _slot_digest
+
+        s4 = catalog.slide(4)
+        t_ids = _s4_taglines(catalog)
+        assert t_ids, "合成模板 S4 应含 tagline 槽"
+        digest_ids = {d["slot_id"] for d in _slot_digest(s4)}
+        assert set(t_ids) <= digest_ids
+        # 只填正文槽、tagline 未覆盖 → V_SLOT_COVER
+        body = next(s.slot_id for s in s4.slots if s.role == "body")
+        f = PageFill(page_no=1, slide_type=SlideType.TEXT_POINTS,
+                     template_slide=4, title="t",
+                     slot_values={body: "内容"}, src_refs=[])
+        issues = validate_page_fill(f, s4)
+        assert any(i.rule is IssueCode.V_SLOT_COVER and t_ids[0] in i.detail
+                   for i in issues)
+        # 全覆盖（tagline 全删）→ 干净
+        f2 = PageFill(page_no=1, slide_type=SlideType.TEXT_POINTS,
+                      template_slide=4, title="t",
+                      slot_values={body: "内容"}, slot_deletes=t_ids, src_refs=[])
+        assert validate_page_fill(f2, s4) == []
+
+
+class TestVision:
+    """N3：模板页截图随提示走视觉模型；缺图退纯文本。"""
+
+    def test_thumb_attaches_image_and_vision_model(self, catalog, tree,
+                                                   fake_llm_factory, tmp_path):
+        ids = _s1_ids(catalog)
+        out = json.dumps({
+            "title": "智慧园区汇报",
+            "slots": {ids["title"]: "智慧园区汇报", ids["sub"]: "平台建设全景"},
+            "deletes": [], "note": None,
+        }, ensure_ascii=False)
+        client, fake = fake_llm_factory([out])
+        thumbs = tmp_path / "tpl.pages"
+        thumbs.mkdir()
+        (thumbs / "page_01.jpg").write_bytes(b"\xff\xd8fake-jpeg")
+        item = _item(1, SlideType.COVER, "智慧园区汇报")
+        fill = slotfill_page(item, tree, catalog.slide(1), client,
+                             thumbs_dir=thumbs)
+        assert len(fake.calls) == 1
+        assert fake.calls[0]["model"] == client.vision_model
+        content = fake.calls[0]["messages"][1]["content"]
+        assert isinstance(content, list)
+        assert content[0]["type"] == "text"
+        assert content[1]["type"] == "image_url"
+        assert content[1]["image_url"]["url"].startswith("data:image/jpeg;base64,")
+
+    def test_missing_thumb_falls_back_to_text(self, catalog, tree,
+                                              fake_llm_factory, tmp_path):
+        ids = _s1_ids(catalog)
+        out = json.dumps({
+            "title": "智慧园区汇报",
+            "slots": {ids["title"]: "智慧园区汇报", ids["sub"]: "平台建设全景"},
+            "deletes": [], "note": None,
+        }, ensure_ascii=False)
+        client, fake = fake_llm_factory([out])
+        item = _item(1, SlideType.COVER, "智慧园区汇报")
+        fill = slotfill_page(item, tree, catalog.slide(1), client,
+                             thumbs_dir=tmp_path / "nope.pages")
+        assert len(fake.calls) == 1
+        assert isinstance(fake.calls[0]["messages"][1]["content"], str)
+        assert fill.slot_values[ids["title"]] == "智慧园区汇报"
 
 
 class TestLLMPath:
