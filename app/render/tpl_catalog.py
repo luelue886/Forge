@@ -441,6 +441,11 @@ def template_pptx_path(stem: str, templates_dir: Path = PPTX_TEMPLATES_DIR) -> P
     return Path(templates_dir) / f"{stem}.pptx"
 
 
+def template_thumbs_dir(stem: str, templates_dir: Path = PPTX_TEMPLATES_DIR) -> Path:
+    """逐页 JPEG 缩略图目录（catalog_templates.py --thumbs 生成，入库提交）。"""
+    return Path(templates_dir) / f"{stem}.pages"
+
+
 def save_catalog(cat: TemplateCatalog, templates_dir: Path = PPTX_TEMPLATES_DIR) -> Path:
     path = catalog_path(cat.stem, templates_dir)
     Path(templates_dir).mkdir(parents=True, exist_ok=True)

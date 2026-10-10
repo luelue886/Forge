@@ -9,6 +9,9 @@
 """
 from __future__ import annotations
 
+import base64
+from pathlib import Path
+
 from pydantic import BaseModel, Field
 
 from app.llm.client import LLMClient
@@ -84,7 +87,8 @@ def slotfill_page(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
                   client: LLMClient, pm: PromptManager | None = None,
                   facts: set[str] | None = None,
                   toc_entries: list[str] | None = None,
-                  doc_title: str = "") -> PageFill:
+                  doc_title: str = "",
+                  thumbs_dir: Path | None = None) -> PageFill:
     """单页规划 → PageFill。表格页零 LLM；其余页 LLM 提案 + 1 轮重试 + 降级。
 
     结构页（封面/目录/章节/结尾）LLM 失败——两轮未过或硬异常——兜底
@@ -94,13 +98,16 @@ def slotfill_page(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
     facts：docmap key_facts 原文串集合——铁律 verbatim 的事实跨度，
     ngram 比对前剥离（两律相撞不算抄袭）。缺省 None = 空集（仅测试桩场景）。
     toc_entries/doc_title：结构页兜底与 LLM 提示共用（目录条目 / 文档题）。
+    thumbs_dir：模板逐页 JPEG 缩略图目录；该页截图存在则随提示走视觉模型，
+    缺失自动退纯文本默认模型，可用性不依赖缩略图。
     """
     if item.slide_type is SlideType.TABLE:
         return slotfill_deterministic(item, tree, cat_slide)
     structural = item.slide_type in STRUCTURAL_TYPES
     try:
         return _fill_llm(item, tree, cat_slide, client, pm, facts,
-                         toc_entries=toc_entries, doc_title=doc_title)
+                         toc_entries=toc_entries, doc_title=doc_title,
+                         thumbs_dir=thumbs_dir)
     except Exception:
         if structural:
             return slotfill_deterministic(item, tree, cat_slide,
@@ -224,16 +231,29 @@ def _slot_digest(cat_slide: SlideInfo) -> list[dict]:
     } for s in cat_slide.slots if s.role not in _UNTOUCHABLE]
 
 
+def _thumb_b64(thumbs_dir: Path | None, slide_no: int) -> str | None:
+    """该模板页 JPEG 缩略图 → data URL base64；缺失/读失败返回 None（退纯文本）。"""
+    if thumbs_dir is None:
+        return None
+    thumb = thumbs_dir / f"page_{slide_no:02d}.jpg"
+    try:
+        return base64.b64encode(thumb.read_bytes()).decode("ascii")
+    except OSError:
+        return None
+
+
 def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
               client: LLMClient, pm: PromptManager | None,
               facts: set[str] | None = None,
               toc_entries: list[str] | None = None,
-              doc_title: str = "") -> PageFill:
+              doc_title: str = "",
+              thumbs_dir: Path | None = None) -> PageFill:
     pm = pm or PromptManager()
     if not _fillable(cat_slide):
         raise FillError(f"p{item.page_no} 映射页 S{cat_slide.slide_no} 完全无可用槽")
     structural = item.slide_type in STRUCTURAL_TYPES
     source_text = tree.resolve(item.src_refs) or tree.sections[0].title
+    img_b64 = _thumb_b64(thumbs_dir, cat_slide.slide_no)
 
     errors = ""
     for _attempt in (1, 2):
@@ -247,11 +267,25 @@ def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
             doc_title=doc_title if item.slide_type in (SlideType.COVER,
                                                        SlideType.CLOSING) else "",
             toc_entries=(toc_entries or []) if item.slide_type is SlideType.TOC else [])
+        if img_b64:
+            user_content: str | list = [
+                {"type": "text", "text": user},
+                {"type": "image_url",
+                 "image_url": {"url": f"data:image/jpeg;base64,{img_b64}"}},
+            ]
+        else:
+            user_content = user
         messages = [
             {"role": "system", "content": pm.render("slotfill/system.md")},
-            {"role": "user", "content": user},
+            {"role": "user", "content": user_content},
         ]
-        out = client.structured(_SlotFillOut, messages, stage=f"slotfill/p{item.page_no}")
+        if img_b64:
+            out = client.structured(_SlotFillOut, messages,
+                                    stage=f"slotfill/p{item.page_no}",
+                                    model=client.vision_model)
+        else:
+            out = client.structured(_SlotFillOut, messages,
+                                    stage=f"slotfill/p{item.page_no}")
         fill = PageFill(page_no=item.page_no, slide_type=item.slide_type,
                         template_slide=cat_slide.slide_no, title=out.title,
                         slot_values=out.slots, slot_deletes=out.deletes,

@@ -4,7 +4,8 @@
     python scripts/catalog_templates.py [stem ...] [--thumbs]
 
 不带参数 = 对 templates/pptx/ 下全部 *.pptx 生成 <stem>.catalog.json。
---thumbs 额外用 COM 导出每页 PNG 到 templates/pptx/<stem>.pages/（UI 模板预览用）。
+--thumbs 额外用 COM 导出每页 960px 图并转 JPEG q80 到
+templates/pptx/<stem>.pages/page_NN.jpg（slotfill 视觉上下文用，入库提交）。
 """
 from __future__ import annotations
 
@@ -17,7 +18,11 @@ sys.path.insert(0, str(ROOT))
 
 from app.render.tpl_catalog import (  # noqa: E402
     PPTX_TEMPLATES_DIR, extract_catalog, save_catalog, template_pptx_path,
+    template_thumbs_dir,
 )
+
+THUMB_W = 960
+THUMB_JPEG_Q = 80
 
 DISPLAY_NAMES = {
     "40页商务蓝绿色关系可视化图表集PPT模板": "商务蓝绿图表集（26 页）",
@@ -32,10 +37,28 @@ DISPLAY_NAMES = {
 }
 
 
+def export_thumbs(pptx: Path, out_dir: Path) -> int:
+    """COM 导出 960px PNG → PIL 转 JPEG q80；PNG 中间产物即用即删。"""
+    from PIL import Image
+
+    from app.services.com_export import export_pngs
+
+    pngs = export_pngs(pptx, out_dir, width_px=THUMB_W)
+    for png in pngs:
+        img = Image.open(png)
+        if img.width > THUMB_W:
+            img = img.resize((THUMB_W, round(img.height * THUMB_W / img.width)))
+        img.convert("RGB").save(out_dir / (png.stem + ".jpg"), "JPEG",
+                                quality=THUMB_JPEG_Q)
+        png.unlink()
+    return len(pngs)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("stems", nargs="*", help="模板 stem；缺省 = 全部")
-    ap.add_argument("--thumbs", action="store_true", help="COM 导出逐页 PNG 预览")
+    ap.add_argument("--thumbs", action="store_true",
+                    help="COM 导出逐页 JPEG 缩略图（slotfill 视觉上下文）")
     args = ap.parse_args()
 
     if not PPTX_TEMPLATES_DIR.exists():
@@ -53,10 +76,9 @@ def main() -> int:
         n_slots = sum(len(s.slots) for s in cat.slides)
         print(f"{stem}: {cat.n_slides} 页 / {n_slots} 槽 → {path.name}")
         if args.thumbs:
-            from app.services.com_export import export_pngs
-            out = PPTX_TEMPLATES_DIR / f"{stem}.pages"
-            pngs = export_pngs(pptx, out)
-            print(f"  缩略图 {len(pngs)} 张 → {out}/")
+            out = template_thumbs_dir(stem)
+            n = export_thumbs(pptx, out)
+            print(f"  缩略图 {n} 张 → {out}/")
     return 0
 
 
