@@ -14,7 +14,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field
 
-from app.llm.client import LLMClient
+from app.llm.client import LLMClient, LLMError
 from app.llm.prompts import PromptManager
 from app.qa.ngram import exempt_from_tree, ngram_hits, strip_facts
 from app.qa.numbers import check_numbers
@@ -256,6 +256,7 @@ def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
     img_b64 = _thumb_b64(thumbs_dir, cat_slide.slide_no)
 
     errors = ""
+    transport_failed = False
     for _attempt in (1, 2):
         user = pm.render(
             "slotfill/user.j2",
@@ -267,7 +268,10 @@ def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
             doc_title=doc_title if item.slide_type in (SlideType.COVER,
                                                        SlideType.CLOSING) else "",
             toc_entries=(toc_entries or []) if item.slide_type is SlideType.TOC else [])
-        if img_b64:
+        # 视觉路传输失败（端点对密集版式页间歇性空响应）→ 第二轮退纯文本
+        # 默认模型（历史零空响应），保住 LLM 提案质量
+        use_img = img_b64 and not transport_failed
+        if use_img:
             user_content: str | list = [
                 {"type": "text", "text": user},
                 {"type": "image_url",
@@ -279,13 +283,19 @@ def _fill_llm(item: SlidePlanItem, tree: DocTree, cat_slide: SlideInfo,
             {"role": "system", "content": pm.render("slotfill/system.md")},
             {"role": "user", "content": user_content},
         ]
-        if img_b64:
-            out = client.structured(_SlotFillOut, messages,
-                                    stage=f"slotfill/p{item.page_no}",
-                                    model=client.vision_model)
-        else:
-            out = client.structured(_SlotFillOut, messages,
-                                    stage=f"slotfill/p{item.page_no}")
+        try:
+            if use_img:
+                out = client.structured(_SlotFillOut, messages,
+                                        stage=f"slotfill/p{item.page_no}",
+                                        model=client.vision_model)
+            else:
+                out = client.structured(_SlotFillOut, messages,
+                                        stage=f"slotfill/p{item.page_no}")
+        except LLMError as e:
+            # 传输层内部已重试耗尽：按本轮提案失败计，走重试/兜底，不杀 job
+            errors = f"- [transport] {e}"
+            transport_failed = True
+            continue
         fill = PageFill(page_no=item.page_no, slide_type=item.slide_type,
                         template_slide=cat_slide.slide_no, title=out.title,
                         slot_values=out.slots, slot_deletes=out.deletes,

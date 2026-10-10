@@ -466,3 +466,59 @@ class TestValidate:
         issues = validate_page_fill(f, catalog.slide(3))
         note_issues = [i for i in issues if i.rule is IssueCode.V_NOTE_LEN]
         assert note_issues and "300" in note_issues[0].detail
+
+
+class TestTransportResilience:
+    """N5：传输层耗尽（端点空响应）不杀 job——视觉失败退纯文本重试，再败走兜底。"""
+
+    def test_vision_transport_failure_retries_text(self, catalog, tree,
+                                                   fake_llm_factory, tmp_path,
+                                                   monkeypatch):
+        import time
+
+        monkeypatch.setattr(time, "sleep", lambda s: None)
+        ids = _s3_ids(catalog)
+        client, fake = fake_llm_factory([""] * 9 + [_good_out(ids)])
+        thumbs = tmp_path / "tpl.pages"
+        thumbs.mkdir()
+        (thumbs / "page_03.jpg").write_bytes(b"\xff\xd8fake-jpeg")
+        item = _item(4, SlideType.TEXT_POINTS, "覆盖规模", refs=["blk-0001"])
+        fill = slotfill_page(item, tree, catalog.slide(3), client,
+                             thumbs_dir=thumbs)
+        # 第一轮视觉 3×3 连空 → LLMError；第二轮纯文本默认模型提案成功
+        assert len(fake.calls) == 10
+        assert fake.calls[0]["model"] == client.vision_model
+        assert isinstance(fake.calls[0]["messages"][1]["content"], list)
+        assert fake.calls[9]["model"] == client.model
+        assert isinstance(fake.calls[9]["messages"][1]["content"], str)
+        assert fill.slot_values[ids["title"]] == "覆盖规模与设备接入"
+
+    def test_content_degrades_after_transport_exhausted(self, catalog, tree,
+                                                        fake_llm_factory,
+                                                        monkeypatch):
+        import time
+
+        monkeypatch.setattr(time, "sleep", lambda s: None)
+        ids = _s3_ids(catalog)
+        client, fake = fake_llm_factory([""] * 18)
+        item = _item(4, SlideType.TEXT_POINTS, "覆盖规模与设备接入要点",
+                     refs=["blk-0001"])
+        fill = slotfill_page(item, tree, catalog.slide(3), client)
+        # 两轮（各 3×3 次重试）全空 → 内容页降级 title-only，不抛
+        assert len(fake.calls) == 18
+        assert list(fill.slot_values) == [ids["title"]]
+        assert fill.note == tree.resolve(["blk-0001"])
+
+    def test_structural_transport_falls_back_deterministic(self, catalog, tree,
+                                                           fake_llm_factory,
+                                                           monkeypatch):
+        import time
+
+        monkeypatch.setattr(time, "sleep", lambda s: None)
+        ids = _s1_ids(catalog)
+        client, fake = fake_llm_factory([""] * 18)
+        item = _item(1, SlideType.COVER, "智慧园区汇报", brief="副题文本")
+        fill = slotfill_page(item, tree, catalog.slide(1), client)
+        assert len(fake.calls) == 18
+        assert fill.slot_values[ids["title"]] == "智慧园区汇报"
+        assert "副题文本" in fill.slot_values.values()
