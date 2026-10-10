@@ -98,3 +98,34 @@ def test_transient_errors_retried(log_path, monkeypatch):
     )
     assert client.chat([{"role": "user", "content": "hi"}]) == "pong"
     assert len(fake.calls) == 3
+
+
+def test_empty_response_retried(log_path, monkeypatch):
+    """视觉端点间歇性空 content：按瞬态错误重试而非返回空串。"""
+    import time
+
+    monkeypatch.setattr(time, "sleep", lambda s: None)
+    client, fake = make(["", "", "pong"], log_path)
+    assert client.chat([{"role": "user", "content": "hi"}]) == "pong"
+    assert len(fake.calls) == 3
+
+
+def test_chat_gives_up_on_all_empty(log_path, monkeypatch):
+    import time
+
+    monkeypatch.setattr(time, "sleep", lambda s: None)
+    client, fake = make(["", "", ""], log_path)
+    with pytest.raises(LLMError, match="空 content"):
+        client.chat([{"role": "user", "content": "hi"}])
+    assert len(fake.calls) == 3
+
+
+def test_structured_survives_chat_transport_failure(log_path, monkeypatch):
+    """chat 连续空响应耗尽后 structured 继续下一 attempt，而非直接穿透。"""
+    import time
+
+    monkeypatch.setattr(time, "sleep", lambda s: None)
+    client, fake = make(["", "", "", '{"ok": true, "message": "hi"}'], log_path)
+    obj = client.structured(Ping, [{"role": "user", "content": "test"}])
+    assert obj.ok is True
+    assert len(fake.calls) == 4

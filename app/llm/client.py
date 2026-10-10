@@ -67,6 +67,10 @@ class LLMClient:
             try:
                 resp = self._create(messages, response_format, extra_body, model)
                 text = (resp.choices[0].message.content or "").strip()
+                if not text:
+                    # 视觉端点对部分密集版式页间歇性返回空 content；
+                    # 空响应必然导致 structured 解析失败，按瞬态错误重试
+                    raise LLMError("端点返回空 content")
                 self._log(stage, messages, text, time.monotonic() - t0, attempt, ok=True)
                 return text
             except _TRANSIENT as e:
@@ -83,6 +87,10 @@ class LLMClient:
                     continue
                 self._log(stage, messages, "", time.monotonic() - t0, attempt, ok=False, error=str(e))
                 raise
+            except LLMError as e:
+                last_err = e
+                self._log(stage, messages, "", time.monotonic() - t0, attempt, ok=False, error=str(e))
+                time.sleep(min(2 ** attempt, 8))
         raise LLMError(f"chat 连续 3 次瞬时失败：{last_err}")
 
     @staticmethod
@@ -103,8 +111,13 @@ class LLMClient:
         history = list(base)
         last_detail = "unknown"
         for attempt in range(1, max_attempts + 1):
-            raw = self.chat(history, stage=f"{stage}#a{attempt}", extra_body=extra_body,
-                            model=model)
+            try:
+                raw = self.chat(history, stage=f"{stage}#a{attempt}", extra_body=extra_body,
+                                model=model)
+            except LLMError as e:
+                # chat 内部已重试 3 次（含空响应）；此处再给后续 attempt 机会
+                last_detail = str(e)
+                continue
             data, err = self._parse(raw)
             if err:
                 last_detail = err
