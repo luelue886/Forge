@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pydantic import BaseModel, Field
 
-SLOT_ROLES = ("title", "body", "label", "desc", "page_no", "design")
+SLOT_ROLES = ("title", "body", "label", "desc", "page_no", "design", "tagline")
 ROLE_HINTS = ("cover", "toc", "section", "content", "closing", "table_host", "")
 
 
@@ -26,7 +26,9 @@ class SlotInfo(BaseModel):
 
     @property
     def fillable(self) -> bool:
-        return self.role not in ("design", "page_no") and self.capacity >= 3.0
+        # tagline 不占内容池预算（plan 准入/toc 宿主/表格锚兜底全消费此
+        # 属性），但 slotfill 侧按"非 untouchable"口径可见可填可删
+        return self.role not in ("design", "page_no", "tagline") and self.capacity >= 3.0
 
 
 class SlideInfo(BaseModel):

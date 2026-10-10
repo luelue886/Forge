@@ -239,6 +239,14 @@ def _mark_roles(slots: list[dict], slide_h_in: float) -> None:
             # 占位符是明确的填充意图，不走短样本 design 豁免；只按容量降级
             # （raw_cap：design 判定不受样本字重 bump 影响）
             s["role"] = "body" if s["raw_cap"] >= 3 else "design"
+        elif (s["raw_cap"] < 3 and s["has_run"] and sample.strip()
+              and w >= (3 if _HAS_CJK.search(sample) else 5)):
+            # 单行小高框里的真实文案是模板示例（"P03 · WHAT IS A ZINE"、
+            # "单季全球 VC 总额 · AI 占 81%"），不是装饰也不是可填正文——
+            # 归 tagline：不占内容池预算，但 slotfill 可见、必填或必删。
+            # 阈值与短样本豁免同向：汉字 ≥3 当量是真短语；非汉字 ≥5 当量
+            # （≥10 拉丁字符）滤掉 "PART 01"/"CONTENTS" 等纯装饰。
+            s["role"] = "tagline"
         elif (not s["has_run"] or s["raw_cap"] < 3
               or (sample.strip() and (w <= 2 or (w <= 4 and not _HAS_CJK.search(sample))))):
             # 短样本豁免只放行纯装饰位（"·"/"PART 01"/"CONTENTS"），
@@ -253,7 +261,7 @@ def _mark_roles(slots: list[dict], slide_h_in: float) -> None:
     # 无 ph 标题时：顶部 40% 区域内最大字号（≥24pt）唯一者为 title
     if not any(s["role"] == "title" for s in slots):
         cands = [s for s in slots
-                 if s["role"] not in ("design", "page_no")
+                 if s["role"] not in ("design", "page_no", "tagline")
                  and s["font_pt"] >= 24 and s["y"] <= slide_h_in * 0.4]
         if cands:
             best = min(cands, key=lambda s: (-s["font_pt"], s["y"]))
@@ -263,7 +271,7 @@ def _mark_roles(slots: list[dict], slide_h_in: float) -> None:
 def _signature(slide_no: int, layout: str, slots: list[dict]) -> str:
     parts = []
     for s in slots:
-        if s["role"] in ("design", "page_no"):
+        if s["role"] in ("design", "page_no", "tagline"):
             continue
         parts.append(f"{s['role']}≤{s['capacity']:.0f}")
         if len(parts) >= 10:
@@ -373,7 +381,8 @@ def _extract_slide(z: zipfile.ZipFile, slide_part: str, slide_no: int,
 
     _mark_roles(slots, slide_h_in)
     fill_slots = [s for s in slots
-                  if s["role"] not in ("design", "page_no") and s["capacity"] >= 3]
+                  if s["role"] not in ("design", "page_no", "tagline")
+                  and s["capacity"] >= 3]
     fillable = len(fill_slots)
     max_cap = max((s["capacity"] for s in fill_slots), default=0.0)
     info = SlideInfo(
