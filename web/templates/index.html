@@ -27,11 +27,11 @@
           <label for="file">源文档</label>
           <input type="file" id="file" accept=".docx,.doc,.pptx,.ppt,.pdf" required>
         </div>
-        <div class="form-row" id="skin-row">
-          <label for="skin">皮肤</label>
-          <select id="skin">
-            {% for stem, display in skins %}
-            <option value="{{ stem }}"{% if stem == 'business_blue' %} selected{% endif %}>{{ display }}</option>
+        <div class="form-row" id="template-row">
+          <label for="template">PPT 模板</label>
+          <select id="template">
+            {% for stem, display in templates %}
+            <option value="{{ stem }}"{% if loop.first %} selected{% endif %}>{{ display }}</option>
             {% endfor %}
           </select>
         </div>

@@ -15,17 +15,13 @@ class Settings(BaseSettings):
     font_path: str = "C:/Windows/Fonts/msyh.ttc"
     fill_workers: int = 4
     com_timeout_s: int = 120
-    capacity_warn: float = 0.90
-    page_char_budget: int = 200
-    max_repair_rounds_page: int = 2
-    max_repair_rounds_global: int = 3
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
-SKINS_DIR = ROOT / "templates" / "skins"
+PPTX_TEMPLATES_DIR = ROOT / "templates" / "pptx"
 PROMPTS_DIR = ROOT / "prompts"
 
 

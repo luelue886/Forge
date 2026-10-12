@@ -61,6 +61,22 @@ def _clean(s: str) -> str:
     return _NUM_TOKEN.sub("N", _STRIP_WS.sub("", s))
 
 
+def strip_facts(text: str, facts) -> str:
+    """把生成文本中的事实跨度整段替换为阻断符后再比对。
+
+    数字/专名/固定短语按铁律 verbatim 照抄，长事实串自身就 ≥10 字窗，
+    计入走向势轴则忠实照抄必然命中——两条铁律相撞。对齐文档线
+    check-before-restore 语义：事实不算抄袭对象，剥离后再查改写部分。
+    过短（<4 清洗字）的"事实"不剥——可能是普通词，剥了会掩真抄袭。
+    """
+    cleaned = _clean(text)
+    for f in facts:
+        c = _clean(f)
+        if len(c) >= 4:
+            cleaned = cleaned.replace(c, "□" * len(c))
+    return cleaned
+
+
 def ngram_hits(generated: str, source: str, n: int = 10,
                exempt: set[str] | None = None) -> list[str]:
     """返回命中的源文 n-gram 片段（同一段连续抄袭只报首个窗口，重复片段去重）。

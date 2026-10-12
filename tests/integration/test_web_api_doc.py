@@ -50,7 +50,7 @@ def test_web_doc_flow_confirm_and_download(basic_docx, web_app, fake_llm_factory
         d = _wait_status(client, job_id, {"PLANNED"})
         assert d["product"] == "doc"
         assert d["genre"] == "report"
-        assert d["skin"] == "business_blue"
+        assert d["template"] == ""
         assert [o["type"] for o in d["outline"]] == ["h1", "h1"]
         assert d["outline"][0]["title"] == "一、项目概述"
         assert d["output_docx"] is None

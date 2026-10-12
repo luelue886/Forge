@@ -1,0 +1,3192 @@
+{
+  "stem": "pritzker_2026",
+  "display_name": "普利兹克 2026（英文）",
+  "n_slides": 11,
+  "slides": [
+    {
+      "slide_no": 1,
+      "layout": "Title Slide",
+      "signature": "S1 布局=Title Slide [desc≤10 | title≤10 | label≤10 | label≤10 | desc≤13]",
+      "slots": [
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "desc",
+          "x": 1.856,
+          "y": 0.945,
+          "w": 2.258,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "PRITZKER PRIZE · 2026",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "title",
+          "x": 0.55,
+          "y": 2.904,
+          "w": 9.659,
+          "h": 1.2,
+          "font_pt": 54.0,
+          "sample": "2026 普利兹克奖大师季",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "label",
+          "x": 0.579,
+          "y": 3.985,
+          "w": 4.756,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "8 座新作 · 8 种深耕",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 0.81,
+          "y": 5.118,
+          "w": 2.681,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "从苏州河畔到沙漠腹地",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "desc",
+          "x": 0.81,
+          "y": 5.493,
+          "w": 3.472,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "读懂顶级建筑师的思考与坚守",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 6.034,
+          "w": 4.191,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "不同于网红建筑的转瞬即逝 · 是岁月沉淀的匠心深耕",
+          "capacity": 23.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 7.124,
+          "w": 1.81,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "资料来源 · 公众号 孙琬童",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 11.067,
+          "y": 7.124,
+          "w": 1.654,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PPT MASTER · 2026.05",
+          "capacity": 10.0
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 13.0,
+      "role_hint": "cover"
+    },
+    {
+      "slide_no": 2,
+      "layout": "Title Slide",
+      "signature": "S2 布局=Title Slide [title≤10 | label≤4 | label≤5 | label≤6 | label≤6 | label≤6 | label≤6 | label≤6]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.689,
+          "w": 2.369,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "EIGHT MASTERS · EIGHT WORKS",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.579,
+          "y": 0.944,
+          "w": 5.156,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "八位大师 · 八种坚守",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.608,
+          "y": 1.837,
+          "w": 3.416,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "2026 年集中亮相 · 横跨亚欧美非四大洲",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "page_no",
+          "x": 0.754,
+          "y": 2.317,
+          "w": 0.687,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "label",
+          "x": 0.79,
+          "y": 3.055,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "安藤忠雄",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.798,
+          "y": 3.418,
+          "w": 1.153,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "苏州 H+ 美术馆",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.8,
+          "y": 3.665,
+          "w": 1.369,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "中国 · 苏州 · 2026.1",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "page_no",
+          "x": 3.931,
+          "y": 2.317,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 3.967,
+          "y": 3.055,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "奇普菲尔德",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 3.975,
+          "y": 3.418,
+          "w": 1.539,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "米兰圣朱利亚冰球馆",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.977,
+          "y": 3.665,
+          "w": 1.721,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "意大利 · 米兰 · 2026 冬奥",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "page_no",
+          "x": 7.108,
+          "y": 2.317,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "label",
+          "x": 7.144,
+          "y": 3.055,
+          "w": 1.582,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "扎哈·哈迪德",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 7.152,
+          "y": 3.418,
+          "w": 1.371,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "淡江大桥（遗作）",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 7.154,
+          "y": 3.665,
+          "w": 1.606,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "中国 · 台北 · 2026.5.12",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 10.285,
+          "y": 2.317,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "label",
+          "x": 10.321,
+          "y": 3.055,
+          "w": 1.582,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "诺曼·福斯特",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.329,
+          "y": 3.418,
+          "w": 0.868,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "上海嘉艺术",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.331,
+          "y": 3.665,
+          "w": 1.405,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "中国 · 上海 · 2026.4",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 0.754,
+          "y": 4.504,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "label",
+          "x": 0.79,
+          "y": 5.243,
+          "w": 1.692,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "OMA × SANAA",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.798,
+          "y": 5.605,
+          "w": 1.371,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "纽约新美术馆扩建",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.8,
+          "y": 5.852,
+          "w": 1.606,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "美国 · 纽约 · 2026.3.21",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "page_no",
+          "x": 3.931,
+          "y": 4.504,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "06",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "label",
+          "x": 3.967,
+          "y": 5.243,
+          "w": 1.582,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "彼得·卒姆托",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 3.975,
+          "y": 5.605,
+          "w": 1.673,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "LACMA 大卫·格芬画廊",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.977,
+          "y": 5.852,
+          "w": 1.707,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "美国 · 洛杉矶 · 2026.5.4",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 7.108,
+          "y": 4.504,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "07",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "label",
+          "x": 7.144,
+          "y": 5.243,
+          "w": 1.582,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "弗兰克·盖里",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "tagline",
+          "x": 7.152,
+          "y": 5.605,
+          "w": 2.042,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "阿布扎比古根海姆（遗作）",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "tagline",
+          "x": 7.154,
+          "y": 5.852,
+          "w": 1.678,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "阿联酋 · 阿布扎比 · 2026",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "page_no",
+          "x": 10.285,
+          "y": 4.504,
+          "w": 0.855,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "08",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "design",
+          "x": 10.321,
+          "y": 5.243,
+          "w": 0.599,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "凯雷",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.329,
+          "y": 5.605,
+          "w": 1.371,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "塞内加尔歌德学院",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "9.4",
+          "path": [
+            9,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.331,
+          "y": 5.852,
+          "w": 1.836,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "塞内加尔 · 达喀尔 · 2026.4",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.613,
+          "y": 7.133,
+          "w": 1.8,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "2026 — 普利兹克大师新作季",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "10.2",
+          "path": [
+            10,
+            2
+          ],
+          "role": "page_no",
+          "x": 12.286,
+          "y": 7.133,
+          "w": 0.435,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "02 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 8,
+      "fillable_cap": 9.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 3,
+      "layout": "Title Slide",
+      "signature": "S3 布局=Title Slide [title≤12 | desc≤13 | label≤8 | label≤10]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.709,
+          "w": 1.388,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "01 · MASTERWORK",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "page_no",
+          "x": 0.533,
+          "y": 1.096,
+          "w": 1.079,
+          "h": 1.467,
+          "font_pt": 66.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "title",
+          "x": 0.583,
+          "y": 2.146,
+          "w": 6.045,
+          "h": 0.667,
+          "font_pt": 30.0,
+          "sample": "安藤忠雄 · 苏州 H+ 美术馆",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "desc",
+          "x": 0.598,
+          "y": 2.707,
+          "w": 4.103,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "在江南园林里写一首混凝土诗",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.609,
+          "y": 3.346,
+          "w": 4.865,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "1995 年普利兹克奖得主 · 2026.1 开馆 · 苏州姑苏区上塘河畔",
+          "capacity": 28.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 0.812,
+          "y": 4.052,
+          "w": 2.092,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "立体园林 · 回游性",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 4.364,
+          "w": 1.078,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "CORE CONCEPT",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 4.742,
+          "w": 2.727,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "从苏州土地的记忆中汲取园林精髓",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 5.013,
+          "w": 1.801,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "· 在有限空间创造深度",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 5.284,
+          "w": 1.801,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "· 设计视线与步行体验",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 5.555,
+          "w": 1.801,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "· 通过水与光传递时间",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 5.971,
+          "w": 3.113,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "不流于形式 · 而是作为设计的构建方式",
+          "capacity": 17.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "label",
+          "x": 5.188,
+          "y": 4.052,
+          "w": 2.343,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "空间叙事 · 三种对话",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.195,
+          "y": 4.364,
+          "w": 1.366,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SPATIAL NARRATIVE",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.193,
+          "y": 4.742,
+          "w": 2.214,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "混凝土的冷峻 ↔ 光线的温柔",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 5.193,
+          "y": 5.076,
+          "w": 2.035,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "几何的秩序 ↔ 园林的自由",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.193,
+          "y": 5.409,
+          "w": 2.035,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "东方美学 ↔ 西方现代主义",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 5.192,
+          "y": 6.296,
+          "w": 2.937,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "让建筑归于自然 · 让艺术治愈人心",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "tagline",
+          "x": 9.778,
+          "y": 3.999,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "美术馆内部空间",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.613,
+          "y": 7.081,
+          "w": 1.11,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "图源 · H+ 美术馆",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.286,
+          "y": 7.081,
+          "w": 0.435,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "03 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 13.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 4,
+      "layout": "Title Slide",
+      "signature": "S4 布局=Title Slide [title≤16 | desc≤12 | label≤7 | label≤9 | desc≤12 | label≤9]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.48,
+          "w": 1.43,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "02 · MASTERWORK",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.585,
+          "y": 0.914,
+          "w": 7.32,
+          "h": 0.633,
+          "font_pt": 28.5,
+          "sample": "奇普菲尔德 · 米兰圣朱利亚冰球馆",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.6,
+          "y": 1.413,
+          "w": 3.5,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "千年罗马竞技场的现代回响",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 1.814,
+          "w": 5.706,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "戴卫·奇普菲尔德 · 2023 年普利兹克奖 · 2026 米兰冬奥会唯一新建永",
+          "capacity": 31.5
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.777,
+          "y": 2.439,
+          "w": 1.689,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "PRECEDENT · 约 70 AD",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "label",
+          "x": 0.773,
+          "y": 2.653,
+          "w": 1.622,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "古罗马圆形剧场",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 5.927,
+          "w": 1.164,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "图源 · Unsplash",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "design",
+          "x": 6.459,
+          "y": 3.533,
+          "w": 0.416,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "→",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "tagline",
+          "x": 6.264,
+          "y": 4.218,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "两千年回响",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 7.235,
+          "y": 2.439,
+          "w": 1.798,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "CONTEMPORARY · 2026",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "label",
+          "x": 7.231,
+          "y": 2.653,
+          "w": 2.075,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "米兰圣朱利亚冰球馆",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 7.07,
+          "y": 5.927,
+          "w": 2.729,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "图源 · David Chipperfield Architects",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 0.796,
+          "y": 6.223,
+          "w": 1.456,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "16,000",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 6.802,
+          "w": 2.231,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "观众容量 · 椭圆形态呼应古罗马",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 2.902,
+          "y": 6.418,
+          "w": 0.197,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "座",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "desc",
+          "x": 5.033,
+          "y": 6.382,
+          "w": 2.562,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "三道金属环带 + 玻璃腰线",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.039,
+          "y": 6.802,
+          "w": 2.223,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "LED 灯带 — 城市尺度的动态屏幕",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "label",
+          "x": 9.253,
+          "y": 6.391,
+          "w": 1.868,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "以极致的克制与精确",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "tagline",
+          "x": 9.257,
+          "y": 6.76,
+          "w": 2.83,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "讲述建筑与历史、与城市公共生活的关系",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.351,
+          "w": 1.393,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "02 米兰圣朱利亚冰球馆",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "page_no",
+          "x": 12.321,
+          "y": 7.351,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "04 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 15.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 5,
+      "layout": "Title Slide",
+      "signature": "S5 布局=Title Slide [label≤9 | desc≤31 | label≤10]",
+      "slots": [
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 4.564,
+          "w": 1.916,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "03 · POSTHUMOUS WORK",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "label",
+          "x": 0.562,
+          "y": 5.031,
+          "w": 6.917,
+          "h": 1.0,
+          "font_pt": 45.0,
+          "sample": "跨越江河的流动态势",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "desc",
+          "x": 0.598,
+          "y": 5.791,
+          "w": 10.068,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "扎哈·哈迪德 · 1950 — 2016 · 1985 至今唯一首位获普利兹克奖",
+          "capacity": 30.599999999999998
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.8,
+          "y": 6.321,
+          "w": 1.254,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "920 米",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 6.76,
+          "w": 2.854,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "全球同类型最长跨度 · 单塔不对称斜拉桥",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 4.654,
+          "y": 6.321,
+          "w": 0.852,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "100%",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 4.674,
+          "y": 6.76,
+          "w": 3.165,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "还原扎哈生前理想化设计 · 历经多次方案攻坚",
+          "capacity": 20.5
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "label",
+          "x": 8.519,
+          "y": 6.409,
+          "w": 2.457,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "永不设限 · 突破边界",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "tagline",
+          "x": 8.528,
+          "y": 6.76,
+          "w": 2.721,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "2026.5.12 通车 · 大师已逝 · 思想延续",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 2.975,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "图源 · Zaha Hadid Architects / 摄影 Paddy Ch",
+          "capacity": 22.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.321,
+          "y": 7.278,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "05 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 30.6,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 6,
+      "layout": "Title Slide",
+      "signature": "S6 布局=Title Slide [label≤7 | label≤4 | desc≤18 | desc≤18 | desc≤26]",
+      "slots": [
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.333,
+          "y": 0.854,
+          "w": 4.273,
+          "h": 4.667,
+          "font_pt": 210.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "label",
+          "x": 0.567,
+          "y": 3.671,
+          "w": 5.047,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "苏州河畔绽放的",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 0.567,
+          "y": 4.296,
+          "w": 2.934,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "钢铁花瓣",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "desc",
+          "x": 0.604,
+          "y": 5.323,
+          "w": 4.318,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "诺曼·福斯特 · 上海嘉艺术 · 普陀新地标",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 5.668,
+          "w": 3.744,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "1999 年普利兹克奖 · 2026.4 开放 · 大师亲临揭幕",
+          "capacity": 23.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 9.528,
+          "y": 2.072,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "花瓣立面细节",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "desc",
+          "x": 0.604,
+          "y": 6.156,
+          "w": 4.39,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "不是白盒子 · 是城市中缓慢生长的生命体",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "desc",
+          "x": 0.604,
+          "y": 6.51,
+          "w": 6.139,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "观展 · 观景 · 观城 — 古典人文精神通过现代材料重获新生",
+          "capacity": 26.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 1.604,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "图源 · Foster + Partners",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 12.321,
+          "y": 7.278,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "06 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 26.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 7,
+      "layout": "Title Slide",
+      "signature": "S7 布局=Title Slide [title≤15 | desc≤12 | label≤10]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.48,
+          "w": 1.664,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "05 · COLLABORATION",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.588,
+          "y": 0.827,
+          "w": 6.912,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "OMA × SANAA · 纽约新美术馆扩建",
+          "capacity": 15.299999999999999
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "desc",
+          "x": 0.602,
+          "y": 1.326,
+          "w": 2.984,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "双强联动 · 新旧艺术共生",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 1.697,
+          "w": 5.649,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "库哈斯（OMA / 2000）× 妹岛和世 + 西泽立卫（SANAA / 201",
+          "capacity": 27.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "design",
+          "x": 0.777,
+          "y": 2.293,
+          "w": 0.645,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "BEFORE",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.609,
+          "y": 5.305,
+          "w": 1.758,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "扩建前 · 标志性主楼",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.613,
+          "y": 5.581,
+          "w": 1.772,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "SANAA 2010 · 轻盈通透美学",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "design",
+          "x": 4.996,
+          "y": 2.293,
+          "w": 0.513,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "AFTER",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.828,
+          "y": 5.305,
+          "w": 1.946,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "扩建后 · 新翼无缝衔接",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 4.831,
+          "y": 5.581,
+          "w": 1.707,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "OMA 2026 · 先锋解构思维",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "design",
+          "x": 9.235,
+          "y": 2.241,
+          "w": 1.097,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "$82M",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 9.257,
+          "y": 2.781,
+          "w": 1.397,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "总投资 8200 万美元",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 9.259,
+          "y": 3.007,
+          "w": 1.466,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "U.S. Dollar · 2026 开放",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "design",
+          "x": 9.235,
+          "y": 3.261,
+          "w": 1.61,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "5,574 ㎡",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 9.257,
+          "y": 3.802,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "新增建筑面积",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 9.259,
+          "y": 4.028,
+          "w": 1.657,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "60,000 sq ft 全新展示空间",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "label",
+          "x": 9.252,
+          "y": 4.445,
+          "w": 2.01,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "迭代更新 · 兼容并蓄",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "tagline",
+          "x": 9.258,
+          "y": 4.769,
+          "w": 2.117,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "OMA 先锋解构 × SANAA 轻盈通透",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "4.11",
+          "path": [
+            4,
+            11
+          ],
+          "role": "tagline",
+          "x": 9.258,
+          "y": 4.956,
+          "w": 1.319,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "百年美术馆获新活力",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.778,
+          "y": 6.197,
+          "w": 3.592,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "OMA 体块模型 · 通透立面 + 错落空间 + 开放布局",
+          "capacity": 22.5
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "tagline",
+          "x": 9.047,
+          "y": 6.117,
+          "w": 0.93,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "让城市街景",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "tagline",
+          "x": 9.047,
+          "y": 6.346,
+          "w": 0.93,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "与艺术空间",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 9.047,
+          "y": 6.576,
+          "w": 0.75,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "相互渗透",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.351,
+          "w": 3.04,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "图源 · OMA / 摄影 Dean Kaufman · Jason O'Rea",
+          "capacity": 22.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "page_no",
+          "x": 12.321,
+          "y": 7.351,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "07 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 15.3,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 8,
+      "layout": "Title Slide",
+      "signature": "S8 布局=Title Slide [title≤12 | desc≤24 | label≤8 | label≤6 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.501,
+          "w": 1.505,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "06 · TWENTY YEARS",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.579,
+          "y": 0.84,
+          "w": 6.401,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "20 年打磨的诗意艺术方舟",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "desc",
+          "x": 0.606,
+          "y": 1.757,
+          "w": 5.288,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "彼得·卒姆托 · LACMA 大卫·格芬画廊 · 2026.5.4 开放",
+          "capacity": 24.5
+        },
+        {
+          "slot_id": "1.4",
+          "path": [
+            1,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 2.043,
+          "w": 3.828,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "2009 年普利兹克奖 · 横跨洛杉矶威尔希尔大道之上",
+          "capacity": 23.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.778,
+          "y": 4.947,
+          "w": 1.155,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SUSPENDED ARK",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "design",
+          "x": 0.82,
+          "y": 5.802,
+          "w": 0.455,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SCALE",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "design",
+          "x": 0.8,
+          "y": 6.05,
+          "w": 1.254,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "$724M",
+          "capacity": 2.55
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 6.51,
+          "w": 2.02,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "7.24 亿美元投资 · 32,293 ㎡",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "design",
+          "x": 3.945,
+          "y": 5.802,
+          "w": 0.798,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "STRUCTURE",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "label",
+          "x": 3.931,
+          "y": 6.103,
+          "w": 2.67,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "七座极简混凝土亭",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.945,
+          "y": 6.51,
+          "w": 2.075,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "错落排布 · 横跨繁忙大道之上",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "tagline",
+          "x": 7.486,
+          "y": 5.802,
+          "w": 0.837,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "CRAFT TIME",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "design",
+          "x": 7.467,
+          "y": 6.05,
+          "w": 1.033,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "20 年",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "3.11",
+          "path": [
+            3,
+            11
+          ],
+          "role": "tagline",
+          "x": 7.486,
+          "y": 6.51,
+          "w": 2.542,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "反复打磨 · 以极致耐心对抗时代浮躁",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "label",
+          "x": 10.19,
+          "y": 5.799,
+          "w": 1.331,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "建筑是场所的",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "label",
+          "x": 10.19,
+          "y": 6.091,
+          "w": 0.9,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "诗意容器",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.196,
+          "y": 6.56,
+          "w": 0.945,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "— 彼得·卒姆托",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 4.523,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "摒弃艺术品等级化 · 古典与当代平等共生 · 图源 Archdaily / 摄影",
+          "capacity": 30.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 12.321,
+          "y": 7.278,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "08 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 24.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 9,
+      "layout": "Title Slide",
+      "signature": "S9 布局=Title Slide [title≤10 | desc≤24 | desc≤16]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.501,
+          "w": 1.949,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "07 · FINAL MAGNUM OPUS",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.577,
+          "y": 0.884,
+          "w": 5.882,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "沙漠中的解构主义绝唱",
+          "capacity": 10.2
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "desc",
+          "x": 0.602,
+          "y": 1.826,
+          "w": 6.2,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "弗兰克·盖里 · 阿布扎比古根海姆博物馆 · 2026 开幕",
+          "capacity": 24.0
+        },
+        {
+          "slot_id": "1.4",
+          "path": [
+            1,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 2.197,
+          "w": 4.426,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1989 年普利兹克奖得主 · 弗兰克·盖里（1929 — 2025）大师遗作",
+          "capacity": 29.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 6.26,
+          "w": 1.141,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "效果图 · 主视角",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 6.465,
+          "w": 2.698,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "不规则曲面 · 灵动褶皱 · 极具冲击的几何形态",
+          "capacity": 21.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "tagline",
+          "x": 6.551,
+          "y": 5.028,
+          "w": 0.55,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "第二角度",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 9.78,
+          "y": 5.028,
+          "w": 0.55,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "鸟瞰角度",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "tagline",
+          "x": 6.756,
+          "y": 5.689,
+          "w": 1.362,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "FINAL STATEMENT",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "desc",
+          "x": 6.748,
+          "y": 5.972,
+          "w": 4.432,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "近 20 年心血 · 生命尾声的造型实验",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.757,
+          "y": 6.322,
+          "w": 4.255,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "金属外立面随日光流转变换肌理 · 沙漠极端气候定制遮阳系统",
+          "capacity": 27.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.754,
+          "y": 6.525,
+          "w": 2.17,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "建筑无边界 · 创意无极限",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.298,
+          "w": 3.021,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "图源 · Gehry Partners — 解构主义大师的收官终篇",
+          "capacity": 23.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 12.321,
+          "y": 7.298,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "09 / 11",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 24.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 10,
+      "layout": "Title Slide",
+      "signature": "S10 布局=Title Slide [title≤16 | desc≤16 | desc≤12 | desc≤17]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.61,
+          "y": 0.689,
+          "w": 1.731,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "08 · ROOTED IN EARTH",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.581,
+          "y": 1.17,
+          "w": 8.091,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "夯土砖屏风 · 扎根乡土的温暖建筑",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "1.3",
+          "path": [
+            1,
+            3
+          ],
+          "role": "desc",
+          "x": 0.607,
+          "y": 2.037,
+          "w": 3.233,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "迪埃贝多·凯雷 · 塞内加尔歌德学院",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "1.4",
+          "path": [
+            1,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 2.322,
+          "w": 2.869,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "2022 年普利兹克奖 · 2026.4 达喀尔开幕",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 3.26,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "DESIGN PHILOSOPHY",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "desc",
+          "x": 0.81,
+          "y": 3.555,
+          "w": 3.131,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "顺应自然 · 而非与之对抗",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 4.209,
+          "w": 2.184,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 本土压制土砖构筑主体结构",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 4.501,
+          "w": 2.377,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 自然通风系统 · 摆脱空调依赖",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 4.793,
+          "w": 2.235,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 适配本土气候 · 节能 + 采光",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.084,
+          "w": 2.042,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 空间开放包容 · 服务社区",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "2.9",
+          "path": [
+            2,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 5.784,
+          "w": 2.574,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "出生非洲 · 始终坚持以本土材料",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "2.10",
+          "path": [
+            2,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 6.034,
+          "w": 1.828,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "与可持续建造服务社区",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "2.12",
+          "path": [
+            2,
+            12
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 6.593,
+          "w": 1.842,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "迪埃贝多·弗朗西斯·凯雷",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "design",
+          "x": 4.966,
+          "y": 6.197,
+          "w": 0.401,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "CORE",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.964,
+          "y": 6.43,
+          "w": 1.758,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "猴面包树 · 生命象征",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 4.967,
+          "y": 6.665,
+          "w": 1.175,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "置入建筑核心院落",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 7.82,
+          "y": 6.239,
+          "w": 0.666,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "INTERIOR",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "desc",
+          "x": 7.816,
+          "y": 6.474,
+          "w": 3.521,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "承担文化交流 · 教育传播 · 艺术展演",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 7.821,
+          "y": 6.706,
+          "w": 2.799,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "温润亲和的空间气质 · 连接社区 · 服务民众",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.609,
+          "y": 7.159,
+          "w": 3.859,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "全球同质化时代 · 顶级建筑扎根土地 · 温暖人心",
+          "capacity": 22.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.246,
+          "y": 7.194,
+          "w": 2.474,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "10 / 11 · 图源 Archdaily / 摄影 Iwan Baan",
+          "capacity": 20.5
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 17.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 11,
+      "layout": "Title Slide",
+      "signature": "S11 布局=Title Slide [title≤7 | label≤10 | desc≤28]",
+      "slots": [
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "tagline",
+          "x": 5.927,
+          "y": 1.605,
+          "w": 1.48,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "EPILOGUE · 结 · 语",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "title",
+          "x": 4.504,
+          "y": 2.492,
+          "w": 4.326,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "所有传世的经典",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 3.985,
+          "y": 3.256,
+          "w": 5.362,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "皆源于日复一日的坚守",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "design",
+          "x": 1.442,
+          "y": 4.71,
+          "w": 0.763,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "耐心",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.886,
+          "y": 5.189,
+          "w": 1.874,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "耗时二十年打磨一座场馆",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 1.307,
+          "y": 5.456,
+          "w": 1.031,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "— 卒姆托 · 盖里",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 4.671,
+          "y": 4.71,
+          "w": 0.763,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "扎根",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 4.103,
+          "y": 5.189,
+          "w": 1.899,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "坚守本土人文 · 温暖人心",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 4.166,
+          "y": 5.456,
+          "w": 1.772,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "— 凯雷 · 安藤 · 奇普菲尔德",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "design",
+          "x": 7.9,
+          "y": 4.71,
+          "w": 0.763,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "破界",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 7.499,
+          "y": 5.189,
+          "w": 1.564,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "突破边界 · 颠覆常规",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "tagline",
+          "x": 7.536,
+          "y": 5.456,
+          "w": 1.491,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "— 扎哈 · 福斯特 · OMA",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "4.12",
+          "path": [
+            4,
+            12
+          ],
+          "role": "design",
+          "x": 11.129,
+          "y": 4.71,
+          "w": 0.763,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "敬畏",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.13",
+          "path": [
+            4,
+            13
+          ],
+          "role": "tagline",
+          "x": 10.632,
+          "y": 5.189,
+          "w": 1.757,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "对空间 · 自然 · 人文的",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "4.14",
+          "path": [
+            4,
+            14
+          ],
+          "role": "tagline",
+          "x": 10.851,
+          "y": 5.456,
+          "w": 1.319,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "极致敬畏与深度思考",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "desc",
+          "x": 3.435,
+          "y": 6.281,
+          "w": 6.463,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "2026 这场大师新作季 · 不仅是全球美学盛宴 · 更让我们明白",
+          "capacity": 27.5
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.613,
+          "y": 7.185,
+          "w": 3.274,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "资料来源 · 公众号 孙琬童 · 致敬八位普利兹克大师",
+          "capacity": 23.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "tagline",
+          "x": 11.956,
+          "y": 7.185,
+          "w": 0.765,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "11 / 11 · END",
+          "capacity": 6.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 27.5,
+      "role_hint": "closing"
+    }
+  ]
+}

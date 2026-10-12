@@ -1,0 +1,8750 @@
+{
+  "stem": "indie_bookstore_zine_guide",
+  "display_name": "独立书店杂志风（英文）",
+  "n_slides": 18,
+  "slides": [
+    {
+      "slide_no": 1,
+      "layout": "Title Slide",
+      "signature": "S1 布局=Title Slide [label≤8 | label≤6 | label≤5 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "label",
+          "x": 0.846,
+          "y": 0.604,
+          "w": 1.851,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "ISSUE №01 · 2026",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.363,
+          "y": 0.689,
+          "w": 2.36,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "PPT MASTER · RISO ZINE DEMO",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "design",
+          "x": 0.521,
+          "y": 3.698,
+          "w": 2.544,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "ZINE",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "design",
+          "x": 0.5,
+          "y": 3.677,
+          "w": 2.544,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "ZINE",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 0.533,
+          "y": 4.846,
+          "w": 4.242,
+          "h": 1.467,
+          "font_pt": 66.0,
+          "sample": "CULTURE",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 0.512,
+          "y": 4.825,
+          "w": 4.242,
+          "h": 1.467,
+          "font_pt": 66.0,
+          "sample": "CULTURE",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 0.558,
+          "y": 5.892,
+          "w": 2.05,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "GUIDE",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 0.537,
+          "y": 5.871,
+          "w": 2.05,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "GUIDE",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "label",
+          "x": 9.56,
+          "y": 2.764,
+          "w": 1.706,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "一份从一张纸",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "label",
+          "x": 9.56,
+          "y": 3.097,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "到一家书店",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "label",
+          "x": 9.56,
+          "y": 3.43,
+          "w": 1.983,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "的独立出版地图",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "tagline",
+          "x": 9.57,
+          "y": 4.093,
+          "w": 1.771,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "INDIE BOOKSTORE × ZINE",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 7.093,
+          "w": 4.232,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PRINTED IN RISOGRAPH NAVY + FLUO PINK · ",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "tagline",
+          "x": 10.966,
+          "y": 7.093,
+          "w": 1.756,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "EDITION 2026 · 18 PAGES",
+          "capacity": 11.5
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 8.0,
+      "role_hint": "cover"
+    },
+    {
+      "slide_no": 2,
+      "layout": "Title Slide",
+      "signature": "S2 布局=Title Slide [title≤8 | desc≤12 | desc≤15 | label≤10 | desc≤12 | desc≤14]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.904,
+          "y": 0.56,
+          "w": 4.936,
+          "h": 0.867,
+          "font_pt": 39.0,
+          "sample": "CONTENTS / 目录",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.944,
+          "y": 1.209,
+          "w": 3.341,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "FIVE PARTS · 18 PAGES · READ IN ANY ORDE",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.751,
+          "y": 2.048,
+          "w": 0.54,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "desc",
+          "x": 1.64,
+          "y": 1.957,
+          "w": 3.782,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "ZINE 是什么 + 简史四浪潮",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.65,
+          "y": 2.358,
+          "w": 4.748,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "从科幻同人志到 Riot Grrrl，一百年里 zine 的四次浪潮",
+          "capacity": 25.5
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "page_no",
+          "x": 11.352,
+          "y": 2.195,
+          "w": 1.045,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "P03 — P04",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.685,
+          "y": 3.09,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "desc",
+          "x": 1.64,
+          "y": 2.999,
+          "w": 5.009,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "RISOGRAPH：zine 工艺的灵魂载体",
+          "capacity": 15.299999999999999
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.65,
+          "y": 3.4,
+          "w": 5.343,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "套色错位、半色调、限定色 —— 让一台日本复印机变成艺术工具",
+          "capacity": 28.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "page_no",
+          "x": 11.352,
+          "y": 3.236,
+          "w": 1.045,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "P05 — P06",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.685,
+          "y": 4.131,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "label",
+          "x": 1.64,
+          "y": 4.041,
+          "w": 3.079,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "怎么自己做一本 ZINE",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.65,
+          "y": 4.442,
+          "w": 3.78,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "八页折叠法 + 内容类型清单 —— 一张 A4 就够",
+          "capacity": 20.5
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "page_no",
+          "x": 11.352,
+          "y": 4.278,
+          "w": 1.045,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "P07 — P08",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.685,
+          "y": 5.173,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "desc",
+          "x": 1.64,
+          "y": 5.082,
+          "w": 3.701,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "全球 + 中国独立书店地图",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.65,
+          "y": 5.483,
+          "w": 6.071,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "神保町 / Shakespeare & Co / 香蕉鱼 / 假杂志 + abC",
+          "capacity": 24.5
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "page_no",
+          "x": 11.381,
+          "y": 5.32,
+          "w": 0.988,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "P09 — P13",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.685,
+          "y": 6.215,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "desc",
+          "x": 1.64,
+          "y": 6.124,
+          "w": 4.404,
+          "h": 0.433,
+          "font_pt": 19.5,
+          "sample": "怎么逛 / 怎么收藏 / 行动清单",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.65,
+          "y": 6.525,
+          "w": 3.809,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "从读者到作者，你的第一本 zine 在 4 步之外",
+          "capacity": 20.5
+        },
+        {
+          "slot_id": "8.7",
+          "path": [
+            8,
+            7
+          ],
+          "role": "page_no",
+          "x": 11.409,
+          "y": 6.361,
+          "w": 0.932,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "P14 — P18",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 0.998,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CONTENTS — P02",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "tagline",
+          "x": 10.681,
+          "y": 7.278,
+          "w": 2.039,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RISO NAVY × FLUO PINK ON CREAM",
+          "capacity": 15.0
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 15.3,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 3,
+      "layout": "Title Slide",
+      "signature": "S3 布局=Title Slide [title≤4 | label≤4 | label≤6 | label≤9 | label≤6 | label≤6 | desc≤32]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 1.039,
+          "y": 6.987,
+          "w": 2.088,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "A CENTURY OF SELF-PUBLISHING",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "tagline",
+          "x": 3.945,
+          "y": 0.927,
+          "w": 1.763,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PART 01 · WHAT IS A ZINE",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "design",
+          "x": 3.871,
+          "y": 1.34,
+          "w": 2.137,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "ZINE",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "design",
+          "x": 3.85,
+          "y": 1.319,
+          "w": 2.137,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "ZINE",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 6.287,
+          "y": 1.34,
+          "w": 0.728,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "=",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "design",
+          "x": 6.996,
+          "y": 1.34,
+          "w": 4.552,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "MAGAZINE",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 3.892,
+          "y": 2.35,
+          "w": 0.555,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "−",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "title",
+          "x": 4.537,
+          "y": 2.527,
+          "w": 2.305,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "商业逻辑",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "design",
+          "x": 6.912,
+          "y": 2.527,
+          "w": 0.396,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "−",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "label",
+          "x": 7.496,
+          "y": 2.527,
+          "w": 2.305,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "编辑把关",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "design",
+          "x": 9.871,
+          "y": 2.527,
+          "w": 0.396,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "−",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "design",
+          "x": 10.454,
+          "y": 2.527,
+          "w": 1.199,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "规模",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.075,
+          "y": 3.904,
+          "w": 0.393,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "·1",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "label",
+          "x": 4.767,
+          "y": 3.85,
+          "w": 1.861,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "自制、非商业",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.775,
+          "y": 4.192,
+          "w": 3.78,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "印量极小，多在 1000 份以内，常少于 100 份",
+          "capacity": 20.5
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.027,
+          "y": 4.737,
+          "w": 0.488,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "·2",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "label",
+          "x": 4.767,
+          "y": 4.683,
+          "w": 2.767,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "装订简单、内容混合",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.775,
+          "y": 5.025,
+          "w": 5.563,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "订书钉/折页/手工缝；手写/打字/拼贴/漫画/摄影/宣言全部上场",
+          "capacity": 28.5
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.027,
+          "y": 5.571,
+          "w": 0.488,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "·3",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "label",
+          "x": 4.767,
+          "y": 5.517,
+          "w": 1.861,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "完全作者主权",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.775,
+          "y": 5.858,
+          "w": 5.448,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "没有编辑、没有把关、没有商业审查 —— 这就是 zine 的精神底色",
+          "capacity": 29.0
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "label",
+          "x": 4.188,
+          "y": 6.594,
+          "w": 1.375,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "关键边界 ＞",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "9.4",
+          "path": [
+            9,
+            4
+          ],
+          "role": "desc",
+          "x": 5.398,
+          "y": 6.611,
+          "w": 6.959,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "一本 zine 一旦进入大规模发行 + 编辑流程 + 利润逻辑，它就不再是 zi",
+          "capacity": 32.5
+        },
+        {
+          "slot_id": "10.0",
+          "path": [
+            10,
+            0
+          ],
+          "role": "tagline",
+          "x": 3.947,
+          "y": 7.236,
+          "w": 1.268,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P03 · WHAT IS A ZINE",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.141,
+          "y": 7.236,
+          "w": 2.579,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "ZINE = MAG − COMMERCE − EDITOR − SCALE",
+          "capacity": 19.0
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 32.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 4,
+      "layout": "Title Slide",
+      "signature": "S4 布局=Title Slide [title≤12]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.908,
+          "y": 0.596,
+          "w": 6.741,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "一百年里 ZINE 的四次浪潮",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 3.5,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "FOUR WAVES OF SELF-PUBLISHING · 1920s — ",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "design",
+          "x": 0.952,
+          "y": 1.711,
+          "w": 1.345,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1920s",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "design",
+          "x": 0.932,
+          "y": 1.691,
+          "w": 1.345,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1920s",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 1.103,
+          "y": 2.418,
+          "w": 1.086,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "业余出版火种",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 1.087,
+          "y": 2.822,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "哈莱姆文艺复兴",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "tagline",
+          "x": 1.013,
+          "y": 3.031,
+          "w": 1.265,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "黑人创作 *FIRE!!*",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 1.173,
+          "y": 3.278,
+          "w": 0.945,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "自由独立地表达",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.10",
+          "path": [
+            6,
+            10
+          ],
+          "role": "design",
+          "x": 1.44,
+          "y": 3.632,
+          "w": 0.412,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "EMBER",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "design",
+          "x": 3.327,
+          "y": 4.586,
+          "w": 1.345,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1930s",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "design",
+          "x": 3.307,
+          "y": 4.566,
+          "w": 1.345,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1930s",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.566,
+          "y": 5.272,
+          "w": 0.91,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "科幻同人志",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "7.8",
+          "path": [
+            7,
+            8
+          ],
+          "role": "tagline",
+          "x": 3.217,
+          "y": 5.677,
+          "w": 1.608,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "*THE COMET*（1930）",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.9",
+          "path": [
+            7,
+            9
+          ],
+          "role": "tagline",
+          "x": 3.384,
+          "y": 5.885,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "第一本科幻同人志",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "7.10",
+          "path": [
+            7,
+            10
+          ],
+          "role": "tagline",
+          "x": 3.37,
+          "y": 6.132,
+          "w": 1.301,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "1940 RUSS CHAUVENET",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.11",
+          "path": [
+            7,
+            11
+          ],
+          "role": "tagline",
+          "x": 3.436,
+          "y": 6.319,
+          "w": 1.169,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "创造\"FANZINE\"一词",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "7.12",
+          "path": [
+            7,
+            12
+          ],
+          "role": "tagline",
+          "x": 3.627,
+          "y": 6.569,
+          "w": 0.787,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CRYSTALLIZE",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "8.0",
+          "path": [
+            8,
+            0
+          ],
+          "role": "page_no",
+          "x": 5.841,
+          "y": 1.711,
+          "w": 1.069,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1976",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 5.82,
+          "y": 1.691,
+          "w": 1.069,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1976",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "tagline",
+          "x": 5.805,
+          "y": 2.418,
+          "w": 1.183,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "朋克 ZINE 浪潮",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "8.7",
+          "path": [
+            8,
+            7
+          ],
+          "role": "tagline",
+          "x": 5.798,
+          "y": 2.822,
+          "w": 1.195,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "*SNIFFIN' GLUE*",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "8.8",
+          "path": [
+            8,
+            8
+          ],
+          "role": "tagline",
+          "x": 5.779,
+          "y": 3.031,
+          "w": 1.234,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "MARK PERRY 创办",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "8.9",
+          "path": [
+            8,
+            9
+          ],
+          "role": "tagline",
+          "x": 5.716,
+          "y": 3.278,
+          "w": 1.36,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "复印机普及 + 工薪阶层",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.10",
+          "path": [
+            8,
+            10
+          ],
+          "role": "tagline",
+          "x": 5.936,
+          "y": 3.632,
+          "w": 0.919,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "DIY EXPLOSION",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "page_no",
+          "x": 8.279,
+          "y": 4.586,
+          "w": 0.943,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1991",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "page_no",
+          "x": 8.258,
+          "y": 4.566,
+          "w": 0.943,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1991",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "9.7",
+          "path": [
+            9,
+            7
+          ],
+          "role": "tagline",
+          "x": 8.298,
+          "y": 5.272,
+          "w": 0.945,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "RIOT GRRRL",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "9.8",
+          "path": [
+            9,
+            8
+          ],
+          "role": "tagline",
+          "x": 7.944,
+          "y": 5.677,
+          "w": 1.654,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "*BIKINI KILL* 同名 zine",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "9.9",
+          "path": [
+            9,
+            9
+          ],
+          "role": "tagline",
+          "x": 7.998,
+          "y": 5.885,
+          "w": 1.545,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "KATHLEEN HANNA 主编",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "9.10",
+          "path": [
+            9,
+            10
+          ],
+          "role": "tagline",
+          "x": 7.979,
+          "y": 6.132,
+          "w": 1.584,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "第三波女性主义 + DIY 朋克",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "9.11",
+          "path": [
+            9,
+            11
+          ],
+          "role": "tagline",
+          "x": 7.933,
+          "y": 6.319,
+          "w": 1.677,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RIOT GRRRL PRESS 分发网络",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "9.12",
+          "path": [
+            9,
+            12
+          ],
+          "role": "tagline",
+          "x": 8.311,
+          "y": 6.569,
+          "w": 0.919,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "FEMINIST WAVE",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "10.0",
+          "path": [
+            10,
+            0
+          ],
+          "role": "design",
+          "x": 10.391,
+          "y": 1.747,
+          "w": 1.468,
+          "h": 0.633,
+          "font_pt": 28.5,
+          "sample": "2010s+",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "design",
+          "x": 10.37,
+          "y": 1.726,
+          "w": 1.468,
+          "h": 0.633,
+          "font_pt": 28.5,
+          "sample": "2010s+",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "10.6",
+          "path": [
+            10,
+            6
+          ],
+          "role": "tagline",
+          "x": 10.326,
+          "y": 2.418,
+          "w": 1.64,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "当代复兴 + 书展爆发",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "10.7",
+          "path": [
+            10,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.416,
+          "y": 2.822,
+          "w": 1.46,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SF Zine Fest (2001)",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "10.8",
+          "path": [
+            10,
+            8
+          ],
+          "role": "tagline",
+          "x": 10.416,
+          "y": 3.031,
+          "w": 1.46,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "LA Zine Fest (2012)",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "10.9",
+          "path": [
+            10,
+            9
+          ],
+          "role": "tagline",
+          "x": 10.433,
+          "y": 3.278,
+          "w": 1.426,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "大英图书馆 / TATE 收藏",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "10.10",
+          "path": [
+            10,
+            10
+          ],
+          "role": "tagline",
+          "x": 10.752,
+          "y": 3.632,
+          "w": 0.787,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RENAISSANCE",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "11.1",
+          "path": [
+            11,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 1.644,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P04 · FOUR WAVES OF ZINE",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "11.2",
+          "path": [
+            11,
+            2
+          ],
+          "role": "tagline",
+          "x": 8.961,
+          "y": 7.278,
+          "w": 3.759,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "EMBER → CRYSTALLIZE → EXPLOSION → FEMINI",
+          "capacity": 20.0
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 12.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 5,
+      "layout": "Title Slide",
+      "signature": "S5 布局=Title Slide [label≤5 | label≤4 | title≤4 | label≤10 | desc≤14 | desc≤14 | desc≤11 | desc≤10]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "label",
+          "x": 0.81,
+          "y": 6.941,
+          "w": 1.416,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "RISO EZ200",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "design",
+          "x": 3.723,
+          "y": 7.029,
+          "w": 0.665,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "EST. 1986",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "tagline",
+          "x": 4.986,
+          "y": 0.927,
+          "w": 3.22,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PART 02 · RISOGRAPH ORIGIN + VISUAL TRAI",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 4.942,
+          "y": 1.275,
+          "w": 3.404,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "RISOGRAPH",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "title",
+          "x": 4.921,
+          "y": 1.254,
+          "w": 3.404,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "RISOGRAPH",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "label",
+          "x": 4.979,
+          "y": 2.01,
+          "w": 2.369,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "ZINE 工艺的灵魂载体",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.193,
+          "y": 2.68,
+          "w": 3.086,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "RISO KAGAKU 1946 创办 · \"RISO\" 意为",
+          "capacity": 17.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 8.776,
+          "y": 2.68,
+          "w": 0.409,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "理想",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 9.359,
+          "y": 2.68,
+          "w": 3.364,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "· RISOGRAPH 007 印刷机 1986 在日本首发",
+          "capacity": 19.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 5.089,
+          "y": 3.377,
+          "w": 0.343,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "desc",
+          "x": 5.812,
+          "y": 3.344,
+          "w": 3.74,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "限定调色板（LIMITED PALETTE）",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.818,
+          "y": 3.721,
+          "w": 5.188,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "一墨筒一色 —— 多色印刷需多次过纸；颜色总数有限反成美学语言",
+          "capacity": 29.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 5.047,
+          "y": 4.252,
+          "w": 0.427,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "desc",
+          "x": 5.812,
+          "y": 4.219,
+          "w": 3.538,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "套色错位（MISREGISTRATION）",
+          "capacity": 13.6
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.818,
+          "y": 4.596,
+          "w": 4.326,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "每次过纸轻微偏移 1–3px，叠印边缘的\"错版\"成为美学",
+          "capacity": 24.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "page_no",
+          "x": 5.047,
+          "y": 5.127,
+          "w": 0.427,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "desc",
+          "x": 5.812,
+          "y": 5.094,
+          "w": 2.96,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "半色调网点（HALFTONE）",
+          "capacity": 11.049999999999999
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.818,
+          "y": 5.471,
+          "w": 5.602,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "色块以网点呈现，介于工业印刷品与丝网作品之间，本页背景就是网点",
+          "capacity": 31.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 5.047,
+          "y": 6.002,
+          "w": 0.427,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "desc",
+          "x": 5.812,
+          "y": 5.969,
+          "w": 2.784,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "色块叠印（OVERPRINT）",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.818,
+          "y": 6.346,
+          "w": 6.302,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "相同色块叠加产生第三色错觉 —— 蓝 ＋ 粉 ＝ 紫色错觉，技术不是缺陷而是工具",
+          "capacity": 36.0
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "tagline",
+          "x": 4.989,
+          "y": 7.069,
+          "w": 2.026,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P05 · RISOGRAPH ORIGIN + TRAITS",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "tagline",
+          "x": 11.518,
+          "y": 7.069,
+          "w": 1.202,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RISO = 理想 = IDEAL",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.99,
+          "y": 7.307,
+          "w": 3.357,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "SOY-BASED INK · POST-WAR JAPAN · 50–10,0",
+          "capacity": 20.0
+        }
+      ],
+      "fillable": 8,
+      "fillable_cap": 14.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 6,
+      "layout": "Title Slide",
+      "signature": "S6 布局=Title Slide [title≤13 | label≤6 | label≤7 | label≤6 | label≤6 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.908,
+          "y": 0.596,
+          "w": 7.489,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "工艺：5 步从数字图像到印张",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 5.244,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "RISOGRAPH WORKFLOW · ONE COLOR AT A TIME",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "page_no",
+          "x": 0.925,
+          "y": 4.258,
+          "w": 0.393,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 1.423,
+          "y": 4.418,
+          "w": 1.015,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "DIGITAL FILE",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "label",
+          "x": 0.816,
+          "y": 4.933,
+          "w": 1.318,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "接收数字图像",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.376,
+          "w": 1.01,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 一张设计稿",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.605,
+          "w": 1.203,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 拆解 N 个颜色",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.834,
+          "w": 1.178,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 每色单独出层",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "design",
+          "x": 0.822,
+          "y": 6.569,
+          "w": 0.352,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "INPUT",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 3.425,
+          "y": 4.258,
+          "w": 0.488,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 3.923,
+          "y": 4.418,
+          "w": 1.086,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "BURN MASTER",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "label",
+          "x": 3.316,
+          "y": 4.933,
+          "w": 1.532,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "烧蚀像素化母版",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.319,
+          "y": 5.376,
+          "w": 1.681,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 热头烧穿纤维基母版",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "tagline",
+          "x": 3.319,
+          "y": 5.605,
+          "w": 1.513,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 小孔形成蜂窝阵列",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 3.319,
+          "y": 5.834,
+          "w": 1.195,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 母版即\"刻版\"",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.10",
+          "path": [
+            6,
+            10
+          ],
+          "role": "design",
+          "x": 3.322,
+          "y": 6.569,
+          "w": 0.497,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "STENCIL",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 5.925,
+          "y": 4.258,
+          "w": 0.488,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "design",
+          "x": 6.423,
+          "y": 4.418,
+          "w": 0.927,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "WRAP DRUM",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "label",
+          "x": 5.816,
+          "y": 4.933,
+          "w": 1.318,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "包裹彩色墨筒",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "8.7",
+          "path": [
+            8,
+            7
+          ],
+          "role": "tagline",
+          "x": 5.819,
+          "y": 5.376,
+          "w": 1.01,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 母版裹圆筒",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "8.8",
+          "path": [
+            8,
+            8
+          ],
+          "role": "tagline",
+          "x": 5.819,
+          "y": 5.605,
+          "w": 1.513,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 筒内填大豆基油墨",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "8.9",
+          "path": [
+            8,
+            9
+          ],
+          "role": "tagline",
+          "x": 5.819,
+          "y": 5.834,
+          "w": 1.371,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 一筒 = 一种颜色",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "8.10",
+          "path": [
+            8,
+            10
+          ],
+          "role": "design",
+          "x": 5.822,
+          "y": 6.569,
+          "w": 0.563,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "INK DRUM",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "page_no",
+          "x": 8.425,
+          "y": 4.258,
+          "w": 0.488,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.2",
+          "path": [
+            10,
+            2
+          ],
+          "role": "tagline",
+          "x": 8.923,
+          "y": 4.418,
+          "w": 0.945,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "ROLL PRINT",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "10.5",
+          "path": [
+            10,
+            5
+          ],
+          "role": "label",
+          "x": 8.316,
+          "y": 4.933,
+          "w": 1.318,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "滚压油墨到纸",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "10.7",
+          "path": [
+            10,
+            7
+          ],
+          "role": "tagline",
+          "x": 8.319,
+          "y": 5.376,
+          "w": 1.178,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 滚筒高速旋转",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "10.8",
+          "path": [
+            10,
+            8
+          ],
+          "role": "tagline",
+          "x": 8.319,
+          "y": 5.605,
+          "w": 1.01,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 墨从孔渗出",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "10.9",
+          "path": [
+            10,
+            9
+          ],
+          "role": "tagline",
+          "x": 8.319,
+          "y": 5.834,
+          "w": 1.346,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 纸被压在筒下走",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "10.10",
+          "path": [
+            10,
+            10
+          ],
+          "role": "tagline",
+          "x": 8.322,
+          "y": 6.569,
+          "w": 0.879,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "SINGLE COLOR",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "12.1",
+          "path": [
+            12,
+            1
+          ],
+          "role": "page_no",
+          "x": 10.925,
+          "y": 4.258,
+          "w": 0.488,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "12.2",
+          "path": [
+            12,
+            2
+          ],
+          "role": "design",
+          "x": 11.423,
+          "y": 4.418,
+          "w": 0.813,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "RUN AGAIN",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "12.5",
+          "path": [
+            12,
+            5
+          ],
+          "role": "label",
+          "x": 10.816,
+          "y": 4.933,
+          "w": 1.532,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "换墨筒再印一次",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "12.7",
+          "path": [
+            12,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.819,
+          "y": 5.376,
+          "w": 1.513,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 换粉墨筒，再过纸",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "12.8",
+          "path": [
+            12,
+            8
+          ],
+          "role": "tagline",
+          "x": 10.819,
+          "y": 5.605,
+          "w": 1.58,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 错位 1–3px ＝ 美学",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "12.9",
+          "path": [
+            12,
+            9
+          ],
+          "role": "tagline",
+          "x": 10.819,
+          "y": 5.834,
+          "w": 1.235,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 套色错位完成",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "12.10",
+          "path": [
+            12,
+            10
+          ],
+          "role": "design",
+          "x": 10.822,
+          "y": 6.569,
+          "w": 0.669,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "OVERPRINT",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "13.1",
+          "path": [
+            13,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 1.4,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P06 · RISO WORKFLOW",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "13.2",
+          "path": [
+            13,
+            2
+          ],
+          "role": "tagline",
+          "x": 10.707,
+          "y": 7.278,
+          "w": 2.013,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "5 STEPS × N COLORS = ONE PRINT",
+          "capacity": 15.0
+        }
+      ],
+      "fillable": 6,
+      "fillable_cap": 13.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 7,
+      "layout": "Title Slide",
+      "signature": "S7 布局=Title Slide [title≤9 | label≤4 | desc≤31]",
+      "slots": [
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "title",
+          "x": 0.91,
+          "y": 0.614,
+          "w": 4.725,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "一张纸 → 一本 ZINE",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 3.344,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "EIGHT-PAGE FOLD METHOD · ONE A4 + ONE CU",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "page_no",
+          "x": 0.756,
+          "y": 1.845,
+          "w": 0.417,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "design",
+          "x": 1.273,
+          "y": 1.986,
+          "w": 0.49,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "折叠",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.778,
+          "y": 2.322,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "长边对折",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.778,
+          "y": 2.51,
+          "w": 0.782,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "+ 短边对折",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.781,
+          "y": 2.682,
+          "w": 1.273,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "→ 8 EQUAL RECTANGLES",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "page_no",
+          "x": 10.756,
+          "y": 1.845,
+          "w": 0.519,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "label",
+          "x": 11.294,
+          "y": 1.986,
+          "w": 0.943,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "关键剪口",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.778,
+          "y": 2.322,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "从对折边沿",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "tagline",
+          "x": 10.778,
+          "y": 2.51,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "剪到中心点",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "tagline",
+          "x": 10.781,
+          "y": 2.682,
+          "w": 1.183,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "→ ONE CUT, NO MORE",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "page_no",
+          "x": 0.756,
+          "y": 5.178,
+          "w": 0.519,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "design",
+          "x": 1.273,
+          "y": 5.32,
+          "w": 0.49,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "组装",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.778,
+          "y": 5.656,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "双手两端",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.778,
+          "y": 5.843,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "往中心推",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.781,
+          "y": 6.016,
+          "w": 1.249,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "→ POPS INTO BOOKLET",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "page_no",
+          "x": 10.756,
+          "y": 5.178,
+          "w": 0.519,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "tagline",
+          "x": 11.294,
+          "y": 5.32,
+          "w": 0.717,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "填内容",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.778,
+          "y": 5.656,
+          "w": 0.829,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "手写 / 打字",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "7.8",
+          "path": [
+            7,
+            8
+          ],
+          "role": "tagline",
+          "x": 10.778,
+          "y": 5.843,
+          "w": 0.829,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "拼贴 / 漫画",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "7.9",
+          "path": [
+            7,
+            9
+          ],
+          "role": "tagline",
+          "x": 10.781,
+          "y": 6.016,
+          "w": 0.644,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "→ NO RULES",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "desc",
+          "x": 0.816,
+          "y": 6.662,
+          "w": 6.675,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "硬约束 ＞ 折叠 zine 的总页数必须是 4 的倍数（8 / 12 / 16 ",
+          "capacity": 31.45
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "tagline",
+          "x": 11.054,
+          "y": 6.697,
+          "w": 1.46,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PAGES ÷ 4 = INTEGER",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "9.0",
+          "path": [
+            9,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.194,
+          "w": 1.914,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P07 · FOLD AN A4 INTO 8 PAGES",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "tagline",
+          "x": 11.379,
+          "y": 7.194,
+          "w": 1.341,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "ONE PAGE = ONE WHIM",
+          "capacity": 9.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 31.4,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 8,
+      "layout": "Title Slide",
+      "signature": "S8 布局=Title Slide [title≤12 | label≤6 | label≤8 | label≤6 | label≤10 | label≤8 | label≤5]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.908,
+          "y": 0.596,
+          "w": 6.684,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "你能填的东西 ＞ 6 种内容",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 4.302,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SIX CONTENT TYPES · THERE ARE NO MISTAKE",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "page_no",
+          "x": 3.756,
+          "y": 1.965,
+          "w": 0.54,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "label",
+          "x": 0.873,
+          "y": 2.868,
+          "w": 1.471,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "草图 / 漫画",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.884,
+          "y": 3.236,
+          "w": 1.532,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "SKETCHES & MINI-COMICS",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.881,
+          "y": 3.626,
+          "w": 2.017,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "涂鸦、4 格漫画、手绘日记",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.881,
+          "y": 3.855,
+          "w": 1.706,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "字丑也行，构图弱也行",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.881,
+          "y": 4.084,
+          "w": 1.288,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "画得不像 = 风格",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "page_no",
+          "x": 7.687,
+          "y": 1.965,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "label",
+          "x": 4.935,
+          "y": 2.868,
+          "w": 2.066,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "诗 / 宣言 / 短文",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 4.947,
+          "y": 3.236,
+          "w": 1.38,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "POETRY & MANIFESTOS",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "tagline",
+          "x": 4.944,
+          "y": 3.626,
+          "w": 2.327,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "100 字宣言、一句口号、一首诗",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "tagline",
+          "x": 4.944,
+          "y": 3.855,
+          "w": 2.419,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Riot Grrrl Manifesto 就是范式",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "5.10",
+          "path": [
+            5,
+            10
+          ],
+          "role": "tagline",
+          "x": 4.944,
+          "y": 4.084,
+          "w": 1.367,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "短而准 ＞ 长而虚",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "page_no",
+          "x": 11.749,
+          "y": 1.965,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "label",
+          "x": 8.998,
+          "y": 2.868,
+          "w": 1.471,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "食谱 + 插图",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 9.009,
+          "y": 3.236,
+          "w": 1.235,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RECIPES & HOW-TOS",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "tagline",
+          "x": 9.006,
+          "y": 3.626,
+          "w": 2.067,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "外婆的腌菜配方 + 手绘工具",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 9.006,
+          "y": 3.855,
+          "w": 1.555,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "\"如何修自行车\"教学",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6.10",
+          "path": [
+            6,
+            10
+          ],
+          "role": "tagline",
+          "x": 9.006,
+          "y": 4.084,
+          "w": 1.966,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "日常实用＝最普及的形式",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "page_no",
+          "x": 3.624,
+          "y": 4.673,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "label",
+          "x": 0.873,
+          "y": 5.576,
+          "w": 2.578,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "家庭照片 + 私人写作",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.884,
+          "y": 5.944,
+          "w": 1.775,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "PHOTOS & PERSONAL WRITING",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "7.8",
+          "path": [
+            7,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.881,
+          "y": 6.334,
+          "w": 1.564,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "老照片复印件 + 旁注",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.9",
+          "path": [
+            7,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.881,
+          "y": 6.564,
+          "w": 1.564,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "家族故事 / 旅行札记",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.10",
+          "path": [
+            7,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.881,
+          "y": 6.793,
+          "w": 1.015,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "主权 ＞ 隐私",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "page_no",
+          "x": 7.687,
+          "y": 4.673,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "label",
+          "x": 4.935,
+          "y": 5.576,
+          "w": 2.024,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "拼贴 + 混合媒材",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "tagline",
+          "x": 4.947,
+          "y": 5.944,
+          "w": 1.459,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "COLLAGE & MIXED MEDIA",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.8",
+          "path": [
+            8,
+            8
+          ],
+          "role": "tagline",
+          "x": 4.944,
+          "y": 6.334,
+          "w": 1.757,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "杂志撕页 + 胶带 + 印章",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "8.9",
+          "path": [
+            8,
+            9
+          ],
+          "role": "tagline",
+          "x": 4.944,
+          "y": 6.564,
+          "w": 1.589,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "字典页 + 票据 + 蕾丝",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "8.10",
+          "path": [
+            8,
+            10
+          ],
+          "role": "tagline",
+          "x": 4.944,
+          "y": 6.793,
+          "w": 1.817,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "物质感 = 复印机救不了",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "page_no",
+          "x": 11.749,
+          "y": 4.673,
+          "w": 0.671,
+          "h": 0.733,
+          "font_pt": 33.0,
+          "sample": "06",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.5",
+          "path": [
+            9,
+            5
+          ],
+          "role": "label",
+          "x": 8.998,
+          "y": 5.576,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "实验性视觉",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "9.6",
+          "path": [
+            9,
+            6
+          ],
+          "role": "tagline",
+          "x": 9.009,
+          "y": 5.944,
+          "w": 1.4,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "EXPERIMENTAL VISUALS",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "9.8",
+          "path": [
+            9,
+            8
+          ],
+          "role": "tagline",
+          "x": 9.006,
+          "y": 6.334,
+          "w": 1.706,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "纯色块、纯纹理、纯字",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "9.9",
+          "path": [
+            9,
+            9
+          ],
+          "role": "tagline",
+          "x": 9.006,
+          "y": 6.564,
+          "w": 1.396,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "空白页 = 阅读节奏",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "9.10",
+          "path": [
+            9,
+            10
+          ],
+          "role": "tagline",
+          "x": 9.006,
+          "y": 6.793,
+          "w": 1.64,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "没有信息 = 一种信息",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.298,
+          "w": 1.439,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P08 · 6 CONTENT TYPES",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "10.2",
+          "path": [
+            10,
+            2
+          ],
+          "role": "tagline",
+          "x": 10.444,
+          "y": 7.298,
+          "w": 2.276,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "PICK ONE · PICK ALL · MAKE IT YOURS",
+          "capacity": 17.5
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 12.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 9,
+      "layout": "Title Slide",
+      "signature": "S9 布局=Title Slide [label≤6 | label≤7 | label≤9 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 0.718,
+          "w": 2.573,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PART 04 · 全球独立书店 NO.1 — 东京",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.521,
+          "y": 0.99,
+          "w": 3.802,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "神保町",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.5,
+          "y": 0.969,
+          "w": 3.802,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "神保町",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 0.565,
+          "y": 2.049,
+          "w": 3.143,
+          "h": 0.967,
+          "font_pt": 43.5,
+          "sample": "JIMBŌCHŌ",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 0.544,
+          "y": 2.028,
+          "w": 3.143,
+          "h": 0.967,
+          "font_pt": 43.5,
+          "sample": "JIMBŌCHŌ",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.915,
+          "y": 1.031,
+          "w": 1.086,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "TIME OUT 2025",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "label",
+          "x": 10.76,
+          "y": 1.32,
+          "w": 1.396,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "全球最酷街区",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.689,
+          "y": 1.694,
+          "w": 1.538,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "COOLEST NEIGHBORHOOD",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "7.2.0",
+          "path": [
+            7,
+            2,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.762,
+          "y": 5.648,
+          "w": 2.871,
+          "h": 1.133,
+          "font_pt": 51.0,
+          "sample": "130-180",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "7.2.1",
+          "path": [
+            7,
+            2,
+            1
+          ],
+          "role": "label",
+          "x": 0.816,
+          "y": 6.433,
+          "w": 1.532,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "家书店密集分布",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.2.2",
+          "path": [
+            7,
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.821,
+          "y": 6.748,
+          "w": 1.98,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "BOOKSTORES IN ONE DISTRICT",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "7.2.3",
+          "path": [
+            7,
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 7.031,
+          "w": 1.452,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "靖国通 × 白山通交叉",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.4.0",
+          "path": [
+            7,
+            4,
+            0
+          ],
+          "role": "label",
+          "x": 5.04,
+          "y": 5.732,
+          "w": 4.188,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "1875 · 1902 · 2015",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "7.4.1",
+          "path": [
+            7,
+            4,
+            1
+          ],
+          "role": "tagline",
+          "x": 5.068,
+          "y": 6.242,
+          "w": 1.946,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "三家代表性老店 / 奇店",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "7.4.2",
+          "path": [
+            7,
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.07,
+          "y": 6.552,
+          "w": 1.958,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "· Takayama Honten (1875)",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "7.4.3",
+          "path": [
+            7,
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.07,
+          "y": 6.76,
+          "w": 2.402,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "· Kitazawa English Books (1902)",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "7.4.4",
+          "path": [
+            7,
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 5.07,
+          "y": 6.968,
+          "w": 2.636,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "· Morioka Shoten (2015) — 一周一本",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "7.6.0",
+          "path": [
+            7,
+            6,
+            0
+          ],
+          "role": "label",
+          "x": 10.383,
+          "y": 5.821,
+          "w": 2.75,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "UTRECHT × 原宿",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.6.1",
+          "path": [
+            7,
+            6,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.402,
+          "y": 6.251,
+          "w": 2.239,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "日本最大独立 zine 收藏之一",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "7.6.2",
+          "path": [
+            7,
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 10.404,
+          "y": 6.56,
+          "w": 1.031,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "私宅式木质货架",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.6.3",
+          "path": [
+            7,
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.404,
+          "y": 6.769,
+          "w": 1.34,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "温暖灯光 · 安静浏览",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.6.4",
+          "path": [
+            7,
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.405,
+          "y": 7.069,
+          "w": 1.117,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "→ ZINE PILGRIMAGE",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 1.42,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P09 · TOKYO JIMBŌCHŌ",
+          "capacity": 10.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 9.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 10,
+      "layout": "Title Slide",
+      "signature": "S10 布局=Title Slide [title≤10 | desc≤12 | desc≤13 | desc≤12]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.91,
+          "y": 0.614,
+          "w": 5.138,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "三座城市 · 三种姿态",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 3.593,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "THREE CITIES · THREE BOOKSTORE TEMPERAME",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "design",
+          "x": 0.754,
+          "y": 3.785,
+          "w": 1.153,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "PARIS",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 4.092,
+          "y": 3.989,
+          "w": 0.339,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "巴黎",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "desc",
+          "x": 0.81,
+          "y": 4.493,
+          "w": 3.463,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Shakespeare and Company",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.822,
+          "y": 4.861,
+          "w": 2.013,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "37 RUE DE LA BÛCHERIE · EST 1951",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.23,
+          "w": 1.949,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 原址 12 rue de l'Odéon",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "5.10",
+          "path": [
+            5,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.459,
+          "w": 1.731,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Sylvia Beach 1919 创办",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "5.11",
+          "path": [
+            5,
+            11
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.772,
+          "w": 2.167,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 现址 1951 George Whitman",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "5.12",
+          "path": [
+            5,
+            12
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.001,
+          "w": 2.017,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "接纳数千 \"TUMBLEWEEDS\"",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "5.13",
+          "path": [
+            5,
+            13
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.314,
+          "w": 2.0,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· 住宿条件：每天读 1 小时",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "5.14",
+          "path": [
+            5,
+            14
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.543,
+          "w": 1.396,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "写一页自传 + 帮工",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "5.15",
+          "path": [
+            5,
+            15
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 6.76,
+          "w": 1.662,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "→ 书店 = 写作者收容所",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "design",
+          "x": 4.817,
+          "y": 3.785,
+          "w": 1.671,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "LONDON",
+          "capacity": 3.4
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "design",
+          "x": 8.154,
+          "y": 3.989,
+          "w": 0.339,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "伦敦",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "desc",
+          "x": 4.873,
+          "y": 4.493,
+          "w": 3.616,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Daunt + Word on the Water",
+          "capacity": 12.75
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.884,
+          "y": 4.861,
+          "w": 1.934,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "MARYLEBONE + REGENT'S CANAL",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 5.23,
+          "w": 1.782,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· DAUNT (Marylebone)",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "6.10",
+          "path": [
+            6,
+            10
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 5.459,
+          "w": 1.731,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "爱德华建筑 + 橡木阳台",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "6.11",
+          "path": [
+            6,
+            11
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 5.689,
+          "w": 1.874,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "+ 彩色玻璃 + 按国家分类",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "6.12",
+          "path": [
+            6,
+            12
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 6.001,
+          "w": 1.748,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· WORD ON THE WATER",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "6.13",
+          "path": [
+            6,
+            13
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 6.23,
+          "w": 1.337,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "1920s 荷兰运河船",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.14",
+          "path": [
+            6,
+            14
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 6.459,
+          "w": 1.757,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "皮椅 / 老打字机 / 火炉",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "6.15",
+          "path": [
+            6,
+            15
+          ],
+          "role": "tagline",
+          "x": 4.882,
+          "y": 6.76,
+          "w": 1.499,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "→ 书店 = 场景即体验",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "design",
+          "x": 8.879,
+          "y": 3.785,
+          "w": 2.037,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "NEW YORK",
+          "capacity": 4.25
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "design",
+          "x": 12.217,
+          "y": 3.989,
+          "w": 0.339,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "纽约",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "desc",
+          "x": 8.935,
+          "y": 4.493,
+          "w": 3.408,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Strand + Yu and Me Books",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "tagline",
+          "x": 8.947,
+          "y": 4.861,
+          "w": 1.479,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "BROADWAY + CHINATOWN",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "7.9",
+          "path": [
+            7,
+            9
+          ],
+          "role": "tagline",
+          "x": 8.944,
+          "y": 5.23,
+          "w": 1.287,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· STRAND (1927)",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "7.10",
+          "path": [
+            7,
+            10
+          ],
+          "role": "tagline",
+          "x": 8.944,
+          "y": 5.459,
+          "w": 1.413,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "2,500,000 册藏书",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "7.11",
+          "path": [
+            7,
+            11
+          ],
+          "role": "tagline",
+          "x": 8.944,
+          "y": 5.689,
+          "w": 1.463,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "自称 \"18 英里书架\"",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "7.12",
+          "path": [
+            7,
+            12
+          ],
+          "role": "tagline",
+          "x": 8.944,
+          "y": 6.001,
+          "w": 2.092,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "· YU AND ME BOOKS (2021)",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "7.13",
+          "path": [
+            7,
+            13
+          ],
+          "role": "tagline",
+          "x": 8.944,
+          "y": 6.23,
+          "w": 1.706,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "华埠首家亚裔女性书店",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "7.14",
+          "path": [
+            7,
+            14
+          ],
+          "role": "tagline",
+          "x": 8.944,
+          "y": 6.459,
+          "w": 1.958,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "2023 火灾后社区众筹重建",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "7.15",
+          "path": [
+            7,
+            15
+          ],
+          "role": "tagline",
+          "x": 8.945,
+          "y": 6.76,
+          "w": 1.662,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "→ 书店 = 社区基础设施",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 2.079,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P10 · PARIS × LONDON × NEW YORK",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "tagline",
+          "x": 11.208,
+          "y": 7.278,
+          "w": 1.512,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "收容所 / 场景 / 基础设施",
+          "capacity": 12.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 12.8,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 11,
+      "layout": "Title Slide",
+      "signature": "S11 布局=Title Slide [label≤6 | label≤6 | desc≤13 | label≤5]",
+      "slots": [
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.611,
+          "y": 0.718,
+          "w": 2.612,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PART 04 · 全球独立书店 NO.4 — 柏林",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "label",
+          "x": 2.819,
+          "y": 3.073,
+          "w": 7.695,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "BÜCHERBOGEN",
+          "capacity": 5.95
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "label",
+          "x": 2.798,
+          "y": 3.052,
+          "w": 7.695,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "BÜCHERBOGEN",
+          "capacity": 5.95
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.284,
+          "y": 4.338,
+          "w": 2.765,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "柏林 · BERLIN · S-BAHN ARCHES",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "desc",
+          "x": 0.933,
+          "y": 5.704,
+          "w": 3.944,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "藏在 S-BAHN 高架桥下的拱顶",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.942,
+          "y": 6.108,
+          "w": 6.473,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "砖砌拱顶 + 火车隆隆 + 头顶尘埃 —— 专攻艺术 / 设计 / 摄影 / 电",
+          "capacity": 30.5
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.942,
+          "y": 6.358,
+          "w": 4.077,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "柏林\"特定主题书店\"的范式：不要全面，要绝对",
+          "capacity": 21.0
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.944,
+          "y": 6.689,
+          "w": 1.966,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "→ 书店 = 一个主题的世界",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "8.10",
+          "path": [
+            8,
+            10
+          ],
+          "role": "label",
+          "x": 10.002,
+          "y": 5.821,
+          "w": 2.079,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "5 SUBJECTS",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "8.11",
+          "path": [
+            8,
+            11
+          ],
+          "role": "tagline",
+          "x": 9.803,
+          "y": 6.293,
+          "w": 2.478,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "艺术 / 设计 / 摄影 / 电影 / 建筑",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "8.12",
+          "path": [
+            8,
+            12
+          ],
+          "role": "tagline",
+          "x": 10.269,
+          "y": 6.569,
+          "w": 1.545,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "UNDER ONE ARCHED VAULT",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "9.0",
+          "path": [
+            9,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 1.591,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P11 · BERLIN BÜCHERBOGEN",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.542,
+          "y": 7.278,
+          "w": 2.177,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "EUROPEAN INDIE BOOKSTORE FINALE",
+          "capacity": 15.5
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 13.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 12,
+      "layout": "Title Slide",
+      "signature": "S12 布局=Title Slide [title≤16]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.915,
+          "y": 0.649,
+          "w": 8.263,
+          "h": 0.7,
+          "font_pt": 31.5,
+          "sample": "中国大陆独立书店地图（ZINE 倾向）",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.946,
+          "y": 1.185,
+          "w": 4.215,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "15 STORES · ★ ZINE INTENSITY · MAINLAND ",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 1.697,
+          "w": 1.025,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "书店 · STORE",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.945,
+          "y": 1.697,
+          "w": 0.861,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "城市 · CITY",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 1.697,
+          "w": 1.352,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "特色 · CHARACTER",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 11.097,
+          "y": 1.697,
+          "w": 0.722,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "ZINE 倾向",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "4.11",
+          "path": [
+            4,
+            11
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 2.043,
+          "w": 0.91,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "香蕉鱼书店",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.12",
+          "path": [
+            4,
+            12
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 2.043,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "上海",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.13",
+          "path": [
+            4,
+            13
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 2.052,
+          "w": 3.469,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "首家专注独立出版 · 推广 zine · 自营 Riso 工作室",
+          "capacity": 23.5
+        },
+        {
+          "slot_id": "4.14",
+          "path": [
+            4,
+            14
+          ],
+          "role": "design",
+          "x": 11.284,
+          "y": 2.025,
+          "w": 0.35,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★★★",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "4.16",
+          "path": [
+            4,
+            16
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 2.355,
+          "w": 0.557,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "假杂志",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "4.17",
+          "path": [
+            4,
+            17
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 2.355,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "宁波",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.18",
+          "path": [
+            4,
+            18
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 2.364,
+          "w": 3.095,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "国内最早独立摄影出版机构 · 摄影 zine 圣地",
+          "capacity": 20.5
+        },
+        {
+          "slot_id": "4.19",
+          "path": [
+            4,
+            19
+          ],
+          "role": "design",
+          "x": 11.284,
+          "y": 2.337,
+          "w": 0.35,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★★★",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "4.21",
+          "path": [
+            4,
+            21
+          ],
+          "role": "design",
+          "x": 0.819,
+          "y": 2.668,
+          "w": 0.381,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "野狗",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.22",
+          "path": [
+            4,
+            22
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 2.668,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "郑州",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.23",
+          "path": [
+            4,
+            23
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 2.677,
+          "w": 2.822,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "精选 200+ 国内外独立杂志 / 艺术出版物",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "4.24",
+          "path": [
+            4,
+            24
+          ],
+          "role": "design",
+          "x": 11.284,
+          "y": 2.65,
+          "w": 0.35,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★★★",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "4.26",
+          "path": [
+            4,
+            26
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 2.98,
+          "w": 1.817,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "一爿旧店 / BOOKMART",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "4.27",
+          "path": [
+            4,
+            27
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 2.98,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "舟山",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.28",
+          "path": [
+            4,
+            28
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 2.989,
+          "w": 3.048,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "艺术书 / 摄影集 / zine / 独立出版物全方位",
+          "capacity": 20.5
+        },
+        {
+          "slot_id": "4.29",
+          "path": [
+            4,
+            29
+          ],
+          "role": "design",
+          "x": 11.284,
+          "y": 2.962,
+          "w": 0.35,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★★★",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "4.31",
+          "path": [
+            4,
+            31
+          ],
+          "role": "design",
+          "x": 0.819,
+          "y": 3.293,
+          "w": 0.549,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Combo",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "4.32",
+          "path": [
+            4,
+            32
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 3.293,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "武汉",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.33",
+          "path": [
+            4,
+            33
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 3.302,
+          "w": 2.721,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "设计师 / 插画师 / 艺术家作品展示空间",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "4.34",
+          "path": [
+            4,
+            34
+          ],
+          "role": "design",
+          "x": 11.336,
+          "y": 3.275,
+          "w": 0.244,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.36",
+          "path": [
+            4,
+            36
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 3.605,
+          "w": 0.998,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Protopaper",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.37",
+          "path": [
+            4,
+            37
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 3.605,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "西安",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.38",
+          "path": [
+            4,
+            38
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 3.614,
+          "w": 2.386,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "设计工作室转书店 · 社区艺术连接",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "4.39",
+          "path": [
+            4,
+            39
+          ],
+          "role": "design",
+          "x": 11.336,
+          "y": 3.587,
+          "w": 0.244,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.41",
+          "path": [
+            4,
+            41
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 3.918,
+          "w": 1.103,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Jetlag Books",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.42",
+          "path": [
+            4,
+            42
+          ],
+          "role": "tagline",
+          "x": 3.944,
+          "y": 3.918,
+          "w": 1.061,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "北京 · 三里屯",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "4.43",
+          "path": [
+            4,
+            43
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 3.927,
+          "w": 3.188,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "国际期刊 + 创意品牌时尚原文书 · 红点品牌奖",
+          "capacity": 21.0
+        },
+        {
+          "slot_id": "4.44",
+          "path": [
+            4,
+            44
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 3.9,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.46",
+          "path": [
+            4,
+            46
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 4.23,
+          "w": 1.2,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "言 YAN-BOOKS",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.47",
+          "path": [
+            4,
+            47
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 4.23,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "北京",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.48",
+          "path": [
+            4,
+            48
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 4.239,
+          "w": 1.943,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "设计 / 生活方式 / 国际杂志",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "4.49",
+          "path": [
+            4,
+            49
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 4.213,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.51",
+          "path": [
+            4,
+            51
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 4.543,
+          "w": 0.989,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "群岛 BOOKS",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.52",
+          "path": [
+            4,
+            52
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 4.543,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "上海",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.53",
+          "path": [
+            4,
+            53
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 4.552,
+          "w": 2.745,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "建筑 / 城市 / 泛设计为主 · 书桌式陈列",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "4.54",
+          "path": [
+            4,
+            54
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 4.525,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.56",
+          "path": [
+            4,
+            56
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 4.855,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "单向空间",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.57",
+          "path": [
+            4,
+            57
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 4.855,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "北京",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.58",
+          "path": [
+            4,
+            58
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 4.864,
+          "w": 2.62,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "2006 创办 · 名取自本雅明《单向街》",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "4.59",
+          "path": [
+            4,
+            59
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 4.838,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.61",
+          "path": [
+            4,
+            61
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.168,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "三味书屋",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.62",
+          "path": [
+            4,
+            62
+          ],
+          "role": "tagline",
+          "x": 3.944,
+          "y": 5.168,
+          "w": 1.061,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "北京 · 长安街",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "4.63",
+          "path": [
+            4,
+            63
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 5.177,
+          "w": 3.009,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "北京第一家民营书店 · 每一本书都是挑过的",
+          "capacity": 19.5
+        },
+        {
+          "slot_id": "4.64",
+          "path": [
+            4,
+            64
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 5.15,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.66",
+          "path": [
+            4,
+            66
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.48,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "博尔赫斯",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.67",
+          "path": [
+            4,
+            67
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 5.48,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "广州",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.68",
+          "path": [
+            4,
+            68
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 5.489,
+          "w": 2.433,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "文学为主 · 兼及历史 / 哲学 / 艺术",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "4.69",
+          "path": [
+            4,
+            69
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 5.463,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.71",
+          "path": [
+            4,
+            71
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 5.793,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "目田书店",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.72",
+          "path": [
+            4,
+            72
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 5.793,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "长沙",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.73",
+          "path": [
+            4,
+            73
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 5.802,
+          "w": 1.763,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "社区文化空间 · 好书精选",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "4.74",
+          "path": [
+            4,
+            74
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 5.775,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.76",
+          "path": [
+            4,
+            76
+          ],
+          "role": "design",
+          "x": 0.819,
+          "y": 6.105,
+          "w": 0.381,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "牡蛎",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.77",
+          "path": [
+            4,
+            77
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 6.105,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "杭州",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.78",
+          "path": [
+            4,
+            78
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 6.114,
+          "w": 2.612,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "社区书店 · 文学 / 哲学 / 诗 · 兼二手",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "4.79",
+          "path": [
+            4,
+            79
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 6.088,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.80",
+          "path": [
+            4,
+            80
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.418,
+          "w": 0.734,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "麦田书店",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.81",
+          "path": [
+            4,
+            81
+          ],
+          "role": "design",
+          "x": 3.944,
+          "y": 6.418,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "昆明",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.82",
+          "path": [
+            4,
+            82
+          ],
+          "role": "tagline",
+          "x": 5.82,
+          "y": 6.427,
+          "w": 2.565,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "艺术文学 · 云南地方主题 · 黑胶唱片",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "4.83",
+          "path": [
+            4,
+            83
+          ],
+          "role": "design",
+          "x": 11.389,
+          "y": 6.4,
+          "w": 0.139,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "design",
+          "x": 0.613,
+          "y": 6.852,
+          "w": 0.578,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "LEGEND:",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "design",
+          "x": 1.444,
+          "y": 6.834,
+          "w": 0.306,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "★★★",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "tagline",
+          "x": 1.863,
+          "y": 6.852,
+          "w": 0.967,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "核心 zine 圣地",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "design",
+          "x": 3.11,
+          "y": 6.834,
+          "w": 0.214,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "★★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.446,
+          "y": 6.852,
+          "w": 0.887,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "独立出版兼营",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "design",
+          "x": 4.673,
+          "y": 6.834,
+          "w": 0.121,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "★",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 4.821,
+          "y": 6.852,
+          "w": 0.887,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "国际杂志为主",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "design",
+          "x": 6.048,
+          "y": 6.834,
+          "w": 0.121,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "—",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "tagline",
+          "x": 6.196,
+          "y": 6.852,
+          "w": 1.053,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "文学 / 综合书店",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 2.691,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P12 · MAINLAND CHINA INDIE BOOKSTORE MAP",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 9.66,
+          "y": 7.278,
+          "w": 3.06,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CURATED 2026 · SOURCED FROM 数英 / 搜狐 / 知乎",
+          "capacity": 23.0
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 16.5,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 13,
+      "layout": "Title Slide",
+      "signature": "S13 布局=Title Slide [title≤9 | label≤8 | desc≤22 | label≤8 | desc≤21]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.91,
+          "y": 0.614,
+          "w": 5.055,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "中国艺术书展双子星",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 4.341,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SHANGHAI HOSTS THE MOST · NEW SHOPS PUBL",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.821,
+          "y": 7.05,
+          "w": 2.124,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "BOOTH AISLE · SHANGHAI · 2026",
+          "capacity": 14.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "label",
+          "x": 4.971,
+          "y": 1.877,
+          "w": 2.993,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "abC ART BOOK FAIR",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 11.107,
+          "y": 2.019,
+          "w": 1.405,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "EST. 2015 · 京沪双城",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "desc",
+          "x": 4.982,
+          "y": 2.474,
+          "w": 4.579,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "art book in China · 国内最具影响力的艺术书展",
+          "capacity": 22.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.985,
+          "y": 2.793,
+          "w": 3.937,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "推广本土艺术家书 / 独立出版 + 引介国际优秀出版方",
+          "capacity": 24.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "page_no",
+          "x": 5.473,
+          "y": 3.202,
+          "w": 0.679,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "145",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "5.10",
+          "path": [
+            5,
+            10
+          ],
+          "role": "tagline",
+          "x": 5.34,
+          "y": 3.673,
+          "w": 0.945,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "中国艺术出版方",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.11",
+          "path": [
+            5,
+            11
+          ],
+          "role": "tagline",
+          "x": 5.416,
+          "y": 3.84,
+          "w": 0.794,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "+ 个人创作者",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.13",
+          "path": [
+            5,
+            13
+          ],
+          "role": "page_no",
+          "x": 7.383,
+          "y": 3.202,
+          "w": 0.442,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "41",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.14",
+          "path": [
+            5,
+            14
+          ],
+          "role": "tagline",
+          "x": 7.263,
+          "y": 3.673,
+          "w": 0.682,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "国际出版方",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.15",
+          "path": [
+            5,
+            15
+          ],
+          "role": "tagline",
+          "x": 7.253,
+          "y": 3.84,
+          "w": 0.702,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "参展 · 上海",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "5.17",
+          "path": [
+            5,
+            17
+          ],
+          "role": "design",
+          "x": 8.672,
+          "y": 3.237,
+          "w": 1.447,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "10,000+",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "5.18",
+          "path": [
+            5,
+            18
+          ],
+          "role": "tagline",
+          "x": 9.121,
+          "y": 3.673,
+          "w": 0.55,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "参观人数",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.19",
+          "path": [
+            5,
+            19
+          ],
+          "role": "tagline",
+          "x": 9.045,
+          "y": 3.84,
+          "w": 0.702,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "第 6 届上海",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "5.20",
+          "path": [
+            5,
+            20
+          ],
+          "role": "tagline",
+          "x": 10.403,
+          "y": 3.406,
+          "w": 0.984,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "→ 第一影响力",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.21",
+          "path": [
+            5,
+            21
+          ],
+          "role": "tagline",
+          "x": 10.405,
+          "y": 3.632,
+          "w": 0.682,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "独立出版圈",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.22",
+          "path": [
+            5,
+            22
+          ],
+          "role": "tagline",
+          "x": 10.405,
+          "y": 3.778,
+          "w": 0.682,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "年度风向标",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "label",
+          "x": 4.971,
+          "y": 4.523,
+          "w": 2.725,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "UNFOLD SHANGHAI",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 11.036,
+          "y": 4.665,
+          "w": 1.477,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "紧随 abC · 一周后开幕",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "desc",
+          "x": 4.982,
+          "y": 5.12,
+          "w": 4.483,
+          "h": 0.283,
+          "font_pt": 12.75,
+          "sample": "UNFOLD Shanghai Art Book Fair · 第二影响力",
+          "capacity": 21.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.985,
+          "y": 5.439,
+          "w": 4.406,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "摊位费更高 · 客流更大 · 票价更亲民 · 国际 Nieves 等参展",
+          "capacity": 27.5
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "design",
+          "x": 5.399,
+          "y": 5.866,
+          "w": 1.639,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "+ 1 WEEK",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.10",
+          "path": [
+            6,
+            10
+          ],
+          "role": "tagline",
+          "x": 5.664,
+          "y": 6.319,
+          "w": 1.11,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "在 abC 上海站之后",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "6.11",
+          "path": [
+            6,
+            11
+          ],
+          "role": "tagline",
+          "x": 5.746,
+          "y": 6.465,
+          "w": 0.945,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "一周内连贯发生",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.13",
+          "path": [
+            6,
+            13
+          ],
+          "role": "design",
+          "x": 7.942,
+          "y": 5.866,
+          "w": 1.761,
+          "h": 0.567,
+          "font_pt": 25.5,
+          "sample": "SHANGHAI",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.14",
+          "path": [
+            6,
+            14
+          ],
+          "role": "tagline",
+          "x": 8.284,
+          "y": 6.319,
+          "w": 1.077,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "承办中国最多书展",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.15",
+          "path": [
+            6,
+            15
+          ],
+          "role": "tagline",
+          "x": 8.482,
+          "y": 6.465,
+          "w": 0.682,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "每年的城市",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.16",
+          "path": [
+            6,
+            16
+          ],
+          "role": "tagline",
+          "x": 10.236,
+          "y": 6.052,
+          "w": 0.82,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "→ 实用建议",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.17",
+          "path": [
+            6,
+            17
+          ],
+          "role": "tagline",
+          "x": 10.239,
+          "y": 6.278,
+          "w": 0.721,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "两周连开 ＝",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "6.18",
+          "path": [
+            6,
+            18
+          ],
+          "role": "tagline",
+          "x": 10.239,
+          "y": 6.423,
+          "w": 0.814,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "上海双周朝圣",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 2.019,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P13 · CHINA ART BOOK FAIR TWINS",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "tagline",
+          "x": 10.417,
+          "y": 7.278,
+          "w": 2.303,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "abC FIRST · UNFOLD AFTER · 上海双周",
+          "capacity": 17.5
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 22.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 14,
+      "layout": "Title Slide",
+      "signature": "S14 布局=Title Slide [title≤6 | label≤8 | label≤6 | label≤5]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.908,
+          "y": 0.596,
+          "w": 3.636,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "进店前的 4 条",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 4.364,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "HOW TO BROWSE INDIE BOOKSTORES · UNWRITT",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.999,
+          "y": 2.322,
+          "w": 0.564,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.9",
+          "path": [
+            8,
+            9
+          ],
+          "role": "label",
+          "x": 2.977,
+          "y": 2.305,
+          "w": 2.149,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "看选品 ＝ 看店主",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "8.10",
+          "path": [
+            8,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 2.638,
+          "w": 5.979,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "独立书店的本质是\"一个人 / 一群人的精神书架\"· 选品就是店主在跟你对话",
+          "capacity": 33.5
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.93,
+          "y": 3.489,
+          "w": 0.702,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.9",
+          "path": [
+            9,
+            9
+          ],
+          "role": "label",
+          "x": 2.977,
+          "y": 3.472,
+          "w": 1.678,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "至少留 1 小时",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "9.10",
+          "path": [
+            9,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 3.805,
+          "w": 5.835,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "独立书店不是便利店 · 浏览本身就是产品 · 在书架前发呆是一种合法消费",
+          "capacity": 33.0
+        },
+        {
+          "slot_id": "10.3",
+          "path": [
+            10,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.93,
+          "y": 4.655,
+          "w": 0.702,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.9",
+          "path": [
+            10,
+            9
+          ],
+          "role": "tagline",
+          "x": 2.977,
+          "y": 4.639,
+          "w": 0.876,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "带现金",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "10.10",
+          "path": [
+            10,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 4.971,
+          "w": 6.195,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "一些小店不接受电子支付 · 现金还能减少手续费 · 给店主多留一杯咖啡的利润",
+          "capacity": 35.0
+        },
+        {
+          "slot_id": "11.3",
+          "path": [
+            11,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.93,
+          "y": 5.822,
+          "w": 0.702,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "11.9",
+          "path": [
+            11,
+            9
+          ],
+          "role": "label",
+          "x": 2.977,
+          "y": 5.805,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "拍照前先问",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "11.10",
+          "path": [
+            11,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 6.138,
+          "w": 5.709,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "多数独立书店对拍照敏感 · 选品是店主智识 · 尊重 + 一句招呼 = 通行证",
+          "capacity": 33.0
+        },
+        {
+          "slot_id": "12.3",
+          "path": [
+            12,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 6.919,
+          "w": 8.486,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "额外提醒 ＞ 主流出版社的书随便哪里买都行 · 在独立书店买独立出版物 / 艺术",
+          "capacity": 36.0
+        },
+        {
+          "slot_id": "13.0",
+          "path": [
+            13,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.298,
+          "w": 2.019,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P14 · 4 RULES BEFORE YOU ENTER",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "13.1",
+          "path": [
+            13,
+            1
+          ],
+          "role": "tagline",
+          "x": 11.188,
+          "y": 7.298,
+          "w": 1.532,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "店主 / 时间 / 现金 / 招呼",
+          "capacity": 12.5
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 8.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 15,
+      "layout": "Title Slide",
+      "signature": "S15 布局=Title Slide [title≤8 | label≤5 | label≤7 | desc≤14 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.908,
+          "y": 0.596,
+          "w": 4.527,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "收藏 ZINE 的 4 条",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 3.811,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "HOW TO COLLECT ZINES · NO ARCHIVAL PHD R",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.999,
+          "y": 2.322,
+          "w": 0.564,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.9",
+          "path": [
+            8,
+            9
+          ],
+          "role": "label",
+          "x": 2.977,
+          "y": 2.305,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "从一本起步",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "8.10",
+          "path": [
+            8,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 2.638,
+          "w": 5.116,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "不要一开始就 100 本目标 · 找你最关心的一个主题 · 滚雪球收藏",
+          "capacity": 29.5
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.93,
+          "y": 3.489,
+          "w": 0.702,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.9",
+          "path": [
+            9,
+            9
+          ],
+          "role": "label",
+          "x": 2.977,
+          "y": 3.472,
+          "w": 1.983,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "用塑料封套保护",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "9.10",
+          "path": [
+            9,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 3.805,
+          "w": 4.649,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "zine 是一次性印刷 · 二次印刷罕见 · 一本破损 = 一本绝版",
+          "capacity": 27.0
+        },
+        {
+          "slot_id": "10.3",
+          "path": [
+            10,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.93,
+          "y": 4.655,
+          "w": 0.702,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.9",
+          "path": [
+            10,
+            9
+          ],
+          "role": "desc",
+          "x": 2.977,
+          "y": 4.639,
+          "w": 3.74,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "跟踪作者 / 出版方 Instagram",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "10.10",
+          "path": [
+            10,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 4.971,
+          "w": 5.422,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "新刊首发是赶圈机会 · 100 份卖完就没了 · 第二天朋友圈截图也没用",
+          "capacity": 31.0
+        },
+        {
+          "slot_id": "11.3",
+          "path": [
+            11,
+            3
+          ],
+          "role": "page_no",
+          "x": 0.93,
+          "y": 5.822,
+          "w": 0.702,
+          "h": 0.767,
+          "font_pt": 34.5,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "11.9",
+          "path": [
+            11,
+            9
+          ],
+          "role": "label",
+          "x": 2.977,
+          "y": 5.805,
+          "w": 2.426,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "参加 abC / UNFOLD",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "11.10",
+          "path": [
+            11,
+            10
+          ],
+          "role": "tagline",
+          "x": 2.984,
+          "y": 6.138,
+          "w": 4.425,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "书展现场 = 新刊首发 + 作者签售 · 一年一次的物理朝圣",
+          "capacity": 25.5
+        },
+        {
+          "slot_id": "12.3",
+          "path": [
+            12,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.818,
+          "y": 6.919,
+          "w": 8.548,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "长期玩家秘诀 ＞ 给自己定一个\"我只收集 X 主题的 zine\" 的窄锚点 · ",
+          "capacity": 32.0
+        },
+        {
+          "slot_id": "13.0",
+          "path": [
+            13,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.298,
+          "w": 2.243,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P15 · 4 RULES FOR COLLECTING ZINES",
+          "capacity": 17.0
+        },
+        {
+          "slot_id": "13.1",
+          "path": [
+            13,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.477,
+          "y": 7.298,
+          "w": 2.243,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "START NARROW · GO DEEP · GO LONG",
+          "capacity": 16.0
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 13.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 16,
+      "layout": "Title Slide",
+      "signature": "S16 布局=Title Slide [label≤8 | title≤8 | label≤5 | label≤4 | label≤7 | label≤4 | label≤4 | desc≤38]",
+      "slots": [
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "label",
+          "x": 3.821,
+          "y": 0.475,
+          "w": 5.692,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "你的第一本 ZINE",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "title",
+          "x": 3.8,
+          "y": 0.454,
+          "w": 5.692,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "你的第一本 ZINE",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.013,
+          "y": 1.314,
+          "w": 3.308,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "YOUR FIRST ZINE · 4 STEPS · ONE WEEKEND",
+          "capacity": 19.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "page_no",
+          "x": 1.728,
+          "y": 3.007,
+          "w": 0.711,
+          "h": 0.967,
+          "font_pt": 43.5,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "design",
+          "x": 1.782,
+          "y": 4.364,
+          "w": 0.603,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "CHOOSE",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "label",
+          "x": 1.369,
+          "y": 4.701,
+          "w": 1.429,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "选一个主题",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 1.649,
+          "y": 5.064,
+          "w": 0.868,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "真心关心的",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "tagline",
+          "x": 1.733,
+          "y": 5.272,
+          "w": 0.7,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "不必宏大",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 1.369,
+          "y": 5.665,
+          "w": 1.429,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "小猫 / 早餐 / 通勤路",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "page_no",
+          "x": 4.141,
+          "y": 3.007,
+          "w": 0.885,
+          "h": 0.967,
+          "font_pt": 43.5,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "design",
+          "x": 4.383,
+          "y": 4.364,
+          "w": 0.401,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "FOLD",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "label",
+          "x": 3.952,
+          "y": 4.701,
+          "w": 1.263,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "折一张 A4",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.129,
+          "y": 5.064,
+          "w": 0.91,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "用 P07 方法",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "tagline",
+          "x": 4.015,
+          "y": 5.272,
+          "w": 1.136,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "8 页 + 1 个剪口",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 4.175,
+          "y": 5.665,
+          "w": 0.817,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "≈ 30 秒完成",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "page_no",
+          "x": 6.641,
+          "y": 3.007,
+          "w": 0.885,
+          "h": 0.967,
+          "font_pt": 43.5,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "design",
+          "x": 6.918,
+          "y": 4.364,
+          "w": 0.331,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "FILL",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "tagline",
+          "x": 6.625,
+          "y": 4.701,
+          "w": 0.917,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "填 8 页",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "8.7",
+          "path": [
+            8,
+            7
+          ],
+          "role": "tagline",
+          "x": 6.637,
+          "y": 5.064,
+          "w": 0.893,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "手写 / 拼贴",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "8.8",
+          "path": [
+            8,
+            8
+          ],
+          "role": "tagline",
+          "x": 6.578,
+          "y": 5.272,
+          "w": 1.01,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "/ 复印旧照片",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "8.9",
+          "path": [
+            8,
+            9
+          ],
+          "role": "tagline",
+          "x": 6.346,
+          "y": 5.665,
+          "w": 1.474,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "第一本 ＝ 粗糙就对了",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "10.3",
+          "path": [
+            10,
+            3
+          ],
+          "role": "page_no",
+          "x": 9.141,
+          "y": 3.007,
+          "w": 0.885,
+          "h": 0.967,
+          "font_pt": 43.5,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "10.5",
+          "path": [
+            10,
+            5
+          ],
+          "role": "design",
+          "x": 9.356,
+          "y": 4.364,
+          "w": 0.455,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SHARE",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "10.6",
+          "path": [
+            10,
+            6
+          ],
+          "role": "label",
+          "x": 8.668,
+          "y": 4.701,
+          "w": 1.831,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "印 10 份送出去",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "10.7",
+          "path": [
+            10,
+            7
+          ],
+          "role": "tagline",
+          "x": 9.162,
+          "y": 5.064,
+          "w": 0.843,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "5 份给朋友",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "10.8",
+          "path": [
+            10,
+            8
+          ],
+          "role": "tagline",
+          "x": 8.994,
+          "y": 5.272,
+          "w": 1.178,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "5 份寄独立书店",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "10.9",
+          "path": [
+            10,
+            9
+          ],
+          "role": "tagline",
+          "x": 8.624,
+          "y": 5.665,
+          "w": 1.919,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "这一刻你就成 zine 出版者了",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "11.0",
+          "path": [
+            11,
+            0
+          ],
+          "role": "design",
+          "x": 11.693,
+          "y": 3.043,
+          "w": 0.365,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "结果",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "11.1",
+          "path": [
+            11,
+            1
+          ],
+          "role": "design",
+          "x": 11.293,
+          "y": 3.304,
+          "w": 1.164,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "YOU",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "11.2",
+          "path": [
+            11,
+            2
+          ],
+          "role": "design",
+          "x": 11.106,
+          "y": 3.763,
+          "w": 1.538,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "ARE A",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "11.3",
+          "path": [
+            11,
+            3
+          ],
+          "role": "label",
+          "x": 10.474,
+          "y": 4.221,
+          "w": 2.803,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "PUBLISHER",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "11.4",
+          "path": [
+            11,
+            4
+          ],
+          "role": "label",
+          "x": 10.453,
+          "y": 4.2,
+          "w": 2.803,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "PUBLISHER",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "12.3",
+          "path": [
+            12,
+            3
+          ],
+          "role": "desc",
+          "x": 1.435,
+          "y": 6.576,
+          "w": 10.464,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "\"zine 出版者\"的门槛 ＝ 寄出第一本的那一秒 · 不是商业注册 · 不是 ",
+          "capacity": 38.25
+        },
+        {
+          "slot_id": "13.0",
+          "path": [
+            13,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.236,
+          "w": 2.006,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P16 · YOUR FIRST ZINE IN 4 STEPS",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "13.1",
+          "path": [
+            13,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.819,
+          "y": 7.236,
+          "w": 1.901,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CHOOSE → FOLD → FILL → SHARE",
+          "capacity": 14.0
+        }
+      ],
+      "fillable": 8,
+      "fillable_cap": 38.2,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 17,
+      "layout": "Title Slide",
+      "signature": "S17 布局=Title Slide [title≤8 | label≤9 | label≤8 | label≤9]",
+      "slots": [
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "title",
+          "x": 0.908,
+          "y": 0.596,
+          "w": 5.16,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "SOURCES & CREDITS",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 1.218,
+          "w": 5.221,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PRIMARY REFERENCES · 20 SOURCES · WIKIPE",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "label",
+          "x": 0.812,
+          "y": 1.958,
+          "w": 2.018,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "ZINE · 简史 · 制作",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "page_no",
+          "x": 0.634,
+          "y": 2.465,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 2.447,
+          "w": 1.253,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Wikipedia · Zine",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.634,
+          "y": 2.673,
+          "w": 1.762,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "en.wikipedia.org/wiki/Zine",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "page_no",
+          "x": 0.634,
+          "y": 2.986,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 2.968,
+          "w": 1.711,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Wikipedia · Riot grrrl",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.634,
+          "y": 3.194,
+          "w": 2.164,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "en.wikipedia.org/wiki/Riot_grrrl",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "page_no",
+          "x": 0.634,
+          "y": 3.507,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 3.489,
+          "w": 2.071,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "JSTOR Daily — Start a Riot",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.634,
+          "y": 3.715,
+          "w": 3.087,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "daily.jstor.org/start-a-riot-and-a-zine-",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.11",
+          "path": [
+            4,
+            11
+          ],
+          "role": "page_no",
+          "x": 0.634,
+          "y": 4.028,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.12",
+          "path": [
+            4,
+            12
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 4.01,
+          "w": 2.365,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "UNC Chapel Hill · Brief History",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "4.13",
+          "path": [
+            4,
+            13
+          ],
+          "role": "tagline",
+          "x": 0.634,
+          "y": 4.236,
+          "w": 2.177,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "blogs.lib.unc.edu/rbc/2017/10/25",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "4.14",
+          "path": [
+            4,
+            14
+          ],
+          "role": "page_no",
+          "x": 0.634,
+          "y": 4.548,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.15",
+          "path": [
+            4,
+            15
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 4.531,
+          "w": 3.183,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "The Creative Independent · How to make",
+          "capacity": 19.0
+        },
+        {
+          "slot_id": "4.16",
+          "path": [
+            4,
+            16
+          ],
+          "role": "tagline",
+          "x": 0.634,
+          "y": 4.757,
+          "w": 3.739,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "thecreativeindependent.com/guides/how-to",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4.17",
+          "path": [
+            4,
+            17
+          ],
+          "role": "page_no",
+          "x": 0.634,
+          "y": 5.069,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "06",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.18",
+          "path": [
+            4,
+            18
+          ],
+          "role": "tagline",
+          "x": 0.945,
+          "y": 5.052,
+          "w": 2.259,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Book Riot · Beginner's Guide",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "4.19",
+          "path": [
+            4,
+            19
+          ],
+          "role": "tagline",
+          "x": 0.634,
+          "y": 5.278,
+          "w": 2.283,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "bookriot.com/how-to-make-a-zine",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "label",
+          "x": 4.875,
+          "y": 1.958,
+          "w": 1.791,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "RISO · 全球书店",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 2.465,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "07",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 2.447,
+          "w": 3.167,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "My Modern Met · Risograph Renaissance",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 2.673,
+          "w": 2.454,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "mymodernmet.com/risograph-printer",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 2.986,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "08",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 2.968,
+          "w": 2.619,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "KPBS · Risograph revival podcast",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 3.194,
+          "w": 3.225,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "kpbs.org/podcasts/the-finest/risograph-r",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 3.507,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "09",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 3.489,
+          "w": 2.578,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "It's Nice That · Tokyo Risograph",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "5.10",
+          "path": [
+            5,
+            10
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 3.715,
+          "w": 3.818,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "itsnicethat.com/articles/the-view-from-t",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.11",
+          "path": [
+            5,
+            11
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 4.028,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "10",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.12",
+          "path": [
+            5,
+            12
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 4.01,
+          "w": 2.66,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "AFAR · 17 Independent Bookstores",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "5.13",
+          "path": [
+            5,
+            13
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 4.236,
+          "w": 3.561,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "afar.com/magazine/the-best-independent-b",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.14",
+          "path": [
+            5,
+            14
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 4.548,
+          "w": 0.102,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "11",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.15",
+          "path": [
+            5,
+            15
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 4.531,
+          "w": 2.496,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Wikipedia · Jimbōchō Book Town",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "5.16",
+          "path": [
+            5,
+            16
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 4.757,
+          "w": 2.83,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "en.wikipedia.org/wiki/Jimbōchō_Book_Town",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.17",
+          "path": [
+            5,
+            17
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 5.069,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "12",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.18",
+          "path": [
+            5,
+            18
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 5.052,
+          "w": 2.954,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Wikipedia · Shakespeare and Company",
+          "capacity": 17.5
+        },
+        {
+          "slot_id": "5.19",
+          "path": [
+            5,
+            19
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 5.278,
+          "w": 3.199,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "en.wikipedia.org/wiki/Shakespeare_and_Co",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "5.20",
+          "path": [
+            5,
+            20
+          ],
+          "role": "page_no",
+          "x": 4.697,
+          "y": 5.59,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "13",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.21",
+          "path": [
+            5,
+            21
+          ],
+          "role": "tagline",
+          "x": 5.007,
+          "y": 5.572,
+          "w": 2.725,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Time Out Tokyo · Best bookstores",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "5.22",
+          "path": [
+            5,
+            22
+          ],
+          "role": "tagline",
+          "x": 4.697,
+          "y": 5.798,
+          "w": 3.344,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "timeout.com/tokyo/shopping/the-best-book",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "label",
+          "x": 8.938,
+          "y": 1.958,
+          "w": 2.03,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "中文 · 书店 · 书展",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 2.465,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "14",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 2.447,
+          "w": 2.578,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "数英 · 国内 13 家独立书店漫游指南",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 2.673,
+          "w": 1.993,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "digitaling.com/articles/701483",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 2.986,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "15",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 2.968,
+          "w": 1.85,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "搜狐 · 北京最棒独立书店",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 3.194,
+          "w": 1.973,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "sohu.com/a/234189890_554564",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "6.8",
+          "path": [
+            6,
+            8
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 3.507,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "16",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.9",
+          "path": [
+            6,
+            9
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 3.489,
+          "w": 2.145,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "UNFOLD Shanghai · Official",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "6.10",
+          "path": [
+            6,
+            10
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 3.715,
+          "w": 1.65,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "shanghaiartbookfair.com",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "6.11",
+          "path": [
+            6,
+            11
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 4.028,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "17",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.12",
+          "path": [
+            6,
+            12
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 4.01,
+          "w": 2.439,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "abC Art Book Fair · Official EN",
+          "capacity": 15.5
+        },
+        {
+          "slot_id": "6.13",
+          "path": [
+            6,
+            13
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 4.236,
+          "w": 1.505,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "artbookinchina.com/en",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "6.14",
+          "path": [
+            6,
+            14
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 4.548,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "18",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.15",
+          "path": [
+            6,
+            15
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 4.531,
+          "w": 2.627,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Sixth Tone · Art Book Fair Bubble",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "6.16",
+          "path": [
+            6,
+            16
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 4.757,
+          "w": 1.894,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "sixthtone.com/news/1008799",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "6.17",
+          "path": [
+            6,
+            17
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 5.069,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "19",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.18",
+          "path": [
+            6,
+            18
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 5.052,
+          "w": 2.324,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Nippon.com · 神保町 Jinbōchō",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "6.19",
+          "path": [
+            6,
+            19
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 5.278,
+          "w": 2.276,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "nippon.com/en/japan-topics/b11003",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "6.20",
+          "path": [
+            6,
+            20
+          ],
+          "role": "page_no",
+          "x": 8.759,
+          "y": 5.59,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "20",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.21",
+          "path": [
+            6,
+            21
+          ],
+          "role": "tagline",
+          "x": 9.07,
+          "y": 5.572,
+          "w": 2.365,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Wikimedia Commons · 图片素材",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "6.22",
+          "path": [
+            6,
+            22
+          ],
+          "role": "tagline",
+          "x": 8.759,
+          "y": 5.798,
+          "w": 2.289,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "commons.wikimedia.org · CC BY 2.0",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.439,
+          "w": 0.61,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "致谢 ＞",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "tagline",
+          "x": 1.548,
+          "y": 6.439,
+          "w": 7.375,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "研究 / 排版 / 视觉 由 PPT Master + Gemini 3.1 F",
+          "capacity": 23.5
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.699,
+          "w": 7.979,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "参考图像取自 Wikimedia Commons (CC BY 2.0)；AI ",
+          "capacity": 23.5
+        },
+        {
+          "slot_id": "8.0",
+          "path": [
+            8,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.614,
+          "y": 7.278,
+          "w": 1.519,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P17 · SOURCES & CREDITS",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "tagline",
+          "x": 10.285,
+          "y": 7.278,
+          "w": 2.434,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RESEARCHED 2026-05-17 · CHECKED LIVE",
+          "capacity": 18.0
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 9.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 18,
+      "layout": "Title Slide",
+      "signature": "S18 布局=Title Slide [label≤8 | label≤4 | title≤4 | label≤4 | label≤4 | label≤4 | label≤4 | desc≤10 | desc≤13]",
+      "slots": [
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "label",
+          "x": 0.822,
+          "y": 0.604,
+          "w": 1.898,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "END OF ISSUE №01",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "label",
+          "x": 0.521,
+          "y": 2.135,
+          "w": 5.0,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "印一份。",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "title",
+          "x": 0.5,
+          "y": 2.115,
+          "w": 5.0,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "印一份。",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "label",
+          "x": 0.521,
+          "y": 3.281,
+          "w": 5.0,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "送一份。",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "label",
+          "x": 0.5,
+          "y": 3.26,
+          "w": 5.0,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "送一份。",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "label",
+          "x": 0.521,
+          "y": 4.427,
+          "w": 5.0,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "换一份。",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "label",
+          "x": 0.5,
+          "y": 4.406,
+          "w": 5.0,
+          "h": 1.667,
+          "font_pt": 75.0,
+          "sample": "换一份。",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "desc",
+          "x": 0.804,
+          "y": 5.919,
+          "w": 3.563,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "A ZINE IS THE WORLD'S",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "desc",
+          "x": 0.804,
+          "y": 6.252,
+          "w": 4.654,
+          "h": 0.467,
+          "font_pt": 21.0,
+          "sample": "SMALLEST PUBLISHING HOUSE.",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.819,
+          "y": 6.991,
+          "w": 1.824,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "IT CAN ALSO BE YOURS.",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "design",
+          "x": 11.117,
+          "y": 6.444,
+          "w": 0.682,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "COLOPHON",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.578,
+          "y": 6.677,
+          "w": 1.76,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "PPT Master · 风格演示",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.828,
+          "y": 6.903,
+          "w": 1.262,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "RISO ZINE · 2026-05",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "tagline",
+          "x": 10.744,
+          "y": 7.078,
+          "w": 1.428,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "SCREEN-PRINT × DUOTONE",
+          "capacity": 11.0
+        }
+      ],
+      "fillable": 9,
+      "fillable_cap": 13.0,
+      "role_hint": "closing"
+    }
+  ]
+}

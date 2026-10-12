@@ -4,40 +4,94 @@ from pathlib import Path
 
 import pytest
 
-from app.render.renderer import render_to_file
-from app.schema.enums import IssueCode
-from app.services.com_export import checklist, export_pngs
+from app.render.template_build import build_deck
+from app.render.tpl_catalog import load_catalog, template_pptx_path
+from app.schema.enums import IssueCode, SlideType
+from app.schema.slotfill import (BuildMeta, DeckBuild, PageFill, TableIR,
+                                 TemplateCatalog)
+from app.services.com_export import export_pngs, template_checklist
 
 pytestmark = pytest.mark.com
 
+STEM = "办公技巧商务培训PPT模板"  # 33 页中文真模板
+
 
 @pytest.fixture(scope="module")
-def rendered(tmp_path_factory, deck_all_types) -> Path:
+def catalog() -> TemplateCatalog:
+    return load_catalog(STEM)
+
+
+def _page(no: int, cat_slide, slide_type: SlideType,
+          title_only: bool = False, table: TableIR | None = None) -> PageFill:
+    """非 design/page_no 槽：title 必填、可填槽填短文本、小容量槽删除。"""
+    values: dict[str, str] = {}
+    deletes: list[str] = []
+    for s in cat_slide.slots:
+        if s.role in ("design", "page_no"):
+            continue
+        if s.role == "title":
+            values[s.slot_id] = "季度成果汇报"
+        elif title_only:
+            continue  # 不填不删 → 遗留检测样本
+        elif s.fillable:
+            values[s.slot_id] = "要点说明"
+        else:
+            deletes.append(s.slot_id)
+    return PageFill(page_no=no, slide_type=slide_type,
+                    template_slide=cat_slide.slide_no, title="页",
+                    slot_values=values, slot_deletes=deletes, table=table)
+
+
+@pytest.fixture(scope="module")
+def deck(catalog: TemplateCatalog) -> DeckBuild:
+    # cover(S1) + 表格宿主(S2，纯构图页) + 内容页(S3) + closing(S33)
+    return DeckBuild(meta=BuildMeta(title="冒烟", template=STEM), pages=[
+        _page(1, catalog.slide(1), SlideType.COVER),
+        _page(2, catalog.slide(2), SlideType.TABLE, table=TableIR(
+            table_id="tbl-001", header=["指标", "目标", "实际"],
+            rows=[["达成率", "100%", "120%"]])),
+        _page(3, catalog.slide(3), SlideType.TEXT_POINTS),
+        _page(4, catalog.slide(33), SlideType.CLOSING),
+    ])
+
+
+@pytest.fixture(scope="module")
+def rendered(tmp_path_factory, catalog, deck) -> Path:
     out = tmp_path_factory.mktemp("com") / "deck.pptx"
-    render_to_file(deck_all_types, "business_blue", out)
+    build_deck(template_pptx_path(STEM), catalog, deck, out)
     return out
 
 
 def test_export_pngs_count(rendered, tmp_path):
     pngs = export_pngs(rendered, tmp_path / "pngs")
-    assert len(pngs) == 8
+    assert len(pngs) == 4
     for p in pngs:
         assert p.exists() and p.stat().st_size > 1000
 
 
-def test_checklist_clean(rendered, deck_all_types):
-    issues = checklist(deck_all_types, rendered)
+def test_checklist_clean(rendered, deck, catalog):
+    issues = template_checklist(deck, catalog, rendered)
     assert not [i for i in issues if i.code is IssueCode.E_RENDER_MISMATCH], \
         [i.detail for i in issues]
 
 
-def test_checklist_detects_page_mismatch(rendered, deck_all_types):
-    from app.schema.slideir import Deck
-
-    tampered = Deck.model_validate(deck_all_types.model_dump())
-    tampered.slides = tampered.slides[:-1]  # 模拟 IR 与 pptx 页数不一致
-    issues = checklist(tampered, rendered)
+def test_checklist_detects_page_mismatch(rendered, deck, catalog):
+    tampered = DeckBuild.model_validate(deck.model_dump())
+    tampered.pages = tampered.pages[:-1]  # 模拟 IR 与 pptx 页数不一致
+    issues = template_checklist(tampered, catalog, rendered)
     assert any(i.code is IssueCode.E_RENDER_MISMATCH and "页数" in i.detail for i in issues)
+
+
+def test_checklist_detects_leftover(catalog, tmp_path):
+    """真模板遗留检测：S3 只填 title，body 原文残留 → E_LEFTOVER。"""
+    page = _page(1, catalog.slide(3), SlideType.TEXT_POINTS, title_only=True)
+    deck = DeckBuild(meta=BuildMeta(title="t", template=STEM), pages=[page])
+    out = tmp_path / "leftover.pptx"
+    build_deck(template_pptx_path(STEM), catalog, deck, out)
+    issues = template_checklist(deck, catalog, out)
+    assert any(i.code is IssueCode.E_LEFTOVER for i in issues), \
+        [i.detail for i in issues]
+
 
 
 def test_convert_doc_to_docx_roundtrip(basic_docx, tmp_path):

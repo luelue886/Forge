@@ -29,12 +29,13 @@ class JobCancelled(Exception):
 
 
 class Job:
-    def __init__(self, job_id: str, root: Path, source_name: str, skin: str,
-                 auto_confirm: bool = False, product: str = "ppt"):
+    def __init__(self, job_id: str, root: Path, source_name: str,
+                 template: str = "", auto_confirm: bool = False,
+                 product: str = "ppt"):
         self.job_id = job_id
         self.dir = root / job_id
         self.source_name = source_name
-        self.skin = skin
+        self.template = template
         self.product = product
         self.auto_confirm = auto_confirm
         self.confirmed = auto_confirm
@@ -74,7 +75,7 @@ class Job:
                 "status": self.status.value,
                 "detail": self.detail,
                 "source_name": self.source_name,
-                "skin": self.skin,
+                "template": self.template,
                 "product": self.product,
                 "auto_confirm": self.auto_confirm,
                 "confirmed": self.confirmed,
@@ -94,7 +95,7 @@ class Job:
                 "status": self.status.value,
                 "detail": self.detail,
                 "source_name": self.source_name,
-                "skin": self.skin,
+                "template": self.template,
                 "product": self.product,
                 "error": self.error,
                 "created_at": self.created_at,
@@ -107,9 +108,11 @@ class Job:
     @classmethod
     def load(cls, job_dir: Path) -> "Job":
         data = json.loads((job_dir / "state.json").read_text(encoding="utf-8"))
+        # 旧 state.json 兼容：无 template 键时回退 skin 值（旧 PPT 任务会在
+        # 真模板链上以清晰错误失败，仅保证列表/查询不崩）
         job = cls(data["job_id"], job_dir.parent, data["source_name"],
-                  data.get("skin", "business_blue"), data.get("auto_confirm", False),
-                  data.get("product", "ppt"))
+                  data.get("template") or data.get("skin", ""),
+                  data.get("auto_confirm", False), data.get("product", "ppt"))
         job.status = JobStatus(data["status"])
         job.detail = data.get("detail", "")
         job.error = data.get("error")
@@ -134,13 +137,14 @@ class Job:
 class JobManager:
     """进程内单任务管理：全局仅 1 个非终态 job；1-worker 执行器串行跑流水线。"""
 
-    def __init__(self, root: Path | None = None):
+    def __init__(self, root: Path | None = None, resume_stale: bool = False):
         self.root = Path(root) if root else DATA_DIR / "jobs"
         self.root.mkdir(parents=True, exist_ok=True)
         self._jobs: dict[str, Job] = {}
         self._running: set[str] = set()  # 本进程执行器在跑的 job
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="job")
         self._lock = threading.Lock()
+        self._resume_stale = resume_stale
         self._scan_existing()
 
     # ---- 查询 ----
@@ -173,16 +177,26 @@ class JobManager:
         fut = self._executor.submit(run_pipeline_safe, job, client, com_export)
         fut.add_done_callback(lambda _f: self._running.discard(job.job_id))
 
-    def create(self, source: Path, skin: str = "business_blue",
+    def create(self, source: Path, template: str = "",
                auto_confirm: bool = False, product: str = "ppt",
                client=None, com_export: bool = True) -> Job:
         if self.active() is not None:
             active = self.active()
-            raise JobError(f"已有进行中的任务 {active.job_id}（{active.status.value}），"
-                           f"请先完成或取消")
+            raise JobError(
+                f"已有进行中的任务 {active.job_id}（{active.status.value}），请先完成或取消。"
+                f"若其进程已被强杀：python -m app cancel {active.job_id} 后重跑，"
+                f"或启动 serve（python -m app serve）自动续跑中断任务")
+        if product == "ppt":
+            from app.render.tpl_catalog import template_choices
+
+            choices = dict(template_choices())
+            if not template:
+                raise JobError("PPT 任务必须指定模板（template）")
+            if template not in choices:
+                raise JobError(f"未知模板：{template}（可用：{', '.join(choices)}）")
         source = Path(source)
         job_id = f"{time.strftime('%Y%m%d-%H%M%S')}-{uuid.uuid4().hex[:6]}"
-        job = Job(job_id, self.root, source.name, skin, auto_confirm, product)
+        job = Job(job_id, self.root, source.name, template, auto_confirm, product)
         job.dir.mkdir(parents=True, exist_ok=True)
 
         upload = job.dir / "upload"
@@ -262,6 +276,12 @@ class JobManager:
             self._jobs[job.job_id] = job
             if job.status in {JobStatus.UNDERSTOOD, JobStatus.GENERATING,
                               JobStatus.RENDERED, JobStatus.QA, JobStatus.REPAIRING}:
+                if not self._resume_stale:
+                    # 短命进程（CLI run/status/list）不接管：主线程随即退出触发
+                    # 解释器关闭，续跑线程在首个 executor.submit 即崩
+                    # （cannot schedule new futures after interpreter shutdown），
+                    # 还会把可能仍在别进程跑的任务误标 FAILED。续跑只归长驻 serve。
+                    continue
                 if now - state.stat().st_mtime < self._RESUME_STALE_S:
                     continue  # 可能仍由其他进程驱动，不接管
                 # 中断任务：用户此前已确认过（或 auto），续跑补缺失产物

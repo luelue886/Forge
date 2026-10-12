@@ -7,7 +7,7 @@ from app.llm.prompts import PromptManager
 from app.schema.docmap import DocMap, KeyFact, SectionMap
 from app.schema.doctree import DocTree
 
-SECTION_TEXT_LIMIT = 2000
+SECTION_TEXT_LIMIT = 4000
 
 
 def _squash(s: str) -> str:

@@ -1,0 +1,6059 @@
+{
+  "stem": "swiss_grid_systems",
+  "display_name": "瑞士网格系统（英文）",
+  "n_slides": 14,
+  "slides": [
+    {
+      "slide_no": 1,
+      "layout": "Title Slide",
+      "signature": "S1 布局=Title Slide [label≤4 | desc≤14]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 0.76,
+          "w": 1.281,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "A LECTURE · 2026",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "label",
+          "x": 0.579,
+          "y": 4.465,
+          "w": 4.401,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "网格系统",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "desc",
+          "x": 0.629,
+          "y": 5.452,
+          "w": 5.984,
+          "h": 0.6,
+          "font_pt": 27.0,
+          "sample": "The Grid as a Way of Seeing",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.86,
+          "y": 6.293,
+          "w": 3.098,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Swiss International Typographic Style",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.861,
+          "y": 6.531,
+          "w": 4.084,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Müller-Brockmann · Helvetica · Univers ·",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "page_no",
+          "x": 12.28,
+          "y": 7.069,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "01 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 13.5,
+      "role_hint": "cover"
+    },
+    {
+      "slide_no": 2,
+      "layout": "Title Slide",
+      "signature": "S2 布局=Title Slide [title≤13 | label≤8 | desc≤21 | desc≤22 | desc≤21 | desc≤23 | desc≤12]",
+      "slots": [
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 02",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 1.0,
+          "y": 0.792,
+          "w": 2.16,
+          "h": 4.0,
+          "font_pt": 180.0,
+          "sample": "«",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "title",
+          "x": 3.3,
+          "y": 2.217,
+          "w": 4.858,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "The grid system is an aid,",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 3.3,
+          "y": 2.696,
+          "w": 3.248,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "not a guarantee.",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "desc",
+          "x": 3.31,
+          "y": 3.659,
+          "w": 6.028,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "It permits a number of possible uses, an",
+          "capacity": 21.25
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "desc",
+          "x": 3.31,
+          "y": 3.972,
+          "w": 6.068,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "designer can look for a solution appropr",
+          "capacity": 22.099999999999998
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "desc",
+          "x": 3.31,
+          "y": 4.284,
+          "w": 5.883,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "his personal style. But one must learn h",
+          "capacity": 21.25
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "desc",
+          "x": 3.31,
+          "y": 4.597,
+          "w": 6.45,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "use the grid — it is an art that require",
+          "capacity": 22.95
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "desc",
+          "x": 3.315,
+          "y": 5.799,
+          "w": 2.902,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "JOSEF MÜLLER-BROCKMANN",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 3.319,
+          "y": 6.084,
+          "w": 2.972,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Grid Systems in Graphic Design · 1981",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "02 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 7,
+      "fillable_cap": 22.9,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 3,
+      "layout": "Title Slide",
+      "signature": "S3 布局=Title Slide [title≤10 | label≤10]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 03",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 3.77,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "双源头 · 1896 → 1957",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 4.004,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "THE SIXTY YEARS THAT MADE SWISS DESIGN P",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "page_no",
+          "x": 1.306,
+          "y": 2.142,
+          "w": 0.639,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "1896",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.858,
+          "y": 3.564,
+          "w": 1.535,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Akzidenz-Grotesk",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 1.109,
+          "y": 3.885,
+          "w": 1.032,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "柏林 Berthold",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.222,
+          "y": 4.072,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "铸字行发行",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "tagline",
+          "x": 1.222,
+          "y": 4.26,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "现代意义的",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 1.144,
+          "y": 4.447,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "第一款无衬线",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "page_no",
+          "x": 3.702,
+          "y": 2.142,
+          "w": 0.639,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "1908",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 3.491,
+          "y": 3.564,
+          "w": 1.059,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Basel School",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.462,
+          "y": 3.885,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "巴塞尔设计学院",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 3.696,
+          "y": 4.072,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "完成改革",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 3.54,
+          "y": 4.26,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "奠定教学体系",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.54,
+          "y": 4.447,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "理性传统建立",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "page_no",
+          "x": 6.135,
+          "y": 2.142,
+          "w": 0.563,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "1918",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.887,
+          "y": 3.564,
+          "w": 1.059,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Ernst Keller",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.092,
+          "y": 3.885,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "入苏黎世",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.936,
+          "y": 4.072,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "应用艺术学院",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 5.85,
+          "y": 4.26,
+          "w": 1.133,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "\"形式跟随内容\"",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 5.936,
+          "y": 4.447,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "教学原则成型",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 8.493,
+          "y": 2.142,
+          "w": 0.639,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "1936",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 8.032,
+          "y": 3.564,
+          "w": 1.561,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Müller-Brockmann",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "design",
+          "x": 8.612,
+          "y": 3.885,
+          "w": 0.401,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "22 岁",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 8.488,
+          "y": 4.072,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "在苏黎世",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 8.254,
+          "y": 4.26,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "开设独立工作室",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 8.41,
+          "y": 4.447,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "新生代登场",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "page_no",
+          "x": 10.889,
+          "y": 2.142,
+          "w": 0.639,
+          "h": 0.4,
+          "font_pt": 18.0,
+          "sample": "1957",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.384,
+          "y": 3.564,
+          "w": 1.649,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "Helvetica + Univers",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.883,
+          "y": 3.885,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "同年问世",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.883,
+          "y": 4.072,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "瑞士理性",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "tagline",
+          "x": 10.805,
+          "y": 4.26,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "凝结为字体",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.883,
+          "y": 4.447,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "输出全球",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "label",
+          "x": 0.938,
+          "y": 5.74,
+          "w": 2.557,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "理性主义不是凭空而至",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.944,
+          "y": 6.084,
+          "w": 4.104,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "而是来自字体 · 学校 · 教学三条线索半个世纪的累积。",
+          "capacity": 25.0
+        },
+        {
+          "slot_id": "9",
+          "path": [
+            9
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "03 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 10.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 4,
+      "layout": "Title Slide",
+      "signature": "S4 布局=Title Slide [title≤6 | label≤6 | label≤7 | label≤5 | label≤5 | label≤5 | label≤4 | label≤5 | label≤7]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 04",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 2.482,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "八条核心原则",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 2.671,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "EIGHT PRINCIPLES OF SWISS DESIGN",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.617,
+          "y": 2.117,
+          "w": 0.613,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "label",
+          "x": 0.648,
+          "y": 2.986,
+          "w": 1.396,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "客观先于表达",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 3.278,
+          "w": 1.894,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "OBJECTIVITY OVER EXPRESSION",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.572,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "信息传达高于",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.76,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "设计师个人情绪。",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "page_no",
+          "x": 3.783,
+          "y": 2.117,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 3.815,
+          "y": 2.986,
+          "w": 1.622,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "数学网格为骨架",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 3.822,
+          "y": 3.278,
+          "w": 1.209,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "MATHEMATICAL GRID",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.572,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "列、行、间距、模数",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.76,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "皆从基本单位派生。",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "page_no",
+          "x": 6.95,
+          "y": 2.117,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "label",
+          "x": 6.981,
+          "y": 2.986,
+          "w": 1.17,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "非对称构图",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.989,
+          "y": 3.278,
+          "w": 1.268,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "ASYMMETRIC LAYOUT",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.572,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "拒绝古典对称",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.76,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "带来的中心权威。",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "page_no",
+          "x": 10.117,
+          "y": 2.117,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "label",
+          "x": 10.148,
+          "y": 2.986,
+          "w": 1.17,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "无衬线字体",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.155,
+          "y": 3.278,
+          "w": 1.505,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "SANS-SERIF TYPOGRAPHY",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.572,
+          "w": 1.545,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Akzidenz · Helvetica",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.76,
+          "w": 1.413,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Univers 三足鼎立。",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.617,
+          "y": 4.617,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "label",
+          "x": 0.648,
+          "y": 5.486,
+          "w": 1.17,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "齐左不齐右",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 5.778,
+          "w": 1.624,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "FLUSH-LEFT RAGGED-RIGHT",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 6.072,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "字距均匀",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 6.26,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "阅读节奏稳定。",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.0",
+          "path": [
+            7,
+            0
+          ],
+          "role": "page_no",
+          "x": 3.783,
+          "y": 4.617,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "06",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "label",
+          "x": 3.815,
+          "y": 5.486,
+          "w": 0.943,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "客观摄影",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 3.822,
+          "y": 5.778,
+          "w": 1.558,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "OBJECTIVE PHOTOGRAPHY",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 6.072,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "取代装饰性插画",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 6.26,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "现代摄影登场。",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "8.0",
+          "path": [
+            8,
+            0
+          ],
+          "role": "page_no",
+          "x": 6.95,
+          "y": 4.617,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "07",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "label",
+          "x": 6.981,
+          "y": 5.486,
+          "w": 1.17,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "留白是结构",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.989,
+          "y": 5.778,
+          "w": 1.848,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "NEGATIVE SPACE AS STRUCTURE",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 6.072,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "空白是信息的载体",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 6.26,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "而非剩余。",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "9.0",
+          "path": [
+            9,
+            0
+          ],
+          "role": "page_no",
+          "x": 10.117,
+          "y": 4.617,
+          "w": 0.764,
+          "h": 0.8,
+          "font_pt": 36.0,
+          "sample": "08",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "label",
+          "x": 10.148,
+          "y": 5.486,
+          "w": 1.622,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "可重复可规模化",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.155,
+          "y": 5.778,
+          "w": 1.472,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "REPRODUCIBLE AT SCALE",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "9.4",
+          "path": [
+            9,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 6.072,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "跨语言、跨媒介",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "9.5",
+          "path": [
+            9,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 6.26,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "跨规模复用。",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "04 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 9,
+      "fillable_cap": 7.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 5,
+      "layout": "Title Slide",
+      "signature": "S5 布局=Title Slide [title≤5 | label≤6 | label≤6 | label≤5 | label≤7 | label≤8 | label≤6 | label≤8]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 05",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 2.079,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "八位塑造者",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 3.476,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "EIGHT DESIGNERS WHO MADE THE SWISS STYLE",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 2.361,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "label",
+          "x": 0.646,
+          "y": 2.635,
+          "w": 1.513,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Ernst Keller",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "page_no",
+          "x": 0.653,
+          "y": 2.906,
+          "w": 0.775,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1891 — 1968",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.385,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "苏黎世应用艺术学院",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.593,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1918 起任教",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.802,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "奠定瑞士学派",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 4.01,
+          "w": 1.444,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "\"形式跟随内容\"原则",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "page_no",
+          "x": 3.822,
+          "y": 2.361,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 3.812,
+          "y": 2.635,
+          "w": 1.564,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Théo Ballmer",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "page_no",
+          "x": 3.82,
+          "y": 2.906,
+          "w": 0.814,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1902 — 1965",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.385,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "网格早期实验者",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.593,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "把 De Stijl 几何",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.802,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "引入海报排版",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 4.01,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "桥梁式人物",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "page_no",
+          "x": 6.989,
+          "y": 2.361,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "design",
+          "x": 6.979,
+          "y": 2.635,
+          "w": 0.947,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Max Bill",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "page_no",
+          "x": 6.986,
+          "y": 2.906,
+          "w": 0.814,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1908 — 1994",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.385,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "包豪斯学生",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.593,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "乌尔姆设计学院",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.802,
+          "w": 0.65,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "创校校长",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 4.01,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "理性延伸至产品",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "page_no",
+          "x": 10.155,
+          "y": 2.361,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "label",
+          "x": 10.146,
+          "y": 2.635,
+          "w": 1.287,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Emil Ruder",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "page_no",
+          "x": 10.153,
+          "y": 2.906,
+          "w": 0.775,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1914 — 1970",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.385,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "巴塞尔学派核心",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.593,
+          "w": 1.397,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "著《Typographie》",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.802,
+          "w": 0.845,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1967 至今为",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 4.01,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "字体设计圣经",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 4.861,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "05",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "label",
+          "x": 0.646,
+          "y": 5.135,
+          "w": 1.815,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Armin Hofmann",
+          "capacity": 6.8
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "page_no",
+          "x": 0.653,
+          "y": 5.406,
+          "w": 0.852,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1920 — 2020",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 5.885,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "巴塞尔学派核心",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 6.093,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "海报与教学",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 6.302,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "的标志性人物",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 6.51,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "影响延续至耶鲁",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.0",
+          "path": [
+            7,
+            0
+          ],
+          "role": "page_no",
+          "x": 3.822,
+          "y": 4.861,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "06",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "label",
+          "x": 3.812,
+          "y": 5.135,
+          "w": 2.23,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Müller-Brockmann",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "page_no",
+          "x": 3.82,
+          "y": 5.406,
+          "w": 0.775,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1914 — 1996",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 5.885,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "苏黎世学派核心",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 6.093,
+          "w": 1.343,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "《Grid Systems in",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 6.302,
+          "w": 1.577,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Graphic Design》作者",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "7.7",
+          "path": [
+            7,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 6.51,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "本讲下页详述",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "8.0",
+          "path": [
+            8,
+            0
+          ],
+          "role": "page_no",
+          "x": 6.989,
+          "y": 4.861,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "07",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "label",
+          "x": 6.979,
+          "y": 5.135,
+          "w": 1.752,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Max Miedinger",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "page_no",
+          "x": 6.986,
+          "y": 5.406,
+          "w": 0.775,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1910 — 1980",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "8.4",
+          "path": [
+            8,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 5.885,
+          "w": 0.533,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1957 年",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "8.5",
+          "path": [
+            8,
+            5
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 6.093,
+          "w": 1.304,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "与 Hoffmann 合作",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "8.6",
+          "path": [
+            8,
+            6
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 6.302,
+          "w": 1.078,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "设计 Helvetica",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "8.7",
+          "path": [
+            8,
+            7
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 6.51,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "命名取自瑞士",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "9.0",
+          "path": [
+            9,
+            0
+          ],
+          "role": "page_no",
+          "x": 10.155,
+          "y": 4.861,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "08",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "label",
+          "x": 10.146,
+          "y": 5.135,
+          "w": 1.928,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Adrian Frutiger",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "page_no",
+          "x": 10.153,
+          "y": 5.406,
+          "w": 0.814,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "1928 — 2015",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "9.4",
+          "path": [
+            9,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 5.885,
+          "w": 0.689,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "同年 1957",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "9.5",
+          "path": [
+            9,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 6.093,
+          "w": 0.946,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "设计 Univers",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "9.6",
+          "path": [
+            9,
+            6
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 6.302,
+          "w": 0.518,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "21 字重",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "9.7",
+          "path": [
+            9,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 6.51,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "首次坐标系统化",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "10",
+          "path": [
+            10
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "05 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 8,
+      "fillable_cap": 8.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 6,
+      "layout": "Title Slide",
+      "signature": "S6 布局=Title Slide [title≤12]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 06",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 4.796,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "Josef Müller-Brockmann",
+          "capacity": 11.9
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 3.518,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "A LIFE IN GRID · 1914 — 1996 · SEVEN MOM",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 0.571,
+          "y": 2.102,
+          "w": 2.332,
+          "h": 1.533,
+          "font_pt": 69.0,
+          "sample": "JMB",
+          "capacity": 1.7
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 3.278,
+          "w": 1.69,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "JOSEF MÜLLER-BROCKMANN",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 3.814,
+          "w": 1.899,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "瑞士平面设计师 · 教育家",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 4.043,
+          "w": 1.035,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "国际主义风格",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 4.272,
+          "w": 2.209,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "最有代表性的实践者与理论家",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 5.093,
+          "w": 1.195,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "生于 Rapperswil",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 5.302,
+          "w": 1.717,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "逝于 Unterengstringen",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 5.51,
+          "w": 0.759,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "享年 82 岁",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.12,
+          "y": 2.171,
+          "w": 0.375,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1914",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 2.129,
+          "w": 1.845,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "生于瑞士拉珀斯维尔",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 2.385,
+          "w": 2.815,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "距苏黎世 40 公里的小镇 · St. Gallen 州",
+          "capacity": 19.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.07,
+          "y": 2.9,
+          "w": 0.426,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1936",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 2.858,
+          "w": 2.247,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "在苏黎世开设独立工作室",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 3.114,
+          "w": 3.072,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "22 岁起步 · 涉足平面、展览、摄影三个方向",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.07,
+          "y": 3.629,
+          "w": 0.426,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1950",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 3.587,
+          "w": 2.69,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "Tonhalle 音乐会海报系列开启",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 3.843,
+          "w": 3.951,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "\"Musica Viva\" · 用圆 · 弧 · 线 · 矩形抽象表达音乐结构",
+          "capacity": 26.5
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.07,
+          "y": 4.358,
+          "w": 0.426,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1957",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 4.317,
+          "w": 2.448,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "任苏黎世应用艺术学院教授",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 4.572,
+          "w": 2.83,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "把瑞士理性带入下一代设计师的教学体系",
+          "capacity": 18.0
+        },
+        {
+          "slot_id": "8.1",
+          "path": [
+            8,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.07,
+          "y": 5.088,
+          "w": 0.426,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1958",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "8.2",
+          "path": [
+            8,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 5.046,
+          "w": 2.358,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "创办《Neue Grafik》期刊",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "8.3",
+          "path": [
+            8,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 5.302,
+          "w": 3.476,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "三语并行 · 把瑞士理念输出到国际平面设计共同体",
+          "capacity": 22.5
+        },
+        {
+          "slot_id": "9.1",
+          "path": [
+            9,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.12,
+          "y": 5.817,
+          "w": 0.375,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1981",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "9.2",
+          "path": [
+            9,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 5.775,
+          "w": 3.797,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "出版《Grid Systems in Graphic Design》",
+          "capacity": 19.0
+        },
+        {
+          "slot_id": "9.3",
+          "path": [
+            9,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 6.031,
+          "w": 3.632,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "至今仍是设计教育最权威的网格手册 · 是本讲的底本",
+          "capacity": 23.5
+        },
+        {
+          "slot_id": "10.1",
+          "path": [
+            10,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.07,
+          "y": 6.546,
+          "w": 0.426,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "1996",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "10.2",
+          "path": [
+            10,
+            2
+          ],
+          "role": "tagline",
+          "x": 5.296,
+          "y": 6.504,
+          "w": 2.479,
+          "h": 0.267,
+          "font_pt": 12.0,
+          "sample": "在 Unterengstringen 逝世",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "10.3",
+          "path": [
+            10,
+            3
+          ],
+          "role": "tagline",
+          "x": 5.299,
+          "y": 6.76,
+          "w": 2.76,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "8 月 30 日 · 享年 82 岁 · 影响持续至今",
+          "capacity": 19.0
+        },
+        {
+          "slot_id": "11",
+          "path": [
+            11
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "06 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 11.9,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 7,
+      "layout": "Title Slide",
+      "signature": "S7 布局=Title Slide [title≤7 | label≤8 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 07",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 2.884,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "三款决定性字体",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 3.71,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "THREE TYPEFACES THAT WROTE THE SWISS STY",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "design",
+          "x": 0.655,
+          "y": 2.528,
+          "w": 0.576,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CARD · 01",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "label",
+          "x": 0.646,
+          "y": 2.74,
+          "w": 2.193,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Akzidenz-Grotesk",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 3.043,
+          "w": 2.36,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "1896 · Berthold Type Foundry",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "design",
+          "x": 0.492,
+          "y": 3.513,
+          "w": 2.674,
+          "h": 2.8,
+          "font_pt": 126.0,
+          "sample": "Aa",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.656,
+          "y": 5.12,
+          "w": 1.009,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "EXTRA BOLD · 900",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 5.668,
+          "w": 1.438,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "第一款现代意义的",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 5.897,
+          "w": 1.262,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "商业无衬线字体",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "2.9",
+          "path": [
+            2,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.654,
+          "y": 6.227,
+          "w": 1.175,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "瑞士学派早期首选",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.10",
+          "path": [
+            2,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.654,
+          "y": 6.415,
+          "w": 1.678,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "比 Helvetica 早 61 年问世",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "2.11",
+          "path": [
+            2,
+            11
+          ],
+          "role": "tagline",
+          "x": 0.654,
+          "y": 6.602,
+          "w": 1.606,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "奠定无衬线美学全部基调",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "design",
+          "x": 4.884,
+          "y": 2.528,
+          "w": 0.609,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CARD · 02",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 4.875,
+          "y": 2.74,
+          "w": 1.161,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Helvetica",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 3.043,
+          "w": 2.293,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "1957 · Miedinger + Hoffmann",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "design",
+          "x": 4.721,
+          "y": 3.513,
+          "w": 2.674,
+          "h": 2.8,
+          "font_pt": 126.0,
+          "sample": "Aa",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 4.885,
+          "y": 5.12,
+          "w": 1.243,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "BOLD · 700 · NEUTRAL",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 5.668,
+          "w": 1.632,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "字面意思就是\"瑞士\"",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "tagline",
+          "x": 4.881,
+          "y": 5.897,
+          "w": 1.843,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "中性 · 客观 · 可读至极",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "tagline",
+          "x": 4.883,
+          "y": 6.227,
+          "w": 1.628,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "原名 Neue Haas Grotesk",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "tagline",
+          "x": 4.883,
+          "y": 6.415,
+          "w": 1.793,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "取自拉丁文 Helvetia(瑞士)",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "3.11",
+          "path": [
+            3,
+            11
+          ],
+          "role": "tagline",
+          "x": 4.883,
+          "y": 6.602,
+          "w": 1.808,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "20 世纪传播范围最广的字体",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "design",
+          "x": 9.114,
+          "y": 2.528,
+          "w": 0.609,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CARD · 03",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 9.104,
+          "y": 2.74,
+          "w": 0.947,
+          "h": 0.333,
+          "font_pt": 15.0,
+          "sample": "Univers",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 9.11,
+          "y": 3.043,
+          "w": 1.807,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "1957 · Adrian Frutiger",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "design",
+          "x": 8.95,
+          "y": 3.513,
+          "w": 2.564,
+          "h": 2.8,
+          "font_pt": 126.0,
+          "sample": "Aa",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 9.115,
+          "y": 5.12,
+          "w": 1.255,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "REGULAR · 400 · LIGHT",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 9.11,
+          "y": 5.668,
+          "w": 1.464,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "21 字重的二维坐标",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "tagline",
+          "x": 9.11,
+          "y": 5.897,
+          "w": 1.262,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "字体工程的开端",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 9.113,
+          "y": 6.227,
+          "w": 1.685,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "Univers 39 — 83 二维编号",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "tagline",
+          "x": 9.113,
+          "y": 6.415,
+          "w": 1.779,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "把\"家族+字重+宽度\"工程化",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "4.11",
+          "path": [
+            4,
+            11
+          ],
+          "role": "tagline",
+          "x": 9.113,
+          "y": 6.602,
+          "w": 1.606,
+          "h": 0.2,
+          "font_pt": 9.0,
+          "sample": "现代字体家族结构的祖先",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "07 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 8.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 8,
+      "layout": "Title Slide",
+      "signature": "S8 布局=Title Slide [title≤6 | label≤4 | label≤4 | label≤4 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 08",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 2.482,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "网格四种类型",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 3.518,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "FOUR GRID TYPES · MÜLLER-BROCKMANN, 1981",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.822,
+          "y": 2.319,
+          "w": 0.55,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "01 · 古典",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 0.81,
+          "y": 2.576,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "手稿网格",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 2.885,
+          "w": 1.226,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "MANUSCRIPT GRID",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 3.197,
+          "w": 1.763,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "单栏满版 · 最古老的网格",
+          "capacity": 11.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 3.406,
+          "w": 2.075,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "书籍正文 · 长篇散文唯一选项",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "tagline",
+          "x": 6.864,
+          "y": 2.319,
+          "w": 0.583,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "02 · 期刊",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "label",
+          "x": 6.852,
+          "y": 2.576,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "列状网格",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 6.861,
+          "y": 2.885,
+          "w": 0.954,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "COLUMN GRID",
+          "capacity": 5.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.861,
+          "y": 3.197,
+          "w": 2.075,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "多栏并列 · 列宽行高皆可计算",
+          "capacity": 13.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.861,
+          "y": 3.406,
+          "w": 2.254,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "期刊 · 报纸 · 出版业的语法基础",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.822,
+          "y": 4.715,
+          "w": 0.583,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "03 · 海报",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "label",
+          "x": 0.81,
+          "y": 4.972,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "模数网格",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 5.281,
+          "w": 1.039,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "MODULAR GRID",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 5.593,
+          "w": 1.608,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "横列 × 纵行的方格矩阵",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 5.802,
+          "w": 2.098,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "海报 · 目录 · 平面设计的利器",
+          "capacity": 14.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.82,
+          "y": 6.01,
+          "w": 2.519,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "瑞士国际主义最具识别度的网格类型",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "tagline",
+          "x": 6.864,
+          "y": 4.715,
+          "w": 0.583,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "04 · 复合",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "label",
+          "x": 6.852,
+          "y": 4.972,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "层级网格",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "tagline",
+          "x": 6.861,
+          "y": 5.281,
+          "w": 1.327,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "HIERARCHICAL GRID",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.861,
+          "y": 5.593,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "不规则但内部有逻辑",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.861,
+          "y": 5.802,
+          "w": 2.254,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "复合排版 · 杂志专题 · 网页布局",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "7",
+          "path": [
+            7
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "08 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 6.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 9,
+      "layout": "Title Slide",
+      "signature": "S9 布局=Title Slide [title≤8]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.392,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 09",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 3.287,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "一切都是可计算的",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 3.174,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "EVERYTHING DERIVES FROM THE BASE UNIT",
+          "capacity": 18.5
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "design",
+          "x": 0.655,
+          "y": 2.319,
+          "w": 0.609,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "BASE UNIT",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "design",
+          "x": 0.608,
+          "y": 2.421,
+          "w": 1.49,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "16px",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.072,
+          "w": 1.584,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "所有距离的最小公因子",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 3.819,
+          "w": 1.031,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "DERIVED FROM 16",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.651,
+          "y": 4.159,
+          "w": 2.232,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "safe margin 64 px = 4 × 16",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.651,
+          "y": 4.451,
+          "w": 2.78,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "column width 264 px = 16 × 16 + 8",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.651,
+          "y": 4.742,
+          "w": 2.134,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "column gap 32 px = 2 × 16",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.651,
+          "y": 5.034,
+          "w": 2.134,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "row height 96 px = 6 × 16",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "2.9",
+          "path": [
+            2,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.651,
+          "y": 5.326,
+          "w": 2.754,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "body line-height 27 px = 1.5 × 18",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "2.10",
+          "path": [
+            2,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.651,
+          "y": 5.617,
+          "w": 2.008,
+          "h": 0.25,
+          "font_pt": 11.25,
+          "sample": "title size 32 px = 2 × 16",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "2.12",
+          "path": [
+            2,
+            12
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 6.501,
+          "w": 1.632,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "设计师不再\"画\"版面",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "2.13",
+          "path": [
+            2,
+            13
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 6.739,
+          "w": 2.067,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "而是\"建立系统并按系统落子\"",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "3.1.1",
+          "path": [
+            3,
+            1,
+            1
+          ],
+          "role": "design",
+          "x": 8.432,
+          "y": 3.621,
+          "w": 0.636,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "IMAGE 2×2",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "3.2.1",
+          "path": [
+            3,
+            2,
+            1
+          ],
+          "role": "design",
+          "x": 5.607,
+          "y": 5.121,
+          "w": 0.537,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "TEXT 1×2",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "3.3.1",
+          "path": [
+            3,
+            3,
+            1
+          ],
+          "role": "tagline",
+          "x": 8.353,
+          "y": 2.476,
+          "w": 0.794,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "HEADLINE 4×1",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "page_no",
+          "x": 5.766,
+          "y": 1.828,
+          "w": 0.218,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "264",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "page_no",
+          "x": 7.682,
+          "y": 1.828,
+          "w": 0.218,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "264",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "page_no",
+          "x": 9.599,
+          "y": 1.828,
+          "w": 0.218,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "264",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "3.11",
+          "path": [
+            3,
+            11
+          ],
+          "role": "page_no",
+          "x": 11.516,
+          "y": 1.828,
+          "w": 0.218,
+          "h": 0.167,
+          "font_pt": 7.5,
+          "sample": "264",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "page_no",
+          "x": 12.247,
+          "y": 7.069,
+          "w": 0.431,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "09 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 1,
+      "fillable_cap": 8.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 10,
+      "layout": "Title Slide",
+      "signature": "S10 布局=Title Slide [title≤5 | desc≤20 | label≤6 | label≤6]",
+      "slots": [
+        {
+          "slot_id": "1",
+          "path": [
+            1
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.359,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 10",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "tagline",
+          "x": 8.155,
+          "y": 1.444,
+          "w": 0.926,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "ARGUMENT · 07",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "title",
+          "x": 7.858,
+          "y": 1.796,
+          "w": 3.639,
+          "h": 0.933,
+          "font_pt": 42.0,
+          "sample": "留白即结构",
+          "capacity": 5.1
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "desc",
+          "x": 7.894,
+          "y": 2.514,
+          "w": 5.802,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Negative space is structure, not absence",
+          "capacity": 20.4
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "label",
+          "x": 7.898,
+          "y": 6.507,
+          "w": 1.331,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "留白不是剩余",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "label",
+          "x": 7.898,
+          "y": 6.799,
+          "w": 1.331,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "是信息的载体",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "tagline",
+          "x": 7.905,
+          "y": 7.278,
+          "w": 2.197,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "THE SPACE BETWEEN IS THE MESSAGE",
+          "capacity": 16.0
+        },
+        {
+          "slot_id": "4",
+          "path": [
+            4
+          ],
+          "role": "page_no",
+          "x": 12.28,
+          "y": 7.069,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "10 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 4,
+      "fillable_cap": 20.4,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 11,
+      "layout": "Title Slide",
+      "signature": "S11 布局=Title Slide [title≤7 | label≤8 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.326,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 11",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 2.884,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "输出到现代世界",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 4.708,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "1960s → · FROM SWITZERLAND TO THE GLOBAL",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 2.403,
+          "w": 0.135,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.644,
+          "y": 2.889,
+          "w": 0.917,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "企业 VI",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 3.215,
+          "w": 1.281,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CORPORATE IDENTITY",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.614,
+          "w": 1.911,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "把瑞士理性变成\"识别系统\"",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 3.843,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "产业的开端",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "2.7",
+          "path": [
+            2,
+            7
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 4.677,
+          "w": 1.187,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "IBM (Paul Rand)",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "2.8",
+          "path": [
+            2,
+            8
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 4.906,
+          "w": 1.327,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Knoll · Lufthansa",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "2.9",
+          "path": [
+            2,
+            9
+          ],
+          "role": "tagline",
+          "x": 0.653,
+          "y": 5.135,
+          "w": 1.234,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Olivetti · Braun",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.10",
+          "path": [
+            2,
+            10
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 6.278,
+          "w": 1.571,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "JMB 任 IBM 顾问 · 1967 起",
+          "capacity": 12.5
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "page_no",
+          "x": 3.822,
+          "y": 2.403,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 3.81,
+          "y": 2.889,
+          "w": 2.024,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "机场 / 地铁标识",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 3.822,
+          "y": 3.215,
+          "w": 1.07,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "SIGNAGE SYSTEMS",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.614,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "公共空间的可读性",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 3.843,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "是瑞士理性的延伸",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 4.677,
+          "w": 1.288,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "纽约地铁 Unimark",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.8",
+          "path": [
+            3,
+            8
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 4.906,
+          "w": 1.701,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "巴黎机场 Frutiger 字体",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "3.9",
+          "path": [
+            3,
+            9
+          ],
+          "role": "tagline",
+          "x": 3.82,
+          "y": 5.135,
+          "w": 1.312,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "慕尼黑 Otl Aicher",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "3.10",
+          "path": [
+            3,
+            10
+          ],
+          "role": "tagline",
+          "x": 3.822,
+          "y": 6.278,
+          "w": 1.598,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "Vignelli 1966 纽约地铁手册",
+          "capacity": 13.0
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "page_no",
+          "x": 6.989,
+          "y": 2.403,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 6.977,
+          "y": 2.889,
+          "w": 0.876,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "出版业",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.989,
+          "y": 3.215,
+          "w": 1.077,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "EDITORIAL DESIGN",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.614,
+          "w": 1.631,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "期刊 · 杂志 · 文化出版",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 3.843,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "的版面语法",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 4.677,
+          "w": 1.039,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Du 杂志(瑞士)",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "4.8",
+          "path": [
+            4,
+            8
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 4.906,
+          "w": 1.008,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Eye Magazine",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.9",
+          "path": [
+            4,
+            9
+          ],
+          "role": "tagline",
+          "x": 6.986,
+          "y": 5.135,
+          "w": 1.475,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Domus · Wallpaper*",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "4.10",
+          "path": [
+            4,
+            10
+          ],
+          "role": "tagline",
+          "x": 6.989,
+          "y": 6.278,
+          "w": 1.472,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "至今仍是文化出版的范本",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "page_no",
+          "x": 10.155,
+          "y": 2.403,
+          "w": 0.168,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "label",
+          "x": 10.144,
+          "y": 2.889,
+          "w": 1.153,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "设计教育",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.155,
+          "y": 3.215,
+          "w": 1.11,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "DESIGN EDUCATION",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.614,
+          "w": 1.141,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "巴塞尔 + 苏黎世",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 3.843,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "两条教学路径全球化",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 4.677,
+          "w": 1.179,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Yale (Hofmann)",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.8",
+          "path": [
+            5,
+            8
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 4.906,
+          "w": 1.46,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "RISD · Cooper Union",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "5.9",
+          "path": [
+            5,
+            9
+          ],
+          "role": "tagline",
+          "x": 10.153,
+          "y": 5.135,
+          "w": 0.915,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "东京 GS 学派",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.10",
+          "path": [
+            5,
+            10
+          ],
+          "role": "tagline",
+          "x": 10.155,
+          "y": 6.278,
+          "w": 1.209,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "学生输出半世纪不绝",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "6",
+          "path": [
+            6
+          ],
+          "role": "page_no",
+          "x": 12.313,
+          "y": 7.069,
+          "w": 0.366,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "11 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 7.5,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 12,
+      "layout": "Title Slide",
+      "signature": "S12 布局=Title Slide [title≤7 | label≤8 | label≤8 | label≤7 | desc≤12]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.359,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 12",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 2.884,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "数字时代的延续",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 2.805,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "THE GRID ON SCREEN · 2008 — TODAY",
+          "capacity": 16.5
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "page_no",
+          "x": 1.725,
+          "y": 1.85,
+          "w": 0.818,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "01",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "3.1",
+          "path": [
+            3,
+            1
+          ],
+          "role": "page_no",
+          "x": 1.927,
+          "y": 2.778,
+          "w": 0.313,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "2008",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "label",
+          "x": 1.193,
+          "y": 3.091,
+          "w": 1.781,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "960 Grid System",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 1.497,
+          "y": 3.989,
+          "w": 1.172,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "12 栏 · 960px 宽",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 1.447,
+          "y": 4.197,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "第一次把网格语法",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "tagline",
+          "x": 1.591,
+          "y": 4.406,
+          "w": 0.985,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "系统搬上 Web",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.7",
+          "path": [
+            3,
+            7
+          ],
+          "role": "tagline",
+          "x": 1.4,
+          "y": 4.614,
+          "w": 1.366,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Nathan Smith 出品",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "4.0",
+          "path": [
+            4,
+            0
+          ],
+          "role": "page_no",
+          "x": 4.642,
+          "y": 1.85,
+          "w": 1.019,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "02",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "page_no",
+          "x": 4.877,
+          "y": 2.778,
+          "w": 0.247,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "2011",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "label",
+          "x": 4.144,
+          "y": 3.091,
+          "w": 1.713,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "Bootstrap 12 栏",
+          "capacity": 7.5
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 4.511,
+          "y": 3.989,
+          "w": 0.977,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Twitter 开源",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 4.597,
+          "y": 4.197,
+          "w": 0.806,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "把模数网格",
+          "capacity": 5.0
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 4.519,
+          "y": 4.406,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "民主化到全球",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "4.7",
+          "path": [
+            4,
+            7
+          ],
+          "role": "tagline",
+          "x": 4.519,
+          "y": 4.614,
+          "w": 0.961,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "前端开发标配",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "5.0",
+          "path": [
+            5,
+            0
+          ],
+          "role": "page_no",
+          "x": 7.558,
+          "y": 1.85,
+          "w": 1.019,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "03",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "5.1",
+          "path": [
+            5,
+            1
+          ],
+          "role": "page_no",
+          "x": 7.777,
+          "y": 2.778,
+          "w": 0.28,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "2017",
+          "capacity": 2.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 7.456,
+          "y": 3.091,
+          "w": 0.92,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "CSS Grid",
+          "capacity": 4.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 7.358,
+          "y": 3.989,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "浏览器原生网格",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 7.202,
+          "y": 4.197,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "所有主流浏览器支持",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 7.28,
+          "y": 4.406,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "模数网格首次成为",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "5.7",
+          "path": [
+            5,
+            7
+          ],
+          "role": "tagline",
+          "x": 7.269,
+          "y": 4.614,
+          "w": 1.296,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Web 平台基础设施",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "6.0",
+          "path": [
+            6,
+            0
+          ],
+          "role": "page_no",
+          "x": 10.475,
+          "y": 1.85,
+          "w": 1.019,
+          "h": 1.067,
+          "font_pt": 48.0,
+          "sample": "04",
+          "capacity": 1.0
+        },
+        {
+          "slot_id": "6.1",
+          "path": [
+            6,
+            1
+          ],
+          "role": "design",
+          "x": 10.641,
+          "y": 2.778,
+          "w": 0.385,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "2020s",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "label",
+          "x": 9.977,
+          "y": 3.091,
+          "w": 1.713,
+          "h": 0.3,
+          "font_pt": 13.5,
+          "sample": "Design Systems",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 10.041,
+          "y": 3.989,
+          "w": 1.584,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Material · HIG · FAST",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 10.497,
+          "y": 4.197,
+          "w": 0.673,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "大企业 VI",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 10.275,
+          "y": 4.406,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "在屏幕上的延续",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "6.7",
+          "path": [
+            6,
+            7
+          ],
+          "role": "tagline",
+          "x": 10.275,
+          "y": 4.614,
+          "w": 1.117,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "从规则到组件库",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.1",
+          "path": [
+            7,
+            1
+          ],
+          "role": "desc",
+          "x": 0.935,
+          "y": 6.118,
+          "w": 3.145,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "同一套语法 · 1981 → 2026",
+          "capacity": 12.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.944,
+          "y": 6.501,
+          "w": 6.201,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "从印刷海报到 CSS Grid · 介质变换但模数 · 列 · 留白 · 数学比",
+          "capacity": 29.5
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "page_no",
+          "x": 12.28,
+          "y": 7.069,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "12 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 5,
+      "fillable_cap": 12.0,
+      "role_hint": "content"
+    },
+    {
+      "slide_no": 13,
+      "layout": "Title Slide",
+      "signature": "S13 布局=Title Slide [title≤9 | label≤4]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "page_no",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 0.359,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 13",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "1.1",
+          "path": [
+            1,
+            1
+          ],
+          "role": "title",
+          "x": 0.633,
+          "y": 0.967,
+          "w": 3.689,
+          "h": 0.533,
+          "font_pt": 24.0,
+          "sample": "当代品牌的瑞士血脉",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "1.2",
+          "path": [
+            1,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.652,
+          "y": 1.418,
+          "w": 3.559,
+          "h": 0.233,
+          "font_pt": 10.5,
+          "sample": "SIX BRANDS WHERE THE SWISS GRID STILL LI",
+          "capacity": 20.0
+        },
+        {
+          "slot_id": "2.2",
+          "path": [
+            2,
+            2
+          ],
+          "role": "design",
+          "x": 1.727,
+          "y": 2.889,
+          "w": 0.738,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Apple",
+          "capacity": 2.5
+        },
+        {
+          "slot_id": "2.3",
+          "path": [
+            2,
+            3
+          ],
+          "role": "tagline",
+          "x": 1.739,
+          "y": 3.215,
+          "w": 1.077,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "CUPERTINO · 1976",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.4",
+          "path": [
+            2,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.986,
+          "y": 3.739,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "极简理性的产品语言",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "2.5",
+          "path": [
+            2,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.986,
+          "y": 3.947,
+          "w": 1.608,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "从早期 Keynote 到 HIG",
+          "capacity": 10.5
+        },
+        {
+          "slot_id": "2.6",
+          "path": [
+            2,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.986,
+          "y": 4.156,
+          "w": 1.74,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "瑞士血脉最显眼的继承者",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "3.2",
+          "path": [
+            3,
+            2
+          ],
+          "role": "design",
+          "x": 6.227,
+          "y": 2.889,
+          "w": 0.89,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Google",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "3.3",
+          "path": [
+            3,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.239,
+          "y": 3.215,
+          "w": 1.354,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "MOUNTAIN VIEW · 1998",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "3.4",
+          "path": [
+            3,
+            4
+          ],
+          "role": "tagline",
+          "x": 5.486,
+          "y": 3.739,
+          "w": 1.335,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Material 设计系统",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "3.5",
+          "path": [
+            3,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.486,
+          "y": 3.947,
+          "w": 1.444,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "8dp 网格 + 几何字体",
+          "capacity": 9.5
+        },
+        {
+          "slot_id": "3.6",
+          "path": [
+            3,
+            6
+          ],
+          "role": "tagline",
+          "x": 5.486,
+          "y": 4.156,
+          "w": 1.584,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "把瑞士工程化到移动端",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "design",
+          "x": 10.727,
+          "y": 2.889,
+          "w": 1.042,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Spotify",
+          "capacity": 3.5
+        },
+        {
+          "slot_id": "4.3",
+          "path": [
+            4,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.739,
+          "y": 3.215,
+          "w": 1.196,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "STOCKHOLM · 2006",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.4",
+          "path": [
+            4,
+            4
+          ],
+          "role": "tagline",
+          "x": 9.986,
+          "y": 3.739,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "杂志感的版面语法",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "4.5",
+          "path": [
+            4,
+            5
+          ],
+          "role": "tagline",
+          "x": 9.986,
+          "y": 3.947,
+          "w": 1.296,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "大字号 · 网格分块",
+          "capacity": 8.5
+        },
+        {
+          "slot_id": "4.6",
+          "path": [
+            4,
+            6
+          ],
+          "role": "tagline",
+          "x": 9.986,
+          "y": 4.156,
+          "w": 1.429,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "把音乐变成视觉故事",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "5.2",
+          "path": [
+            5,
+            2
+          ],
+          "role": "design",
+          "x": 1.727,
+          "y": 5.389,
+          "w": 0.89,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Airbnb",
+          "capacity": 3.0
+        },
+        {
+          "slot_id": "5.3",
+          "path": [
+            5,
+            3
+          ],
+          "role": "tagline",
+          "x": 1.739,
+          "y": 5.715,
+          "w": 1.367,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "SAN FRANCISCO · 2008",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "5.4",
+          "path": [
+            5,
+            4
+          ],
+          "role": "tagline",
+          "x": 0.986,
+          "y": 6.239,
+          "w": 1.265,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "DLS 设计语言系统",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "5.5",
+          "path": [
+            5,
+            5
+          ],
+          "role": "tagline",
+          "x": 0.986,
+          "y": 6.447,
+          "w": 1.491,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "模数 grid + 极简识别",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "5.6",
+          "path": [
+            5,
+            6
+          ],
+          "role": "tagline",
+          "x": 0.986,
+          "y": 6.656,
+          "w": 1.584,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "摄影也走客观纪实路线",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "6.2",
+          "path": [
+            6,
+            2
+          ],
+          "role": "design",
+          "x": 6.227,
+          "y": 5.389,
+          "w": 0.489,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "IBM",
+          "capacity": 1.5
+        },
+        {
+          "slot_id": "6.3",
+          "path": [
+            6,
+            3
+          ],
+          "role": "tagline",
+          "x": 6.239,
+          "y": 5.715,
+          "w": 0.853,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "ARMONK · 1911",
+          "capacity": 6.5
+        },
+        {
+          "slot_id": "6.4",
+          "path": [
+            6,
+            4
+          ],
+          "role": "tagline",
+          "x": 5.486,
+          "y": 6.239,
+          "w": 1.678,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "JMB 1967 起任 IBM 顾问",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "6.5",
+          "path": [
+            6,
+            5
+          ],
+          "role": "tagline",
+          "x": 5.486,
+          "y": 6.447,
+          "w": 1.701,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Paul Rand 同期接手识别",
+          "capacity": 11.0
+        },
+        {
+          "slot_id": "6.6",
+          "path": [
+            6,
+            6
+          ],
+          "role": "tagline",
+          "x": 5.486,
+          "y": 6.656,
+          "w": 1.273,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "直系瑞士血统案例",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "7.2",
+          "path": [
+            7,
+            2
+          ],
+          "role": "label",
+          "x": 10.727,
+          "y": 5.389,
+          "w": 1.416,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "Lufthansa",
+          "capacity": 4.5
+        },
+        {
+          "slot_id": "7.3",
+          "path": [
+            7,
+            3
+          ],
+          "role": "tagline",
+          "x": 10.739,
+          "y": 5.715,
+          "w": 0.991,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "COLOGNE · 1955",
+          "capacity": 7.0
+        },
+        {
+          "slot_id": "7.4",
+          "path": [
+            7,
+            4
+          ],
+          "role": "tagline",
+          "x": 9.986,
+          "y": 6.239,
+          "w": 1.327,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "Otl Aicher 1962 VI",
+          "capacity": 9.0
+        },
+        {
+          "slot_id": "7.5",
+          "path": [
+            7,
+            5
+          ],
+          "role": "tagline",
+          "x": 9.986,
+          "y": 6.447,
+          "w": 1.584,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "乌尔姆系统化设计标杆",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "7.6",
+          "path": [
+            7,
+            6
+          ],
+          "role": "tagline",
+          "x": 9.986,
+          "y": 6.656,
+          "w": 1.538,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "基本沿用至今 60 余年",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "8",
+          "path": [
+            8
+          ],
+          "role": "page_no",
+          "x": 12.28,
+          "y": 7.069,
+          "w": 0.398,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "13 / 14",
+          "capacity": 3.5
+        }
+      ],
+      "fillable": 2,
+      "fillable_cap": 9.0,
+      "role_hint": "table_host"
+    },
+    {
+      "slide_no": 14,
+      "layout": "Title Slide",
+      "signature": "S14 布局=Title Slide [label≤6 | label≤6 | desc≤28]",
+      "slots": [
+        {
+          "slot_id": "1.0",
+          "path": [
+            1,
+            0
+          ],
+          "role": "tagline",
+          "x": 0.655,
+          "y": 0.528,
+          "w": 1.011,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "P · 14 · CLOSING",
+          "capacity": 8.0
+        },
+        {
+          "slot_id": "2.0",
+          "path": [
+            2,
+            0
+          ],
+          "role": "label",
+          "x": 0.579,
+          "y": 3.11,
+          "w": 6.514,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "网格不是限制",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "2.1",
+          "path": [
+            2,
+            1
+          ],
+          "role": "label",
+          "x": 0.579,
+          "y": 4.277,
+          "w": 6.514,
+          "h": 1.4,
+          "font_pt": 63.0,
+          "sample": "是自由的语法",
+          "capacity": 6.0
+        },
+        {
+          "slot_id": "3.0",
+          "path": [
+            3,
+            0
+          ],
+          "role": "desc",
+          "x": 0.644,
+          "y": 5.43,
+          "w": 7.78,
+          "h": 0.367,
+          "font_pt": 16.5,
+          "sample": "The grid is not a constraint. It is a gr",
+          "capacity": 28.05
+        },
+        {
+          "slot_id": "4.1",
+          "path": [
+            4,
+            1
+          ],
+          "role": "tagline",
+          "x": 0.861,
+          "y": 6.406,
+          "w": 2.386,
+          "h": 0.217,
+          "font_pt": 9.75,
+          "sample": "SWISS GRID SYSTEMS · A LECTURE",
+          "capacity": 15.0
+        },
+        {
+          "slot_id": "4.2",
+          "path": [
+            4,
+            2
+          ],
+          "role": "tagline",
+          "x": 0.864,
+          "y": 6.673,
+          "w": 1.209,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "END · 14 / 14 · 2026",
+          "capacity": 10.0
+        },
+        {
+          "slot_id": "5",
+          "path": [
+            5
+          ],
+          "role": "tagline",
+          "x": 11.786,
+          "y": 7.194,
+          "w": 0.893,
+          "h": 0.183,
+          "font_pt": 8.25,
+          "sample": "— THANK YOU —",
+          "capacity": 6.5
+        }
+      ],
+      "fillable": 3,
+      "fillable_cap": 28.1,
+      "role_hint": "closing"
+    }
+  ]
+}

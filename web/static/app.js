@@ -20,11 +20,11 @@ function initIndexPage() {
   const form = $("upload-form");
   if (!form) return;
 
-  const productSel = $("product"), fileInput = $("file"), skinRow = $("skin-row");
+  const productSel = $("product"), fileInput = $("file"), templateRow = $("template-row");
   const applyProduct = () => {
     const isDoc = productSel.value === "doc";
     fileInput.accept = isDoc ? ".docx,.doc,.pdf" : ".docx,.pptx,.ppt,.pdf";
-    skinRow.classList.toggle("hidden", isDoc);
+    templateRow.classList.toggle("hidden", isDoc);
   };
   productSel.addEventListener("change", applyProduct);
   applyProduct();
@@ -40,7 +40,7 @@ function initIndexPage() {
       const body = new FormData();
       body.append("file", file);
       body.append("product", productSel.value);
-      if (productSel.value !== "doc") body.append("skin", $("skin").value);
+      if (productSel.value !== "doc") body.append("template", $("template").value);
       const res = await fetch("/api/jobs", { method: "POST", body });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
@@ -56,9 +56,12 @@ function initIndexPage() {
 
 function renderOutline(outline) {
   const body = $("outline-body");
-  body.innerHTML = (outline || []).map(p =>
-    `<tr><td>${p.page_no ?? p.no}</td><td>${esc(TYPE_NAMES[p.type] || p.type)}</td><td>${esc(p.title)}</td></tr>`
-  ).join("");
+  body.innerHTML = (outline || []).map(p => {
+    const tpl = p.template_slide
+      ? `<td title="${esc(p.template_signature || "")}">S${p.template_slide}</td>`
+      : "<td>—</td>";
+    return `<tr><td>${p.page_no ?? p.no}</td><td>${esc(TYPE_NAMES[p.type] || p.type)}</td><td>${esc(p.title)}</td>${tpl}</tr>`;
+  }).join("");
 }
 
 function renderPages(jobId, names) {
@@ -67,7 +70,7 @@ function renderPages(jobId, names) {
   ).join("");
 }
 
-async function pollJob(jobId, skinNames = {}) {
+async function pollJob(jobId, templateNames = {}) {
   const res = await fetch(`/api/jobs/${encodeURIComponent(jobId)}`);
   if (!res.ok) { $("status-text").textContent = "查询失败"; return; }
   const d = await res.json();
@@ -77,8 +80,8 @@ async function pollJob(jobId, skinNames = {}) {
   $("status-text").className = `status st-large st-${d.status}`;
   $("status-detail").textContent = d.detail || "";
   $("job-title").textContent = `${d.source_name} · ${jobId}`;
-  $("skin-line").classList.toggle("hidden", isDoc);
-  if (!isDoc) $("skin-text").textContent = skinNames[d.skin] || d.skin || "—";
+  $("template-line").classList.toggle("hidden", isDoc);
+  if (!isDoc) $("template-text").textContent = templateNames[d.template] || d.template || "—";
 
   $("confirm-area").classList.toggle("hidden", d.status !== "PLANNED");
   if (d.status === "PLANNED") {
@@ -116,11 +119,11 @@ async function pollJob(jobId, skinNames = {}) {
   if ((d.pages_png || []).length) renderPages(jobId, d.pages_png);
 
   if (TERMINAL.has(d.status)) return;
-  setTimeout(() => pollJob(jobId, skinNames), 1000);
+  setTimeout(() => pollJob(jobId, templateNames), 1000);
 }
 
-function initJobPage(jobId, skinNames = {}) {
-  pollJob(jobId, skinNames);
+function initJobPage(jobId, templateNames = {}) {
+  pollJob(jobId, templateNames);
   const cancelBtn = $("cancel-btn");
   if (cancelBtn) {
     cancelBtn.addEventListener("click", async () => {
@@ -138,7 +141,7 @@ function initJobPage(jobId, skinNames = {}) {
         cancelBtn.dataset.sent = "0";
         return;
       }
-      pollJob(jobId, skinNames);
+      pollJob(jobId, templateNames);
     });
   }
   $("confirm-btn").addEventListener("click", async () => {
@@ -152,7 +155,7 @@ function initJobPage(jobId, skinNames = {}) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
       $("confirm-msg").textContent = "";
-      pollJob(jobId, skinNames);
+      pollJob(jobId, templateNames);
     } catch (e) {
       $("confirm-msg").textContent = `失败：${e.message}`;
       $("confirm-btn").disabled = false;

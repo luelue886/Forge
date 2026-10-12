@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "web",
-      "runtimeExecutable": ".venv/Scripts/python.exe",
-      "runtimeArgs": ["-m", "app", "serve", "--port", "8765"],
+      "runtimeExecutable": "D:/Agent搭建/.venv/Scripts/python.exe",
+      "runtimeArgs": ["-X", "utf8", "-m", "app", "serve", "--port", "8765"],
       "port": 8765
     }
   ]

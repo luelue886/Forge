@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import time
 from pathlib import Path
 
@@ -13,7 +14,7 @@ from app.pipeline.runner import run_pipeline_safe
 # ---- Job 原语 ----
 
 def test_cancel_event_primitives(tmp_path: Path):
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.check_cancel()  # 未取消：无操作
     job.request_cancel()
     with __import__("pytest").raises(JobCancelled):
@@ -24,7 +25,7 @@ def test_cancel_event_primitives(tmp_path: Path):
 
 def test_cancel_planned_job_status_cancelled(tmp_path: Path):
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.PLANNED
     mgr._jobs["j1"] = job
     out = mgr.cancel("j1")
@@ -34,14 +35,14 @@ def test_cancel_planned_job_status_cancelled(tmp_path: Path):
 
 def test_cancel_idempotent_and_terminal_rejected(tmp_path: Path):
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.GENERATING
     mgr._jobs["j1"] = job
     mgr.cancel("j1")
     again = mgr.cancel("j1")  # 已 CANCELLED：幂等返回
     assert again.status is JobStatus.CANCELLED
 
-    done = Job("j2", tmp_path, "s.docx", "business_blue", False, "doc")
+    done = Job("j2", tmp_path, "s.docx", "", False, "doc")
     done.status = JobStatus.DONE
     mgr._jobs["j2"] = done
     with __import__("pytest").raises(JobError, match="已结束"):
@@ -51,7 +52,7 @@ def test_cancel_idempotent_and_terminal_rejected(tmp_path: Path):
 def test_cancelled_not_in_active_and_excluded_from_resume(tmp_path: Path):
     # CANCELLED 不在 _ACTIVE：active() 找不到 → 新任务可创建
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.GENERATING
     mgr._jobs["j1"] = job
     mgr.cancel("j1")
@@ -62,6 +63,29 @@ def test_cancelled_not_in_active_and_excluded_from_resume(tmp_path: Path):
     loaded = mgr2._jobs["j1"]
     assert loaded.status is JobStatus.CANCELLED
     assert "j1" not in mgr2._running  # 未被提交续跑
+
+
+def test_scan_existing_resume_gated_by_flag(tmp_path: Path, monkeypatch):
+    # 陈旧 GENERATING job：state.json 超 _RESUME_STALE_S 未更新
+    job = Job("j1", tmp_path, "s.docx", "PPT模板", True, "ppt")
+    job.status = JobStatus.GENERATING
+    job.save_state()
+    stale = time.time() - 400
+    os.utime(job.dir / "state.json", (stale, stale))
+
+    calls: list[str] = []
+    monkeypatch.setattr(JobManager, "_submit",
+                        lambda self, j, c, ce: calls.append(j.job_id))
+
+    # 默认（CLI 短命进程）：只入列表不接管——主线程秒退会让续跑线程在
+    # 首个 executor.submit 即崩并污染 error.log
+    mgr = JobManager(root=tmp_path)
+    assert calls == []
+    assert mgr._jobs["j1"].status is JobStatus.GENERATING
+
+    # serve（resume_stale=True）：接管续跑
+    JobManager(root=tmp_path, resume_stale=True)
+    assert calls == ["j1"]
 
 
 # ---- run_pipeline_safe 捕获 JobCancelled ----
@@ -129,7 +153,7 @@ def test_web_cancel_endpoint(tmp_path: Path):
 
     mgr = JobManager(root=tmp_path)
     fastapp.state.jobs = mgr
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.PLANNED
     mgr._jobs["j1"] = job
 
@@ -147,7 +171,7 @@ def test_web_cancel_terminal_409(tmp_path: Path):
 
     mgr = JobManager(root=tmp_path)
     fastapp.state.jobs = mgr
-    job = Job("j1", tmp_path, "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "s.docx", "", False, "doc")
     job.status = JobStatus.DONE
     mgr._jobs["j1"] = job
 
@@ -163,7 +187,7 @@ def test_cli_cancel_subcommand(tmp_path: Path, capsys, monkeypatch):
     import app.services.jobs as jobs_mod
 
     monkeypatch.setattr(jobs_mod, "DATA_DIR", tmp_path)
-    job = Job("j1", tmp_path / "jobs", "s.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path / "jobs", "s.docx", "", False, "doc")
     job.status = JobStatus.GENERATING
     job.save_state()
 

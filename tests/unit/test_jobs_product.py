@@ -10,7 +10,7 @@ from app.services.jobs import Job, JobError, JobManager
 
 
 def test_job_product_roundtrip(tmp_path: Path):
-    job = Job("j1", tmp_path, "src.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "src.docx", "", False, "doc")
     job.save_state()
     assert json.loads((tmp_path / "j1" / "state.json").read_text(encoding="utf-8"))["product"] == "doc"
 
@@ -31,7 +31,7 @@ def test_job_product_roundtrip(tmp_path: Path):
 
 
 def test_job_load_defaults_to_ppt(tmp_path: Path):
-    job = Job("j2", tmp_path, "s.docx", "business_blue")
+    job = Job("j2", tmp_path, "s.docx")
     job.save_state()
     p = tmp_path / "j2" / "state.json"
     data = json.loads(p.read_text(encoding="utf-8"))
@@ -41,7 +41,7 @@ def test_job_load_defaults_to_ppt(tmp_path: Path):
 
 
 def _planned_doc_job(mgr: JobManager, root: Path, genre: str = "letter") -> Job:
-    job = Job("j1", root, "src.docx", "business_blue", False, "doc")
+    job = Job("j1", root, "src.docx", "", False, "doc")
     job.status = JobStatus.PLANNED
     mgr._jobs["j1"] = job
     plan_path = job.dir / "artifacts" / "docplan.json"
@@ -68,7 +68,7 @@ def test_apply_genre_rewrites_docplan(tmp_path: Path):
 
 def test_apply_genre_without_docplan_is_noop(tmp_path: Path):
     mgr = JobManager(root=tmp_path)
-    job = Job("j1", tmp_path, "src.docx", "business_blue", False, "doc")
+    job = Job("j1", tmp_path, "src.docx", "", False, "doc")
     mgr._apply_genre(job, "report")  # docplan 尚未生成：静默跳过
     assert not (job.dir / "artifacts" / "docplan.json").exists()
 

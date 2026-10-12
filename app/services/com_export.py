@@ -9,19 +9,16 @@ import threading
 from pathlib import Path
 
 from pptx import Presentation
-from pptx.util import Emu
+from pptx.enum.shapes import MSO_SHAPE_TYPE
 
 from app.config import get_settings
-from app.render import design
-from app.schema.enums import IssueCode, Severity, SlideType
+from app.schema.enums import IssueCode, Severity
 from app.schema.qa import QAIssue
-from app.schema.slideir import Deck, SlideIR
+from app.schema.slotfill import DeckBuild
+from app.schema.textlen import text_weight
+from app.schema.tplcatalog import TemplateCatalog
 
 log = logging.getLogger(__name__)
-
-SLIDE_W_EMU = 12192000
-SLIDE_H_EMU = 6858000
-_BOUNDS_TOL_EMU = 25400  # 2pt
 
 
 class ComError(RuntimeError):
@@ -392,55 +389,65 @@ def convert_html_to_docx(html_path: Path, out_docx: Path) -> Path:
     return get_word_com_service().run(_do)
 
 
-# ---- 渲染清单检查（对已保存 pptx 的确定性核对）----
+# ---- 真模板构建清单检查（对已保存 pptx 的确定性核对，零 COM）----
 
-def _expected_text_shapes(ir: SlideIR) -> set[str]:
-    names = set(design.texts_for(ir).keys())
-    if ir.slide_type is SlideType.TABLE and ir.table is not None:
-        names.add("tbl_frame")
-    return names
+def _slide_texts(slide) -> str:
+    """页面全部文本：递归组内形状 + 表格单元格（python-pptx 不自动下钻组）。"""
+    out: list[str] = []
+
+    def walk(shapes) -> None:
+        for shape in shapes:
+            if shape.shape_type == MSO_SHAPE_TYPE.GROUP:
+                walk(shape.shapes)
+                continue
+            if getattr(shape, "has_text_frame", False):
+                out.append(shape.text_frame.text)
+            if getattr(shape, "has_table", False):
+                out.extend(cell.text for row in shape.table.rows for cell in row.cells)
+
+    walk(slide.shapes)
+    return "\n".join(out)
 
 
-def checklist(deck: Deck, pptx_path: Path) -> list[QAIssue]:
-    """核对渲染产物与 SlideIR：页数、命名形状存在且非空、形状不越画布。"""
+def template_checklist(deck: DeckBuild, catalog: TemplateCatalog,
+                       pptx_path: Path) -> list[QAIssue]:
+    """核对构建产物与 DeckBuild/目录：页数一致；未填充未删除槽的模板原文
+    不得遗留（E_LEFTOVER）；页面不得全空。"""
     issues: list[QAIssue] = []
 
     def add(code: IssueCode, page_no: int, detail: str):
         issues.append(QAIssue(
-            code=code, severity=Severity.BLOCKING, page_no=page_no, detail=detail,
-        ))
+            code=code, severity=Severity.BLOCKING, page_no=page_no, detail=detail))
 
     prs = Presentation(str(pptx_path))
-    if len(prs.slides) != len(deck.slides):
+    if len(prs.slides) != len(deck.pages):
         add(IssueCode.E_RENDER_MISMATCH, 0,
-            f"页数不符：pptx {len(prs.slides)} 页，SlideIR {len(deck.slides)} 页")
+            f"页数不符：pptx {len(prs.slides)} 页，DeckBuild {len(deck.pages)} 页")
         return issues
 
-    for ir, slide in zip(deck.slides, prs.slides):
-        expected = _expected_text_shapes(ir)
-        found: dict[str, str] = {}
-        for shape in slide.shapes:
-            if shape.name in expected:
-                if shape.has_text_frame:
-                    found[shape.name] = shape.text_frame.text.strip()
-                else:
-                    found[shape.name] = "<table>"
-            try:
-                l, t = shape.left, shape.top
-                w, h = shape.width, shape.height
-            except Exception:
+    for page, slide in zip(deck.pages, prs.slides):
+        text = _slide_texts(slide)
+        if not text.strip():
+            add(IssueCode.E_EMPTY_PLACEHOLDER, page.page_no, "页面无任何文本")
+        cat_slide = catalog.slide(page.template_slide)
+        filled = set(page.slot_values)
+        deleted = set(page.slot_deletes)
+        # 在场合法文本：design/page_no 槽原样保留 + 已填槽的新文本。
+        # 未删槽的 sample 段若只是其中子串（如 "Helvetica" 命中 design 槽
+        # 保留文案"比 Helvetica 早 61 年问世"），不构成遗留证据。
+        legit = [s.sample for s in cat_slide.slots
+                 if s.role in ("design", "page_no")]
+        legit += list(page.slot_values.values())
+        for s in cat_slide.slots:
+            if (s.role in ("design", "page_no") or s.slot_id in filled
+                    or s.slot_id in deleted):
                 continue
-            if l is None or t is None or w is None or h is None:
-                continue
-            if (l < -_BOUNDS_TOL_EMU or t < -_BOUNDS_TOL_EMU
-                    or l + w > SLIDE_W_EMU + _BOUNDS_TOL_EMU
-                    or t + h > SLIDE_H_EMU + _BOUNDS_TOL_EMU):
-                add(IssueCode.E_RENDER_MISMATCH, ir.page_no,
-                    f"形状 {shape.name} 越画布：({Emu(l).inches:.2f},{Emu(t).inches:.2f}) "
-                    f"+({Emu(w).inches:.2f}x{Emu(h).inches:.2f})")
-        for name in sorted(expected - set(found)):
-            add(IssueCode.E_RENDER_MISMATCH, ir.page_no, f"缺少命名形状 {name}")
-        for name, text in sorted(found.items()):
-            if name != "tbl_frame" and not text:
-                add(IssueCode.E_EMPTY_PLACEHOLDER, ir.page_no, f"{name} 内容为空")
+            # sample 是段落以 " / " 连接的前 40 字；逐段前缀匹配（≥3 当量，防短词误报）
+            for piece in s.sample.split(" / "):
+                piece = piece.strip()
+                if (text_weight(piece) >= 3 and piece in text
+                        and not any(piece in ls for ls in legit)):
+                    add(IssueCode.E_LEFTOVER, page.page_no,
+                        f"槽 {s.slot_id} 未填充未删除，模板原文「{piece[:20]}」遗留")
+                    break
     return issues
